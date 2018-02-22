@@ -1,0 +1,16 @@
+Possible ClassList
+- Game
+- Entities 
+    - Player
+    - Enemy
+	- Every enemy
+- SpriteSheet
+- Vector
+- Mouse 
+- Keyboard
+- Interactions
+- Collisons
+- Background (single object)
+- Main Menu
+- Level
+		
