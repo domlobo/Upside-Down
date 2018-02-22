@@ -1,9 +1,10 @@
 Possible ClassList
 - Game
-- Entities 
-    - Player
-    - Enemy
-	- Every enemy
+- GameObject
+    - Entities 
+        - Player
+     	- Enemy
+	    - Every enemy
 - SpriteSheet
 - Vector
 - Mouse 
@@ -13,4 +14,4 @@ Possible ClassList
 - Background (single object)
 - Main Menu
 - Level
-		
+- Text Prompts
