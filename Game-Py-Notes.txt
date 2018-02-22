@@ -1,0 +1,47 @@
+-Main:
+	- 2 worlds per character + boss level
+	- Different levels (increasing difficulty)
+	- Start off only jumps
+	- Trying to make ends meet
+	- Unlock abilities
+	- Employed by bad guys (e.g. Bowser, devils etc...)
+
+-Stages (3 stages per level):
+	- Link in tutorial accidentally kills him(gives 1st weapon)
+	- Mario first boss
+	- Doom second boss
+	- Pokemon final boss
+	- Bindings of isaac? (Maybe)
+
+- Walkthrough:
+	- Link = master sword
+		- Tutorial level
+		- Cut-scene killing link
+		
+	- Mario = fireballs
+		- mini enemies = todd
+		- mini boss = luigi
+		- kill mario = cut-scene
+		
+	- Doom = gun
+		- kill everything
+		- kill doomslayer = cut-scene
+		
+	- Pokemon = pokeball
+		- stage 1 = charmander
+		- stage 2 = squirtle
+		- stage 3 = pikachu
+		- kill ash mercilessly
+	
+- Extras:
+	- Point system = coins
+		- coins show how well family is doing (hes hustling trying to provide)
+		- End game coins decides how long family lives
+	- Smash Mouth - All Star (8 Bit) main song
+	- End game cut-scene:
+		- Walking through house with heads of boss' on the wall framed
+	-Unlocks pokeball at the end 
+	
+	
+
+
