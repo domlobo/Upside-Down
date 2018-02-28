@@ -11,6 +11,7 @@ class Keyboard:
         self.up=False
         self.down=False
 
+    #handling key press down
     def keyDown(self, key):
         if key ==simplegui.KEY_MAP['right']:
             self.right = True
@@ -21,6 +22,7 @@ class Keyboard:
         elif key == simplegui.KEY_MAP['down']:
             self.down = True
 
+    #handling key release
     def keyUp(self, key):
         if key ==simplegui.KEY_MAP['right']:
             self.right = False
