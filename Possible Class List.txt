@@ -1,10 +1,9 @@
 Possible ClassList
 - Game
 - GameObject
-    - Entities 
-        - Player
-     	- Enemy
-	    - Every enemy
+     - Player
+     - Enemy
+	- Every enemy
 - SpriteSheet
 - Vector
 - Mouse 
