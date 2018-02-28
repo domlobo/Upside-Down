@@ -29,3 +29,4 @@ class Interaction:
     def clickHandler(self,pos):
         pass
         #self.player.fire()
+
