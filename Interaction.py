@@ -22,5 +22,11 @@ class Interaction:
             player.jump()
         if (self.keyboard.down):
             player.crouch()
+        if (not(self.keyboard.right and self.keyboard.left)):
+            player.moveStill()
+
         if (self.keyboard.weapon != player.weapon):
             player.tryWeapon(self.keyboard.weapon)
+
+    def clickHandler(self,pos):
+        player.fire()
