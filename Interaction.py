@@ -14,11 +14,11 @@ class Interaction:
 
     #handling keyboard input for player
     def checkKeyboard(self):
-        if self.keyboard.right:
+        if (self.keyboard.right):
             player.moveRight()
-        if self.keyboard.left:
+        if (self.keyboard.left):
             player.moveLeft()
-        if self.keyboard.up:
+        if (self.keyboard.up):
             player.jump()
-        if self.keyboard.down:
+        if (self.keyboard.down):
             player.crouch()

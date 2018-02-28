@@ -13,22 +13,22 @@ class Keyboard:
 
     #handling key press down
     def keyDown(self, key):
-        if key ==simplegui.KEY_MAP['right']:
+        if (key ==simplegui.KEY_MAP['right']):
             self.right = True
-        elif key == simplegui.KEY_MAP['left']:
+        elif (key == simplegui.KEY_MAP['left']):
             self.left = True
-        elif key == simplegui.KEY_MAP['up'] or key == simplegui.KEY_MAP['space']:
+        elif (key == simplegui.KEY_MAP['up']) or (key == simplegui.KEY_MAP['space']):
             self.up = True
-        elif key == simplegui.KEY_MAP['down']:
+        elif (key == simplegui.KEY_MAP['down']):
             self.down = True
 
     #handling key release
     def keyUp(self, key):
-        if key ==simplegui.KEY_MAP['right']:
+        if (key ==simplegui.KEY_MAP['right']):
             self.right = False
-        elif key == simplegui.KEY_MAP['left']:
+        elif (key == simplegui.KEY_MAP['left']):
             self.left = False
-        elif key == simplegui.KEY_MAP['up'] or key == simplegui.KEY_MAP['space']:
+        elif (key == simplegui.KEY_MAP['up']) or (key == simplegui.KEY_MAP['space']):
             self.up = False
-        elif key == simplegui.KEY_MAP['down']:
+        elif (key == simplegui.KEY_MAP['down']):
             self.down = False
