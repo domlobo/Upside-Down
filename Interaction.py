@@ -13,18 +13,20 @@ class Interaction:
     #handling keyboard input for player
     def checkKeyboard(self):
         if (self.keyboard.right):
-            player.moveRight()
+            self.player.moveRight()
         if (self.keyboard.left):
-            player.moveLeft()
+            self.player.moveLeft()
         if (self.keyboard.up):
-            player.jump()
+            self.player.jump()
         if (self.keyboard.down):
-            player.crouch()
-        if (not(self.keyboard.right and self.keyboard.left)) and (player.direction != 0):
-            player.standStill()
+            self.player.crouch()
+        if (not(self.keyboard.right and self.keyboard.left)) and (self.player.direction != 0):
+            self.player.standStill()
 
-        if (self.keyboard.weapon != player.weapon):
-            player.tryWeapon(self.keyboard.weapon)
+        # if (self.keyboard.weapon != self.player.weapon):
+        #     self.player.tryWeapon(self.keyboard.weapon)
 
     def clickHandler(self,pos):
-        player.fire()
+        pass
+        #self.player.fire()
+

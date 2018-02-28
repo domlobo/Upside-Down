@@ -54,7 +54,7 @@ class Vector:
         return self.copy().sub(other)
 
     # Multiplies the vector by a scalar
-    def mult(self, k):
+    def multiply(self, k):
         self.x *= k
         self.y *= k
         return self
