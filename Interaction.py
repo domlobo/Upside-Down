@@ -22,3 +22,5 @@ class Interaction:
             player.jump()
         if (self.keyboard.down):
             player.crouch()
+        if (self.keyboard.weapon != player.weapon):
+            player.tryWeapon(self.keyboard.weapon)

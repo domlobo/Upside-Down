@@ -10,6 +10,7 @@ class Keyboard:
         self.right=False
         self.up=False
         self.down=False
+        self.tryWeapon=0
 
     #handling key press down
     def keyDown(self, key):
@@ -21,6 +22,13 @@ class Keyboard:
             self.up = True
         elif (key == simplegui.KEY_MAP['down']) or (key == simplegui.KEY_MAP['s']):
             self.down = True
+        #handling weapon changes
+        if (key == simplegui.KEY_MAP['1']):
+            self.tryWeapon = 1
+        if (key == simplegui.KEY_MAP['2']):
+            self.tryWeapon = 2
+        if (key == simplegui.KEY_MAP['3']):
+            self.tryWeapon = 3
 
     #handling key release
     def keyUp(self, key):
