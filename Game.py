@@ -4,18 +4,22 @@ from Vector import Vector
 from GameObject import GameObject
 from Player import Player
 from Interaction import Interaction
+from Enemy import BasicEnemy
 
 
 CANVAS_WIDTH = 800
 CANVAS_HEIGHT = 450
 state = State()
 
-player = Player(Vector((CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2)))
+
+player = Player(Vector((50, CANVAS_HEIGHT / 2)))
+enemy = BasicEnemy(Vector((600, CANVAS_HEIGHT / 2)), 100, player)
 inter = Interaction(player)
 
 def draw(canvas):
     update()
-    player.draw(canvas)
+    player.draw(canvas, "Green")
+    enemy.draw(canvas, "Red")
 
 def update():
     inter.checkKeyboard()
