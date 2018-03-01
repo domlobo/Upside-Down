@@ -17,10 +17,9 @@ class LevelLoader:
         self.currentLevel=self.levels[self.levelCounter]
 
     #called from Game when a level is over
-    def nextlevel(self,frame):
+    def nextlevel(self):
         self.player = self.currentLevel.returnPlayer
         if(self.levelCounter<len(self.levels)-1):
             self.levelCounter +=1
             self.currentLevel = self.levels[self.levelCounter]
-            frame.set_draw_handler(self.currentLevel.draw)
             return frame

@@ -30,13 +30,18 @@ inter = Interaction(player)
 #         enemy.draw(canvas, "Red")
 # >>>>>>> master
 
+def update(canvas):
+    if levelLoader.currentLevel.levelComplete():
+        levelLoader.nextlevel
+    levelLoader.currentLevel.draw(canvas)
+
 # For Release - remove last bracket and uncomment
 frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT)#, 0)
 
 levelLoader = LevelLoader(player,inter)
 #everytime the game state changes, call this method
-frame = levelLoader.nextlevel(frame)
 
+frame.set_draw_handler(update)
 frame.set_keydown_handler(inter.keyboard.keyDown)
 frame.set_keyup_handler(inter.keyboard.keyUp)
 frame.set_mouseclick_handler(inter.clickHandler)
