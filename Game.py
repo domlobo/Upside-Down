@@ -4,33 +4,29 @@ from Vector import Vector
 from GameObject import GameObject
 from Player import Player
 from Interaction import Interaction
-from Background import Background
+from Level import Level
 import GV
-from Enemy import BasicEnemy
-from PlayerEnemyInteraction import PlayerEnemyInteraction
+
 
 state = State()
 
 player = Player(Vector((50, GV.CANVAS_HEIGHT / 2)))
 
-enemies = [BasicEnemy(Vector((600, GV.CANVAS_HEIGHT / 2)), 100, player), BasicEnemy(Vector((800, GV.CANVAS_HEIGHT / 2)), 100, player)]
-
 inter = Interaction(player)
-collInter = PlayerEnemyInteraction(player, enemies)
-background = Background('https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-1.1.jpg?token=APgKaY-Q3e5QVhZ-H89jyYEck_xcLGKSks5aoWDHwA%3D%3D','','https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-clouds.png?token=APgKaSIkI0DepOY41ozT1p6k03q-8_-vks5aoT75wA%3D%3D')
+levelOne = Level('https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-1.1.jpg?token=APgKaY-Q3e5QVhZ-H89jyYEck_xcLGKSks5aoWDHwA%3D%3D','','https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-clouds.png?token=APgKaSIkI0DepOY41ozT1p6k03q-8_-vks5aoT75wA%3D%3D', player)
 
 
 def draw(canvas):
     update()
-    background.update(canvas,player)
+    levelOne.background.update(canvas,player)
     player.draw(canvas, "Green")
     for proj in player.projectiles:
         proj.draw(canvas, "Blue")
-    for enemy in enemies:
+    for enemy in levelOne.enemies:
         enemy.draw(canvas, "Red")
 
 def update():
-    collInter.update()
+    levelOne.collInter.update()
     inter.checkKeyboard()
 
 # For developing
