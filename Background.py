@@ -22,16 +22,22 @@ class Background:
         self.FOREGROUND_CENTER = Vector((self.FOREGROUND_WIDTH/2, self.FOREGROUND_HEIGHT/2))
         self.foregroundPos = Vector((self.FOREGROUND_WIDTH/2, GV.CANVAS_HEIGHT/2))
 
-        #clouds
+        #clouds 1
         self.CLOUD_LOAD = simplegui.load_image(clouds)
         self.CLOUD_HEIGHT = self.CLOUD_LOAD.get_height()
         self.CLOUD_WIDTH = self.CLOUD_LOAD.get_width()
         self.CLOUD_CENTER = Vector((self.CLOUD_WIDTH/2, self.CLOUD_HEIGHT/2))
-        self.cloudPos = Vector((self.CLOUD_WIDTH/2,GV.CANVAS_HEIGHT/2))
-
+        self.cloudOnePos = Vector((self.CLOUD_WIDTH/2,GV.CANVAS_HEIGHT/2))
+        self.cloudTwoPos = Vector((self.CLOUD_WIDTH*1.5,GV.CANVAS_HEIGHT/2))
     #update the position of the background if the player is in the right position
     def update(self,canvas, player):
-        self.cloudPos.x -= 3
+        self.cloudOnePos.x -= 1
+        self.cloudTwoPos.x -=1
+        if(self.cloudOnePos.x<-(GV.CANVAS_WIDTH/2)):
+            self.cloudOnePos.x = self.CLOUD_WIDTH*1.5
+        if(self.cloudTwoPos.x<-(GV.CANVAS_WIDTH/2)):
+            self.cloudTwoPos.x = self.CLOUD_WIDTH*1.5
+
         if (player.position.x > GV.CANVAS_WIDTH/2):
             #variable acceleration depending on position of the player
             movementFactor = (player.position.x - GV.CANVAS_WIDTH/2)/400
@@ -41,4 +47,5 @@ class Background:
         #draw total background in
         canvas.draw_image(self.FAR_BACKGROUND_LOAD,self.FAR_BACKGROUND_CENTER.getP(),(self.FAR_BACKGROUND_WIDTH,self.FAR_BACKGROUND_HEIGHT),self.farBackgroundPos.getP(),(self.FAR_BACKGROUND_WIDTH,self.FAR_BACKGROUND_HEIGHT))#(GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT))
         canvas.draw_image(self.FOREGROUND_LOAD,self.FOREGROUND_CENTER.getP(),(self.FOREGROUND_WIDTH,self.FOREGROUND_HEIGHT),self.foregroundPos.getP(),(GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT))
-        canvas.draw_image(self.CLOUD_LOAD,self.CLOUD_CENTER.getP(),(self.CLOUD_WIDTH,self.CLOUD_HEIGHT),self.cloudPos.getP(),(GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT))
+        canvas.draw_image(self.CLOUD_LOAD,self.CLOUD_CENTER.getP(),(self.CLOUD_WIDTH,self.CLOUD_HEIGHT),self.cloudOnePos.getP(),(self.CLOUD_WIDTH,self.CLOUD_HEIGHT))
+        canvas.draw_image(self.CLOUD_LOAD,self.CLOUD_CENTER.getP(),(self.CLOUD_WIDTH,self.CLOUD_HEIGHT),self.cloudTwoPos.getP(),(self.CLOUD_WIDTH,self.CLOUD_HEIGHT))

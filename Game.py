@@ -13,7 +13,7 @@ state = State()
 
 player = Player(Vector((GV.CANVAS_WIDTH / 2, GV.CANVAS_HEIGHT / 2)))
 inter = Interaction(player)
-background = Background('https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/Mario-world-empty.jpg?token=APgKaR6TSptYR0qhV63oQBnvXIhsoyFtks5aoRUmwA%3D%3D')#"images/background/Mario-world-empty.jpg")
+background = Background('https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/Mario-world-empty.jpg?token=APgKaR6TSptYR0qhV63oQBnvXIhsoyFtks5aoRUmwA%3D%3D','','https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario-world-clouds.png?token=APgKafUTHt07IQ0E9ShW18tyX2LJkQL5ks5aoRm7wA%3D%3D')
 
 def draw(canvas):
     update()
