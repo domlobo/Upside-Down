@@ -17,7 +17,7 @@ enemies = [BasicEnemy(Vector((600, GV.CANVAS_HEIGHT - 31)), 100, player), BasicE
 
 inter = Interaction(player)
 collInter = PlayerEnemyInteraction(player, enemies)
-background = Background('https://raw.githubusercontent.com/domlobo/CS18GV.CANVAS_HEIGHT - 30-Games-Lab/player/images/background/Mario-world-1.1.jpg?token=APgKacyvB6C2WUUWnobOTvt_toujcGJRks5aoTb-wA%3D%3D','','https://raw.githubusercontent.com/domlobo/CS18GV.CANVAS_HEIGHT - 30-Games-Lab/master/images/background/mario/Mario-world-clouds.png?token=APgKaSIkI0DepOY41ozT1p6k03q-8_-vks5aoT75wA%3D%3D')
+background = Background('https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-1.1.jpg?token=APgKaY-Q3e5QVhZ-H89jyYEck_xcLGKSks5aoWDHwA%3D%3D','','https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-clouds.png?token=APgKaSIkI0DepOY41ozT1p6k03q-8_-vks5aoT75wA%3D%3D')
 
 def draw(canvas):
     update()
