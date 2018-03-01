@@ -1,4 +1,6 @@
 from Vector import Vector
+
+
 class Rectangle():
     def __init__(self, position, width, height):
         # Vector, int, int
@@ -15,6 +17,14 @@ class Rectangle():
         # self.topLeft = Vector((self.left, self.top))
         # self.bottomRight = Vector((self.right, self.bottom))
 
+    def updateBox(self, position):
+        self.position = position
+
+        self.left = self.position.x - (self.width / 2)
+        self.right = self.position.x + (self.width / 2)
+        self.top = self.position.y - (self.height / 2)
+        self.bottom = self.position.y + (self.height / 2)
+
     def overlaps(self, other):
         # Rectangle
         # Checks if two rectangles are overlapping (intersecting)
@@ -24,9 +34,9 @@ class Rectangle():
         #         (self.topLeft.y  > other.bottomRight.y) or
         #         (self.bottomRight.y < other.topLeft.y))
 
-        return (self.left > other.right or
-                self.right < other.left or
-                self.top > other.bottom or
+        return (self.left > other.right and
+                self.right < other.left and
+                self.top > other.bottom and
                 self.bottom < other.top)
 
     def contains(self, point):
@@ -34,4 +44,5 @@ class Rectangle():
         return (self.right >= point.x >= self.left and
                 self.bottom >= point.y >= self.top)
 
-
+    def draw(self, canvas, colour):
+        canvas.draw_polygon([(self.left, self.top), (self.right, self.top), (self.right, self.bottom), (self.left, self.bottom)], 1, colour)
