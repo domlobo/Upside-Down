@@ -21,6 +21,9 @@ class GameObject:
         # 'Bounding Box'
         self.boundingBox = Rectangle(self.position, self.dimensions[0], self.dimensions[1])
 
+        # Boolean
+        self.remove = False
+
     def changeHealth(self, health):
         self.health += health
 
@@ -30,6 +33,7 @@ class GameObject:
     def update(self):
         self.position.add(self.velocity)
         self.boundingBox.updateBox(self.position)
+        if self.health <= 0: self.remove = True
         # Overwrite and add anything else
 
     def draw(self, canvas, colour):

@@ -32,8 +32,8 @@ class BasicEnemy(GameObject):
             # Inside large
             self.resetMovement()
             self.moveToPlayer()
-            if self.smallSearch.overlaps(self.player.boundingBox):
-                print("Player found in small circle")
+            if self.smallSearch.contains(self.player.position):
+                pass
         else:
             self.move()
 

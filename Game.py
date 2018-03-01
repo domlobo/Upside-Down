@@ -19,8 +19,9 @@ def draw(canvas):
     update()
     background.update(canvas,player)
     player.draw(canvas, "Green")
-
     enemy.draw(canvas, "Red")
+    for proj in player.projectiles:
+        proj.draw(canvas, "Blue")
 
 def update():
     inter.checkKeyboard()

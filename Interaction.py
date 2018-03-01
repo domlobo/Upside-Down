@@ -27,6 +27,5 @@ class Interaction:
         #     self.player.tryWeapon(self.keyboard.weapon)
 
     def clickHandler(self,pos):
-        pass
-        #self.player.fire()
+        self.player.shoot()
 
