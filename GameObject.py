@@ -1,5 +1,6 @@
 from Vector import Vector
 from Rectangle import Rectangle
+import GV
 
 
 class GameObject:
@@ -34,10 +35,15 @@ class GameObject:
         self.position.add(self.velocity)
         self.boundingBox.updateBox(self.position)
         if self.health <= 0: self.remove = True
+
+        #either in bounds, or right bound moving left or left bound moving right
+        # Commenting to fix the merge conflict
+        #if((self.boundingBox.right < GV.CANVAS_WIDTH)and (self.boundingBox.left > 0)) or ((self.boundingBox.right>=GV.CANVAS_WIDTH ) and (self.velocity.x <0)) or ((self.boundingBox.left <=0)and (self.velocity.x>0)):
+         #   self.position.add(self.velocity)
+          #  self.boundingBox.updateBox(self.position)
         # Overwrite and add anything else
 
     def draw(self, canvas, colour):
         self.update()
         # Bounding box for testing
         self.boundingBox.draw(canvas, colour)
-

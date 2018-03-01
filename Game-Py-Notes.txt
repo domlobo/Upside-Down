@@ -40,7 +40,8 @@
 	- Smash Mouth - All Star (8 Bit) main song
 	- End game cut-scene:
 		- Walking through house with heads of boss' on the wall framed
-	-Unlocks pokeball at the end 
+	- Unlocks pokeball at the end
+	- credits screen music is mii song
 	
 	
 
