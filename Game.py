@@ -18,7 +18,7 @@ background = Background('https://raw.githubusercontent.com/domlobo/CS1830-Games-
 def draw(canvas):
     update()
     background.update(canvas,player)
-    player.draw(canvas)
+    player.draw(canvas, "Green")
 
     enemy.draw(canvas, "Red")
 
