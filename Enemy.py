@@ -19,12 +19,12 @@ class BasicEnemy(GameObject):
 
     def resetMovement(self):
         # Used to make a new movement box when the user moves out of it
-        self.movementRectangle.updateBox(self.position)
+        self.movementRectangle.updateBox(self.position, 200, 200)
 
     def findPlayer(self):
         # Update the search rectangles
-        self.largeSearch.updateBox(self.position)
-        self.smallSearch.updateBox(self.position)
+        self.largeSearch.updateBox(self.position, 250, 250)
+        self.smallSearch.updateBox(self.position, 150, 150)
 
         # Checks first in large rectangle
         if self.largeSearch.overlaps(self.player.boundingBox):
@@ -46,11 +46,11 @@ class BasicEnemy(GameObject):
         if dl.x < 0:
             if self.velocity.x <= -self.maxVel[0]:
                 self.velocity.x = -self.maxVel[0]
-            else: self.velocity.add(dl)
+            else: self.velocity.x += dl.x
         else:
             if self.velocity.x >= self.maxVel[0]:
                 self.velocity.x = self.maxVel[0]
-            else: self.velocity.add(dl)
+            else: self.velocity.x += dl.x
 
     def move(self):
         speed = 0.9
