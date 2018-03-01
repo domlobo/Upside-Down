@@ -60,7 +60,8 @@ class Player(GameObject):
             self.weapon = tryWeapon
 
     def update(self):
-        GameObject.update(self)
+        if((self.boundingBox.right < GV.CANVAS_WIDTH)and (self.boundingBox.left > 0)) or ((self.boundingBox.right>=GV.CANVAS_WIDTH ) and (self.velocity.x <0)) or ((self.boundingBox.left <=0)and (self.velocity.x>0)):
+            GameObject.update(self)
         self.velocity.x *= (0.85)
 
         if self.velocity.length() < 0.1: self.stop()
