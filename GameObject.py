@@ -22,6 +22,9 @@ class GameObject:
         # 'Bounding Box'
         self.boundingBox = Rectangle(self.position, self.dimensions[0], self.dimensions[1])
 
+        # Boolean
+        self.remove = False
+
     def changeHealth(self, health):
         self.health += health
 
@@ -29,10 +32,15 @@ class GameObject:
         self.health = amount
 
     def update(self):
+        self.position.add(self.velocity)
+        self.boundingBox.updateBox(self.position)
+        if self.health <= 0: self.remove = True
+
         #either in bounds, or right bound moving left or left bound moving right
-        if((self.boundingBox.right < GV.CANVAS_WIDTH)and (self.boundingBox.left > 0)) or ((self.boundingBox.right>=GV.CANVAS_WIDTH ) and (self.velocity.x <0)) or ((self.boundingBox.left <=0)and (self.velocity.x>0)):
-            self.position.add(self.velocity)
-            self.boundingBox.updateBox(self.position)
+        # Commenting to fix the merge conflict
+        #if((self.boundingBox.right < GV.CANVAS_WIDTH)and (self.boundingBox.left > 0)) or ((self.boundingBox.right>=GV.CANVAS_WIDTH ) and (self.velocity.x <0)) or ((self.boundingBox.left <=0)and (self.velocity.x>0)):
+         #   self.position.add(self.velocity)
+          #  self.boundingBox.updateBox(self.position)
         # Overwrite and add anything else
 
     def draw(self, canvas, colour):

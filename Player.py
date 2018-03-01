@@ -1,6 +1,7 @@
 from GameObject import GameObject
 from Vector import Vector
 import GV
+from Projectiles import Projectile
 
 
 class Player(GameObject):
@@ -9,9 +10,12 @@ class Player(GameObject):
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
         self.weapon = 0
-        self.direction = 0
+        self.direction = 2
         self.animation = 0
         self.maxUnlockedWeapon = 0
+
+        self.projectiles = []
+        self.MAXIMUM_PROJECTILES = 10
 
         # So that the player does not get too fast
         self.maxVel = [5, 5]
@@ -42,7 +46,8 @@ class Player(GameObject):
             else: self.velocity.add(Vector((self.runSpeed, 0)))
 
     def standStill(self):
-        self.direction = 0
+        pass
+        # self.direction = 0
 
     def jump(self):
         if (self.position.y >= GV.CANVAS_HEIGHT - GV.EXTRA_JUMP_HEIGHT) and (self.velocity.y <= 0):
@@ -71,6 +76,16 @@ class Player(GameObject):
             #	self.sprite.runningLeft()
             # if (self.weapon == 0) and (self.direction == 0) and (self.animation ==0):
             #	self.sprite.jumping()
+
+
+        # Projectiles
+        for proj in self.projectiles[:]:
+            proj.update()
+            if proj.remove: self.projectiles.remove(proj)
+
+    def shoot(self):
+        if len(self.projectiles) == self.MAXIMUM_PROJECTILES: return
+        self.projectiles.append(Projectile(self.position.copy(), 300, self.direction))
 
     # Two methods to make sure that the player slows down
     # Might be equivalent to the standStill() method, not sure

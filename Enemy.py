@@ -21,19 +21,18 @@ class BasicEnemy(GameObject):
         # Used to make a new movement box when the user moves out of it
         self.movementRectangle.updateBox(self.position)
 
-
     def findPlayer(self):
         # Update the search rectangles
         self.largeSearch.updateBox(self.position)
         self.smallSearch.updateBox(self.position)
 
         # Checks first in large rectangle
-        if self.largeSearch.contains(self.player.position):
+        if self.largeSearch.overlaps(self.player.boundingBox):
             # Inside large
             self.resetMovement()
             self.moveToPlayer()
             if self.smallSearch.overlaps(self.player.boundingBox):
-                print("Player found in small circle")
+                pass
         else:
             self.move()
 
