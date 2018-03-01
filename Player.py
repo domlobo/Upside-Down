@@ -14,7 +14,7 @@ class Player(GameObject):
         self.maxUnlockedWeapon = 0
 
         # So that the player does not get too fast
-        self.maxVel = [5,5]
+        self.maxVel = [5, 5]
 
     # Haven't finished initialization.
 
