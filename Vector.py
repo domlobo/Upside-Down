@@ -41,7 +41,7 @@ class Vector:
 
     # Negates the vector (makes it point in the opposite direction)
     def negate(self):
-        return self.mult(-1)
+        return self.multiply(-1)
 
     def __neg__(self):
         return self.copy().negate()
@@ -53,21 +53,21 @@ class Vector:
     def __sub__(self, other):
         return self.copy().sub(other)
 
-    # Multiplies the vector by a scalar
+    # multiplyiplies the vector by a scalar
     def multiply(self, k):
         self.x *= k
         self.y *= k
         return self
 
     def __mul__(self, k):
-        return self.copy().mult(k)
+        return self.copy().multiply(k)
 
     def __rmul__(self, k):
-        return self.copy().mult(k)
+        return self.copy().multiply(k)
 
     # Divides the vector by a scalar
     def divide(self, k):
-        return self.mult(1 / k)
+        return self.multiply(1 / k)
 
     def __truediv__(self, k):
         return self.copy().divide(k)
@@ -95,7 +95,7 @@ class Vector:
     # Reflect this vector on a normal
     def reflect(self, normal):
         n = normal.copy()
-        n.mult(2 * self.dot(normal))
+        n.multiply(2 * self.dot(normal))
         self.sub(n)
         return self
 
