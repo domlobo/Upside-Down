@@ -4,28 +4,31 @@ from Vector import Vector
 from GameObject import GameObject
 from Player import Player
 from Interaction import Interaction
+from Background import Background
+import GV
 from Enemy import BasicEnemy
 
-
-CANVAS_WIDTH = 800
-CANVAS_HEIGHT = 450
+GV.CANVAS_WIDTH = 800
+GV.CANVAS_HEIGHT = 450
 state = State()
-
 
 player = Player(Vector((50, CANVAS_HEIGHT / 2)))
 enemy = BasicEnemy(Vector((600, CANVAS_HEIGHT / 2)), 100, player)
 inter = Interaction(player)
+background = Background('https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/Mario-world-empty.jpg?token=APgKaR6TSptYR0qhV63oQBnvXIhsoyFtks5aoRUmwA%3D%3D','','https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario-world-clouds.png?token=APgKafUTHt07IQ0E9ShW18tyX2LJkQL5ks5aoRm7wA%3D%3D')
 
 def draw(canvas):
     update()
-    player.draw(canvas, "Green")
+    background.update(canvas,player)
+    player.draw(canvas)
+
     enemy.draw(canvas, "Red")
 
 def update():
     inter.checkKeyboard()
 
 # For developing
-frame = simplegui.create_frame("Game Name Goes Here", CANVAS_WIDTH, CANVAS_HEIGHT)
+frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT)
 
 # For Release - Leave last 0
 # frame = simplegui.create_frame("Game Name Goes Here", CANVAS_WIDTH, CANVAS_HEIGHT, 0)
