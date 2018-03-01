@@ -5,7 +5,7 @@ from Projectiles import Projectile
 
 
 class Player(GameObject):
-    def __init__(self, position, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=15):
+    def __init__(self, position, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
         GameObject.__init__(self, position, velocity, [30, 60], health)
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
@@ -55,16 +55,23 @@ class Player(GameObject):
             else:
                 self.velocity.add(Vector((0, -self.jumpSpeed)))
 
+    def crouch(self):
+        self.dimensions[1] = 40
+        self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
+
+    def stand(self):
+        self.dimensions[1] = 60
+        self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
+
     def changeWeapon(self, tryWeapon):
         if (tryWeapon <= self.maxUnlockedWeapon):
             self.weapon = tryWeapon
 
     def update(self):
-        if((self.boundingBox.right < GV.CANVAS_WIDTH)and (self.boundingBox.left > 0)) or ((self.boundingBox.right>=GV.CANVAS_WIDTH ) and (self.velocity.x <0)) or ((self.boundingBox.left <=0)and (self.velocity.x>0)):
-            GameObject.update(self)
-        self.velocity.x *= (0.85)
+        GameObject.update(self)
+        self.velocity.multiply(0.85)
 
-        if self.velocity.length() < 0.1: self.stop()
+        if abs(self.velocity.x) < 0.1: self.stop()
 
         if (self.position.y > GV.CANVAS_HEIGHT - self.dimensions[1] / 2):
             self.position.y = GV.CANVAS_HEIGHT - self.dimensions[1] / 2
@@ -76,7 +83,6 @@ class Player(GameObject):
             #	self.sprite.runningLeft()
             # if (self.weapon == 0) and (self.direction == 0) and (self.animation ==0):
             #	self.sprite.jumping()
-
 
         # Projectiles
         for proj in self.projectiles[:]:

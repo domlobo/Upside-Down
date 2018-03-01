@@ -17,8 +17,11 @@ class Rectangle():
         # self.topLeft = Vector((self.left, self.top))
         # self.bottomRight = Vector((self.right, self.bottom))
 
-    def updateBox(self, position):
+    def updateBox(self, position, width, height):
         self.position = position
+
+        self.width = width
+        self.height = height
 
         self.left = self.position.x - (self.width / 2)
         self.right = self.position.x + (self.width / 2)
