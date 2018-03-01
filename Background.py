@@ -29,6 +29,10 @@ class Background:
         self.CLOUD_CENTER = Vector((self.CLOUD_WIDTH/2, self.CLOUD_HEIGHT/2))
         self.cloudOnePos = Vector((self.CLOUD_WIDTH/2,GV.CANVAS_HEIGHT/2))
         self.cloudTwoPos = Vector((self.CLOUD_WIDTH*1.5,GV.CANVAS_HEIGHT/2))
+
+    def isFinished(self):
+        return self.foregroundPos.x >(-self.foregroundPos.x/2)
+
     #update the position of the background if the player is in the right position
     def update(self,canvas, player):
         self.cloudOnePos.x -= 3
@@ -38,7 +42,7 @@ class Background:
         if(self.cloudTwoPos.x<-(self.CLOUD_WIDTH/2)):
             self.cloudTwoPos.x = self.CLOUD_WIDTH*1.5
 
-        if (player.position.x > GV.CANVAS_WIDTH/2)and(self.farBackgroundPos.x >0) and (player.velocity.x > 1):
+        if (player.position.x > GV.CANVAS_WIDTH/2)and(self.isFinished()) and (player.velocity.x > 1):
             #variable acceleration depending on position of the player
             movementFactor = (player.position.x - GV.CANVAS_WIDTH/2)/400
             #move foreground and backgroud different amounts
