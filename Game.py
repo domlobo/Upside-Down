@@ -13,7 +13,7 @@ state = State()
 player = Player(Vector((50, GV.CANVAS_HEIGHT / 2)))
 enemy = BasicEnemy(Vector((600, GV.CANVAS_HEIGHT / 2)), 100, player)
 inter = Interaction(player)
-background = Background('https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/player/images/background/Mario-world-1.1.jpg?token=APgKacyvB6C2WUUWnobOTvt_toujcGJRks5aoTb-wA%3D%3D','','https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/Mario-world-clouds.png?token=APgKaf06O01OJerNk_hhSheR-13nhXbqks5aoTd4wA%3D%3D')
+background = Background('https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/player/images/background/Mario-world-1.1.jpg?token=APgKacyvB6C2WUUWnobOTvt_toujcGJRks5aoTb-wA%3D%3D','','https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-clouds.png?token=APgKaSIkI0DepOY41ozT1p6k03q-8_-vks5aoT75wA%3D%3D')
 
 def draw(canvas):
     update()
