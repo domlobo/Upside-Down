@@ -30,7 +30,7 @@ class Background:
         self.cloudOnePos = Vector((self.CLOUD_WIDTH/2,GV.CANVAS_HEIGHT/2))
         self.cloudTwoPos = Vector((self.CLOUD_WIDTH*1.5,GV.CANVAS_HEIGHT/2))
 
-    def isFinished(self):
+    def isStillRunning(self):
         return self.foregroundPos.x >(-self.foregroundPos.x/2)
 
     #update the position of the background if the player is in the right position
