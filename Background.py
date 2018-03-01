@@ -38,7 +38,7 @@ class Background:
         if(self.cloudTwoPos.x<-(self.CLOUD_WIDTH/2)):
             self.cloudTwoPos.x = self.CLOUD_WIDTH*1.5
 
-        if (player.position.x > GV.CANVAS_WIDTH/2)and(self.farBackgroundPos.x >0):
+        if (player.position.x > GV.CANVAS_WIDTH/2)and(self.farBackgroundPos.x >0) and (player.velocity.x > 1):
             #variable acceleration depending on position of the player
             movementFactor = (player.position.x - GV.CANVAS_WIDTH/2)/400
             #move foreground and backgroud different amounts
