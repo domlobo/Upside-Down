@@ -19,7 +19,7 @@ class Player(GameObject):
         self.MAXIMUM_PROJECTILES = 10
 
         # So that the player does not get too fast
-        self.maxVel = [5, 5]
+        self.maxVel = [3, 3]
 
     # Haven't finished initialization.
 
