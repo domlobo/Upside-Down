@@ -38,4 +38,5 @@ class Level:
 
     #returns true if level is over
     def levelComplete(self):
-        pass
+        #check if the character is in the last 50 pixels of the screen
+        return(self.background.isFinished()) and (self.player.position.x > GV.CANVAS_WIDTH -50)
