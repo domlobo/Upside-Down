@@ -31,7 +31,6 @@ class BasicEnemy(GameObject):
         if self.largeSearch.contains(self.player.position):
             # Inside large
             self.resetMovement()
-            print("Player found in largest box")
             self.moveToPlayer()
             if self.smallSearch.overlaps(self.player.boundingBox):
                 print("Player found in small circle")
@@ -70,8 +69,6 @@ class BasicEnemy(GameObject):
             if self.velocity.x >= self.maxVel[0]:
                 self.velocity.x = self.maxVel[0]
             else: self.velocity.x += (speed)
-
-        print(self.velocity.x)
 
     def update(self):
         GameObject.update(self)
