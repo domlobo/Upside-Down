@@ -32,7 +32,7 @@ inter = Interaction(player)
 
 def update(canvas):
     if levelLoader.currentLevel.levelComplete():
-        levelLoader.nextlevel
+        levelLoader.nextlevel()
     levelLoader.currentLevel.draw(canvas)
 
 # For Release - remove last bracket and uncomment

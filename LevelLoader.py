@@ -13,13 +13,14 @@ class LevelLoader:
         self.levels = (tutorialOne,Level('https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/hills.png?token=APgKaX34fYs3AdO_hIuWXG7_M_m2FNK7ks5aoZucwA%3D%3D','https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-1.1.png?token=APgKaRDpvbFC1-I2_-idKugD_sm8BXH-ks5aoaAswA%3D%3D',
         'https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-clouds.png?token=APgKaSIkI0DepOY41ozT1p6k03q-8_-vks5aoT75wA%3D%3D',
          player,inter))
-        self.levelCounter=-1
+        self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
 
     #called from Game when a level is over
     def nextlevel(self):
-        self.player = self.currentLevel.returnPlayer
+        self.player = self.currentLevel.returnPlayer()
+        self.player.position.x = 0
         if(self.levelCounter<len(self.levels)-1):
             self.levelCounter +=1
             self.currentLevel = self.levels[self.levelCounter]
-            return frame
+            self.currentLevel.setPlayer(self.player)
