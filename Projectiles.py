@@ -15,11 +15,11 @@ class Projectile(GameObject):
 
     def update(self):
         GameObject.update(self)
-        if self.direction == 2:
+        if self.direction == GV.RIGHT:
             if self.velocity.x >= self.maxVel[0]:
                 self.velocity.x = self.maxVel[0]
             else: self.velocity.x += self.speed
-        if self.direction == 1:
+        if self.direction == GV.LEFT:
             if self.velocity.x <= -self.maxVel[0]:
                 self.velocity.x = -self.maxVel[0]
             else: self.velocity.x -= self.speed

@@ -34,10 +34,10 @@ def update():
     inter.checkKeyboard()
 
 # For developing
-frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT)
+#frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT)
 
 # For Release - Leave last 0
-# frame = simplegui.create_frame("Game Name Goes Here", CANVAS_WIDTH, CANVAS_HEIGHT, 0)
+frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
 frame.set_draw_handler(draw)
 frame.set_keydown_handler(inter.keyboard.keyDown)
 frame.set_keyup_handler(inter.keyboard.keyUp)

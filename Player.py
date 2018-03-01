@@ -10,7 +10,8 @@ class Player(GameObject):
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
         self.weapon = 0
-        self.direction = 2
+        self.direction = 0
+        self.oldDirection = 2
         self.animation = 0
         self.maxUnlockedWeapon = 0
 
@@ -24,6 +25,7 @@ class Player(GameObject):
 
     def moveLeft(self):
         self.direction = 1
+        self.oldDirection = 1
         if (self.animation == 1):
             # This line limits the maximum velocity
             if self.velocity.x <= -self.maxVel[0]:
@@ -36,6 +38,7 @@ class Player(GameObject):
 
     def moveRight(self):
         self.direction = 2
+        self.oldDirection = 2
         if (self.animation == 1):
             if self.velocity.x >= self.maxVel[0]:
                 self.velocity.x = self.maxVel[0]
@@ -44,10 +47,6 @@ class Player(GameObject):
             if self.velocity.x >= self.maxVel[0]:
                 self.velocity.x = self.maxVel[0]
             else: self.velocity.add(Vector((self.runSpeed, 0)))
-
-    def standStill(self):
-        pass
-        # self.direction = 0
 
     def jump(self):
         if (self.position.y >= GV.CANVAS_HEIGHT - GV.EXTRA_JUMP_HEIGHT) and (self.velocity.y <= 0):
@@ -62,7 +61,7 @@ class Player(GameObject):
 
     def update(self):
         GameObject.update(self)
-        self.velocity.multiply(0.85)
+        self.velocity.x *= (0.85)
 
         if self.velocity.length() < 0.1: self.stop()
 
@@ -85,7 +84,7 @@ class Player(GameObject):
 
     def shoot(self):
         if len(self.projectiles) == self.MAXIMUM_PROJECTILES: return
-        self.projectiles.append(Projectile(self.position.copy(), 300, self.direction))
+        self.projectiles.append(Projectile(self.position.copy(), 300, self.oldDirection))
 
     # Two methods to make sure that the player slows down
     # Might be equivalent to the standStill() method, not sure
@@ -93,4 +92,5 @@ class Player(GameObject):
         return self.velocity.length() == 0
 
     def stop(self):
+        self.direction = 0
         self.velocity = Vector()

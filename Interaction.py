@@ -20,8 +20,8 @@ class Interaction:
             self.player.jump()
         if (self.keyboard.down):
             self.player.crouch()
-        if (not(self.keyboard.right and self.keyboard.left)) and (self.player.direction != 0):
-            self.player.standStill()
+        # if (not(self.keyboard.right and self.keyboard.left)) and (self.player.direction != 0):
+        #     self.player.standStill()
 
         # if (self.keyboard.weapon != self.player.weapon):
         #     self.player.tryWeapon(self.keyboard.weapon)
