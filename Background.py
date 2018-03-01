@@ -9,21 +9,21 @@ class Background:
 
     def __init__(self, farBackground, foreground="", clouds=""):
         #furthest back background
-        self.FAR_BACKGROUND_LOAD = simplegui.load_image(farBackground)
+        self.FAR_BACKGROUND_LOAD = simplegui._load_local_image(farBackground)
         self.FAR_BACKGROUND_HEIGHT = self.FAR_BACKGROUND_LOAD.get_height()
         self.FAR_BACKGROUND_WIDTH = self.FAR_BACKGROUND_LOAD.get_width()
         self.FAR_BACKGROUND_CENTER = Vector((self.FAR_BACKGROUND_WIDTH/2, self.FAR_BACKGROUND_HEIGHT/2))
         self.farBackgroundPos = Vector((self.FAR_BACKGROUND_WIDTH/2, GV.CANVAS_HEIGHT/2))
 
         #map foreground
-        self.FOREGROUND_LOAD = simplegui.load_image(foreground)
+        self.FOREGROUND_LOAD = simplegui._load_local_image(foreground)
         self.FOREGROUND_HEIGHT = self.FOREGROUND_LOAD.get_height()
         self.FOREGROUND_WIDTH = self.FOREGROUND_LOAD.get_width()
         self.FOREGROUND_CENTER = Vector((self.FOREGROUND_WIDTH/2, self.FOREGROUND_HEIGHT/2))
         self.foregroundPos = Vector((self.FOREGROUND_WIDTH/2, GV.CANVAS_HEIGHT/2))
 
         #clouds
-        self.CLOUD_LOAD = simplegui.load_image(clouds)
+        self.CLOUD_LOAD = simplegui._load_local_image(clouds)
         self.CLOUD_HEIGHT = self.CLOUD_LOAD.get_height()
         self.CLOUD_WIDTH = self.CLOUD_LOAD.get_width()
         self.CLOUD_CENTER = Vector((self.CLOUD_WIDTH/2, self.CLOUD_HEIGHT/2))
