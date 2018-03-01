@@ -8,12 +8,10 @@ from Background import Background
 import GV
 from Enemy import BasicEnemy
 
-GV.CANVAS_WIDTH = 800
-GV.CANVAS_HEIGHT = 450
 state = State()
 
-player = Player(Vector((50, CANVAS_HEIGHT / 2)))
-enemy = BasicEnemy(Vector((600, CANVAS_HEIGHT / 2)), 100, player)
+player = Player(Vector((50, GV.CANVAS_HEIGHT / 2)))
+enemy = BasicEnemy(Vector((600, GV.CANVAS_HEIGHT / 2)), 100, player)
 inter = Interaction(player)
 background = Background('https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/Mario-world-empty.jpg?token=APgKaR6TSptYR0qhV63oQBnvXIhsoyFtks5aoRUmwA%3D%3D','','https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario-world-clouds.png?token=APgKafUTHt07IQ0E9ShW18tyX2LJkQL5ks5aoRm7wA%3D%3D')
 
