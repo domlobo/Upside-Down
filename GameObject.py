@@ -33,7 +33,7 @@ class GameObject:
 
     def update(self):
         self.position.add(self.velocity)
-        self.boundingBox.updateBox(self.position)
+        self.boundingBox.updateBox(self.position, self.dimensions[0], self.dimensions[1])
         if self.health <= 0: self.remove = True
 
         #either in bounds, or right bound moving left or left bound moving right
