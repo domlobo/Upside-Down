@@ -42,8 +42,8 @@ class Background:
             #variable acceleration depending on position of the player
             movementFactor = (player.position.x - GV.CANVAS_WIDTH/2)/400
             #move foreground and backgroud different amounts
-            self.farBackgroundPos.x -= 10 * movementFactor
-            self.foregroundPos.x -= 30*movementFactor
+            self.farBackgroundPos.x -= 5 * movementFactor
+            self.foregroundPos.x -= 10*movementFactor
         #draw total background in
         canvas.draw_image(self.FAR_BACKGROUND_LOAD,self.FAR_BACKGROUND_CENTER.getP(),(self.FAR_BACKGROUND_WIDTH,self.FAR_BACKGROUND_HEIGHT),self.farBackgroundPos.getP(),(self.FAR_BACKGROUND_WIDTH,self.FAR_BACKGROUND_HEIGHT))#(GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT))
         canvas.draw_image(self.FOREGROUND_LOAD,self.FOREGROUND_CENTER.getP(),(self.FOREGROUND_WIDTH,self.FOREGROUND_HEIGHT),self.foregroundPos.getP(),(GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT))
