@@ -32,7 +32,7 @@ class Background:
     #update the position of the background if the player is in the right position
     def update(self,canvas, player):
         self.cloudPos.x -= 3
-        if (player.position.x > GV.CANVAS_WIDTH/2) and (player.position.y > GV.CANVAS_HEIGHT/2):
+        if (player.position.x > GV.CANVAS_WIDTH/2):
             #variable acceleration depending on position of the player
             movementFactor = (player.position.x - GV.CANVAS_WIDTH/2)/400
             #move foreground and backgroud different amounts
@@ -40,5 +40,5 @@ class Background:
             self.foregroundPos.x -= 30*movementFactor
         #draw total background in
         canvas.draw_image(self.FAR_BACKGROUND_LOAD,self.FAR_BACKGROUND_CENTER.getP(),(self.FAR_BACKGROUND_WIDTH,self.FAR_BACKGROUND_HEIGHT),self.farBackgroundPos.getP(),(self.FAR_BACKGROUND_WIDTH,self.FAR_BACKGROUND_HEIGHT))#(GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT))
-        #canvas.draw_image(self.FOREGROUND_LOAD,self.FOREGROUND_CENTER.getP(),(self.FOREGROUND_WIDTH,self.FOREGROUND_HEIGHT),self.foregroundPos.getP(),(GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT))
-        #canvas.draw_image(self.CLOUD_LOAD,self.CLOUD_CENTER.getP(),(self.CLOUD_WIDTH,self.CLOUD_HEIGHT),self.cloudPos.getP(),(GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT))
+        canvas.draw_image(self.FOREGROUND_LOAD,self.FOREGROUND_CENTER.getP(),(self.FOREGROUND_WIDTH,self.FOREGROUND_HEIGHT),self.foregroundPos.getP(),(GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT))
+        canvas.draw_image(self.CLOUD_LOAD,self.CLOUD_CENTER.getP(),(self.CLOUD_WIDTH,self.CLOUD_HEIGHT),self.cloudPos.getP(),(GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT))
