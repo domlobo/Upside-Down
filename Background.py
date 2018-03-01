@@ -7,7 +7,7 @@ from Vector import Vector
 
 class Background:
 
-    def __init__(self, farBackground, foreground, clouds):
+    def __init__(self, farBackground, foreground="", clouds=""):
         #furthest back background
         self.FAR_BACKGROUND_LOAD = simplegui.load_image(farBackground)
         self.FAR_BACKGROUND_HEIGHT = FAR_BACKGROUND_LOAD.get_height()

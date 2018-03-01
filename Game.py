@@ -4,6 +4,7 @@ from Vector import Vector
 from GameObject import GameObject
 from Player import Player
 from Interaction import Interaction
+from Background import Background
 import GV
 
 GV.CANVAS_WIDTH = 800
@@ -12,6 +13,7 @@ state = State()
 
 player = Player(Vector((GV.CANVAS_WIDTH / 2, GV.CANVAS_HEIGHT / 2)))
 inter = Interaction(player)
+background = Background("")
 
 def draw(canvas):
     update()
