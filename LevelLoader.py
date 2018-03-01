@@ -18,7 +18,7 @@ class LevelLoader:
     def nextlevel(self):
         self.player = self.currentLevel.returnPlayer()
         self.player.position.x = 0
-        if(self.levelCounter<len(self.levels)-1):
+        if(self.levelCounter<len(self.levels)):
             self.levelCounter +=1
             self.currentLevel = self.levels[self.levelCounter]
             self.currentLevel.setPlayer(self.player)
