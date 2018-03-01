@@ -30,7 +30,7 @@ class GameObject:
 
     def update(self):
         #either in bounds, or right bound moving left or left bound moving right
-        if((self.position.x < GV.CANVAS_WIDTH)and (self.position.x > 0)) or ((self.position.x>=GV.CANVAS_WIDTH ) and (self.velocity.x <0)) or ((self.position.x <=0)and (self.velocity.x>0)):
+        if((self.boundingBox.right < GV.CANVAS_WIDTH)and (self.boundingBox.left > 0)) or ((self.boundingBox.right>=GV.CANVAS_WIDTH ) and (self.velocity.x <0)) or ((self.boundingBox.left <=0)and (self.velocity.x>0)):
             self.position.add(self.velocity)
             self.boundingBox.updateBox(self.position)
         # Overwrite and add anything else
