@@ -9,7 +9,9 @@ class LevelLoader:
     def __init__(self,player,inter):
         self.player = player
         self.inter = inter
-        self.levels = (Level('https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-1.1.jpg?token=APgKaY-Q3e5QVhZ-H89jyYEck_xcLGKSks5aoWDHwA%3D%3D','','https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-clouds.png?token=APgKaSIkI0DepOY41ozT1p6k03q-8_-vks5aoT75wA%3D%3D', player,inter),Level("","","",player,inter))
+        self.levels = (Level('https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/hills.png?token=APgKaX34fYs3AdO_hIuWXG7_M_m2FNK7ks5aoZucwA%3D%3D','https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-1.1.png?token=APgKaRDpvbFC1-I2_-idKugD_sm8BXH-ks5aoaAswA%3D%3D',
+        'https://raw.githubusercontent.com/domlobo/CS1830-Games-Lab/master/images/background/mario/Mario-world-clouds.png?token=APgKaSIkI0DepOY41ozT1p6k03q-8_-vks5aoT75wA%3D%3D',
+         player,inter),Level("","","",player,inter))
         self.levelCounter=-1
         self.currentLevel=self.levels[self.levelCounter]
 
