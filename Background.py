@@ -31,8 +31,8 @@ class Background:
         self.cloudTwoPos = Vector((self.CLOUD_WIDTH*1.5,GV.CANVAS_HEIGHT/2))
     #update the position of the background if the player is in the right position
     def update(self,canvas, player):
-        self.cloudOnePos.x -= 1
-        self.cloudTwoPos.x -=1
+        self.cloudOnePos.x -= 3
+        self.cloudTwoPos.x -=3
         if(self.cloudOnePos.x<-(self.CLOUD_WIDTH /2)):
             self.cloudOnePos.x = self.CLOUD_WIDTH*1.5
         if(self.cloudTwoPos.x<-(self.CLOUD_WIDTH/2)):
