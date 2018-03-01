@@ -34,10 +34,10 @@ class Rectangle():
         #         (self.topLeft.y  > other.bottomRight.y) or
         #         (self.bottomRight.y < other.topLeft.y))
 
-        return (self.left > other.right and
-                self.right < other.left and
-                self.top > other.bottom and
-                self.bottom < other.top)
+        return (self.left < other.right and
+                self.right > other.left and
+                self.top < other.bottom and
+                self.bottom > other.top)
 
     def contains(self, point):
         # Vector
