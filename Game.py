@@ -11,9 +11,9 @@ from PlayerEnemyInteraction import PlayerEnemyInteraction
 
 state = State()
 
-player = Player(Vector((50, GV.CANVAS_HEIGHT - 31)))
+player = Player(Vector((50, GV.CANVAS_HEIGHT - 80)))
 
-enemies = [BasicEnemy(Vector((600, GV.CANVAS_HEIGHT - 31)), 100, player), BasicEnemy(Vector((800, GV.CANVAS_HEIGHT - 31)), 100, player)]
+enemies = [BasicEnemy(Vector((600, GV.CANVAS_HEIGHT - 131)), 100, player), BasicEnemy(Vector((800, GV.CANVAS_HEIGHT - 131)), 100, player)]
 
 inter = Interaction(player)
 collInter = PlayerEnemyInteraction(player, enemies)

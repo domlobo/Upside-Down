@@ -38,7 +38,7 @@ class GameObject:
 
         #either in bounds, or right bound moving left or left bound moving right
         self.position.add(self.velocity)
-        self.boundingBox.updateBox(self.position)
+        self.boundingBox.updateBox(self.position, self.dimensions[0], self.dimensions[1])
         # Overwrite and add anything else
 
     def draw(self, canvas, colour):

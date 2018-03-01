@@ -57,11 +57,11 @@ class Player(GameObject):
 
     def crouch(self):
         self.dimensions[1] = 40
-        self.position.y = GV.CANVAS_HEIGHT - self.dimensions[1] / 2 - 1
+        self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
 
     def stand(self):
         self.dimensions[1] = 60
-        self.position.y = GV.CANVAS_HEIGHT - self.dimensions[1] / 2 - 1
+        self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
 
     def changeWeapon(self, tryWeapon):
         if (tryWeapon <= self.maxUnlockedWeapon):
