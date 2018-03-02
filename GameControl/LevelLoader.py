@@ -2,8 +2,9 @@ try:
     import simplegui
 except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-from Level import Level
-from GameObject import GameObject
+from Levels.Level import Level
+from GameObject.GameObject import GameObject
+
 
 class LevelLoader:
 
@@ -11,13 +12,13 @@ class LevelLoader:
         self.player = player
         self.inter = inter
         #setting up levels
-        cloudsURL = "images/background/mario/Mario-world-clouds.png"
+        cloudsURL = "../images/background/mario/Mario-world-clouds.png"
         #tutorial (zelda) levels
-        tutorialOne = Level("","images/background/link/link-tutorial-world.jpg",cloudsURL,player,inter)
-        tutorialTwo = Level("","images/background/link/link-tutorial-world.jpg",cloudsURL,player,inter)
-        tutorialThree = Level("","images/background/link/link-tutorial-world.jpg",cloudsURL,player,inter)
+        tutorialOne = Level("","../images/background/link/link-tutorial-world.jpg",cloudsURL,player,inter)
+        tutorialTwo = Level("","../images/background/link/link-tutorial-world.jpg",cloudsURL,player,inter)
+        tutorialThree = Level("","../images/background/link/link-tutorial-world.jpg",cloudsURL,player,inter)
 
-        marioOne = Level("images/background/mario/hills.png","images/background/mario/Mario-world-1.1.png",cloudsURL,player,inter)
+        marioOne = Level("../images/background/mario/hills.png","../images/background/mario/Mario-world-1.1.png",cloudsURL,player,inter)
         #creating list of levels
         self.levels = (tutorialOne,tutorialTwo,tutorialThree,marioOne)
         self.enemyFiles = ("../enemies/tutorialOne.txt","")

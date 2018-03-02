@@ -1,6 +1,4 @@
-from Vector import Vector
-from Rectangle import Rectangle
-import GV
+from Helper.Rectangle import Rectangle
 
 
 class GameObject:
