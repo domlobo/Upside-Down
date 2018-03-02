@@ -14,10 +14,18 @@ class Level:
 
     def __init__(self, backgroundURL, foregroundURL, cloudsURL, player,inter):
         self.background = Background(backgroundURL, foregroundURL, cloudsURL)
-        self.enemies = [BasicEnemy(Vector((600, GV.CANVAS_HEIGHT - 131)), 100, player), BasicEnemy(Vector((800, GV.CANVAS_HEIGHT - 131)), 100, player)]
+        self.enemies = []
         self.collInter = PlayerEnemyInteraction(player, self.enemies)
         self.player = player
         self.inter = inter
+
+    #load the enemies into the class
+    def loadEnemies(self, fileLocation):
+        file = open(fileLocation, "r")
+        for line in file:
+            args = line.split(",")
+            self.enemies.append(BasicEnemy(Vector((int(args[0]), GV.CANVAS_HEIGHT - 131)),int(args[1]),self.player))
+        self.collInter.updateEnemies(self.enemies)
 
     def setPlayer(self,player):
         self.player = player
