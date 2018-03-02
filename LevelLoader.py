@@ -10,8 +10,12 @@ class LevelLoader:
     def __init__(self,player,inter):
         self.player = player
         self.inter = inter
-        tutorialOne = Level("","images/background/link/link-tutorial-world.jpg","images/background/mario/Mario-world-clouds.png",player,inter)
-        self.levels = (tutorialOne,Level("images/background/mario/hills.png","images/background/mario/Mario-world-1.1.png","images/background/mario/Mario-world-clouds.png",player,inter))
+        #setting up levels
+        cloudsURL = "images/background/mario/Mario-world-clouds.png"
+        tutorialOne = Level("","images/background/link/link-tutorial-world.jpg",cloudsURL,player,inter)
+        marioOne = Level("images/background/mario/hills.png","images/background/mario/Mario-world-1.1.png",cloudsURL,player,inter)
+        #creating list of levels
+        self.levels = (tutorialOne,marioOne)
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
 
