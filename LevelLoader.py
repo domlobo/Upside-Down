@@ -3,6 +3,7 @@ try:
 except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 from Level import Level
+from GameObject import GameObject
 
 class LevelLoader:
 
@@ -18,7 +19,10 @@ class LevelLoader:
     def nextlevel(self):
         self.player = self.currentLevel.returnPlayer()
         self.player.position.x = 0
-        if(self.levelCounter<len(self.levels)):
+
+        if(self.levelCounter<len(self.levels)-1):
             self.levelCounter +=1
             self.currentLevel = self.levels[self.levelCounter]
             self.currentLevel.setPlayer(self.player)
+            #stops the character sticking to the right hand side after the transition
+            GameObject.update(self.currentLevel.player)
