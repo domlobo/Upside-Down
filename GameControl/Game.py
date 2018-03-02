@@ -1,7 +1,7 @@
-import GameControl.GV as GV
+import GV
 import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-from GameControl.LevelLoader import LevelLoader
-from GameControl.State import State
+from LevelLoader import LevelLoader
+from State import State
 
 from GameObject.Player import Player
 from Helper.Vector import Vector

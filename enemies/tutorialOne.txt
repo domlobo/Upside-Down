@@ -1,2 +1,2 @@
-Vector((600, GV.CANVAS_HEIGHT - 131)), 100, self.player
-Vector((800, GV.CANVAS_HEIGHT - 131)), 100, player)
+600, 100
+800, 100

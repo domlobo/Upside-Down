@@ -21,9 +21,12 @@ class Level:
 
     #load the enemies into the class
     def loadEnemies(self, fileLocation):
-        file = open(fileLocation, r)
+        file = open(fileLocation, "r")
         for line in file:
-            self.enemies.add(BasicEnemy(line))
+            args = line.split(",")
+            print(line)
+            self.enemies.append(BasicEnemy(Vector((int(args[0]), GV.CANVAS_HEIGHT - 131)),int(args[1]),self.player))
+        self.collInter.updateEnemies(self.enemies)
 
     def setPlayer(self,player):
         self.player = player
