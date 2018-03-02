@@ -18,7 +18,7 @@ class Level:
         self.collInter = PlayerEnemyInteraction(player, self.enemies)
         self.player = player
         self.inter = inter
-        self.displayBar = DisplayBar(name, self.player.health)
+        self.displayBar = DisplayBar(name, self.player.health, self.player.weapon)
 
     def setPlayer(self,player):
         self.player = player
@@ -36,7 +36,7 @@ class Level:
 
     #checks for input and collisions
     def update(self):
-        self.displayBar.updateBar(self.player.health)
+        self.displayBar.updateBar(self.player.health, self.player.weapon)
         self.collInter.update()
         self.inter.checkKeyboard()
 
