@@ -1,11 +1,11 @@
+import GameControl.GV as GV
 import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-from State import State
-from Vector import Vector
-from GameObject import GameObject
-from Player import Player
-from Interaction import Interaction
-from LevelLoader import LevelLoader
-import GV
+from GameControl.LevelLoader import LevelLoader
+from GameControl.State import State
+
+from GameObject.Player import Player
+from Helper.Vector import Vector
+from Input.Interaction import Interaction
 
 state = State()
 

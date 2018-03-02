@@ -2,7 +2,7 @@ try:
     import simplegui
 except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-from Keyboard import Keyboard
+from Input.Keyboard import Keyboard
 
 class Interaction:
 

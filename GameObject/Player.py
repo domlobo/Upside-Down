@@ -1,7 +1,8 @@
-from GameObject import GameObject
-from Vector import Vector
-import GV
-from Projectiles import Projectile
+import GameControl.GV as GV
+
+from GameObject.GameObject import GameObject
+from GameObject.Projectiles import Projectile
+from Helper.Vector import Vector
 
 
 class Player(GameObject):
@@ -68,7 +69,7 @@ class Player(GameObject):
             self.weapon = tryWeapon
 
     def update(self):
-        if((self.boundingBox.right < GV.CANVAS_WIDTH-10)and (self.boundingBox.left > 10)) or ((self.boundingBox.right>=GV.CANVAS_WIDTH-10 ) and (self.velocity.x <0)) or ((self.boundingBox.left <=10)and (self.velocity.x>0)):
+        if((self.boundingBox.right < GV.CANVAS_WIDTH-10)and (self.boundingBox.left > 10)) or ((self.boundingBox.right>= GV.CANVAS_WIDTH-10) and (self.velocity.x <0)) or ((self.boundingBox.left <=10)and (self.velocity.x>0)):
             GameObject.update(self)
         self.velocity.multiply(0.85)
 
