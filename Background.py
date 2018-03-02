@@ -7,6 +7,7 @@ from Vector import Vector
 
 class Background:
 
+    #called from level.__init__
     def __init__(self, farBackground, foreground="", clouds=""):
         #furthest back background
         self.FAR_BACKGROUND_LOAD = simplegui._load_local_image(farBackground)
@@ -30,10 +31,12 @@ class Background:
         self.cloudOnePos = Vector((self.CLOUD_WIDTH/2,GV.CANVAS_HEIGHT/2))
         self.cloudTwoPos = Vector((self.CLOUD_WIDTH*1.5,GV.CANVAS_HEIGHT/2))
 
+    #called from level.levelComplete
     def isStillRunning(self):
         return self.foregroundPos.x >(-self.foregroundPos.x/2)
 
     #update the position of the background if the player is in the right position
+    #called from the draw method of level
     def update(self,canvas, player):
         self.cloudOnePos.x -= 3
         self.cloudTwoPos.x -=3
