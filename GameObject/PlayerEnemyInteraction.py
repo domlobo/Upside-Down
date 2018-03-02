@@ -1,6 +1,3 @@
-# imports
-from Player import Player
-from Enemy import BasicEnemy
 
 
 class PlayerEnemyInteraction:

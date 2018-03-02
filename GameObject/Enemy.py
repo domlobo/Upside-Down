@@ -1,7 +1,8 @@
 #imports
-from GameObject import GameObject
-from Vector import Vector
-from Rectangle import Rectangle
+from GameObject.GameObject import GameObject
+from Helper.Rectangle import Rectangle
+from Helper.Vector import Vector
+
 
 class BasicEnemy(GameObject):
     def __init__(self, position, health, player):
@@ -72,3 +73,7 @@ class BasicEnemy(GameObject):
     def update(self):
         GameObject.update(self)
         self.findPlayer()
+
+    def draw(self, canvas, colour):
+        GameObject.draw(self, canvas, colour)
+        self.largeSearch.draw(canvas, "White")

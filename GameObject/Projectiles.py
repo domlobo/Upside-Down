@@ -1,7 +1,7 @@
 # imports
-from GameObject import GameObject
-from Vector import Vector
-import GV
+import GameControl.GV as GV
+from GameObject.GameObject import GameObject
+from Helper.Vector import Vector
 
 
 class Projectile(GameObject):

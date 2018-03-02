@@ -2,11 +2,13 @@ try:
     import simplegui
 except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-from Background import Background
-from Enemy import BasicEnemy
-from PlayerEnemyInteraction import PlayerEnemyInteraction
-from Vector import Vector
-import GV
+import GameControl.GV as GV
+
+from GameObject.Enemy import BasicEnemy
+from GameObject.PlayerEnemyInteraction import PlayerEnemyInteraction
+from Helper.Background import Background
+from Helper.Vector import Vector
+
 
 class Level:
 
@@ -42,4 +44,4 @@ class Level:
     #returns true if level is over
     def levelComplete(self):
         #check if the character is in the last 50 pixels of the screen
-        return(not self.background.isStillRunning()) and (self.player.position.x > GV.CANVAS_WIDTH -50)
+        return(not self.background.isStillRunning()) and (self.player.position.x > GV.CANVAS_WIDTH - 50)
