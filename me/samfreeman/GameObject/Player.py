@@ -1,8 +1,7 @@
-import me.samfreeman.GameObject as GameObject
+from me.samfreeman.GameObject.GameObject import GameObject
 import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.Projectiles import Projectile
 from me.samfreeman.Helper.Vector import Vector
-
 
 class Player(GameObject):
     def __init__(self, position, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):

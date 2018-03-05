@@ -12,21 +12,21 @@ class LevelLoader:
         self.player = player
         self.inter = inter
         #setting up levels
-        cloudsURL = "../images/background/mario/Mario-world-clouds.png"
+        cloudsURL = "../../../images/background/mario/Mario-world-clouds.png"
         #tutorial (zelda) levels
         tutorialOne = Level(
             "",
-            "../images/background/link/link-tutorial-world.jpg",
+            "../../../images/background/link/link-tutorial-world.jpg",
             cloudsURL,player,inter, "Tutorial-1")
         tutorialTwo = Level("",
-                            "../images/background/link/link-tutorial-world.jpg",
+                            "../../../images/background/link/link-tutorial-world.jpg",
                             cloudsURL,player,inter, "Tutorial-2")
         tutorialThree = Level("",
-                              "../images/background/link/link-tutorial-world.jpg",
+                              "../../../images/background/link/link-tutorial-world.jpg",
                               cloudsURL,player,inter, "Tutorial-3")
 
-        marioOne = Level("../images/background/mario/hills.png",
-                         "../images/background/mario/Mario-world-1.1.png",
+        marioOne = Level("../../../images/background/mario/hills.png",
+                         "../../../images/background/mario/Mario-world-1.1.png",
                          cloudsURL,player,inter, "Mario-1")
         #creating list of levels
         self.levels = (tutorialOne,tutorialTwo,tutorialThree,marioOne)
