@@ -2,13 +2,14 @@ try:
     import simplegui
 except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-import GameControl.GV as GV
 
-from GameObject.Enemy import BasicEnemy
-from GameObject.PlayerEnemyInteraction import PlayerEnemyInteraction
-from Helper.Background import Background
-from Helper.Vector import Vector
-from Helper.Display import DisplayBar
+import me.samfreeman.GameControl.GV as GV
+from me.samfreeman.GameObject.PlayerEnemyInteraction import PlayerEnemyInteraction
+from me.samfreeman.GameObject.Enemy import BasicEnemy
+from me.samfreeman.Helper.Display import DisplayBar
+from me.samfreeman.Helper.Background import Background
+from me.samfreeman.Helper.Vector import Vector
+
 
 class Level:
 

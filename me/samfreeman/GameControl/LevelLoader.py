@@ -2,8 +2,8 @@ try:
     import simplegui
 except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-from Levels.Level import Level
-from GameObject.GameObject import GameObject
+from me.samfreeman.GameObject.GameObject import GameObject
+from me.samfreeman.Levels.Level import Level
 
 
 class LevelLoader:

@@ -2,9 +2,9 @@ try:
     import simplegui
 except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-import GameControl.GV as GV
+import me.samfreeman.GameControl.GV as GV
 
-from Helper.Vector import Vector
+from me.samfreeman.Helper.Vector import Vector
 
 
 class Background:

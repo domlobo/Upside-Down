@@ -1,7 +1,7 @@
 
-from Helper.Rectangle import Rectangle
-import GameControl.GV as GV
-from Helper.Vector import Vector
+import me.samfreeman.GameControl.GV as GV
+from me.samfreeman.Helper.Rectangle import Rectangle
+from me.samfreeman.Helper.Vector import Vector
 
 class DisplayBar():
 
