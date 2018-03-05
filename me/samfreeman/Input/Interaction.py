@@ -6,9 +6,10 @@ from me.samfreeman.Input.Keyboard import Keyboard
 
 class Interaction:
 
-    def __init__(self, player):
+    def __init__(self, player, text):
         self.keyboard = Keyboard()
         self.player = player
+        #self.text = text ----> used for testing purposes
 
     # handling keyboard input for player
     def checkKeyboard(self):
@@ -30,4 +31,6 @@ class Interaction:
 
     def clickHandler(self,pos):
         self.player.shoot()
+        # Testing:
+        # self.text.nextText()
 
