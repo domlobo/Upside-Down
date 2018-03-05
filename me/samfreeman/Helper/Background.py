@@ -54,6 +54,9 @@ class Background:
             #move foreground and backgroud different amounts
             self.farBackgroundVel= Vector((-3 * movementFactor,0))
             self.foregroundVel= Vector((-10*movementFactor,0))
+        else:
+            self.farBackgroundVel= Vector((0,0))
+            self.foregroundVel= Vector((0,0))
 
         self.cloudOnePos.add(self.cloudVel)
         self.cloudTwoPos.add(self.cloudVel)
