@@ -30,9 +30,11 @@ class LevelLoader:
                          cloudsURL,player,inter, "Mario-1")
         #creating list of levels
         self.levels = (tutorialOne,tutorialTwo,tutorialThree,marioOne)
+        self.enemyFiles = ("../enemies/tutorialOne.txt","../enemies/tutorialTwo.txt","../enemies/tutorialThree.txt","../enemies/tutorialOne.txt")
         #selecting the first level
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
+        self.currentLevel.loadEnemies(self.enemyFiles[self.levelCounter])
 
     #called from Game when a level is over
     def nextlevel(self):
@@ -43,5 +45,6 @@ class LevelLoader:
             self.levelCounter +=1
             self.currentLevel = self.levels[self.levelCounter]
             self.currentLevel.setPlayer(self.player)
+            self.currentLevel.loadEnemies(self.enemyFiles[self.levelCounter])
             #stops the character sticking to the right hand side after the transition
             GameObject.update(self.currentLevel.player)

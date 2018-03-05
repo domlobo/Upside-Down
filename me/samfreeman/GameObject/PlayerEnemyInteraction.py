@@ -1,5 +1,3 @@
-
-
 class PlayerEnemyInteraction:
     def __init__(self, player, enemies):
         self.player = player
@@ -17,3 +15,6 @@ class PlayerEnemyInteraction:
 
     def update(self):
         self.checkProjectileCollision()
+
+    def updateEnemies(self, enemies):
+        self.enemies = enemies

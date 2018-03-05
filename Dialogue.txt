@@ -1,0 +1,57 @@
+*setting: at home*
+[MC]: Alright honey, I'm leaving for my first day of work. Today I learn how to become a main character! And once my training is complete, we'll be swimming in money!!
+*setting: link's world*
+[Link]: Alright, follow me scrub. I'm gonna make you go pro. I see you brought your own weapon, you're gonna need that...
+*show how to use weapon*
+[Link]: You have a bag as well? Good, you'll store your weapons there. Alright now, follow me.
+*show how to move*
+[Link]: This is an enemy, use your attacks to kill him.
+*kill first enemy*
+[Link]: Well done, now let's go on a trial run.
+*player goes through game.
+player eaches final stage*
+[Link]: This power level, I've never seen such a thing before. No, I must kill him!
+*Link turns to face MC*
+[Link]: I'm sorry, but I've failed you as a master.
+*Fight begins.
+MC obtains Master Sword.
+If dies, repeat cutscene, if survives show the following:
+Bowser calls.
+Screen cut in half.*
+[Bowser]: Hello, son. News travel fast in the game world. I've heard of your acomplishments from a good friend of mine. How would you like to make some money? I've got a job proposition for you..
+[MC]: Go on..
+[Bowser]: There's this italian plumber, and he can be a real pain. Could you take care of him for me?
+[MC]: Say no more fam!
+
+*mario world begins
+MC on the phone.*
+[MC]: Yes, i know! OK! I'll be home early this time.. At least we have money now!
+*game begins*
+*Final stage.
+Enter Mario.*
+[MC]: Hey! Mario! Listen I'm a really big fa-
+[Mario]: Shut up kid! I know who you are, and I'm gonna kick your ***.
+*Fight begins.
+If dies, replay cutscene, if survives show the following:
+Character gains fireballs.
+Demons call*
+[MC]: Doom slayer you say.. I got your back, but if he's as strong as you say he is, I'm gonna need a fat cheque.
+
+*Doom world begins.
+gets to final stage show cutscene.*
+[Doom Slayer]: So you're the assassin? Huh? Well... I'm the Oom Slayer, the one you've been looking for.
+[MC]: I thought it was Doom Slayer?
+[Doom Slayer]: You're about to get the D!
+*fight begins.
+If dies repeat cutscene, if survives show the following:
+Character gains gun.
+Professor Oak calls*
+
+[Oak]: Hey, so listen. I'm moving in with this woman and she has this annoying kid, could you take care of him? Trust me I pay well...
+[MC]: Dude he's a kid! I'm not killing someone's kid!
+[Oak]: It's not like that! He captures these monsters and make them fight for him. He's an asshole!! And I can't get married with him in the picture he keeps coming in the way! Do you know how many Pokemon I've created for him to keep going on adventures!?
+[MC]: He hurts animals?
+[Oak]: Yes, but techincally they're not an-
+[MC]: Say no more fam!
+
+*pokemon world begins*
