@@ -30,7 +30,7 @@ class LevelLoader:
                          cloudsURL,player,inter, "Mario-1")
         #creating list of levels
         self.levels = (tutorialOne,tutorialTwo,tutorialThree,marioOne)
-        self.enemyFiles = ("../enemies/tutorialOne.txt","../enemies/tutorialTwo.txt","../enemies/tutorialThree.txt","../enemies/tutorialOne.txt")
+        self.enemyFiles = ("../../../enemies/tutorialOne.txt","../../../enemies/tutorialTwo.txt","../../../enemies/tutorialThree.txt","../../../enemies/tutorialOne.txt")
         #selecting the first level
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
