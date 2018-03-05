@@ -2,22 +2,24 @@ try:
     import simplegui
 except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-import GameControl.GV as GV
 
-from GameObject.Enemy import BasicEnemy
-from GameObject.PlayerEnemyInteraction import PlayerEnemyInteraction
-from Helper.Background import Background
-from Helper.Vector import Vector
+import me.samfreeman.GameControl.GV as GV
+from me.samfreeman.GameObject.PlayerEnemyInteraction import PlayerEnemyInteraction
+from me.samfreeman.GameObject.Enemy import BasicEnemy
+from me.samfreeman.Helper.Display import DisplayBar
+from me.samfreeman.Helper.Background import Background
+from me.samfreeman.Helper.Vector import Vector
 
 
 class Level:
 
-    def __init__(self, backgroundURL, foregroundURL, cloudsURL, player,inter):
+    def __init__(self, backgroundURL, foregroundURL, cloudsURL, player,inter, name):
         self.background = Background(backgroundURL, foregroundURL, cloudsURL)
         self.enemies = []
         self.collInter = PlayerEnemyInteraction(player, self.enemies)
         self.player = player
         self.inter = inter
+        self.displayBar = DisplayBar(name, self.player.health, self.player.weapon)
 
     #load the enemies into the class
     def loadEnemies(self, fileLocation):
@@ -39,9 +41,11 @@ class Level:
             proj.draw(canvas, "Blue")
         for enemy in self.enemies:
             enemy.draw(canvas, "Red")
+        self.displayBar.drawDisplayBar(canvas)
 
     #checks for input and collisions
     def update(self):
+        self.displayBar.updateBar(self.player.health, self.player.weapon)
         self.collInter.update()
         self.inter.checkKeyboard()
 

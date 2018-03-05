@@ -1,4 +1,4 @@
-from Helper.Rectangle import Rectangle
+from me.samfreeman.Helper.Rectangle import Rectangle
 
 
 class GameObject:

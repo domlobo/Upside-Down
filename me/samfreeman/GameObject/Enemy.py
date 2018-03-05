@@ -1,7 +1,7 @@
-#imports
-from GameObject.GameObject import GameObject
-from Helper.Rectangle import Rectangle
-from Helper.Vector import Vector
+# Import
+from me.samfreeman.Helper.Vector import Vector
+from me.samfreeman.GameObject.GameObject import GameObject
+from me.samfreeman.Helper.Rectangle import Rectangle
 
 
 class BasicEnemy(GameObject):
