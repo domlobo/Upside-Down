@@ -6,10 +6,11 @@ from me.samfreeman.GameControl.State import State
 from me.samfreeman.GameObject.Player import Player
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Input.Interaction import Interaction
+from me.samfreeman.Helper.Sprite import Sprite
 
 state = State()
 
-player = Player(Vector((50, GV.CANVAS_HEIGHT - 80)))
+player = Player(Vector((50, GV.CANVAS_HEIGHT - 80)), Sprite("images/interactive-sprites/player/stand_right.png"))
 
 inter = Interaction(player)
 
