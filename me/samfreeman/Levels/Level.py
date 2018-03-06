@@ -5,6 +5,7 @@ except ImportError :
 
 import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.PlayerEnemyInteraction import PlayerEnemyInteraction
+from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.GameObject.Enemy import BasicEnemy
 from me.samfreeman.Helper.Display import DisplayBar
 from me.samfreeman.Helper.Background import Background
@@ -16,7 +17,7 @@ class Level:
     def __init__(self, backgroundURL, foregroundURL, cloudsURL, player,inter, name):
         self.background = Background(backgroundURL, foregroundURL, cloudsURL)
         self.enemies = []
-        self.collInter = PlayerEnemyInteraction(player, self.enemies)
+        #self.objects = [GameObject(Vector(170,self.background.FOREGROUND_HEIGHT/2), Vector((0,0)), dimensions, 100, sprite = "")]
         self.player = player
         self.inter = inter
         self.displayBar = DisplayBar(name, self.player.health, self.player.weapon)
@@ -25,9 +26,12 @@ class Level:
     def loadEnemies(self, fileLocation):
         file = open(fileLocation, "r")
         for line in file:
+            if line == "Walls":
+                break
             args = line.split(",")
             self.enemies.append(BasicEnemy(Vector((int(args[0]), GV.CANVAS_HEIGHT - 131)),int(args[1]),self.player))
-        self.collInter.updateEnemies(self.enemies)
+        #for line in file:
+
         #TODO load the walls etc
     def setPlayer(self,player):
         self.player = player
@@ -46,7 +50,7 @@ class Level:
     #checks for input and collisions
     def update(self):
         self.displayBar.updateBar(self.player.health, self.player.weapon)
-        self.collInter.update()
+        self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkKeyboard()
 
     #returns the player so they can be passed on to next level
