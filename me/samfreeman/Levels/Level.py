@@ -17,7 +17,7 @@ class Level:
     def __init__(self, backgroundURL, foregroundURL, cloudsURL, player,inter, name):
         self.background = Background(backgroundURL, foregroundURL, cloudsURL)
         self.enemies = []
-        #self.objects = [GameObject(Vector(170,self.background.FOREGROUND_HEIGHT/2), Vector((0,0)), dimensions, 100, sprite = "")]
+        self.objects = []# [GameObject(Vector(170,self.background.FOREGROUND_HEIGHT/2), Vector((0,0)), dimensions, 100, sprite = "")]
         self.player = player
         self.inter = inter
         self.displayBar = DisplayBar(name, self.player.health, self.player.weapon)
@@ -52,6 +52,16 @@ class Level:
         self.displayBar.updateBar(self.player.health, self.player.weapon)
         self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkKeyboard()
+        #update the location of all of the elements if the canvas is moving
+        if (self.background.foregroundVel.x !=0):
+            for proj in self.player.projectiles:
+                proj.position.add(self.background.foregroundVel)
+            for enemy in self.enemies:
+                enemy.position.add(self.background.foregroundVel)
+            #use objectOnScreen since object is a reserved keyword
+            for objectOnScreen in self.objects:
+                objectOnScreen.position.add(self.background.foregroundVel)
+
 
     #returns the player so they can be passed on to next level
     def returnPlayer(self):
