@@ -2,6 +2,7 @@ from me.samfreeman.GameObject.GameObject import GameObject
 import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.Projectiles import Projectile
 from me.samfreeman.Helper.Vector import Vector
+from me.samfreeman.Helper.Sprite import Sprite
 
 class Player(GameObject):
     def __init__(self, position, sprite, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
@@ -20,9 +21,20 @@ class Player(GameObject):
         # So that the player does not get too fast
         self.maxVel = [3, 3]
 
+        self.currentSprite = sprite
+        self.standingRight = Sprite("images/interactive-sprites/player/stand_right.png")
+        self.walkingRight = Sprite("images/interactive-sprites/player/walk_right.png", True, 1, 8)
+        self.walkingLeft = Sprite("images/interactive-sprites/player/walk_left.png", True, 1, 8)
+        self.swordRight = Sprite("images/interactive-sprites/player/sword_right.png", True, 1, 8)
+        self.swordLeft = Sprite("images/interactive-sprites/player/sword_left.png", True, 1, 8)
+
     # Haven't finished initialization.
 
     def moveLeft(self):
+        self.currentSprite = self.walkingLeft
+        self.updateSprite(self.currentSprite)
+        self.currentSprite.animate(5)
+
         self.direction = 1
         self.oldDirection = 1
         if (self.animation == 1):
@@ -36,6 +48,10 @@ class Player(GameObject):
             else: self.velocity.add(Vector((-self.runSpeed, 0)))
 
     def moveRight(self):
+        self.currentSprite = self.walkingRight
+        self.updateSprite(self.currentSprite)
+        self.currentSprite.animate(5)
+
         self.direction = 2
         self.oldDirection = 2
         if (self.animation == 1):
@@ -61,6 +77,8 @@ class Player(GameObject):
     def stand(self):
         self.dimensions[1] = 120
         self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
+        self.currentSprite.stopAnimating()
+        self.currentSprite = self.standingRight
 
     def changeWeapon(self, tryWeapon):
         if (tryWeapon <= self.maxUnlockedWeapon):

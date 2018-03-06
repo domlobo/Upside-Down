@@ -23,6 +23,9 @@ class GameObject:
         # Boolean
         self.remove = False
 
+    def updateSprite(self, sprite):
+        self.sprite = sprite
+
     def changeHealth(self, health):
         self.health += health
 

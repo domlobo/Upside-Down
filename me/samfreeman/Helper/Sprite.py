@@ -23,12 +23,13 @@ class Sprite:
         self.animationClock = Clock()
         #self.fullAnimationClock = Clock()
         self.isAnimating = 0
+        self.needTick = False
 
         print(assetPath)
 
     def animate(self, frameDuration):
         # Will animate while it is being called (such as moving a player)
-        self.animationClock.tick()
+        self.needTick = True
         if self.animationClock.transition(frameDuration):
             self.frameIndex[0] = (self.frameIndex[0] + 1) % self.cols
             if self.frameIndex[0] == 0:
@@ -36,6 +37,7 @@ class Sprite:
 
     def animateFull(self, frameDuration):
         # Will animate without moving (go through entire sprite sheet)
+        self.needTick = True
         if self.animationClock.transition(frameDuration):
             self.frameIndex[0] = (self.frameIndex[0] + 1) % self.cols
             if self.frameIndex[0] == 0:
@@ -44,6 +46,9 @@ class Sprite:
 
     def setAnimating(self, frameDuration):
         self.isAnimating = frameDuration
+
+    def stopAnimating(self):
+        self.needTick = False
 
     def setIndex(self, index):
         self.frameIndex = index
@@ -56,10 +61,13 @@ class Sprite:
         if width > 0: d_width = width
         if height > 0: d_height = height
 
-        if self.isAnimating > 0:
+        if self.needTick:
             self.animationClock.tick()
+        else:
+            self.animationClock.time = 0
+
+        if self.isAnimating > 0:
             self.animateFull(self.isAnimating)
-        else: self.animationClock.time = 0
 
         canvas.draw_image(
             self.image,
