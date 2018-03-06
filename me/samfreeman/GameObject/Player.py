@@ -5,7 +5,7 @@ from me.samfreeman.Helper.Vector import Vector
 
 class Player(GameObject):
     def __init__(self, position, sprite, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
-        GameObject.__init__(self, position, velocity, [30, 60], health, sprite)
+        GameObject.__init__(self, position, velocity, [120, 120], health, sprite)
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
         self.weapon = 0
@@ -55,11 +55,11 @@ class Player(GameObject):
                 self.velocity.add(Vector((0, -self.jumpSpeed)))
 
     def crouch(self):
-        self.dimensions[1] = 40
+        self.dimensions[1] = 60
         self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
 
     def stand(self):
-        self.dimensions[1] = 60
+        self.dimensions[1] = 120
         self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
 
     def changeWeapon(self, tryWeapon):

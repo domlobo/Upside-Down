@@ -42,6 +42,6 @@ class GameObject:
     def draw(self, canvas, colour):
         self.update()
         if self.sprite.loaded:
-            self.sprite.draw(self.position, canvas)
+            self.sprite.draw(self.position, canvas, self.dimensions[0], self.dimensions[1])
         # Bounding box for testing
         self.boundingBox.draw(canvas, colour)
