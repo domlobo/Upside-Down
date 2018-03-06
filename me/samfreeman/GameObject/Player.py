@@ -4,8 +4,8 @@ from me.samfreeman.GameObject.Projectiles import Projectile
 from me.samfreeman.Helper.Vector import Vector
 
 class Player(GameObject):
-    def __init__(self, position, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
-        GameObject.__init__(self, position, velocity, [30, 60], health)
+    def __init__(self, position, sprite, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
+        GameObject.__init__(self, position, velocity, [30, 60], health, sprite)
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
         self.weapon = 0

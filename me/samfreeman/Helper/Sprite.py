@@ -5,20 +5,26 @@ from me.samfreeman.Helper.Clock import Clock
 
 class Sprite:
     def __init__(self, assetPath, isSpriteSheet = False, rows=1, cols=1):
-        self.image = simplegui._load_local_image(assetPath)
+        if assetPath != "":
+            self.image = simplegui._load_local_image(assetPath)
+            self.loaded = True
+        else: self.loaded = False
         self.isSpriteSheet = isSpriteSheet
         self.rows = rows
         self.cols = cols
 
         # Display Information
-        self.frameWidth = self.image.get_width() / self.cols
-        self.frameHeight = self.image.get_height() / self.rows
-        self.frameIndex = [0, 0]
-        self.frameCentre = (self.frameWidth / 2, self.frameHeight / 2)
+        if self.loaded:
+            self.frameWidth = self.image.get_width() / self.cols
+            self.frameHeight = self.image.get_height() / self.rows
+            self.frameIndex = [0, 0]
+            self.frameCentre = (self.frameWidth / 2, self.frameHeight / 2)
 
         self.animationClock = Clock()
         #self.fullAnimationClock = Clock()
         self.isAnimating = 0
+
+        print(assetPath)
 
     def animate(self, frameDuration):
         # Will animate while it is being called (such as moving a player)
@@ -45,7 +51,6 @@ class Sprite:
     def draw(self, position, canvas, width=0, height=0):
         # Target width and height
         # If no width or height is specified, it will display the full size of the image
-
         d_width = self.image.get_width()  # Destination width
         d_height = self.image.get_height()  # Destination height
         if width > 0: d_width = width
@@ -64,3 +69,9 @@ class Sprite:
             position.getP(),
             (d_width, d_height)
         )
+
+        # print("f_width " + str(self.frameWidth))
+        # print("f_index " + str(self.frameIndex))
+        # print("f_height " + str(self.frameHeight))
+        # print("f_centre " + str(self.frameCentre))
+        # print("pos " + str(position.getP()))

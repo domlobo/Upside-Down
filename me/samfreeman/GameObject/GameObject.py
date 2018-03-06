@@ -1,8 +1,8 @@
 from me.samfreeman.Helper.Rectangle import Rectangle
-
+from me.samfreeman.Helper.Sprite import Sprite
 
 class GameObject:
-    def __init__(self, position, velocity, dimensions, health, sprite = ""):
+    def __init__(self, position, velocity, dimensions, health, sprite=Sprite("")):
         # Vectors
         self.position = position
         self.velocity = velocity
@@ -41,5 +41,7 @@ class GameObject:
 
     def draw(self, canvas, colour):
         self.update()
+        if self.sprite.loaded:
+            self.sprite.draw(self.position, canvas)
         # Bounding box for testing
         self.boundingBox.draw(canvas, colour)
