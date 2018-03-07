@@ -34,9 +34,11 @@ class Interaction:
        # self.player.shoot()
         self.player.swordAttack()
 
-    def checkProjectileCollision(self,enemies,player):
+    def checkEnemyPlayerCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
         for enemy in enemies[:]:
+            if player.boundingBox.overlaps(enemy.boundingBox):
+                player.changeHealth(-0.5)
             for proj in player.projectiles[:]:
                 if enemy.boundingBox.overlaps(proj.boundingBox):
                     # Collision

@@ -4,7 +4,6 @@ except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
 import me.samfreeman.GameControl.GV as GV
-from me.samfreeman.GameObject.PlayerEnemyInteraction import PlayerEnemyInteraction
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.GameObject.Enemy import BasicEnemy
 from me.samfreeman.Helper.Display import DisplayBar
@@ -60,7 +59,7 @@ class Level:
     #checks for input and collisions
     def update(self):
         self.displayBar.updateBar(self.player.health, self.player.weapon)
-        self.inter.checkProjectileCollision(self.enemies,self.player)
+        self.inter.checkEnemyPlayerCollision(self.enemies,self.player)
         self.inter.checkObjectCollision(self.objects, self.player)
         for enemy in self.enemies:
             self.inter.checkObjectCollision(self.objects,enemy)
