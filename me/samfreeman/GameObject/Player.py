@@ -134,7 +134,6 @@ class Player(GameObject):
                 self.velocity.add(Vector((0, -self.jumpSpeed)))
 
     def crouch(self):
-        self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
         if self.oldDirection == 1:
             self.currentSprite = self.crouchLeft
         else:
@@ -144,8 +143,6 @@ class Player(GameObject):
         self.updateSprite(self.currentSprite)
 
     def stand(self):
-        self.dimensions[1] = 120
-        self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
         self.currentSprite = self.bobbingRight
 
         if self.oldDirection == 1:
