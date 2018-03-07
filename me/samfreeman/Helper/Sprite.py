@@ -9,10 +9,12 @@ class Sprite:
         if assetPath != "":
             self.image = simplegui._load_local_image(assetPath)
             self.loaded = True
+            print(assetPath)
         else: self.loaded = False
         self.isSpriteSheet = isSpriteSheet
         self.rows = rows
         self.cols = cols
+        self.name = assetPath
 
         # Display Information
         if self.loaded:
@@ -26,7 +28,6 @@ class Sprite:
         self.isAnimating = 0
         self.needTick = False
 
-        print(assetPath)
 
     def animate(self, frameDuration):
         # Will animate while it is being called (such as moving a player)
@@ -73,7 +74,6 @@ class Sprite:
 
         canvas.draw_image(
             self.image,
-
             (self.frameWidth*self.frameIndex[0]+self.frameCentre[0],
                 self.frameHeight*self.frameIndex[1]+self.frameCentre[1]),
             (self.frameWidth, self.frameHeight),
