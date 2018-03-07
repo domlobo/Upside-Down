@@ -46,5 +46,6 @@ class Interaction:
 
     def checkObjectCollision(self,objects,player):
         # Using a copy to remove from actual list if there is too much health loss
-        for object in objects[:]:
-            break
+        for currentObject in objects[:]:
+            if currentObject.boundingBox.overlaps(player.boundingBox):
+                print("collision")
