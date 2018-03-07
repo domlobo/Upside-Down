@@ -82,7 +82,6 @@ class Player(GameObject):
     def stand(self):
         self.dimensions[1] = 120
         self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
-        self.currentSprite.stopAnimating()
         self.currentSprite = self.bobbingRight
 
         if self.oldDirection == 1:
