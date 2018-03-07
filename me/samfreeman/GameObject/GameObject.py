@@ -1,5 +1,6 @@
 from me.samfreeman.Helper.Rectangle import Rectangle
 from me.samfreeman.Helper.Sprite import Sprite
+from me.samfreeman.Helper.Vector import Vector
 
 class GameObject:
     def __init__(self, position, velocity, dimensions, health, sprite=Sprite("")):
@@ -42,9 +43,11 @@ class GameObject:
         self.boundingBox.updateBox(self.position, self.dimensions[0], self.dimensions[1])
         # Overwrite and add anything else
 
-    def draw(self, canvas, colour):
+    def draw(self, canvas, colour, position=Vector((-1,-1))):
+        if position.x == -1 and position.y == -1:
+            position = self.position
         self.update()
         if self.sprite.loaded:
-            self.sprite.draw(self.position, canvas, self.dimensions[0], self.dimensions[1])
+            self.sprite.draw(position, canvas, self.dimensions[0], self.dimensions[1])
         # Bounding box for testing
         self.boundingBox.draw(canvas, colour)

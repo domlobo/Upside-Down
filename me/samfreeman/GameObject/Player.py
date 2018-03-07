@@ -3,6 +3,7 @@ import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.Projectiles import Projectile
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Helper.Sprite import Sprite
+from me.samfreeman.Helper.Rectangle import Rectangle
 
 class Player(GameObject):
     def __init__(self, position, sprite, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
@@ -13,9 +14,15 @@ class Player(GameObject):
         self.oldDirection = 2
         self.animation = 0
         self.maxUnlockedWeapon = 0
-
+        # Weapon Stuff
         self.projectiles = []
         self.MAXIMUM_PROJECTILES = 10
+
+        # Position is in the centre (of line), end point needs to be centre of player
+        self.swordPosition = Vector((0, 0))
+        self.swordLength = 0 #will change on sword swing
+        self.offset = 0
+        #self.swordBoundingBox = Rectangle()
 
         # So that the player does not get too fast
         self.maxVel = [3, 3]
@@ -96,6 +103,7 @@ class Player(GameObject):
             self.attackLeft = self.attackLeft_fire
 
     def moveLeft(self):
+        self.offset = 0
         self.currentSprite = self.walkingLeft
         self.updateSprite(self.currentSprite)
         self.currentSprite.animate(5)
@@ -112,6 +120,7 @@ class Player(GameObject):
             else: self.velocity.add(Vector((-self.runSpeed, 0)))
 
     def moveRight(self):
+        self.offset = 0
         self.currentSprite = self.walkingRight
         self.updateSprite(self.currentSprite)
         self.currentSprite.animate(5)
@@ -134,6 +143,7 @@ class Player(GameObject):
                 self.velocity.add(Vector((0, -self.jumpSpeed)))
 
     def crouch(self):
+        self.offset = 0
         if self.oldDirection == 1:
             self.currentSprite = self.crouchLeft
         else:
@@ -143,6 +153,7 @@ class Player(GameObject):
         self.updateSprite(self.currentSprite)
 
     def stand(self):
+        self.offset = 0
         self.currentSprite = self.bobbingRight
 
         if self.oldDirection == 1:
@@ -185,8 +196,10 @@ class Player(GameObject):
         self.attackingSword = True
         if self.oldDirection == 1:
             self.currentSprite = self.attackLeft
+            self.offset = -30
         else:
             self.currentSprite = self.attackRight
+            self.offset = 30
         self.updateSprite(self.currentSprite)
         self.currentSprite.setAnimating(5)
 
@@ -198,3 +211,6 @@ class Player(GameObject):
 
     def stop(self):
         self.velocity = Vector()
+
+    def draw(self, canvas, colour, position=Vector()):
+         GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)))
