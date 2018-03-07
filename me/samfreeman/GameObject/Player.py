@@ -103,40 +103,42 @@ class Player(GameObject):
             self.attackLeft = self.attackLeft_fire
 
     def moveLeft(self):
-        self.offset = 0
-        self.currentSprite = self.walkingLeft
-        self.updateSprite(self.currentSprite)
-        self.currentSprite.animate(5)
 
-        self.oldDirection = 1
-        if (self.animation == 1):
-            # This line limits the maximum velocity
-            if self.velocity.x <= -self.maxVel[0]:
-                self.velocity.x = -self.maxVel[0]
-            self.velocity.add(Vector((-self.runSpeed / 2, 0)))
-        else:
-            if self.velocity.x <= -self.maxVel[0]:
-                self.velocity.x = -self.maxVel[0]
-            else: self.velocity.add(Vector((-self.runSpeed, 0)))
+        if(self.canMoveLeft):
+          self.offset = 0
+          self.currentSprite = self.walkingLeft
+          self.updateSprite(self.currentSprite)
+          self.currentSprite.animate(5)
+
+          self.oldDirection = 1
+          if (self.animation == 1):
+              # This line limits the maximum velocity
+              if self.velocity.x <= -self.maxVel[0]:
+                  self.velocity.x = -self.maxVel[0]
+              self.velocity.add(Vector((-self.runSpeed / 2, 0)))
+          else:
+              if self.velocity.x <= -self.maxVel[0]:
+                  self.velocity.x = -self.maxVel[0]
+              else: self.velocity.add(Vector((-self.runSpeed, 0)))
 
     def moveRight(self):
-        self.offset = 0
-        self.currentSprite = self.walkingRight
-        self.updateSprite(self.currentSprite)
-        self.currentSprite.animate(5)
-
-        self.oldDirection = 2
-        if (self.animation == 1):
-            if self.velocity.x >= self.maxVel[0]:
-                self.velocity.x = self.maxVel[0]
-            self.velocity.add(Vector((self.runSpeed / 2, 0)))
-        else:
-            if self.velocity.x >= self.maxVel[0]:
-                self.velocity.x = self.maxVel[0]
-            else: self.velocity.add(Vector((self.runSpeed, 0)))
+        if(self.canMoveRight):
+          self.offset = 0
+          self.currentSprite = self.walkingRight
+          self.updateSprite(self.currentSprite)
+          self.currentSprite.animate(5)
+          self.oldDirection = 2
+          if (self.animation == 1):
+              if self.velocity.x >= self.maxVel[0]:
+                  self.velocity.x = self.maxVel[0]
+              self.velocity.add(Vector((self.runSpeed / 2, 0)))
+          else:
+              if self.velocity.x >= self.maxVel[0]:
+                  self.velocity.x = self.maxVel[0]
+              else: self.velocity.add(Vector((self.runSpeed, 0)))
 
     def jump(self):
-        if (self.position.y >= GV.CANVAS_HEIGHT - GV.EXTRA_JUMP_HEIGHT) and (self.velocity.y <= 0):
+        if (self.position.y >= GV.CANVAS_HEIGHT - GV.EXTRA_JUMP_HEIGHT) and (self.velocity.y <= 0) and (self.canMoveUp):
             if (self.animation == 1):
                 self.velocity.add(Vector((0, -self.jumpSpeed / 2)))
             else:
