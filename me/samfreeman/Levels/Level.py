@@ -10,14 +10,14 @@ from me.samfreeman.GameObject.Enemy import BasicEnemy
 from me.samfreeman.Helper.Display import DisplayBar
 from me.samfreeman.Helper.Background import Background
 from me.samfreeman.Helper.Vector import Vector
-
+from me.samfreeman.Helper.Sprite import Sprite
 
 class Level:
 
     def __init__(self, backgroundURL, foregroundURL, cloudsURL, player,inter, name):
         self.background = Background(backgroundURL, foregroundURL, cloudsURL)
         self.enemies = []
-        self.objects = []# [GameObject(Vector(170,self.background.FOREGROUND_HEIGHT/2), Vector((0,0)), dimensions, 100, sprite = "")]
+        self.objects = []
         self.player = player
         self.inter = inter
         self.displayBar = DisplayBar(name, self.player.health, self.player.weapon)
@@ -25,14 +25,20 @@ class Level:
     #load the enemies into the class
     def loadEnemies(self, fileLocation):
         file = open(fileLocation, "r")
+        #load all the enemies in
         for line in file:
-            if line == "Walls":
+            if line == "Walls\n":
                 break
+            #arg[0] is x pos, arg[1] is health
             args = line.split(",")
             self.enemies.append(BasicEnemy(Vector((int(args[0]), GV.CANVAS_HEIGHT - 131)),int(args[1]),self.player))
-        #for line in file:
-
-        #TODO load the walls etc
+        #load all the objects
+        for line in file:
+            #arg[0] is image path, arg[1] is x pos
+            args = line.split(",")
+            objectSprite = Sprite(args[0])
+            self.objects.append(GameObject(Vector((float(args[1]),self.background.FOREGROUND_HEIGHT/2)), Vector((0,0)), (objectSprite.frameWidth,objectSprite.frameHeight), 100,objectSprite))
+            
     def setPlayer(self,player):
         self.player = player
 
@@ -45,6 +51,8 @@ class Level:
             proj.draw(canvas, "Blue")
         for enemy in self.enemies:
             enemy.draw(canvas, "Red")
+        for objectOnScreen in self.objects:
+            objectOnScreen.draw(canvas, "Purple")
         self.displayBar.drawDisplayBar(canvas)
 
     #checks for input and collisions
