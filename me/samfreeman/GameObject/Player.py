@@ -3,6 +3,7 @@ import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.Projectiles import Projectile
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Helper.Sprite import Sprite
+from me.samfreeman.Helper.Rectangle import Rectangle
 
 class Player(GameObject):
     def __init__(self, position, sprite, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
@@ -13,9 +14,15 @@ class Player(GameObject):
         self.oldDirection = 2
         self.animation = 0
         self.maxUnlockedWeapon = 0
-
+        # Weapon Stuff
         self.projectiles = []
         self.MAXIMUM_PROJECTILES = 10
+
+        # Position is in the centre (of line), end point needs to be centre of player
+        self.swordPosition = Vector((0, 0))
+        self.swordLength = 0 #will change on sword swing
+        self.offset = 0
+        #self.swordBoundingBox = Rectangle()
 
         # So that the player does not get too fast
         self.maxVel = [3, 3]
@@ -96,37 +103,39 @@ class Player(GameObject):
             self.attackLeft = self.attackLeft_fire
 
     def moveLeft(self):
-        if(self.canMoveLeft):
-            self.currentSprite = self.walkingLeft
-            self.updateSprite(self.currentSprite)
-            self.currentSprite.animate(5)
 
-            self.oldDirection = 1
-            if (self.animation == 1):
-                # This line limits the maximum velocity
-                if self.velocity.x <= -self.maxVel[0]:
-                    self.velocity.x = -self.maxVel[0]
-                self.velocity.add(Vector((-self.runSpeed / 2, 0)))
-            else:
-                if self.velocity.x <= -self.maxVel[0]:
-                    self.velocity.x = -self.maxVel[0]
-                else: self.velocity.add(Vector((-self.runSpeed, 0)))
+        if(self.canMoveLeft):
+          self.offset = 0
+          self.currentSprite = self.walkingLeft
+          self.updateSprite(self.currentSprite)
+          self.currentSprite.animate(5)
+
+          self.oldDirection = 1
+          if (self.animation == 1):
+              # This line limits the maximum velocity
+              if self.velocity.x <= -self.maxVel[0]:
+                  self.velocity.x = -self.maxVel[0]
+              self.velocity.add(Vector((-self.runSpeed / 2, 0)))
+          else:
+              if self.velocity.x <= -self.maxVel[0]:
+                  self.velocity.x = -self.maxVel[0]
+              else: self.velocity.add(Vector((-self.runSpeed, 0)))
 
     def moveRight(self):
         if(self.canMoveRight):
-            self.currentSprite = self.walkingRight
-            self.updateSprite(self.currentSprite)
-            self.currentSprite.animate(5)
-
-            self.oldDirection = 2
-            if (self.animation == 1):
-                if self.velocity.x >= self.maxVel[0]:
-                    self.velocity.x = self.maxVel[0]
-                self.velocity.add(Vector((self.runSpeed / 2, 0)))
-            else:
-                if self.velocity.x >= self.maxVel[0]:
-                    self.velocity.x = self.maxVel[0]
-                else: self.velocity.add(Vector((self.runSpeed, 0)))
+          self.offset = 0
+          self.currentSprite = self.walkingRight
+          self.updateSprite(self.currentSprite)
+          self.currentSprite.animate(5)
+          self.oldDirection = 2
+          if (self.animation == 1):
+              if self.velocity.x >= self.maxVel[0]:
+                  self.velocity.x = self.maxVel[0]
+              self.velocity.add(Vector((self.runSpeed / 2, 0)))
+          else:
+              if self.velocity.x >= self.maxVel[0]:
+                  self.velocity.x = self.maxVel[0]
+              else: self.velocity.add(Vector((self.runSpeed, 0)))
 
     def jump(self):
         if (self.position.y >= GV.CANVAS_HEIGHT - GV.EXTRA_JUMP_HEIGHT) and (self.velocity.y <= 0) and (self.canMoveUp):
@@ -136,6 +145,7 @@ class Player(GameObject):
                 self.velocity.add(Vector((0, -self.jumpSpeed)))
 
     def crouch(self):
+        self.offset = 0
         if self.oldDirection == 1:
             self.currentSprite = self.crouchLeft
         else:
@@ -145,6 +155,7 @@ class Player(GameObject):
         self.updateSprite(self.currentSprite)
 
     def stand(self):
+        self.offset = 0
         self.currentSprite = self.bobbingRight
 
         if self.oldDirection == 1:
@@ -187,8 +198,10 @@ class Player(GameObject):
         self.attackingSword = True
         if self.oldDirection == 1:
             self.currentSprite = self.attackLeft
+            self.offset = -30
         else:
             self.currentSprite = self.attackRight
+            self.offset = 30
         self.updateSprite(self.currentSprite)
         self.currentSprite.setAnimating(5)
 
@@ -200,3 +213,6 @@ class Player(GameObject):
 
     def stop(self):
         self.velocity = Vector()
+
+    def draw(self, canvas, colour, position=Vector()):
+         GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)))
