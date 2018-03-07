@@ -55,9 +55,13 @@ class Interaction:
             if currentObject.boundingBox.overlaps(entity.boundingBox):
                 if entity.boundingBox.bottom > currentObject.boundingBox.top and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left):
                     entity.canMoveDown = False
+                    entity.velocity.y *= -1
                 if (entity.boundingBox.right > currentObject.boundingBox.left) and (entity.position.x < currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
                     entity.canMoveRight = False
+                    entity.velocity.x *= -1
                 if (entity.boundingBox.left < currentObject.boundingBox.right) and (entity.position.x > currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
                     entity.canMoveLeft = False
+                    entity.velocity.x *= -1
                 if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left):
                     entity.canMoveUp = False
+                    entity.velocity.y *= -1
