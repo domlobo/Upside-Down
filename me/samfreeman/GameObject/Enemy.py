@@ -88,6 +88,5 @@ class BasicEnemy(GameObject):
         self.findPlayer()
 
     def draw(self, canvas, colour):
-        print(self.sprite)
         GameObject.draw(self, canvas, colour)
         self.largeSearch.draw(canvas, "White")
