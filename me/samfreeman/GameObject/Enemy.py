@@ -2,11 +2,16 @@
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.Helper.Rectangle import Rectangle
+from me.samfreeman.Helper.Sprite import Sprite
 
 
 class BasicEnemy(GameObject):
-    def __init__(self, position, health, player):
-        GameObject.__init__(self, position, Vector((0, 0)), [30, 60], health)
+    def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
+        dims = [30,60]
+        if runLeft.loaded:
+            dims = [runLeft.frameWidth, runLeft.frameHeight]
+
+        GameObject.__init__(self, position, Vector((0, 0)),dims , health)
         self.player = player
         self.direction = 0
 
@@ -16,7 +21,8 @@ class BasicEnemy(GameObject):
         self.largeSearch = Rectangle(self.position, 250, 250)
         self.smallSearch = Rectangle(self.position, 150, 150)
         self.movementRectangle = Rectangle(self.position, 200, 200)
-        # Will uncomment when I get the search rectangles working
+        self.runningLeft = runLeft
+        self.runningRight = runRight
 
     def resetMovement(self):
         # Used to make a new movement box when the user moves out of it
@@ -45,13 +51,17 @@ class BasicEnemy(GameObject):
         dl = Vector((dx, dy)).normalize()
 
         if dl.x < 0:
+            self.sprite = self.runningLeft
             if self.velocity.x <= -self.maxVel[0]:
                 self.velocity.x = -self.maxVel[0]
             else: self.velocity.x += dl.x
         else:
+            self.sprite = self.runningRight
             if self.velocity.x >= self.maxVel[0]:
                 self.velocity.x = self.maxVel[0]
             else: self.velocity.x += dl.x
+        if self.sprite.loaded:
+            self.sprite.animate(5)
 
     def move(self):
         speed = 0.9
@@ -61,15 +71,18 @@ class BasicEnemy(GameObject):
             self.velocity *= -1
 
         if self.velocity.x < 0:
+            self.sprite = self.runningLeft
             if self.velocity.x <= -self.maxVel[0]:
                 self.velocity.x = -self.maxVel[0]
             else:
                 self.velocity.x -= (speed)
         else:
+            self.sprite = self.runningRight
             if self.velocity.x >= self.maxVel[0]:
                 self.velocity.x = self.maxVel[0]
             else: self.velocity.x += (speed)
-
+        if self.sprite.loaded:
+            self.sprite.animate(10)
     def update(self):
         GameObject.update(self)
         self.findPlayer()
