@@ -20,6 +20,7 @@ class Interaction:
             self.player.jump()
         if self.keyboard.down:
             self.player.crouch()
+
         if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword):
             self.player.stand()
 
@@ -33,3 +34,17 @@ class Interaction:
        # self.player.shoot()
         self.player.swordAttack()
 
+    def checkProjectileCollision(self,enemies,player):
+        # Using a copy to remove from actual list if there is too much health loss
+        for enemy in enemies[:]:
+            for proj in player.projectiles[:]:
+                if enemy.boundingBox.overlaps(proj.boundingBox):
+                    # Collision
+                    enemy.changeHealth(-proj.damage)
+                    proj.remove = True
+            if enemy.remove: enemies.remove(enemy)
+
+    def checkObjectCollision(self,objects,player):
+        # Using a copy to remove from actual list if there is too much health loss
+        for object in objects[:]:
+            break

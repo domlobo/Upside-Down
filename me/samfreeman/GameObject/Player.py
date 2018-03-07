@@ -33,7 +33,6 @@ class Player(GameObject):
         self.swordRight = Sprite("images/interactive-sprites/player/wsword_right.png", True, 1, 9)
         self.swordLeft = Sprite("images/interactive-sprites/player/wsword_left.png", True, 1, 9)
 
-
     # Haven't finished initialization.
 
     def moveLeft(self):
@@ -83,6 +82,8 @@ class Player(GameObject):
     def stand(self):
         self.dimensions[1] = 120
         self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
+        self.currentSprite.stopAnimating()
+        self.currentSprite = self.standingRight
 
         if self.oldDirection == 1:
             self.currentSprite = self.bobbingLeft
