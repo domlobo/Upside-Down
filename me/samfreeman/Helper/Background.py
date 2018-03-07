@@ -38,7 +38,8 @@ class Background:
 
     #called from level.levelComplete
     def isStillRunning(self):
-        return self.foregroundPos.x >(-self.foregroundPos.x/2)
+        #checks whether the last bit of the foreground is on the rhs of the screen
+        return self.foregroundPos.x >(-self.FOREGROUND_WIDTH/2)+610
 
     #update the position of the background if the player is in the right position
     #called from the draw method of level
