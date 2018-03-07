@@ -20,7 +20,7 @@ def update(canvas):
     levelLoader.currentLevel.draw(canvas)
 
 # For Release - remove last bracket and uncomment
-frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT)#, 0)
+frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
 
 levelLoader = LevelLoader(player,inter)
 #everytime the game state changes, call this method

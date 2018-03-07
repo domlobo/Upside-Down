@@ -21,12 +21,16 @@ class Player(GameObject):
         # So that the player does not get too fast
         self.maxVel = [3, 3]
 
+        self.attackingSword = False
+
         self.currentSprite = sprite
         self.standingRight = Sprite("images/interactive-sprites/player/stand_right.png")
+        self.standingLeft = Sprite("images/interactive-sprites/player/stand_left.png")
         self.walkingRight = Sprite("images/interactive-sprites/player/walk_right.png", True, 1, 8)
         self.walkingLeft = Sprite("images/interactive-sprites/player/walk_left.png", True, 1, 8)
-        self.swordRight = Sprite("images/interactive-sprites/player/sword_right.png", True, 1, 8)
-        self.swordLeft = Sprite("images/interactive-sprites/player/sword_left.png", True, 1, 8)
+        self.swordRight = Sprite("images/interactive-sprites/player/sword_right.png", True, 1, 9)
+        self.swordLeft = Sprite("images/interactive-sprites/player/sword_left.png", True, 1, 9)
+
 
     # Haven't finished initialization.
 
@@ -77,14 +81,21 @@ class Player(GameObject):
     def stand(self):
         self.dimensions[1] = 120
         self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
+
         self.currentSprite.stopAnimating()
-        self.currentSprite = self.standingRight
+        if self.oldDirection == 1:
+            self.currentSprite = self.standingLeft
+        else:
+            self.currentSprite = self.standingRight
+        self.updateSprite(self.currentSprite)
 
     def changeWeapon(self, tryWeapon):
         if (tryWeapon <= self.maxUnlockedWeapon):
             self.weapon = tryWeapon
 
     def update(self):
+        if self.currentSprite.isAnimating == 0: self.attackingSword = False
+
         if((self.boundingBox.right < GV.CANVAS_WIDTH-10)and (self.boundingBox.left > 10)) or ((self.boundingBox.right>= GV.CANVAS_WIDTH-10) and (self.velocity.x <0)) or ((self.boundingBox.left <=10)and (self.velocity.x>0)):
             GameObject.update(self)
         self.velocity.multiply(0.85)
@@ -107,9 +118,21 @@ class Player(GameObject):
             proj.update()
             if proj.remove: self.projectiles.remove(proj)
 
+        print(str(self.attackingSword))
+
     def shoot(self):
         if len(self.projectiles) == self.MAXIMUM_PROJECTILES: return
         self.projectiles.append(Projectile(self.position.copy(), 300, self.oldDirection))
+
+    def swordAttack(self):
+        self.attackingSword = True
+        if self.oldDirection == 1:
+            self.currentSprite = self.swordLeft
+        else:
+            self.currentSprite = self.swordRight
+        self.updateSprite(self.currentSprite)
+        self.currentSprite.setAnimating(3)
+
 
     # Two methods to make sure that the player slows down
     # Might be equivalent to the standStill() method, not sure

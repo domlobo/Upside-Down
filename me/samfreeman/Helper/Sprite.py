@@ -1,6 +1,7 @@
 # Imports
 import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 from me.samfreeman.Helper.Clock import Clock
+import os.path
 
 
 class Sprite:
@@ -77,6 +78,7 @@ class Sprite:
             position.getP(),
             (d_width, d_height)
         )
+        print("is drawing" + str(self.image.get_width()))
 
         # print("f_width " + str(self.frameWidth))
         # print("f_index " + str(self.frameIndex))
