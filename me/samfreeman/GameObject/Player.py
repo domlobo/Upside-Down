@@ -24,12 +24,14 @@ class Player(GameObject):
         self.attackingSword = False
 
         self.currentSprite = sprite
-        self.standingRight = Sprite("images/interactive-sprites/player/stand_right.png")
-        self.standingLeft = Sprite("images/interactive-sprites/player/stand_left.png")
-        self.walkingRight = Sprite("images/interactive-sprites/player/walk_right.png", True, 1, 8)
-        self.walkingLeft = Sprite("images/interactive-sprites/player/walk_left.png", True, 1, 8)
-        self.swordRight = Sprite("images/interactive-sprites/player/sword_right.png", True, 1, 9)
-        self.swordLeft = Sprite("images/interactive-sprites/player/sword_left.png", True, 1, 9)
+
+        self.bobbingRight = Sprite("images/interactive-sprites/player/bobbing_right.png", True, 1, 7)
+        self.bobbingLeft = Sprite("images/interactive-sprites/player/bobbing_left.png", True, 1, 7)
+
+        self.walkingRight = Sprite("images/interactive-sprites/player/walk_right_wsword.png", True, 1, 8)
+        self.walkingLeft = Sprite("images/interactive-sprites/player/walk_left_wsword.png", True, 1, 8)
+        self.swordRight = Sprite("images/interactive-sprites/player/wsword_right.png", True, 1, 9)
+        self.swordLeft = Sprite("images/interactive-sprites/player/wsword_left.png", True, 1, 9)
 
 
     # Haven't finished initialization.
@@ -82,11 +84,12 @@ class Player(GameObject):
         self.dimensions[1] = 120
         self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
 
-        self.currentSprite.stopAnimating()
         if self.oldDirection == 1:
-            self.currentSprite = self.standingLeft
+            self.currentSprite = self.bobbingLeft
         else:
-            self.currentSprite = self.standingRight
+            self.currentSprite = self.bobbingRight
+
+        self.currentSprite.setAnimating(8)
         self.updateSprite(self.currentSprite)
 
     def changeWeapon(self, tryWeapon):
@@ -106,19 +109,11 @@ class Player(GameObject):
             self.position.y = GV.CANVAS_HEIGHT - self.dimensions[1] / 2
             self.velocity.y = 0
 
-            # if (self.weapon == 0) and (self.direction == 0) and (self.animation ==0):
-            #	self.sprite.runningRight()
-            # if (self.weapon == 0) and (self.direction == 0) and (self.animation ==0):
-            #	self.sprite.runningLeft()
-            # if (self.weapon == 0) and (self.direction == 0) and (self.animation ==0):
-            #	self.sprite.jumping()
-
         # Projectiles
         for proj in self.projectiles[:]:
             proj.update()
             if proj.remove: self.projectiles.remove(proj)
 
-        print(str(self.attackingSword))
 
     def shoot(self):
         if len(self.projectiles) == self.MAXIMUM_PROJECTILES: return
@@ -131,7 +126,7 @@ class Player(GameObject):
         else:
             self.currentSprite = self.swordRight
         self.updateSprite(self.currentSprite)
-        self.currentSprite.setAnimating(3)
+        self.currentSprite.setAnimating(5)
 
 
     # Two methods to make sure that the player slows down

@@ -22,7 +22,6 @@ class Sprite:
             self.frameCentre = (self.frameWidth / 2, self.frameHeight / 2)
 
         self.animationClock = Clock()
-        #self.fullAnimationClock = Clock()
         self.isAnimating = 0
         self.needTick = False
 
@@ -78,10 +77,3 @@ class Sprite:
             position.getP(),
             (d_width, d_height)
         )
-        print("is drawing" + str(self.image.get_width()))
-
-        # print("f_width " + str(self.frameWidth))
-        # print("f_index " + str(self.frameIndex))
-        # print("f_height " + str(self.frameHeight))
-        # print("f_centre " + str(self.frameCentre))
-        # print("pos " + str(position.getP()))
