@@ -29,9 +29,11 @@ class Level:
         for line in file:
             if line == "Walls\n":
                 break
-            #arg[0] is x pos, arg[1] is health
+            #arg[0] is x pos, arg[1] is y pos, arg[2] is health, args[3] and arg[5] are left and right sprites with args[4] and args[6] being the number of colums
             args = line.split(",")
-            self.enemies.append(BasicEnemy(Vector((int(args[0]), GV.CANVAS_HEIGHT - 131)),int(args[1]),self.player))
+            runLeft = Sprite(args[3], True,1,int(args[4]))
+            runRight= Sprite(args[5], True,1,int(args[6]))
+            self.enemies.append(BasicEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
         #load all the objects
         for line in file:
             #arg[0] is image path, arg[1] is x pos, arg[2] is y pos

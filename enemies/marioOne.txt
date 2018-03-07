@@ -1,8 +1,8 @@
-760,100
-1500,100
-2200,100
-2500,100
-3750,100
+760,469,100,images/interactive sprites/mario/toad-run-left.png,4,images/interactive sprites/mario/toad-run-right.png,4
+1500,469,100,images/interactive sprites/mario/toad-run-left.png,4,images/interactive sprites/mario/toad-run-right.png,4
+2200,469,100,images/interactive sprites/mario/toad-run-left.png,4,images/interactive sprites/mario/toad-run-right.png,4
+2500,469,100,images/interactive sprites/mario/toad-run-left.png,4,images/interactive sprites/mario/toad-run-right.png,4
+3750,469,100,images/interactive sprites/mario/toad-run-left.png,4,images/interactive sprites/mario/toad-run-right.png,4
 Walls
 images/interactive sprites/mario/mario-block-4-piece.png, 350, 385
 images/interactive sprites/mario/mario-pipe.png, 660, 468
