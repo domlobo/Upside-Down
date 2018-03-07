@@ -23,6 +23,12 @@ class GameObject:
         # Boolean
         self.remove = False
 
+        #can move booleans
+        self.canMoveLeft = True
+        self.canMoveRight = True
+        self.canMoveUp = True
+        self.canMoveDown = True
+
     def updateSprite(self, sprite):
         self.sprite = sprite
 

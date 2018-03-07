@@ -62,6 +62,8 @@ class Level:
         self.displayBar.updateBar(self.player.health, self.player.weapon)
         self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkObjectCollision(self.objects, self.player)
+        for enemy in self.enemies:
+            self.inter.checkObjectCollision(self.objects,enemy)
         self.inter.checkKeyboard()
         #update the location of all of the elements if the canvas is moving
         if (self.background.foregroundVel.x !=0):
