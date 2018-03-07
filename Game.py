@@ -10,7 +10,7 @@ from me.samfreeman.Helper.Sprite import Sprite
 
 state = State()
 
-player = Player(Vector((50, GV.CANVAS_HEIGHT-140)), Sprite("images/interactive-sprites/player/bobbing_right.png", True, 1, 7))
+player = Player(Vector((50, GV.CANVAS_HEIGHT - 140)), Sprite("images/interactive-sprites/player/wooden-sword/bobbing_right_wsword.png", True, 1, 7))
 
 inter = Interaction(player)
 
