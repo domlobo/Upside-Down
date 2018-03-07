@@ -1,2 +1,21 @@
+760,100
+1500,100
+2200,100
+2500,100
+3750,100
 Walls
-images/interactive sprites/mario/mario-block-4-piece.png, 600, 385
+images/interactive sprites/mario/mario-block-4-piece.png, 350, 385
+images/interactive sprites/mario/mario-pipe.png, 660, 468
+images/interactive sprites/mario/mario-pipe.png, 1084, 468
+images/interactive sprites/mario/mario-block-2-piece.png, 1550, 385
+images/interactive sprites/mario/mario-block-4-piece.png, 2050, 385
+images/interactive sprites/mario/mario-block-3-piece.png, 2050, 185
+images/interactive sprites/mario/mario-pipe.png, 2400, 468
+images/interactive sprites/mario/stairs-small-left.png, 2785, 474
+images/interactive sprites/mario/mario-block-2-piece.png, 3000, 350
+images/interactive sprites/mario/stairs-small-right.png, 3171, 474
+images/interactive sprites/mario/mario-pipe.png, 3500, 468
+images/interactive sprites/mario/mario-block.png, 3800, 385
+images/interactive sprites/mario/stairs.png, 4287, 388
+images/interactive sprites/mario/Super_Mario_flag_pole.png, 4700, 350
+images/interactive sprites/mario/mario-castle.png, 5000, 425
