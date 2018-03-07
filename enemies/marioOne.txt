@@ -1,0 +1,2 @@
+Walls
+images/interactive sprites/mario/mario-block-4-piece.png, 600, 385
