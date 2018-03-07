@@ -17,10 +17,10 @@ class DisplayBar:
 
         # Hold the weapon sprites in an array
         self.currentWeapon = currentWeapon
-        self.weaponSprites = []
+        self.weaponSprites = Sprite("images/interactive-sprites/display/weapons.png", True, 1, 3)
 
-        edge = self.topSpace * 0.8
-        self.weaponDisplayBoundingBox = Rectangle(Vector((GV.CANVAS_WIDTH / 2, self.topSpace / 2)), edge, edge)
+        self.edge = self.topSpace * 0.8
+        self.weaponDisplayBoundingBox = Rectangle(Vector((GV.CANVAS_WIDTH / 2, self.topSpace / 2)), self.edge, self.edge)
 
     def updateBar(self, health, currentWeapon):
         self.health = health
@@ -29,14 +29,13 @@ class DisplayBar:
         self.currentSprite = self.health // 10 - 1
         self.healthSpriteSheet.setIndex([self.currentSprite, 0])
         self.currentWeapon = currentWeapon
+        self.weaponSprites.setIndex([self.currentWeapon, 0])
 
     def drawDisplayBar(self, canvas):
         # Text is lower left point
         canvas.draw_text(self.levelName, [20, self.boundingBox.position.y], 20, "White")
         self.healthSpriteSheet.draw(Vector((self.boundingBox.right - self.topSpace + 10, self.topSpace / 2)), canvas, self.topSpace - 10, self.topSpace - 10)
+        self.weaponDisplayBoundingBox.draw(canvas, "Blue", "White")
+        self.weaponSprites.draw(self.weaponDisplayBoundingBox.position, canvas, self.edge, self.edge)
 
-        #canvas.draw_text(str(self.health), [self.boundingBox.right - 80, self.boundingBox.position.y], 20, "White")self.boundingBox.right - 80, self.boundingBox.position.y - self.topSpace / 2
-        self.weaponDisplayBoundingBox.draw(canvas, "Blue")
 
-        # TODO: Add the method for the drawing of the health.. hopefully would be something like healthSpriteSheet[currentSprite]
-        # TODO: DRAW THE WEAPON BY self.weaponSprites[currentWeapon].draw or something
