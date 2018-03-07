@@ -34,11 +34,11 @@ class Level:
             self.enemies.append(BasicEnemy(Vector((int(args[0]), GV.CANVAS_HEIGHT - 131)),int(args[1]),self.player))
         #load all the objects
         for line in file:
-            #arg[0] is image path, arg[1] is x pos
+            #arg[0] is image path, arg[1] is x pos, arg[2] is y pos
             args = line.split(",")
             objectSprite = Sprite(args[0])
-            self.objects.append(GameObject(Vector((float(args[1]),self.background.FOREGROUND_HEIGHT/2)), Vector((0,0)), (objectSprite.frameWidth,objectSprite.frameHeight), 100,objectSprite))
-            
+            self.objects.append(GameObject(Vector((float(args[1]),float(args[2]))), Vector((0,0)), (objectSprite.frameWidth,objectSprite.frameHeight), 100,objectSprite))
+
     def setPlayer(self,player):
         self.player = player
 
