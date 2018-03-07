@@ -10,7 +10,6 @@ class Player(GameObject):
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
         self.weapon = 0
-        self.direction = 0
         self.oldDirection = 2
         self.animation = 0
         self.maxUnlockedWeapon = 0
@@ -25,22 +24,82 @@ class Player(GameObject):
 
         self.currentSprite = sprite
 
-        self.bobbingRight = Sprite("images/interactive-sprites/player/bobbing_right.png", True, 1, 7)
-        self.bobbingLeft = Sprite("images/interactive-sprites/player/bobbing_left.png", True, 1, 7)
+        # Wooden Sword Sprites
+        self.bobbingRight_wSword = Sprite("images/interactive-sprites/player/wooden-sword/bobbing_right_wsword.png", True, 1, 7)
+        self.bobbingLeft_wSword = Sprite("images/interactive-sprites/player/wooden-sword/bobbing_left_wsword.png", True, 1, 7)
+        self.walkingRight_wSword = Sprite("images/interactive-sprites/player/wooden-sword/movement_right_wsword.png", True, 1, 8)
+        self.walkingLeft_wSword = Sprite("images/interactive-sprites/player/wooden-sword/movement_left_wsword.png", True, 1, 8)
+        self.attackRight_wSword = Sprite("images/interactive-sprites/player/wooden-sword/attack_right_wsword.png", True, 1, 9)
+        self.attackLeft_wSword = Sprite("images/interactive-sprites/player/wooden-sword/attack_left_wsword.png", True, 1, 9)
+        self.crouchRight_wSword = Sprite("images/interactive-sprites/player/wooden-sword/crouch_right_wsword.png", True, 1, 7)
+        self.crouchLeft_wSword = Sprite("images/interactive-sprites/player/wooden-sword/crouch_left_wsword.png", True, 1, 7)
 
-        self.walkingRight = Sprite("images/interactive-sprites/player/walk_right_wsword.png", True, 1, 8)
-        self.walkingLeft = Sprite("images/interactive-sprites/player/walk_left_wsword.png", True, 1, 8)
-        self.swordRight = Sprite("images/interactive-sprites/player/wsword_right.png", True, 1, 9)
-        self.swordLeft = Sprite("images/interactive-sprites/player/wsword_left.png", True, 1, 9)
+        # Link Sword Sprites
+        self.bobbingRight_lSword = Sprite("images/interactive-sprites/player/link-sword/bobbing_right_lsword.png", True, 1, 7)
+        self.bobbingLeft_lSword = Sprite("images/interactive-sprites/player/link-sword/bobbing_left_lsword.png", True, 1, 7)
+        self.walkingRight_lSword = Sprite("images/interactive-sprites/player/link-sword/movement_right_lsword.png", True, 1, 8)
+        self.walkingLeft_lSword = Sprite("images/interactive-sprites/player/link-sword/movement_left_lsword.png", True, 1, 8)
+        self.attackRight_lSword = Sprite("images/interactive-sprites/player/link-sword/attack_right_lsword.png", True, 1, 9)
+        self.attackLeft_lSword = Sprite("images/interactive-sprites/player/link-sword/attack_left_lsword.png", True, 1, 9)
+        self.crouchRight_lSword = Sprite("images/interactive-sprites/player/link-sword/crouch_right_lsword.png", True, 1, 7)
+        self.crouchLeft_lSword = Sprite("images/interactive-sprites/player/link-sword/crouch_left_lsword.png", True, 1, 7)
+
+        # Gun Sprites
+        self.attackRight_gun = Sprite("")
+        self.attackLeft_gun = Sprite("")
+
+        # Fire Sprites
+        self.attackRight_fire = Sprite("")
+        self.attackLeft_fire = Sprite("")
+
+        # Used Animations
+        self.bobbingRight = self.bobbingRight_wSword
+        self.bobbingLeft = self.bobbingLeft_wSword
+
+        self.walkingRight = self.walkingRight_wSword
+        self.walkingLeft = self.walkingLeft_wSword
+        self.attackRight = self.attackRight_wSword
+        self.attackLeft = self.attackLeft_wSword
+        self.crouchRight = self.crouchRight_wSword
+        self.crouchLeft = self.crouchLeft_wSword
 
     # Haven't finished initialization.
+
+    def setAnimationSet(self, set):
+        if set == GV.WOODEN_SWORD:
+            self.bobbingRight = self.bobbingRight_wSword
+            self.bobbingLeft = self.bobbingLeft_wSword
+
+            self.walkingRight = self.walkingRight_wSword
+            self.walkingLeft = self.walkingLeft_wSword
+            self.attackRight = self.attackRight_wSword
+            self.attackLeft = self.attackLeft_wSword
+
+            self.crouchRight = self.crouchRight_wSword
+            self.crouchLeft = self.crouchLeft_wSword
+        elif set == GV.SWORD:
+            self.bobbingRight = self.bobbingRight_lSword
+            self.bobbingLeft = self.bobbingLeft_lSword
+
+            self.walkingRight = self.walkingRight_lSword
+            self.walkingLeft = self.walkingLeft_lSword
+            self.attackRight = self.attackRight_lSword
+            self.attackLeft = self.attackLeft_lSword
+
+            self.crouchRight = self.crouchRight_lSword
+            self.crouchLeft = self.crouchLeft_lSword
+        elif set == GV.GUN:
+            self.attackRight = self.attackRight_gun
+            self.attackLeft = self.attackLeft_gun
+        elif set == GV.FIRE:
+            self.attackRight = self.attackRight_fire
+            self.attackLeft = self.attackLeft_fire
 
     def moveLeft(self):
         self.currentSprite = self.walkingLeft
         self.updateSprite(self.currentSprite)
         self.currentSprite.animate(5)
 
-        self.direction = 1
         self.oldDirection = 1
         if (self.animation == 1):
             # This line limits the maximum velocity
@@ -57,7 +116,6 @@ class Player(GameObject):
         self.updateSprite(self.currentSprite)
         self.currentSprite.animate(5)
 
-        self.direction = 2
         self.oldDirection = 2
         if (self.animation == 1):
             if self.velocity.x >= self.maxVel[0]:
@@ -76,8 +134,14 @@ class Player(GameObject):
                 self.velocity.add(Vector((0, -self.jumpSpeed)))
 
     def crouch(self):
-        self.dimensions[1] = 60
         self.position.y = GV.CANVAS_HEIGHT - 100 - self.dimensions[1] / 2 - 1
+        if self.oldDirection == 1:
+            self.currentSprite = self.crouchLeft
+        else:
+            self.currentSprite = self.crouchRight
+
+        self.currentSprite.setAnimating(3)
+        self.updateSprite(self.currentSprite)
 
     def stand(self):
         self.dimensions[1] = 120
@@ -114,6 +178,7 @@ class Player(GameObject):
             proj.update()
             if proj.remove: self.projectiles.remove(proj)
 
+        self.setAnimationSet(self.weapon)
 
     def shoot(self):
         if len(self.projectiles) == self.MAXIMUM_PROJECTILES: return
@@ -122,9 +187,9 @@ class Player(GameObject):
     def swordAttack(self):
         self.attackingSword = True
         if self.oldDirection == 1:
-            self.currentSprite = self.swordLeft
+            self.currentSprite = self.attackLeft
         else:
-            self.currentSprite = self.swordRight
+            self.currentSprite = self.attackRight
         self.updateSprite(self.currentSprite)
         self.currentSprite.setAnimating(5)
 
@@ -135,5 +200,4 @@ class Player(GameObject):
         return self.velocity.length() == 0
 
     def stop(self):
-        self.direction = 0
         self.velocity = Vector()
