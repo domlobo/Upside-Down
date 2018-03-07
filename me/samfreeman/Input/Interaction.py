@@ -44,8 +44,8 @@ class Interaction:
                     proj.remove = True
             if enemy.remove: enemies.remove(enemy)
 
-    def checkObjectCollision(self,objects,player):
+    def checkObjectCollision(self,objects,entity):
         # Using a copy to remove from actual list if there is too much health loss
         for currentObject in objects[:]:
-            if currentObject.boundingBox.overlaps(player.boundingBox):
+            if currentObject.boundingBox.overlaps(entity.boundingBox):
                 print("collision")
