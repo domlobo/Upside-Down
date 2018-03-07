@@ -20,8 +20,10 @@ class Interaction:
             self.player.jump()
         if self.keyboard.down:
             self.player.crouch()
-        if not (self.keyboard.down or self.keyboard.right or self.keyboard.left):
+
+        if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword):
             self.player.stand()
+
         # if (not(self.keyboard.right and self.keyboard.left)) and (self.player.direction != 0):
         #     self.player.standStill()
 
@@ -29,7 +31,8 @@ class Interaction:
         #     self.player.tryWeapon(self.keyboard.weapon)
 
     def clickHandler(self,pos):
-        self.player.shoot()
+       # self.player.shoot()
+        self.player.swordAttack()
 
     def checkProjectileCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss

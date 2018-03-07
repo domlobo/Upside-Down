@@ -10,7 +10,7 @@ from me.samfreeman.Helper.Sprite import Sprite
 
 state = State()
 
-player = Player(Vector((50, GV.CANVAS_HEIGHT - 80)), Sprite("images/interactive-sprites/player/stand_right.png"))
+player = Player(Vector((50, GV.CANVAS_HEIGHT - 80)), Sprite("images/interactive-sprites/player/bobbing_right.png", True, 1, 7))
 
 inter = Interaction(player)
 
@@ -20,7 +20,7 @@ def update(canvas):
     levelLoader.currentLevel.draw(canvas)
 
 # For Release - remove last bracket and uncomment
-frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT)#, 0)
+frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
 
 levelLoader = LevelLoader(player,inter)
 #everytime the game state changes, call this method
