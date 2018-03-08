@@ -11,6 +11,8 @@ class Keyboard:
         self.up=False
         self.down=False
         self.enter=False
+        self.j = False
+        self.k = False
         self.tryWeapon=0
 
     #handling key press down
@@ -23,6 +25,11 @@ class Keyboard:
             self.up = True
         elif (key == simplegui.KEY_MAP['down']) or (key == simplegui.KEY_MAP['s']):
             self.down = True
+
+        if (key == simplegui.KEY_MAP['j']):
+            self.j = True
+        if (key == simplegui.KEY_MAP['k']):
+            self.k = True
         if (key == simplegui.KEY_MAP['q']):
             self.enter = True
         #handling weapon changes
@@ -43,5 +50,10 @@ class Keyboard:
             self.up = False
         elif (key == simplegui.KEY_MAP['down'])or (key == simplegui.KEY_MAP['s']):
             self.down = False
+
+        if (key == simplegui.KEY_MAP['j']):
+            self.j = False
+        if (key == simplegui.KEY_MAP['k']):
+            self.k = False
         elif (key == simplegui.KEY_MAP['q']):
             self.enter=False
