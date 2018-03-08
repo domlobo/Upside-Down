@@ -9,7 +9,7 @@ class Interaction:
     def __init__(self, player, text):
         self.keyboard = Keyboard()
         self.player = player
-        #self.text = text ----> used for testing purposes
+        self.text = text #----> used for testing purposes
 
     # handling keyboard input for player
     def checkKeyboard(self):
@@ -21,6 +21,9 @@ class Interaction:
             self.player.jump()
         if self.keyboard.down:
             self.player.crouch()
+        if self.keyboard.enter:
+            self.text.nextText()
+            self.keyboard.enter=False
 
         if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword):
             self.player.stand()

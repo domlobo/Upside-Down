@@ -24,7 +24,7 @@ class TextOverlay:
         self.currentTextIndex = 0
         self.displayedText = self.text[self.currentTextIndex]
 
-        self.continueText = "Press Space to Continue..."
+        self.continueText = "Press q to Continue..."
         self.done = False
 
     def separateText(self):
@@ -33,12 +33,16 @@ class TextOverlay:
         pass
 
     def nextText(self):
+        self.done = (self.currentTextIndex == len(self.text)-1)
+
         if not self.done:
             self.currentTextIndex += 1
             self.displayedText = self.text[self.currentTextIndex]
             self.currentSpeakerIndex += 1
             self.currentSpeaker = self.speakerList[self.currentSpeakerIndex]
-            self.done = (self.currentTextIndex == len(self.text) - 1)
+
+
+
 
     def addLine(self, line, speaker=""):
         # If the speaker doesn't change, they leave blank
@@ -49,8 +53,9 @@ class TextOverlay:
             self.speakerList.append(speaker)
 
     def display(self, canvas):
-        self.outline.draw(canvas, "White", "White")
-        self.speakerImg.draw(canvas, "Black", "Black")
-        canvas.draw_text(self.currentSpeaker, [self.speakerImg.left, self.speakerImg.top - 5], 15, "Black")
-        canvas.draw_text(self.displayedText, self.textWrap.position.getP(), 15, "Black")
-        canvas.draw_text(self.continueText, [self.textWrap.position.x, GV.CANVAS_HEIGHT - 15], 15, "Black")
+        if not(self.done):
+            self.outline.draw(canvas, "White", "White")
+            self.speakerImg.draw(canvas, "Black", "Black")
+            canvas.draw_text(self.currentSpeaker, [self.speakerImg.left, self.speakerImg.top - 5], 15, "Black")
+            canvas.draw_text(self.displayedText, self.textWrap.position.getP(), 15, "Black")
+            canvas.draw_text(self.continueText, [self.textWrap.position.x, GV.CANVAS_HEIGHT - 15], 15, "Black")
