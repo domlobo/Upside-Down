@@ -1,0 +1,8 @@
+Mario:
+
+Black - Platform
+Green - Pipe
+Brown - Stairs
+Blue - Flag
+Orange - Castle
+Red - Enemy

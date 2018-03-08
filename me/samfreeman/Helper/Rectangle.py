@@ -46,8 +46,8 @@ class Rectangle():
         return (self.right >= point.x >= self.left and
                 self.bottom >= point.y >= self.top)
 
-    def draw(self, canvas, colour, background=""):
-        if background == "":
+    def draw(self, canvas, colour, bgcolour=""):
+        if bgcolour == "":
             canvas.draw_polygon([(self.left, self.top), (self.right, self.top), (self.right, self.bottom), (self.left, self.bottom)], 1, colour)
         else:
-            canvas.draw_polygon([(self.left, self.top), (self.right, self.top), (self.right, self.bottom), (self.left, self.bottom)], 1, colour, background)
+            canvas.draw_polygon([(self.left, self.top), (self.right, self.top), (self.right, self.bottom), (self.left, self.bottom)], 1, colour, bgcolour)

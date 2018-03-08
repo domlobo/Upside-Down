@@ -1,0 +1,33 @@
+760,494,100,images/interactive sprites/mario/toad-run-left.png,4,images/interactive sprites/mario/toad-run-right.png,4
+1500,494,100,images/interactive sprites/mario/toad-run-left.png,4,images/interactive sprites/mario/toad-run-right.png,4
+2200,494,100,images/interactive sprites/mario/toad-run-left.png,4,images/interactive sprites/mario/toad-run-right.png,4
+2500,494,100,images/interactive sprites/mario/toad-run-left.png,4,images/interactive sprites/mario/toad-run-right.png,4
+3750,494,100,images/interactive sprites/mario/toad-run-left.png,4,images/interactive sprites/mario/toad-run-right.png,4
+Walls
+images/interactive sprites/mario/mario-block-4-piece.png, 350, 370
+images/interactive sprites/mario/mario-pipe.png, 660, 468
+images/interactive sprites/mario/mario-pipe.png, 1084, 468
+images/interactive sprites/mario/mario-block-2-piece.png, 1550, 370
+images/interactive sprites/mario/mario-block-4-piece.png, 2050, 370
+images/interactive sprites/mario/mario-block-3-piece.png, 2050, 185
+images/interactive sprites/mario/mario-pipe.png, 2400, 468
+images/interactive sprites/mario/stair1.png, 2770, 501
+images/interactive sprites/mario/stair2.png, 2795, 488
+images/interactive sprites/mario/stair3.png, 2821, 474
+images/interactive sprites/mario/mario-block-2-piece.png, 3000, 350
+images/interactive sprites/mario/stair3.png, 3147, 474
+images/interactive sprites/mario/stair2.png, 3175, 488
+images/interactive sprites/mario/stair1.png, 3202, 501
+images/interactive sprites/mario/mario-pipe.png, 3500, 468
+images/interactive sprites/mario/mario-block.png, 3800, 370
+images/interactive sprites/mario/stair1.png, 4178, 501
+images/interactive sprites/mario/stair2.png, 4204, 488
+images/interactive sprites/mario/stair3.png, 4231, 474
+images/interactive sprites/mario/stair4.png, 4258, 461
+images/interactive sprites/mario/stair5.png, 4285, 448
+images/interactive sprites/mario/stair6.png, 4312, 435
+images/interactive sprites/mario/stair7.png, 4339, 422
+images/interactive sprites/mario/stair8.png, 4366, 409
+images/interactive sprites/mario/stair8.png, 4393, 409
+images/interactive sprites/mario/Super_Mario_flag_pole.png, 4700, 350
+images/interactive sprites/mario/mario-castle.png, 5000, 307

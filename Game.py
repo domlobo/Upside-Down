@@ -7,10 +7,11 @@ from me.samfreeman.GameObject.Player import Player
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Input.Interaction import Interaction
 from me.samfreeman.Helper.TextOverlay import TextOverlay
+from me.samfreeman.Helper.Sprite import Sprite
 
 state = State()
 
-player = Player(Vector((50, GV.CANVAS_HEIGHT - 80)))
+player = Player(Vector((50, GV.CANVAS_HEIGHT - 140)), Sprite("images/interactive-sprites/player/wooden-sword/bobbing_right_wsword.png", True, 1, 7))
 
 
 text = TextOverlay("Hello there, my name is samuel, this is a test", "Samuel")

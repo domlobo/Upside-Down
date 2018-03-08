@@ -29,8 +29,8 @@ class LevelLoader:
                          "images/background/mario/Mario-world-1.1.png",
                          cloudsURL,player,inter, "Mario-1")
         # Creating list of levels
-        self.levels = (tutorialOne,tutorialTwo,tutorialThree,marioOne)
-        self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/tutorialOne.txt")
+        self.levels =(tutorialOne,tutorialTwo,tutorialThree,marioOne)
+        self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt")
         # Selecting the first level
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
