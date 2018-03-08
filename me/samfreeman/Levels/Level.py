@@ -66,6 +66,7 @@ class Level:
         self.inter.checkKeyboard()
         #update the location of all of the elements if the canvas is moving
         if (self.background.foregroundVel.x !=0):
+            self.player.position.add(self.background.foregroundVel)
             for proj in self.player.projectiles:
                 proj.position.add(self.background.foregroundVel)
             for enemy in self.enemies:

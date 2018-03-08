@@ -5,6 +5,8 @@ except ImportError :
 from ..GameObject.GameObject import GameObject
 from ..Levels.Level import Level
 from me.samfreeman.Helper.TextOverlay import TextOverlay
+from me.samfreeman.Helper.Vector import Vector
+import me.samfreeman.GameControl.GV as GV
 
 
 class LevelLoader:
@@ -35,7 +37,7 @@ class LevelLoader:
                          "", player,inter,"Doom-1")
         # Creating list of levels
         self.levels =(tutorialOne,tutorialTwo,tutorialThree,marioOne)
-        self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt")
+        self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/doomOne.txt")
         # Selecting the first level
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
@@ -60,5 +62,8 @@ class LevelLoader:
         #go back to the start of the level
         self.player.position.x = 0
         self.currentLevel.enemies = []
+        self.currentLevel.objects = []
+        self.currentLevel.background.farBackgroundPos = Vector((self.currentLevel.background.FAR_BACKGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
+        self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
         self.currentLevel.loadEnemies(self.enemyFiles[self.levelCounter])
         GameObject.update(self.currentLevel.player)
