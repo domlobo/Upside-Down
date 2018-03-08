@@ -18,15 +18,17 @@ class LevelLoader:
         cloudsURL = "images/background/mario/Mario-world-clouds.png"
         #tutorial (zelda) levels
         tutorialOne = Level(
-            "",
+            "images/background/link/link-background.jpg",
             "images/background/link/link-tutorial-world.jpg",
             cloudsURL,player,inter, "Tutorial-1")
-        tutorialTwo = Level("",
-                            "images/background/link/link-tutorial-world.jpg",
-                            cloudsURL,player,inter, "Tutorial-2")
-        tutorialThree = Level("",
-                              "images/background/link/link-tutorial-world.jpg",
-                              cloudsURL,player,inter, "Tutorial-3")
+        tutorialTwo = Level(
+            "images/background/link/link-background.jpg",
+            "images/background/link/link-tutorial-world.jpg",
+            cloudsURL,player,inter, "Tutorial-2")
+        tutorialThree = Level(
+            "images/background/link/link-background.jpg",
+            "images/background/link/link-tutorial-world.jpg",
+            cloudsURL,player,inter, "Tutorial-3")
 
         marioOne = Level("images/background/mario/hills.png",
                          "images/background/mario/Mario-world-1.1.png",
@@ -36,7 +38,7 @@ class LevelLoader:
                         "images/background/doom/second layer.jpg",
                          "", player,inter,"Doom-1")
         # Creating list of levels
-        self.levels =(tutorialOne,tutorialTwo,tutorialThree,marioOne)
+        self.levels =(tutorialOne,tutorialTwo,tutorialThree,marioOne,doomOne)
         self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/doomOne.txt")
         # Selecting the first level
         self.levelCounter=0

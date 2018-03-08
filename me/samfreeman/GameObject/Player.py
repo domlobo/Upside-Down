@@ -204,7 +204,11 @@ class Player(GameObject):
             self.onGround = True
             self.position.y = GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT + self.distanceFromFloor
         else: self.onGround = False
-        self.velocity.y += self.gravity
+        if self.canMoveDown:
+            self.velocity.y += self.gravity
+        else:
+            self.velocity.y *= -1
+            self.velocity.y = 0
         if self.onGround:
             self.velocity.y = 0
             self.startingY = GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT + self.distanceFromFloor # This will need to be the position of the platform or ground
