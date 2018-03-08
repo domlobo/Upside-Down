@@ -4,6 +4,7 @@ except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 from ..GameObject.GameObject import GameObject
 from ..Levels.Level import Level
+from me.samfreeman.Helper.TextOverlay import TextOverlay
 
 
 class LevelLoader:
@@ -28,6 +29,10 @@ class LevelLoader:
         marioOne = Level("images/background/mario/hills.png",
                          "images/background/mario/Mario-world-1.1.png",
                          cloudsURL,player,inter, "Mario-1")
+
+        doomOne = Level("images/background/doom/base layer background.jpg",
+                        "images/background/doom/second layer.jpg",
+                         "", player,inter,"Doom-1")
         # Creating list of levels
         self.levels =(tutorialOne,tutorialTwo,tutorialThree,marioOne)
         self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt")
@@ -48,3 +53,12 @@ class LevelLoader:
             self.currentLevel.loadEnemies(self.enemyFiles[self.levelCounter])
             #stops the character sticking to the right hand side after the transition
             GameObject.update(self.currentLevel.player)
+
+    def gameOver(self):
+        #self.text.addLine("You died", "The ghost of Link")
+        self.player.health = 100
+        #go back to the start of the level
+        self.player.position.x = 0
+        self.currentLevel.enemies = []
+        self.currentLevel.loadEnemies(self.enemyFiles[self.levelCounter])
+        GameObject.update(self.currentLevel.player)
