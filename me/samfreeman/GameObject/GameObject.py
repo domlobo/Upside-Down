@@ -30,6 +30,9 @@ class GameObject:
         self.canMoveUp = True
         self.canMoveDown = True
 
+    def setRemove(self):
+        self.remove = True
+
     def updateSprite(self, sprite):
         self.sprite = sprite
 

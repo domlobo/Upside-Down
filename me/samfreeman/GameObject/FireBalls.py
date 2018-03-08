@@ -11,6 +11,7 @@ class FireBall(GameObject):
                                                                             True, 1, 11))
         self.gravity = 0.5
         self.bounceCount = 0
+        self.damage = 10 # Can change to whatever
 
     def drop(self, ground):
         self.velocity.y += self.gravity
