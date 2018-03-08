@@ -11,7 +11,7 @@ from me.samfreeman.Helper.Sprite import Sprite
 
 state = State()
 
-player = Player(Vector((50, GV.CANVAS_HEIGHT - 140)), Sprite("images/interactive-sprites/player/wooden-sword/bobbing_right_wsword.png", True, 1, 7))
+player = Player(Vector((50, GV.CANVAS_HEIGHT - 130)), Sprite("images/interactive-sprites/player/wooden-sword/bobbing_right_wsword.png", True, 1, 7))
 
 
 text = TextOverlay("Hello there, my name is samuel, this is a test", "Samuel")
@@ -40,5 +40,4 @@ levelLoader = LevelLoader(player,inter)
 frame.set_draw_handler(update)
 frame.set_keydown_handler(inter.keyboard.keyDown)
 frame.set_keyup_handler(inter.keyboard.keyUp)
-frame.set_mouseclick_handler(inter.clickHandler)
 frame.start()

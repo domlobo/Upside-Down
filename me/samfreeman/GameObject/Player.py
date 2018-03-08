@@ -3,7 +3,9 @@ import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.Projectiles import Projectile
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Helper.Sprite import Sprite
-from me.samfreeman.Helper.Rectangle import Rectangle
+from me.samfreeman.Helper.Line import Line
+from me.samfreeman.GameObject.FireBalls import FireBall
+
 
 class Player(GameObject):
     def __init__(self, position, sprite, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
@@ -14,16 +16,22 @@ class Player(GameObject):
         self.oldDirection = 2
         self.animation = 0
         self.maxUnlockedWeapon = 0
+
         # Weapon Stuff
         self.projectiles = []
         self.MAXIMUM_PROJECTILES = 10
+        self.fireballs = []
+        self.MAXIMUM_FIREBALLS = 10 # have one follow the other --> maybe have three come out when clicked
 
-        # Position is in the centre (of line), end point needs to be centre of player
-        self.swordPosition = Vector((0, 0))
-        self.swordLength = 0 #will change on sword swing
+        # Sword stuff
+        self.swordLength = 60
+        self.swordEndPoint = Vector((self.position.x + self.swordLength, self.boundingBox.top))
+        self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
+        self.maxSwordDown = self.boundingBox.bottom
+        self.swordBBoxMove = False
+
         self.offset = 0
         self.distanceFromFloor = 0 # used for crouching
-        #self.swordBoundingBox = Rectangle()
 
         # So that the player does not get too fast
         self.maxVel = [3, 3]
@@ -185,6 +193,24 @@ class Player(GameObject):
             self.weapon = tryWeapon
 
     def update(self):
+        if self.swordEndPoint.y >= self.maxSwordDown:
+            self.swordEndPoint = Vector((self.position.x, self.boundingBox.top)) # so no collision
+
+        addAmount = 0
+
+        if self.attackingSword and 4 <= self.currentSprite.frameIndex[0] <= 6 :
+            self.swordBBoxMove = True
+        else:
+            self.swordBBoxMove = False
+
+        if self.swordBBoxMove:
+            addAmount = 7
+        else:
+            addAmount = 0
+            self.swordEndPoint.y = self.boundingBox.top
+
+        self.swordEndPoint = Vector((self.position.x + self.swordLength, self.swordEndPoint.y + addAmount))
+        self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
         if self.currentSprite.isAnimating == 0: self.attackingSword = False
 
         if((self.boundingBox.right < GV.CANVAS_WIDTH-10)and (self.boundingBox.left > 10)) or ((self.boundingBox.right>= GV.CANVAS_WIDTH-10) and (self.velocity.x <0)) or ((self.boundingBox.left <=10)and (self.velocity.x>0)):
@@ -197,6 +223,10 @@ class Player(GameObject):
         for proj in self.projectiles[:]:
             proj.update()
             if proj.remove: self.projectiles.remove(proj)
+
+        for fireball in self.fireballs[:]:
+            fireball.update(GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT)
+            if fireball.remove:self.fireballs.remove(fireball)
 
         self.setAnimationSet(self.weapon)
 
@@ -223,12 +253,19 @@ class Player(GameObject):
         if self.oldDirection == 1:
             self.currentSprite = self.attackLeft
             self.offset = -30
+            self.swordLength = -60
         else:
             self.currentSprite = self.attackRight
             self.offset = 30
+            self.swordLength = 60
+
         self.updateSprite(self.currentSprite)
         self.currentSprite.setAnimating(5)
+        print(str(self.currentSprite.frameIndex[0]))
 
+    def fireballAttack(self):
+        if len(self.fireballs) == self.MAXIMUM_FIREBALLS: return
+        self.fireballs.append(FireBall(Vector((self.position.copy().x + self.dimensions[0] / 2, self.position.copy().y)), self.velocity.copy()))
 
     # Two methods to make sure that the player slows down
     # Might be equivalent to the standStill() method, not sure
@@ -240,3 +277,4 @@ class Player(GameObject):
 
     def draw(self, canvas, colour, position=Vector()):
         GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)))
+        self.swordBoundingBox.draw(canvas)

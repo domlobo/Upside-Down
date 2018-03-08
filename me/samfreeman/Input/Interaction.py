@@ -21,6 +21,10 @@ class Interaction:
             self.player.jump()
         if self.keyboard.down:
             self.player.crouch()
+        if self.keyboard.j:
+            self.player.swordAttack() # TODO: UPDATE SO THAT IT SELECTS THE CURRENT ATTACK - GUN OR SWORD
+        if self.keyboard.k:
+            self.player.fireballAttack()
         if self.keyboard.enter:
             self.text.nextText()
             self.keyboard.enter=False
@@ -34,9 +38,6 @@ class Interaction:
         # if (self.keyboard.weapon != self.player.weapon):
         #     self.player.tryWeapon(self.keyboard.weapon)
 
-    def clickHandler(self,pos):
-       # self.player.shoot()
-        self.player.swordAttack()
 
     def checkEnemyPlayerCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
