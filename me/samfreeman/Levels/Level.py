@@ -42,7 +42,7 @@ class Level:
 
     def setPlayer(self,player):
         self.player = player
-
+        
     #draws all the entities
     def draw(self, canvas):
         self.update()
