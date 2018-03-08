@@ -1,6 +1,6 @@
 
 
-class Rectangle():
+class Rectangle:
     def __init__(self, position, width, height):
         # Vector, int, int
         # Assumes pos is in the centre of the object
@@ -30,11 +30,6 @@ class Rectangle():
     def overlaps(self, other):
         # Rectangle
         # Checks if two rectangles are overlapping (intersecting)
-
-        # return ((self.topLeft.x > other.bottomRight.x) or
-        #         (self.bottomRight.x < other.topLeft.x) or
-        #         (self.topLeft.y  > other.bottomRight.y) or
-        #         (self.bottomRight.y < other.topLeft.y))
 
         return (self.left < other.right and
                 self.right > other.left and

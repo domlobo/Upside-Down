@@ -4,6 +4,8 @@ from me.samfreeman.GameObject.Projectiles import Projectile
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.Helper.Rectangle import Rectangle
+from me.samfreeman.Helper.Line import Line
+
 
 class Player(GameObject):
     def __init__(self, position, sprite, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
@@ -19,11 +21,14 @@ class Player(GameObject):
         self.MAXIMUM_PROJECTILES = 10
 
         # Position is in the centre (of line), end point needs to be centre of player
-        self.swordPosition = Vector((0, 0))
-        self.swordLength = 0 #will change on sword swing
+        self.swordLength = 60 #will change on sword swing
+        self.swordEndPoint = Vector((self.position.x + self.swordLength, self.boundingBox.top))
+        self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
+        self.maxSwordDown = self.boundingBox.bottom
+        self.startSwing = False
+
         self.offset = 0
         self.distanceFromFloor = 0 # used for crouching
-        #self.swordBoundingBox = Rectangle()
 
         # So that the player does not get too fast
         self.maxVel = [3, 3]
@@ -185,6 +190,24 @@ class Player(GameObject):
             self.weapon = tryWeapon
 
     def update(self):
+        if self.swordEndPoint.y >= self.maxSwordDown:
+            self.swordEndPoint = Vector((self.position.x, self.boundingBox.top)) # so no collision
+
+        addAmount = 0
+
+        if self.attackingSword and 4 <= self.currentSprite.frameIndex[0] <= 6 :
+            self.startSwing = True
+        else:
+            self.startSwing = False
+
+        if self.startSwing:
+            addAmount = 7
+        else:
+            addAmount = 0
+            self.swordEndPoint.y = self.boundingBox.top
+
+        self.swordEndPoint = Vector((self.position.x + self.swordLength, self.swordEndPoint.y + addAmount))
+        self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
         if self.currentSprite.isAnimating == 0: self.attackingSword = False
 
         if((self.boundingBox.right < GV.CANVAS_WIDTH-10)and (self.boundingBox.left > 10)) or ((self.boundingBox.right>= GV.CANVAS_WIDTH-10) and (self.velocity.x <0)) or ((self.boundingBox.left <=10)and (self.velocity.x>0)):
@@ -219,11 +242,16 @@ class Player(GameObject):
         if self.oldDirection == 1:
             self.currentSprite = self.attackLeft
             self.offset = -30
+            self.swordLength = -60
         else:
             self.currentSprite = self.attackRight
             self.offset = 30
+            self.swordLength = 60
+
         self.updateSprite(self.currentSprite)
         self.currentSprite.setAnimating(5)
+        print(str(self.currentSprite.frameIndex[0]))
+
 
 
     # Two methods to make sure that the player slows down
@@ -236,3 +264,4 @@ class Player(GameObject):
 
     def draw(self, canvas, colour, position=Vector()):
         GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)))
+        self.swordBoundingBox.draw(canvas)

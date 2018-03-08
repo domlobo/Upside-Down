@@ -100,7 +100,22 @@ class Vector:
         return self
 
     # Returns the angle between this vector and another one
-    # You will need to use the arccosine function:
-    # acos in the math library
     def angle(self, other):
-        pass
+        return math.acos(self.dot(other) / (self.length() * other.length()))
+
+    # Rotates the vector 90 degrees anticlockwise
+    def rotateAnti(self):
+        self.x, self.y = -self.y, self.x
+        return self
+
+    # Rotates the vector according to an angle theta given in radians
+    def rotateRad(self, theta):
+        rx = self.x * math.cos(theta) - self.y * math.sin(theta)
+        ry = self.x * math.sin(theta) + self.y * math.cos(theta)
+        self.x, self.y = rx, ry
+        return self
+
+    # Rotates the vector according to an angle theta given in degrees
+    def rotate(self, theta):
+        thetaRad = theta / 180 * math.pi
+        return self.rotateRad(thetaRad)
