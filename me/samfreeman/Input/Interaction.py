@@ -34,9 +34,11 @@ class Interaction:
        # self.player.shoot()
         self.player.swordAttack()
 
-    def checkProjectileCollision(self,enemies,player):
+    def checkEnemyPlayerCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
         for enemy in enemies[:]:
+            if player.boundingBox.overlaps(enemy.boundingBox):
+                player.changeHealth(-0.5)
             for proj in player.projectiles[:]:
                 if enemy.boundingBox.overlaps(proj.boundingBox):
                     # Collision
@@ -44,7 +46,24 @@ class Interaction:
                     proj.remove = True
             if enemy.remove: enemies.remove(enemy)
 
-    def checkObjectCollision(self,objects,player):
+    def checkObjectCollision(self,objects,entity):
         # Using a copy to remove from actual list if there is too much health loss
-        for object in objects[:]:
-            break
+        #can move booleans
+        entity.canMoveLeft = True
+        entity.canMoveRight = True
+        entity.canMoveUp = True
+        entity.canMoveDown = True
+        for currentObject in objects[:]:
+            if currentObject.boundingBox.overlaps(entity.boundingBox):
+                if entity.boundingBox.bottom > currentObject.boundingBox.top and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left):
+                    entity.canMoveDown = False
+                    entity.velocity.y *= -1
+                if (entity.boundingBox.right > currentObject.boundingBox.left) and (entity.position.x < currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
+                    entity.canMoveRight = False
+                    entity.velocity.x *= -1
+                if (entity.boundingBox.left < currentObject.boundingBox.right) and (entity.position.x > currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
+                    entity.canMoveLeft = False
+                    entity.velocity.x *= -1
+                if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left):
+                    entity.canMoveUp = False
+                    entity.velocity.y *= -1
