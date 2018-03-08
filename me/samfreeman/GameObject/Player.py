@@ -7,7 +7,7 @@ from me.samfreeman.Helper.Rectangle import Rectangle
 
 class Player(GameObject):
     def __init__(self, position, sprite, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
-        GameObject.__init__(self, position, velocity, [120, 120], health, sprite)
+        GameObject.__init__(self, position, velocity, [90, 90], health, sprite)
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
         self.weapon = 0
@@ -70,7 +70,12 @@ class Player(GameObject):
         self.crouchRight = self.crouchRight_wSword
         self.crouchLeft = self.crouchLeft_wSword
 
-    # Haven't finished initialization.
+        # Jump Testing
+        self.hasJumped = False
+        self.startingY = 0
+        self.gravity = 1
+        self.onGround = True # TODO: ADD PROPER FUNCTIONALITY TO THIS SO IT WORKS WITH PLATFORMS
+
 
     def setAnimationSet(self, set):
         if set == GV.WOODEN_SWORD:
@@ -138,11 +143,11 @@ class Player(GameObject):
               else: self.velocity.add(Vector((self.runSpeed, 0)))
 
     def jump(self):
-        if (self.position.y >= GV.CANVAS_HEIGHT - GV.EXTRA_JUMP_HEIGHT) and (self.velocity.y <= 0) and (self.canMoveUp):
-            if (self.animation == 1):
-                self.velocity.add(Vector((0, -self.jumpSpeed / 2)))
-            else:
-                self.velocity.add(Vector((0, -self.jumpSpeed)))
+        if not self.hasJumped:
+            self.gravity = 1
+            self.startingY = self.position.y
+            self.velocity.y = -20
+            self.hasJumped = True
 
     def crouch(self):
         self.offset = 0
@@ -179,9 +184,9 @@ class Player(GameObject):
 
         if abs(self.velocity.x) < 0.1: self.stop()
 
-        if (self.position.y > GV.CANVAS_HEIGHT - self.dimensions[1] / 2):
-            self.position.y = GV.CANVAS_HEIGHT - self.dimensions[1] / 2
-            self.velocity.y = 0
+        # if (self.position.y > GV.CANVAS_HEIGHT - self.dimensions[1] / 2):
+        #     self.position.y = GV.CANVAS_HEIGHT - self.dimensions[1] / 2
+        #     self.velocity.y = 0
 
         # Projectiles
         for proj in self.projectiles[:]:
@@ -189,6 +194,16 @@ class Player(GameObject):
             if proj.remove: self.projectiles.remove(proj)
 
         self.setAnimationSet(self.weapon)
+
+        if self.position.y >= GV.CANVAS_HEIGHT - 140:
+            self.onGround = True
+            self.position.y = GV.CANVAS_HEIGHT - 140
+        else: self.onGround = False
+        self.velocity.y += self.gravity
+        if self.onGround:
+            self.velocity.y = 0
+            self.startingY = GV.CANVAS_HEIGHT - 140 # This will need to be the position of the platform or ground
+            self.hasJumped = False
 
     def shoot(self):
         if len(self.projectiles) == self.MAXIMUM_PROJECTILES: return
@@ -212,7 +227,7 @@ class Player(GameObject):
         return self.velocity.length() == 0
 
     def stop(self):
-        self.velocity = Vector()
+        self.velocity.x = 0
 
     def draw(self, canvas, colour, position=Vector()):
          GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)))
