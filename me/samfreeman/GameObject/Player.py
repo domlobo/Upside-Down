@@ -265,7 +265,7 @@ class Player(GameObject):
 
     def fireballAttack(self):
         if len(self.fireballs) == self.MAXIMUM_FIREBALLS: return
-        self.fireballs.append(FireBall(Vector((self.position.copy().x + self.dimensions[0] / 2, self.position.copy().y)), self.velocity.copy()))
+        self.fireballs.append(FireBall(self.position.copy(), self.velocity.copy(), self.oldDirection, self.dimensions[0] / 2))
 
     # Two methods to make sure that the player slows down
     # Might be equivalent to the standStill() method, not sure
