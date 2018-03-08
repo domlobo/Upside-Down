@@ -4,7 +4,6 @@ except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
 import me.samfreeman.GameControl.GV as GV
-from me.samfreeman.GameObject.PlayerEnemyInteraction import PlayerEnemyInteraction
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.GameObject.Enemy import BasicEnemy
 from me.samfreeman.Helper.Display import DisplayBar
@@ -29,9 +28,11 @@ class Level:
         for line in file:
             if line == "Walls\n":
                 break
-            #arg[0] is x pos, arg[1] is health
+            #arg[0] is x pos, arg[1] is y pos, arg[2] is health, args[3] and arg[5] are left and right sprites with args[4] and args[6] being the number of colums
             args = line.split(",")
-            self.enemies.append(BasicEnemy(Vector((int(args[0]), GV.CANVAS_HEIGHT - 131)),int(args[1]),self.player))
+            runLeft = Sprite(args[3], True,1,int(args[4]))
+            runRight= Sprite(args[5], True,1,int(args[6]))
+            self.enemies.append(BasicEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
         #load all the objects
         for line in file:
             #arg[0] is image path, arg[1] is x pos, arg[2] is y pos
@@ -58,7 +59,10 @@ class Level:
     #checks for input and collisions
     def update(self):
         self.displayBar.updateBar(self.player.health, self.player.weapon)
-        self.inter.checkProjectileCollision(self.enemies,self.player)
+        self.inter.checkEnemyPlayerCollision(self.enemies,self.player)
+        self.inter.checkObjectCollision(self.objects, self.player)
+        for enemy in self.enemies:
+            self.inter.checkObjectCollision(self.objects,enemy)
         self.inter.checkKeyboard()
         #update the location of all of the elements if the canvas is moving
         if (self.background.foregroundVel.x !=0):
