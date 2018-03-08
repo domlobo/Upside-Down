@@ -39,7 +39,7 @@ class GameObject:
     def setHealth(self, amount):
         self.health = amount
 
-    def update(self):
+    def update(self, ground=0):
         self.position.add(self.velocity)
         self.boundingBox.updateBox(self.position, self.dimensions[0], self.dimensions[1])
         if self.health <= 0: self.remove = True

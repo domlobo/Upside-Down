@@ -36,7 +36,8 @@ class Interaction:
 
     def clickHandler(self,pos):
        # self.player.shoot()
-        self.player.swordAttack()
+        #self.player.swordAttack()
+        self.player.fireballAttack()
 
     def checkEnemyPlayerCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
