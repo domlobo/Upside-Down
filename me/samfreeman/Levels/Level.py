@@ -97,14 +97,14 @@ class Level:
                 currentObject.position.add(self.background.foregroundVel)
         #has to be in a separate loop because it uses a copy of list
         for proj in self.player.projectiles[:]:
-            if proj.position.x<0:
+            if proj.boundingBox.right<0:
                 self.player.projectiles.remove(proj)
         for enemy in self.enemies[:]:
-            if enemy.position.x<0:
+            if enemy.boundingBox.right<0:
                 self.enemies.remove(enemy)
         for currentObject in self.objects[:]:
-            if proj.position.x<0:
-                self.currentObject.remove(currentObject)
+            if currentObject.boundingBox.right<0:
+                self.objects.remove(currentObject)
 
     #returns the player so they can be passed on to next level
     def returnPlayer(self):
@@ -113,4 +113,4 @@ class Level:
     #returns true if level is over
     def levelComplete(self):
         #check if the character is in the last x number of pixels of the screen
-        return(not self.background.isStillRunning()) and (self.player.position.x > GV.CANVAS_WIDTH - 70)
+        return(not self.background.isStillRunning()) and (self.player.position.x > GV.CANVAS_WIDTH - 70) and (len(self.enemies) ==0)
