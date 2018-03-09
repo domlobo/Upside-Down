@@ -1,2 +1,5 @@
+Alright - lets go on a trial run.,Link
+If you die, you'll be respawned up to 3 times so keep trying.,Link
+Enemies
 600, 469,300,,0 ,,0
 800, 469,100,, 0,, 0

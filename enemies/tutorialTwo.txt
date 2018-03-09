@@ -1,2 +1,7 @@
+This is an enemy use your attacks to kill him.,Link
+Use j to swing your sword.,Link
+You only have a wooden sword - it doesn't do a lot of damage.,Link
+Make sure you stay clear of the enemy's attack or you will take damage.,Link
+Enemies
 400, 469,200,,0 ,,0
-800, 469,100,,0 ,,0 
+800, 469,100,,0 ,,0
