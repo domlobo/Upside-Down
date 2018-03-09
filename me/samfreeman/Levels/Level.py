@@ -10,6 +10,7 @@ from me.samfreeman.Helper.Display import DisplayBar
 from me.samfreeman.Helper.Background import Background
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Helper.Sprite import Sprite
+from me.samfreeman.Helper.TextOverlay import TextOverlay
 
 class Level:
 
@@ -22,10 +23,21 @@ class Level:
         self.displayBar = DisplayBar(name, self.player.health, self.player.weapon)
 
     #load the enemies into the class
-    def loadEnemies(self, fileLocation):
+    def loadLevelSpecifics(self, fileLocation):
         file = open(fileLocation, "r")
-        #load all the enemies in
+        #load all the text to be displayed
         for line in file:
+            #if this section is over, break
+            if line == "Enemies\n":
+                 break
+            #args[0] is speach, args[1] is the speaker
+            args = line.split(",")
+            self.inter.text.addLine(args[0],args[1])
+
+        self.inter.text.nextText()
+        #load the enemies
+        for line in file:
+            #if this section is over, break
             if line == "Walls\n":
                 break
             #arg[0] is x pos, arg[1] is y pos, arg[2] is health, args[3] and arg[5] are left and right sprites with args[4] and args[6] being the number of colums
@@ -46,6 +58,7 @@ class Level:
     #draws all the entities
     def draw(self, canvas):
         self.update()
+        self.inter.text.display(canvas)
         self.background.update(canvas, self.player)
         self.player.draw(canvas, "Green")
         for proj in self.player.projectiles:

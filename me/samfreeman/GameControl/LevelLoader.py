@@ -43,7 +43,7 @@ class LevelLoader:
         # Selecting the first level
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
-        self.currentLevel.loadEnemies(self.enemyFiles[self.levelCounter])
+        self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
 
     #called from Game when a level is over
     def nextlevel(self):
@@ -54,7 +54,7 @@ class LevelLoader:
             self.levelCounter +=1
             self.currentLevel = self.levels[self.levelCounter]
             self.currentLevel.setPlayer(self.player)
-            self.currentLevel.loadEnemies(self.enemyFiles[self.levelCounter])
+            self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
             #stops the character sticking to the right hand side after the transition
             GameObject.update(self.currentLevel.player)
 
@@ -67,5 +67,5 @@ class LevelLoader:
         self.currentLevel.objects = []
         self.currentLevel.background.farBackgroundPos = Vector((self.currentLevel.background.FAR_BACKGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
         self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
-        self.currentLevel.loadEnemies(self.enemyFiles[self.levelCounter])
+        self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
         GameObject.update(self.currentLevel.player)
