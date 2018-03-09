@@ -39,7 +39,7 @@ class Interaction:
         #     self.player.tryWeapon(self.keyboard.weapon)
 
 
-    def checkEnemyPlayerCollision(self,enemies,player):
+    def checkProjectileCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
         for enemy in enemies[:]:
             if player.boundingBox.overlaps(enemy.boundingBox):
@@ -49,6 +49,11 @@ class Interaction:
                     # Collision
                     enemy.changeHealth(-proj.damage)
                     proj.remove = True
+            for fball in player.fireballs[:]:
+                if enemy.boundingBox.overlaps(fball.boundingBox):
+                    # Collision
+                    enemy.changeHealth(-fball.damage)
+                    fball.remove = True
             if enemy.remove: enemies.remove(enemy)
 
     def checkObjectCollision(self,objects,entity):

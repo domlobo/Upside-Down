@@ -42,7 +42,7 @@ class Level:
 
     def setPlayer(self,player):
         self.player = player
-        
+
     #draws all the entities
     def draw(self, canvas):
         self.update()
@@ -61,7 +61,7 @@ class Level:
     #checks for input and collisions
     def update(self):
         self.displayBar.updateBar(self.player.health, self.player.weapon)
-        self.inter.checkEnemyPlayerCollision(self.enemies,self.player)
+        self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkObjectCollision(self.objects, self.player)
         for enemy in self.enemies:
             self.inter.checkObjectCollision(self.objects,enemy)
