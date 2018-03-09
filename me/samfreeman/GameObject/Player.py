@@ -83,6 +83,7 @@ class Player(GameObject):
         # Jump Testing
         self.hasJumped = False
         self.startingY = 0
+        self.currentGround = self.position.y + self.dimensions[1] / 2
         self.gravity = 1
         self.onGround = True # TODO: ADD PROPER FUNCTIONALITY TO THIS SO IT WORKS WITH PLATFORMS
 
@@ -231,10 +232,14 @@ class Player(GameObject):
 
         self.setAnimationSet(self.weapon)
 
-        if self.position.y >= GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT + self.distanceFromFloor:
+        if self.position.y >= GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT:
             self.onGround = True
-            self.position.y = GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT + self.distanceFromFloor
+            self.position.y = GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT
         else: self.onGround = False
+
+        # if self.position.y >= self.currentGround - self.distanceFromFloor - self.dimensions[1] / 2 and not self.onGround:
+        #     self.position.y = self.currentGround - self.distanceFromFloor - self.dimensions[1] / 2
+
         if self.canMoveDown:
             self.velocity.y += self.gravity
         else:
@@ -242,7 +247,7 @@ class Player(GameObject):
             self.velocity.y = 0
         if self.onGround:
             self.velocity.y = 0
-            self.startingY = GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT + self.distanceFromFloor # This will need to be the position of the platform or ground
+            self.startingY = self.currentGround - self.distanceFromFloor - self.dimensions[1] / 2# This will need to be the position of the platform or ground
             self.hasJumped = False
 
     def shoot(self):
