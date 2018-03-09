@@ -19,11 +19,11 @@ class LevelLoader:
         #tutorial (zelda) levels
         tutorialOne = Level(
             "images/background/link/link-background.jpg",
-            "images/background/link/link-tutorial-world.png",
+            "images/background/link/link-tutorial-world-1.png",
             cloudsURL,player,inter, "Tutorial-1")
         tutorialTwo = Level(
             "images/background/link/link-background.jpg",
-            "images/background/link/link-tutorial-world.png",
+            "images/background/link/link-tutorial-world-2.png",
             cloudsURL,player,inter, "Tutorial-2")
         tutorialThree = Level(
             "images/background/link/link-background.jpg",
@@ -43,8 +43,8 @@ class LevelLoader:
         # Selecting the first level
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
-        self.currentLevel.loadEnemies(self.enemyFiles[self.levelCounter])
-
+        self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
+        self.numberOfDeaths = 0
     #called from Game when a level is over
     def nextlevel(self):
         self.player = self.currentLevel.returnPlayer()
@@ -52,20 +52,26 @@ class LevelLoader:
 
         if(self.levelCounter<len(self.levels)-1):
             self.levelCounter +=1
+            #reset the death counter after each stage (every 3 levels)
+            if(self.levelCounter%3 == 0):
+                self.numberOfDeaths =0
             self.currentLevel = self.levels[self.levelCounter]
             self.currentLevel.setPlayer(self.player)
-            self.currentLevel.loadEnemies(self.enemyFiles[self.levelCounter])
+            self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
             #stops the character sticking to the right hand side after the transition
             GameObject.update(self.currentLevel.player)
 
     def gameOver(self):
-        #self.text.addLine("You died", "The ghost of Link")
-        self.player.health = 100
-        #go back to the start of the level
-        self.player.position.x = 0
-        self.currentLevel.enemies = []
-        self.currentLevel.objects = []
-        self.currentLevel.background.farBackgroundPos = Vector((self.currentLevel.background.FAR_BACKGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
-        self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
-        self.currentLevel.loadEnemies(self.enemyFiles[self.levelCounter])
-        GameObject.update(self.currentLevel.player)
+        #three retries outside of the first two tutorial levels
+        if(self.numberOfDeaths <3 or self.levelCounter<2):
+            self.player.health = 100
+            #go back to the start of the level
+            self.player.position.x = 0
+            self.currentLevel.enemies = []
+            self.currentLevel.objects = []
+            self.currentLevel.background.farBackgroundPos = Vector((self.currentLevel.background.FAR_BACKGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
+            self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
+            self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
+            GameObject.update(self.currentLevel.player)
+        else:
+            exit()

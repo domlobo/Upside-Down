@@ -1,2 +1,19 @@
-600, 469,300,,0 ,,0
-800, 469,100,, 0,, 0
+Alright - lets go on a trial run.,Link
+If you die you'll be respawned up to 3 times so keep trying.,Link
+Enemies
+400, 469,200,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
+800, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
+1200, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s
+1350, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
+1500, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s
+1650, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
+1800, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s
+4300,469,500,images/interactive-sprites/link/link-attack-left.png,4,images/interactive-sprites/link/link-attack-right.png,4,d
+Walls
+images/interactive-sprites/mario/mario-block-4-piece.png, 350, 390
+images/interactive-sprites/mario/mario-block-4-piece.png, 670, 310
+images/interactive-sprites/mario/mario-block-4-piece.png, 1250, 390
+images/interactive-sprites/mario/mario-block-4-piece.png, 1800, 390
+images/interactive-sprites/mario/mario-block-4-piece.png, 2450, 390
+images/interactive-sprites/mario/mario-block-4-piece.png, 3000, 310
+images/interactive-sprites/mario/mario-block-4-piece.png, 3320, 390

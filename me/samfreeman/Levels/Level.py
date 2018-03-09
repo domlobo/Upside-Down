@@ -6,10 +6,12 @@ except ImportError :
 import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.GameObject.Enemy import BasicEnemy
+from me.samfreeman.GameObject.StaticEnemy import StaticEnemy
 from me.samfreeman.Helper.Display import DisplayBar
 from me.samfreeman.Helper.Background import Background
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Helper.Sprite import Sprite
+from me.samfreeman.Helper.TextOverlay import TextOverlay
 
 class Level:
 
@@ -22,17 +24,33 @@ class Level:
         self.displayBar = DisplayBar(name, self.player.health, self.player.weapon)
 
     #load the enemies into the class
-    def loadEnemies(self, fileLocation):
+    def loadLevelSpecifics(self, fileLocation):
         file = open(fileLocation, "r")
-        #load all the enemies in
+        #load all the text to be displayed
         for line in file:
+            #if this section is over, break
+            if line == "Enemies\n":
+                 break
+            #args[0] is speach, args[1] is the speaker
+            args = line.split(",")
+            self.inter.text.addLine(args[0],args[1][:-1])
+
+        self.inter.text.nextText()
+        #load the enemies
+        for line in file:
+            #if this section is over, break
             if line == "Walls\n":
                 break
-            #arg[0] is x pos, arg[1] is y pos, arg[2] is health, args[3] and arg[5] are left and right sprites with args[4] and args[6] being the number of colums
+            #arg[0] is x pos, arg[1] is y pos, arg[2] is health, args[3] and arg[5] are left and right sprites with args[4] and args[6] being the number of colums, args[7] denotes the type of enemy
             args = line.split(",")
-            runLeft = Sprite(args[3], True,1,int(args[4]))
-            runRight= Sprite(args[5], True,1,int(args[6]))
-            self.enemies.append(BasicEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
+            if(args[7] == "d\n"):
+                runLeft = Sprite(args[3], True,1,int(args[4]))
+                runRight= Sprite(args[5], True,1,int(args[6]))
+                self.enemies.append(BasicEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
+            elif(args[7] == "s\n"):
+                #args[5] and [6] are left blank
+                enemySprite = Sprite(args[3], True,1,int(args[4]))
+                self.enemies.append(StaticEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, enemySprite))
         #load all the objects
         for line in file:
             #arg[0] is image path, arg[1] is x pos, arg[2] is y pos
@@ -46,6 +64,7 @@ class Level:
     #draws all the entities
     def draw(self, canvas):
         self.update()
+        self.inter.text.display(canvas)
         self.background.update(canvas, self.player)
         self.player.draw(canvas, "Green")
         for proj in self.player.projectiles:
@@ -74,9 +93,18 @@ class Level:
             for enemy in self.enemies:
                 enemy.position.add(self.background.foregroundVel)
             #use objectOnScreen since object is a reserved keyword
-            for objectOnScreen in self.objects:
-                objectOnScreen.position.add(self.background.foregroundVel)
-
+            for currentObject in self.objects:
+                currentObject.position.add(self.background.foregroundVel)
+        #has to be in a separate loop because it uses a copy of list
+        for proj in self.player.projectiles[:]:
+            if proj.boundingBox.right<0:
+                self.player.projectiles.remove(proj)
+        for enemy in self.enemies[:]:
+            if enemy.boundingBox.right<0:
+                self.enemies.remove(enemy)
+        for currentObject in self.objects[:]:
+            if currentObject.boundingBox.right<0:
+                self.objects.remove(currentObject)
 
     #returns the player so they can be passed on to next level
     def returnPlayer(self):
@@ -85,4 +113,4 @@ class Level:
     #returns true if level is over
     def levelComplete(self):
         #check if the character is in the last x number of pixels of the screen
-        return(not self.background.isStillRunning()) and (self.player.position.x > GV.CANVAS_WIDTH - 70)
+        return(not self.background.isStillRunning()) and (self.player.position.x > GV.CANVAS_WIDTH - 70) and (len(self.enemies) ==0)

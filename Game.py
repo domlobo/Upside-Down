@@ -14,17 +14,19 @@ state = State()
 player = Player(Vector((50, GV.CANVAS_HEIGHT - 130)), Sprite("images/interactive-sprites/player/wooden-sword/bobbing_right_wsword.png", True, 1, 7))
 
 
-text = TextOverlay("Hello there, my name is samuel, this is a test", "Samuel")
-text.addLine("This is another line of text")
-text.addLine("Third line of text with a different speaker", "Dom")
+text = TextOverlay("Welcome", "Link")
 
 inter = Interaction(player, text)
 
 
 def update(canvas):
     if (levelLoader.currentLevel.player.health <= 0 ):
-        text.addLine("You died", "Link")
-        text.nextText()
+        if(levelLoader.levelCounter<3):
+            speaker = "Link"
+        else:
+            speaker = "Ghost of Link"
+        text.addLine("You died", speaker)
+        #text.nextText()
         levelLoader.gameOver()
     if levelLoader.currentLevel.levelComplete():
         levelLoader.nextlevel()
