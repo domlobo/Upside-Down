@@ -243,7 +243,7 @@ class Player(GameObject):
         if self.canMoveDown:
             self.velocity.y += self.gravity
         else:
-            self.velocity.y *= -1
+            # self.velocity.y *= -1
             self.velocity.y = 0
         if self.onGround:
             self.velocity.y = 0
