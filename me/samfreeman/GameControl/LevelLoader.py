@@ -19,15 +19,15 @@ class LevelLoader:
         #tutorial (zelda) levels
         tutorialOne = Level(
             "images/background/link/link-background.jpg",
-            "images/background/link/link-tutorial-world.jpg",
+            "images/background/link/link-tutorial-world.png",
             cloudsURL,player,inter, "Tutorial-1")
         tutorialTwo = Level(
             "images/background/link/link-background.jpg",
-            "images/background/link/link-tutorial-world.jpg",
+            "images/background/link/link-tutorial-world.png",
             cloudsURL,player,inter, "Tutorial-2")
         tutorialThree = Level(
             "images/background/link/link-background.jpg",
-            "images/background/link/link-tutorial-world.jpg",
+            "images/background/link/link-tutorial-world.png",
             cloudsURL,player,inter, "Tutorial-3")
 
         marioOne = Level("images/background/mario/hills.png",
