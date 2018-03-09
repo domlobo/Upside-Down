@@ -56,6 +56,10 @@ class Level:
             #arg[0] is image path, arg[1] is x pos, arg[2] is y pos
             args = line.split(",")
             objectSprite = Sprite(args[0])
+            if(len(self.objects) ==0):
+                #have to convert to string to store and then reconvert later
+                #bit dodgy but prevents code duplication
+                args[1] = str(self.background.foregroundPos.x)
             self.objects.append(GameObject(Vector((float(args[1]),float(args[2]))), Vector((0,0)), (objectSprite.frameWidth,objectSprite.frameHeight), 100,objectSprite))
 
     def setPlayer(self,player):
@@ -79,6 +83,9 @@ class Level:
 
     #checks for input and collisions
     def update(self):
+        print("platform")
+        print(self.objects[0].position)
+        print(self.background.foregroundPos)
         self.displayBar.updateBar(self.player.health, self.player.weapon)
         self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkObjectCollision(self.objects, self.player)

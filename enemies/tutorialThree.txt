@@ -10,7 +10,7 @@ Enemies
 1800, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s
 4300,469,500,images/interactive-sprites/link/link-attack-left.png,4,images/interactive-sprites/link/link-attack-right.png,4,d
 Walls
-images/background/link/link-floor.png,0,557
+images/background/link/link-floor.png,,557
 images/interactive-sprites/mario/mario-block-4-piece.png, 350, 390
 images/interactive-sprites/mario/mario-block-4-piece.png, 670, 310
 images/interactive-sprites/mario/mario-block-4-piece.png, 1250, 390

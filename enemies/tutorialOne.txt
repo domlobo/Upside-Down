@@ -10,7 +10,7 @@ You can also use the space bar to jump.,Link
 Explore the level - I'll meet you at the end.,Link
 Enemies
 Walls
-images/background/link/link-floor.png,0,557
+images/background/link/link-floor.png,,557
 images/interactive-sprites/mario/mario-block-4-piece.png, 350, 390
 images/interactive-sprites/mario/mario-block-4-piece.png, 670, 310
 images/interactive-sprites/mario/mario-block-4-piece.png, 1250, 390
