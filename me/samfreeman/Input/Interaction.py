@@ -54,6 +54,9 @@ class Interaction:
                     # Collision
                     enemy.changeHealth(-fball.damage)
                     fball.remove = True
+            if player.swordBoundingBox.overlaps(enemy.boundingBox):
+                print("BANG__!_!_!_!_!_!_!_!_!_!_!_!_")
+                enemy.changeHealth(-player.swordDamage)
             if enemy.remove: enemies.remove(enemy)
 
     def checkObjectCollision(self,objects,entity):

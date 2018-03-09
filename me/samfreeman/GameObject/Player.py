@@ -25,6 +25,7 @@ class Player(GameObject):
 
         # Sword stuff
         self.swordLength = 60
+        self.swordDamage = 30
         self.swordEndPoint = Vector((self.position.x + self.swordLength, self.boundingBox.top))
         self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
         self.maxSwordDown = self.boundingBox.bottom

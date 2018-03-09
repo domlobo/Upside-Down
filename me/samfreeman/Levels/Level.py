@@ -88,11 +88,11 @@ class Level:
         #update the location of all of the elements if the canvas is moving
         if (self.background.foregroundVel.x !=0):
             self.player.position.add(self.background.foregroundVel)
+            #fix everything in place
             for proj in self.player.projectiles:
                 proj.position.add(self.background.foregroundVel)
             for enemy in self.enemies:
                 enemy.position.add(self.background.foregroundVel)
-            #use objectOnScreen since object is a reserved keyword
             for currentObject in self.objects:
                 currentObject.position.add(self.background.foregroundVel)
         #has to be in a separate loop because it uses a copy of list
