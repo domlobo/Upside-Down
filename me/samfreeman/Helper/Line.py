@@ -12,7 +12,12 @@ class Line:
 
     #check if the line endPoint is inside a Rectangle
     def overlaps(self, other):
-        return(self.pointB.x <= other.right
+        return((self.pointB.x <= other.right
                 and self.pointB.x >= other.left
                 and self.pointB.y <= other.bottom
-                and self.pointB.y >= other.top)
+                and self.pointB.y >= other.top) or
+                (self.pointB.x >= other.right
+                and self.pointA.x <= other.left
+                and self.pointB.y <= other.bottom
+                and self.pointB.y >= other.top
+                ))
