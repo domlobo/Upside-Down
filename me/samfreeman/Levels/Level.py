@@ -32,7 +32,7 @@ class Level:
                  break
             #args[0] is speach, args[1] is the speaker
             args = line.split(",")
-            self.inter.text.addLine(args[0],args[1])
+            self.inter.text.addLine(args[0],args[1][:-1])
 
         self.inter.text.nextText()
         #load the enemies

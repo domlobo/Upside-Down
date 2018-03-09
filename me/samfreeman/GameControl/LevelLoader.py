@@ -19,7 +19,7 @@ class LevelLoader:
         #tutorial (zelda) levels
         tutorialOne = Level(
             "images/background/link/link-background.jpg",
-            "images/background/link/link-tutorial-world.png",
+            "images/background/link/link-tutorial-world-1.png",
             cloudsURL,player,inter, "Tutorial-1")
         tutorialTwo = Level(
             "images/background/link/link-background.jpg",
