@@ -21,8 +21,12 @@ inter = Interaction(player, text)
 
 def update(canvas):
     if (levelLoader.currentLevel.player.health <= 0 ):
-        text.addLine("You died", "Link")
-        text.nextText()
+        if(levelLoader.levelCounter<3):
+            speaker = "Link"
+        else:
+            speaker = "Ghost of Link"
+        text.addLine("You died", speaker)
+        #text.nextText()
         levelLoader.gameOver()
     if levelLoader.currentLevel.levelComplete():
         levelLoader.nextlevel()
