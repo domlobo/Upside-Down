@@ -82,3 +82,4 @@ class Interaction:
                     entity.velocity.x *= -1
                 if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y >= currentObject.boundingBox.bottom):
                     entity.canMoveUp = False
+                    entity.velocity.y *= -1
