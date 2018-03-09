@@ -242,9 +242,6 @@ class Player(GameObject):
 
         if self.canMoveDown:
             self.velocity.y += self.gravity
-        else:
-            self.velocity.y *= -1
-            self.velocity.y = 0
         if self.onGround:
             self.velocity.y = 0
             self.startingY = self.currentGround - self.distanceFromFloor - self.dimensions[1] / 2# This will need to be the position of the platform or ground
@@ -267,7 +264,6 @@ class Player(GameObject):
 
         self.updateSprite(self.currentSprite)
         self.currentSprite.setAnimating(3)
-        print(str(self.currentSprite.frameIndex[0]))
 
     def fireballAttack(self):
         if len(self.fireballs) == self.MAXIMUM_FIREBALLS: return

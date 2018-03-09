@@ -71,7 +71,8 @@ class Interaction:
                 if entity.boundingBox.bottom > currentObject.boundingBox.top and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y <= currentObject.boundingBox.top):
                     entity.canMoveDown = False
                     # self.player.onGround = False
-                    self.player.hasJumped = False
+                    entity.hasJumped = False
+                    entity.velocity.y =0
                     # self.player.currentGround = currentObject.boundingBox.top
                 if (entity.boundingBox.right > currentObject.boundingBox.left) and (entity.position.x < currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
                     entity.canMoveRight = False
@@ -82,3 +83,5 @@ class Interaction:
                 if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y >= currentObject.boundingBox.bottom):
                     entity.canMoveUp = False
                     entity.velocity.y *= -1
+                    if(entity.position.y - (entity.dimensions[1]/2) < currentObject.boundingBox.bottom):
+                        entity.position.y = currentObject.boundingBox.bottom + (entity.dimensions[1]/2)
