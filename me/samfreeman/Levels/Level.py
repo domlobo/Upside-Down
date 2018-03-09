@@ -93,9 +93,18 @@ class Level:
             for enemy in self.enemies:
                 enemy.position.add(self.background.foregroundVel)
             #use objectOnScreen since object is a reserved keyword
-            for objectOnScreen in self.objects:
-                objectOnScreen.position.add(self.background.foregroundVel)
-
+            for currentObject in self.objects:
+                currentObject.position.add(self.background.foregroundVel)
+        #has to be in a separate loop because it uses a copy of list
+        for proj in self.player.projectiles[:]:
+            if proj.position.x<0:
+                self.player.projectiles.remove(proj)
+        for enemy in self.enemies[:]:
+            if enemy.position.x<0:
+                self.enemies.remove(enemy)
+        for currentObject in self.objects[:]:
+            if proj.position.x<0:
+                self.currentObject.remove(currentObject)
 
     #returns the player so they can be passed on to next level
     def returnPlayer(self):
