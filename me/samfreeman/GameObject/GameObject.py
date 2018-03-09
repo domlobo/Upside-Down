@@ -29,6 +29,7 @@ class GameObject:
         self.canMoveRight = True
         self.canMoveUp = True
         self.canMoveDown = True
+        self.hasJumped = False
 
     def setRemove(self):
         self.remove = True
