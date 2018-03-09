@@ -41,9 +41,6 @@ class TextOverlay:
             self.currentSpeakerIndex += 1
             self.currentSpeaker = self.speakerList[self.currentSpeakerIndex]
 
-
-
-
     def addLine(self, line, speaker=""):
         # If the speaker doesn't change, they leave blank
         self.text.append(line)
