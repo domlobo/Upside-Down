@@ -199,7 +199,7 @@ class Player(GameObject):
 
         addAmount = 0
 
-        if self.attackingSword and 4 <= self.currentSprite.frameIndex[0] <= 6 :
+        if self.attackingSword and 3 <= self.currentSprite.frameIndex[0] <= 6 :
             self.swordBBoxMove = True
         else:
             self.swordBBoxMove = False
@@ -261,7 +261,7 @@ class Player(GameObject):
             self.swordLength = 60
 
         self.updateSprite(self.currentSprite)
-        self.currentSprite.setAnimating(5)
+        self.currentSprite.setAnimating(3)
         print(str(self.currentSprite.frameIndex[0]))
 
     def fireballAttack(self):
