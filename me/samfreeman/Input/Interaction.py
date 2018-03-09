@@ -21,6 +21,10 @@ class Interaction:
             self.player.jump()
         if self.keyboard.down:
             self.player.crouch()
+        if self.keyboard.j:
+            self.player.swordAttack() # TODO: UPDATE SO THAT IT SELECTS THE CURRENT ATTACK - GUN OR SWORD
+        if self.keyboard.k:
+            self.player.fireballAttack()
         if self.keyboard.enter:
             self.text.nextText()
             self.keyboard.enter=False
@@ -34,11 +38,8 @@ class Interaction:
         # if (self.keyboard.weapon != self.player.weapon):
         #     self.player.tryWeapon(self.keyboard.weapon)
 
-    def clickHandler(self,pos):
-       # self.player.shoot()
-        self.player.swordAttack()
 
-    def checkEnemyPlayerCollision(self,enemies,player):
+    def checkProjectileCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
         for enemy in enemies[:]:
             if player.boundingBox.overlaps(enemy.boundingBox):
@@ -48,6 +49,14 @@ class Interaction:
                     # Collision
                     enemy.changeHealth(-proj.damage)
                     proj.remove = True
+            for fball in player.fireballs[:]:
+                if enemy.boundingBox.overlaps(fball.boundingBox):
+                    # Collision
+                    enemy.changeHealth(-fball.damage)
+                    fball.remove = True
+            if player.swordBoundingBox.overlaps(enemy.boundingBox):
+                print("BANG__!_!_!_!_!_!_!_!_!_!_!_!_")
+                enemy.changeHealth(-player.swordDamage)
             if enemy.remove: enemies.remove(enemy)
 
     def checkObjectCollision(self,objects,entity):
@@ -59,15 +68,13 @@ class Interaction:
         entity.canMoveDown = True
         for currentObject in objects[:]:
             if currentObject.boundingBox.overlaps(entity.boundingBox):
-                if entity.boundingBox.bottom > currentObject.boundingBox.top and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left):
+                if entity.boundingBox.bottom > currentObject.boundingBox.top and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y <= currentObject.boundingBox.top):
                     entity.canMoveDown = False
-                    entity.velocity.y *= -1
                 if (entity.boundingBox.right > currentObject.boundingBox.left) and (entity.position.x < currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
                     entity.canMoveRight = False
                     entity.velocity.x *= -1
                 if (entity.boundingBox.left < currentObject.boundingBox.right) and (entity.position.x > currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
                     entity.canMoveLeft = False
                     entity.velocity.x *= -1
-                if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left):
+                if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y >= currentObject.boundingBox.bottom):
                     entity.canMoveUp = False
-                    entity.velocity.y *= -1
