@@ -6,6 +6,7 @@ except ImportError :
 import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.GameObject.Enemy import BasicEnemy
+from me.samfreeman.GameObject.StaticEnemy import StaticEnemy
 from me.samfreeman.Helper.Display import DisplayBar
 from me.samfreeman.Helper.Background import Background
 from me.samfreeman.Helper.Vector import Vector
@@ -40,11 +41,16 @@ class Level:
             #if this section is over, break
             if line == "Walls\n":
                 break
-            #arg[0] is x pos, arg[1] is y pos, arg[2] is health, args[3] and arg[5] are left and right sprites with args[4] and args[6] being the number of colums
+            #arg[0] is x pos, arg[1] is y pos, arg[2] is health, args[3] and arg[5] are left and right sprites with args[4] and args[6] being the number of colums, args[7] denotes the type of enemy
             args = line.split(",")
-            runLeft = Sprite(args[3], True,1,int(args[4]))
-            runRight= Sprite(args[5], True,1,int(args[6]))
-            self.enemies.append(BasicEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
+            if(args[7] == "d\n"):
+                runLeft = Sprite(args[3], True,1,int(args[4]))
+                runRight= Sprite(args[5], True,1,int(args[6]))
+                self.enemies.append(BasicEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
+            elif(args[7] == "s\n"):
+                #args[5] and [6] are left blank
+                enemySprite = Sprite(args[3], True,1,int(args[4]))
+                self.enemies.append(StaticEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, enemySprite))
         #load all the objects
         for line in file:
             #arg[0] is image path, arg[1] is x pos, arg[2] is y pos

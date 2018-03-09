@@ -1,9 +1,9 @@
 Enemies
-760,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4
-1500,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4
-2200,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4
-2500,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4
-3750,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4
+760,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
+1500,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
+2200,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
+2500,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
+3750,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
 Walls
 images/interactive-sprites/mario/mario-block-4-piece.png, 350, 370
 images/interactive-sprites/mario/mario-pipe.png, 660, 468
