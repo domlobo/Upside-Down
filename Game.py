@@ -11,7 +11,7 @@ from me.samfreeman.Helper.Sprite import Sprite
 
 state = State()
 
-player = Player(Vector((50, GV.CANVAS_HEIGHT - 130)), Sprite("images/interactive-sprites/player/wooden-sword/bobbing_right_wsword.png", True, 1, 7))
+player = Player(Vector((50, GV.CANVAS_HEIGHT - 130)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", True, 30, 20))
 
 
 text = TextOverlay("Welcome", "Link")
