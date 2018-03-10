@@ -42,21 +42,35 @@ class Interaction:
     def checkProjectileCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
         for enemy in enemies[:]:
+            #player collision damage
             if player.boundingBox.overlaps(enemy.boundingBox):
                 player.changeHealth(-0.5)
+            #gun damage
             for proj in player.projectiles[:]:
                 if enemy.boundingBox.overlaps(proj.boundingBox):
                     # Collision
                     enemy.changeHealth(-proj.damage)
                     proj.remove = True
+            #fireball damage
             for fball in player.fireballs[:]:
                 if enemy.boundingBox.overlaps(fball.boundingBox):
                     # Collision
                     enemy.changeHealth(-fball.damage)
                     fball.remove = True
+            #sword damage
             if player.swordBoundingBox.overlaps(enemy.boundingBox):
                 enemy.changeHealth(-player.swordDamage)
+            #jumping on enemy damage
+            if enemy.boundingBox.top < player.boundingBox.bottom and(enemy.position.x <= player.boundingBox.right and enemy.position.x >= player.boundingBox.left and enemy.position.y >= player.boundingBox.bottom):
+                enemy.changeHealth(-50)
             if enemy.remove: enemies.remove(enemy)
+            #stop enemy walking through player
+            if (enemy.boundingBox.right > player.boundingBox.left) and (enemy.position.x < player.position.x) and (enemy.position.y <= player.boundingBox.bottom and enemy.position.y >= player.boundingBox.top):
+                enemy.canMoveRight = False
+                enemy.velocity.x *= -1
+            if (enemy.boundingBox.left < player.boundingBox.right) and (enemy.position.x > player.position.x) and (enemy.position.y <= player.boundingBox.bottom and enemy.position.y >= player.boundingBox.top):
+                enemy.canMoveLeft = False
+                enemy.velocity.x *= -1
 
     def checkObjectCollision(self,objects,entity):
         # Using a copy to remove from actual list if there is too much health loss
@@ -83,5 +97,4 @@ class Interaction:
                 if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y >= currentObject.boundingBox.bottom):
                     entity.canMoveUp = False
                     entity.velocity.y *= -1
-                    if(entity.position.y - (entity.dimensions[1]/2) < currentObject.boundingBox.bottom):
-                        entity.position.y = currentObject.boundingBox.bottom + (entity.dimensions[1]/2)
+                    entity.position.y = currentObject.boundingBox.bottom + (entity.dimensions[1]/2)
