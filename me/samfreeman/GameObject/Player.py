@@ -51,7 +51,6 @@ class Player(GameObject):
         self.weapon = 1 # will need to update
         self.actionState = GV.STANDING
         self.oldActionState = GV.STANDING
-        self.updatedFI = False
         self.frameWidthHeight = 60
 
         # Y is multiplied by 6 as that's the number of player states
@@ -117,14 +116,14 @@ class Player(GameObject):
         self.dimensions[1] = 60
         self.distanceFromFloor = self.dimensions[1] / 4
 
-        self.updateStates(self.oldDirection % 2, self.animationLengthCrouch, GV.CROUCHING, 3, False)
+        self.updateStates(self.oldDirection % 2, self.animationLengthCrouch, GV.CROUCHING, 3)
 
     def stand(self):
         self.offset = 0
         self.dimensions[1] = 90
         self.distanceFromFloor = 0
 
-        self.updateStates(self.oldDirection % 2, self.animationLengthStand, GV.STANDING, 8, False)
+        self.updateStates(self.oldDirection % 2, self.animationLengthStand, GV.STANDING, 8)
 
     def changeWeapon(self, tryWeapon):
         if (tryWeapon <= self.maxUnlockedWeapon):
@@ -150,7 +149,6 @@ class Player(GameObject):
         self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
         if self.currentSprite.isAnimating == 0:
             self.attackingSword = False
-            print("here")
 
         if((self.boundingBox.right < GV.CANVAS_WIDTH-10)and (self.boundingBox.left > 10)) or ((self.boundingBox.right>= GV.CANVAS_WIDTH-10) and (self.velocity.x <0)) or ((self.boundingBox.left <=10)and (self.velocity.x>0)):
             GameObject.update(self)
@@ -204,7 +202,7 @@ class Player(GameObject):
         if len(self.fireballs) == self.MAXIMUM_FIREBALLS: return
         self.fireballs.append(FireBall(self.position.copy(), self.velocity.copy(), self.oldDirection % 2, self.dimensions[0] / 2))
 
-    def updateStates(self, dir, aLen, act, speed=0, reset=True):
+    def updateStates(self, dir, aLen, act, speed=0):
         self.currentAnimationLength = aLen
         self.oldActionState = self.actionState
         self.actionState = act
@@ -215,6 +213,8 @@ class Player(GameObject):
 
         if self.oldActionState != self.actionState:
             self.currentSprite.frameIndex = self.currentSpriteStart
+            reset = True
+        else: reset = False
 
         if speed != 0:
             self.currentSprite.setAnimating(speed, self.currentSpriteStart, self.currentAnimationLength, reset)
