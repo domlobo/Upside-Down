@@ -12,4 +12,5 @@ Enemies
 1650, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
 1800, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s
 Walls
-images/background/link/link-floor.png,,557
+Floor
+images/background/link/link-floor.png,mid,557
