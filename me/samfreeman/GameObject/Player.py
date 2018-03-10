@@ -72,14 +72,6 @@ class Player(GameObject):
             self.distanceFromFloor = 0
             self.dimensions[1] = 90
 
-            # self.directionState = GV.LEFT
-            # self.oldActionState = self.actionState
-            # self.updatedFI = False
-            # self.actionState = GV.WALKING
-            # self.currentAnimationLength = self.animationLengthWalk
-            #
-            # self.currentSprite.animate(5, self.currentSpriteStart, self.currentAnimationLength)
-
             self.oldDirection = 1
             if (self.animation == 1):
               # This line limits the maximum velocity
@@ -98,14 +90,7 @@ class Player(GameObject):
             self.offset = 0
             self.distanceFromFloor = 0
             self.dimensions[1] = 90
-            # self.directionState = GV.RIGHT
-            # self.oldActionState = self.actionState
-            # self.actionState = GV.WALKING
-            # self.updatedFI = False
-            # self.currentAnimationLength = self.animationLengthWalk
 
-            
-            self.currentSprite.animate(5, self.currentSpriteStart, self.currentAnimationLength)
             self.oldDirection = 2
             if (self.animation == 1):
                 if self.velocity.x >= self.maxVel[0]:
@@ -132,27 +117,12 @@ class Player(GameObject):
         self.dimensions[1] = 60
         self.distanceFromFloor = self.dimensions[1] / 4
 
-        # Don't need to update the direction
-        # self.oldActionState = self.actionState
-        # self.actionState = GV.CROUCHING
-        # self.updatedFI = False
-        # self.currentAnimationLength = self.animationLengthCrouch
-        #
-        # self.currentSprite.setAnimating(3, self.currentSpriteStart, self.currentAnimationLength)
-
         self.updateStates(self.oldDirection % 2, self.animationLengthCrouch, GV.CROUCHING, 3)
 
     def stand(self):
         self.offset = 0
         self.dimensions[1] = 90
         self.distanceFromFloor = 0
-
-        # self.oldActionState = self.actionState
-        # self.actionState = GV.STANDING
-        # self.updatedFI = False
-        # self.currentAnimationLength = self.animationLengthStand
-        #
-        # self.currentSprite.setAnimating(8, self.currentSpriteStart, self.currentAnimationLength)
 
         self.updateStates(self.oldDirection % 2, self.animationLengthStand, GV.STANDING, 8)
 
@@ -164,8 +134,6 @@ class Player(GameObject):
 
         if self.swordEndPoint.y >= self.maxSwordDown:
             self.swordEndPoint = Vector((self.position.x, self.boundingBox.top)) # so no collision
-
-        addAmount = 0
 
         if self.attackingSword and 3 <= self.currentSprite.frameIndex[0] <= 6 :
             self.swordBBoxMove = True
@@ -230,15 +198,6 @@ class Player(GameObject):
             self.offset = 30
             self.swordLength = 60
 
-
-
-        # self.currentAnimationLength = self.animationLengthAttack
-        # self.oldActionState = self.actionState
-        # self.updatedFI = False
-        # self.actionState = GV.ATTACKING
-
-        # self.currentSprite.setAnimating(3, self.currentSpriteStart, self.currentAnimationLength)
-
         self.updateStates(self.oldDirection % 2, self.animationLengthAttack, GV.ATTACKING, 3)
 
     def fireballAttack(self):
@@ -270,9 +229,5 @@ class Player(GameObject):
         self.velocity.x = 0
 
     def draw(self, canvas, colour, position=Vector()):
-        # if self.actionState == GV.ATTACKING:
         GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)))
-        # else:
-        #     GameObject.draw(self, canvas, colour, self.position)
-
         self.swordBoundingBox.draw(canvas)
