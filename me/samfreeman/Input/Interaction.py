@@ -89,6 +89,7 @@ class Interaction:
         entity.canMoveDown = True
         # self.player.currentGround = 470 + self.player.dimensions[1] / 2
         for currentObject in objects[:]:
+            if(currentObject.notCollidable ==1): continue
             if currentObject.boundingBox.overlaps(entity.boundingBox):
                 if entity.boundingBox.bottom > currentObject.boundingBox.top and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y <= currentObject.boundingBox.top):
                     entity.canMoveDown = False
