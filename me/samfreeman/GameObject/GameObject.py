@@ -3,7 +3,7 @@ from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.Helper.Vector import Vector
 
 class GameObject:
-    def __init__(self, position, velocity, dimensions, health, sprite=Sprite("")):
+    def __init__(self, position, velocity, dimensions, health, sprite=Sprite(""),notCollidable=0):
         # Vectors
         self.position = position
         self.velocity = velocity
@@ -18,11 +18,14 @@ class GameObject:
         # Integers
         self.health = health
 
-        # 'Bounding Box'
+
         self.boundingBox = Rectangle(self.position, self.dimensions[0], self.dimensions[1])
 
         # Boolean
         self.remove = False
+
+        #fake boolean
+        self.notCollidable = notCollidable
 
         #can move booleans
         self.canMoveLeft = True

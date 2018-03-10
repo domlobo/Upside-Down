@@ -62,10 +62,11 @@ class Level:
         for line in file:
             if line == "Floor\n":
                 break
-            #arg[0] is image path, arg[1] is x pos, arg[2] is y pos
+            #arg[0] is image path, arg[1] is x pos, arg[2] is y pos, args[3] is notCollibable as an int
             args = line.split(",")
             objectSprite = Sprite(args[0])
-            self.objects.append(GameObject(Vector((float(args[1]),float(args[2]))), Vector((0,0)), (objectSprite.frameWidth,objectSprite.frameHeight), 100,objectSprite))
+            print(args[3])
+            self.objects.append(GameObject(Vector((float(args[1]),float(args[2]))), Vector((0,0)), (objectSprite.frameWidth,objectSprite.frameHeight), 100,objectSprite, int(args[3])))
         for line in file:
             args = line.split(",")
             objectSprite = Sprite(args[0])
@@ -98,7 +99,6 @@ class Level:
 
     #checks for input and collisions
     def update(self):
-        print(self.player.position.x)
         self.displayBar.updateBar(self.player.health, self.player.weapon)
         self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkObjectCollision(self.objects, self.player)
