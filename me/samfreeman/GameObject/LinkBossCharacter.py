@@ -17,7 +17,7 @@ class LinkBossCharacter(BasicEnemy):
         self.dx = currentPPos.x - self.position.x
         BasicEnemy.moveToPlayer(self)
         if randint(0,5)  == 1:
-            self.damage=5
+            self.damage=3
             if abs(self.dx) < 100:
                 self.attack()
             else:
