@@ -22,7 +22,7 @@ class Level:
         self.objects = []
         self.player = player
         self.inter = inter
-        self.displayBar = DisplayBar(name, self.player.health, self.player.weapon)
+        self.displayBar = DisplayBar(name, self.player.health)
 
     #load the enemies into the class
     def loadLevelSpecifics(self, fileLocation):
@@ -99,7 +99,7 @@ class Level:
 
     #checks for input and collisions
     def update(self):
-        self.displayBar.updateBar(self.player.health, self.player.weapon, self.player.maxUnlockedWeapon, 3 - self.player.numberOfDeaths)
+        self.displayBar.updateBar(self.player.health, self.player.maxUnlockedWeapon, 3 - self.player.numberOfDeaths)
         self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkObjectCollision(self.objects, self.player)
         for enemy in self.enemies:
