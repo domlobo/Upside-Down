@@ -34,6 +34,13 @@ class LevelLoader:
                          "images/background/mario/Mario-world-1.1.png",
                          cloudsURL,player,inter, "Mario-1")
 
+        marioTwo = Level("",
+                         "",
+                         cloudsURL,player,inter, "Mario-2")
+        marioThree = Level("",
+                         "",
+                         cloudsURL,player,inter, "Mario-3")
+                         
         doomOne = Level("images/background/doom/base-layer-background.jpg",
                         "images/background/doom/second layer.png",
                          "", player,inter,"Doom-1")
