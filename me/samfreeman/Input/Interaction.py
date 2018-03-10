@@ -23,9 +23,9 @@ class Interaction:
             self.player.crouch()
         if self.keyboard.j:
             self.player.swordAttack()
-            print("Click")
         if self.keyboard.k:
-            self.player.fireballAttack()
+            if(self.player.maxUnlockedWeapon >1):
+                self.player.fireballAttack()
         if self.keyboard.enter:
             self.text.nextText()
             self.keyboard.enter=False

@@ -56,6 +56,7 @@ class LevelLoader:
             #reset the death counter after each stage (every 3 levels)
             if(self.levelCounter%3 == 0):
                 self.numberOfDeaths =0
+                self.player.maxUnlockedWeapon +=1
             self.currentLevel = self.levels[self.levelCounter]
             self.currentLevel.setPlayer(self.player)
             self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
