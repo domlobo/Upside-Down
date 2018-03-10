@@ -65,16 +65,20 @@ class LevelLoader:
 
     def gameOver(self):
         #three retries outside of the first two tutorial levels
-        if(self.player.numberOfDeaths <3 or self.levelCounter<2):
-            self.player.numberOfDeaths +=1
-            self.player.health = 100
+        if(self.player.numberOfDeaths <3):
             #go back to the start of the level
-            self.player.position.x = 0
-            self.currentLevel.enemies = []
-            self.currentLevel.objects = []
-            self.currentLevel.background.farBackgroundPos = Vector((self.currentLevel.background.FAR_BACKGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
-            self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
-            self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
-            GameObject.update(self.currentLevel.player)
+            self.player.numberOfDeaths +=1
         else:
-            exit()
+            #go back to the start of the stage
+            self.player.numberOfDeaths =0
+            self.levelCounter -= self.levelCounter %3
+            self.currentLevel = self.levels[self.levelCounter]
+        #start level
+        self.player.health = 100
+        self.player.position.x = 0
+        self.currentLevel.enemies = []
+        self.currentLevel.objects = []
+        self.currentLevel.background.farBackgroundPos = Vector((self.currentLevel.background.FAR_BACKGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
+        self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
+        self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
+        GameObject.update(self.currentLevel.player)
