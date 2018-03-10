@@ -15,12 +15,21 @@ class DisplayBar:
         self.healthSpriteSheet = Sprite("images/interactive-sprites/display/health.png", True, 1, 10)
         self.currentSprite = 0
 
-        # Hold the weapon sprites in an array
         self.currentWeapon = currentWeapon
-        self.weaponSprites = Sprite("images/interactive-sprites/display/weapons.png", True, 1, 3)
+        self.weaponSprites = Sprite("images/interactive-sprites/display/weapons.png", True, 1, 4)
+
+        self.unlockedWeapons = 4 # TODO: GET THIS FROM SOMEWHERE
+        self.allWeapons = [self.weaponSprites.spriteFromIndex([i, 0]) for i in range(0, self.unlockedWeapons)]
 
         self.edge = self.topSpace * 0.8
-        self.weaponDisplayBoundingBox = Rectangle(Vector((GV.CANVAS_WIDTH / 2, self.topSpace / 2)), self.edge, self.edge)
+
+        adjustment = 1 if self.unlockedWeapons == 1 else 2
+        self.containerRect = Rectangle(Vector((GV.CANVAS_WIDTH / 2, self.topSpace / 2)), (self.unlockedWeapons - adjustment) * (self.edge) * 1.5, self.edge)
+
+        self.weaponDisplayLeft = (self.containerRect.position.x - self.containerRect.width / 2)
+        self.selectedWeaponX = self.weaponDisplayLeft + self.edge * 2 * (self.currentWeapon - adjustment + 1)
+        self.selectedBoundingBox = Rectangle(Vector((self.selectedWeaponX, self.topSpace / 2)), self.edge, self.edge)
+        self.fireballSelectionBB = Rectangle(Vector((self.weaponDisplayLeft + self.edge * 2, self.topSpace / 2)), self.edge, self.edge)
 
     def updateBar(self, health, currentWeapon):
         self.health = health
@@ -29,13 +38,25 @@ class DisplayBar:
         self.currentSprite = self.health // 10 - 1
         self.healthSpriteSheet.setIndex([self.currentSprite, 0])
         self.currentWeapon = currentWeapon
-        self.weaponSprites.setIndex([self.currentWeapon, 0])
 
     def drawDisplayBar(self, canvas):
         # Text is lower left point
         canvas.draw_text(self.levelName, [20, self.boundingBox.position.y], 20, "White")
         self.healthSpriteSheet.draw(Vector((self.boundingBox.right - self.topSpace + 10, self.topSpace / 2)), canvas, self.topSpace - 10, self.topSpace - 10)
-        self.weaponDisplayBoundingBox.draw(canvas, "Blue", "White")
-        self.weaponSprites.draw(self.weaponDisplayBoundingBox.position, canvas, self.edge, self.edge)
+        # self.backgroundRect.draw(canvas, "White", "White")
+        # self.weaponSprites.draw(self.backgroundRect.position, canvas, self.edge * 4, self.edge)
 
+        for i in range(0, self.unlockedWeapons):
+            offset = i
+            spacing = self.edge * 2
 
+            if self.unlockedWeapons > 1:
+                if i == 0: continue
+                else: offset = i - 1
+
+            self.allWeapons[i].draw(Vector((self.weaponDisplayLeft + offset * spacing, self.containerRect.position.y)), canvas, self.edge, self.edge)
+
+        # Draws selected weapon (always includes fire if > 2)
+        if self.unlockedWeapons > 2:
+            self.fireballSelectionBB.draw(canvas, "Red", "", 3)
+        self.selectedBoundingBox.draw(canvas, "Blue", "", 3)
