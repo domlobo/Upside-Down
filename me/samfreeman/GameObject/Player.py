@@ -125,10 +125,6 @@ class Player(GameObject):
 
         self.updateStates(self.oldDirection % 2, self.animationLengthStand, GV.STANDING, 8)
 
-    def changeWeapon(self, tryWeapon):
-        if (tryWeapon <= self.maxUnlockedWeapon):
-            self.maxUnlockedWeapon = tryWeapon
-
     def update(self):
 
         if self.swordEndPoint.y >= self.maxSwordDown:

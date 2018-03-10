@@ -10,10 +10,10 @@ class Keyboard:
         self.right=False
         self.up=False
         self.down=False
-        self.enter=False
+        self.q=False
         self.j = False
         self.k = False
-        self.tryWeapon=0
+        self.l = False
 
     #handling key press down
     def keyDown(self, key):
@@ -28,17 +28,14 @@ class Keyboard:
 
         if (key == simplegui.KEY_MAP['j']):
             self.j = True
+        elif(key == simplegui.KEY_MAP['l']):
+            self.l = True
         if (key == simplegui.KEY_MAP['k']):
             self.k = True
         if (key == simplegui.KEY_MAP['q']):
-            self.enter = True
-        #handling weapon changes
-        if (key == simplegui.KEY_MAP['1']):
-            self.tryWeapon = 1
-        if (key == simplegui.KEY_MAP['2']):
-            self.tryWeapon = 2
-        if (key == simplegui.KEY_MAP['3']):
-            self.tryWeapon = 3
+            self.q = True
+
+
 
     #handling key release
     def keyUp(self, key):
