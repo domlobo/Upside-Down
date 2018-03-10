@@ -9,7 +9,7 @@ from me.samfreeman.GameObject.FireBalls import FireBall
 
 class Player(GameObject):
     def __init__(self, position, sprite, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
-        GameObject.__init__(self, position, velocity, [90, 90], health, sprite)
+        GameObject.__init__(self, position, velocity, [30, 90], health, sprite)
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
         self.oldDirection = 2
@@ -225,5 +225,5 @@ class Player(GameObject):
         self.velocity.x = 0
 
     def draw(self, canvas, colour, position=Vector()):
-        GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)))
+        GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)), 90)
         self.swordBoundingBox.draw(canvas)

@@ -56,11 +56,12 @@ class GameObject:
         self.boundingBox.updateBox(self.position, self.dimensions[0], self.dimensions[1])
         # Overwrite and add anything else
 
-    def draw(self, canvas, colour, position=Vector((-1,-1))):
+    def draw(self, canvas, colour, position=Vector((-1,-1)), width=0):
+        width = self.dimensions[0] if width == 0 else width # THIS IS MY FAVOURITE LINE OF CODE IN THE ENTIRE PROJECT (IF IT WORKS)
         if position.x == -1 and position.y == -1:
             position = self.position
         self.update()
         if self.sprite.loaded:
-            self.sprite.draw(position, canvas, self.dimensions[0], self.dimensions[1])
+            self.sprite.draw(position, canvas, width, self.dimensions[1])
         # Bounding box for testing
         self.boundingBox.draw(canvas, colour)
