@@ -135,7 +135,7 @@ class Player(GameObject):
         if self.swordEndPoint.y >= self.maxSwordDown:
             self.swordEndPoint = Vector((self.position.x, self.boundingBox.top)) # so no collision
 
-        if self.attackingSword and 3 <= self.currentSprite.frameIndex[0] <= 6 :
+        if self.attackingSword and 3 + self.currentSpriteStart[0] <= self.currentSprite.frameIndex[0] <= 6 + self.currentSpriteStart[0]:
             self.swordBBoxMove = True
         else:
             self.swordBBoxMove = False
