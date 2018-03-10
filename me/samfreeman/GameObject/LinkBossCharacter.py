@@ -16,7 +16,7 @@ class LinkBossCharacter(BasicEnemy):
         currentPPos = self.player.position
         self.dx = currentPPos.x - self.position.x
         BasicEnemy.moveToPlayer(self)
-        if randint(0,5)  == 1:
+        if randint(0,10)  == 1:
             self.damage=3
             if abs(self.dx) < 100:
                 self.attack()
@@ -39,5 +39,5 @@ class LinkBossCharacter(BasicEnemy):
         if(self.dx<0):
             direction =1
         else:
-            direction =2
-        self.projectiles.append(Projectile(self.position.copy(), 300, direction,1.4))
+            direction =0
+        self.projectiles.append(Projectile(self.position.copy(), 300, direction,1))

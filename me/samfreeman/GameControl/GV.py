@@ -20,6 +20,3 @@ JUMP_UP = 4
 JUMP_DOWN = 5
 
 JUMPING = 2
-
-
-
