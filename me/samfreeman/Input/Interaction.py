@@ -29,7 +29,7 @@ class Interaction:
             self.player.shoot()
         if self.keyboard.q:
             self.text.nextText()
-            self.keyboard.enter=False
+            self.keyboard.q=False
 
 
 

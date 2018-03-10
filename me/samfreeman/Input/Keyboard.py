@@ -53,4 +53,4 @@ class Keyboard:
         if (key == simplegui.KEY_MAP['k']):
             self.k = False
         elif (key == simplegui.KEY_MAP['q']):
-            self.enter=False
+            self.q=False
