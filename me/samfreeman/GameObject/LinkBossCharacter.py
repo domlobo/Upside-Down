@@ -27,7 +27,6 @@ class LinkBossCharacter(BasicEnemy):
 
     #melee attack
     def attack(self):
-        print("stab")
         if(self.dx < 0 ):
             self.sprite = Sprite("images/interactive-sprites/link/link-attack-left.png",True,1,4)
         else:
@@ -41,4 +40,4 @@ class LinkBossCharacter(BasicEnemy):
             direction =1
         else:
             direction =2
-        self.projectiles.append(Projectile(self.position.copy(), 300, direction,1))
+        self.projectiles.append(Projectile(self.position.copy(), 300, direction,1.4))

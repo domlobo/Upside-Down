@@ -98,6 +98,7 @@ class Level:
 
     #checks for input and collisions
     def update(self):
+        print(self.player.position.x)
         self.displayBar.updateBar(self.player.health, self.player.weapon)
         self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkObjectCollision(self.objects, self.player)

@@ -9,7 +9,6 @@ import me.samfreeman.GameControl.GV as GV
 class BasicEnemy(GameObject):
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
         dims = [30,60]
-        print(position)
         if runLeft.loaded:
             dims = [runLeft.frameWidth, runLeft.frameHeight]
         GameObject.__init__(self, position, Vector((0, 0)),dims , health)

@@ -49,6 +49,7 @@ class LevelLoader:
     def nextlevel(self):
         self.player = self.currentLevel.returnPlayer()
         self.player.position.x = 0
+        self.player.health = 100
 
         if(self.levelCounter<len(self.levels)-1):
             self.levelCounter +=1

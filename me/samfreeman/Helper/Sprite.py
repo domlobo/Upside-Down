@@ -4,7 +4,7 @@ from me.samfreeman.Helper.Clock import Clock
 import os.path
 
 class Sprite:
-  
+
     def __init__(self, assetPath, isSpriteSheet = False, rows=1, cols=1):
         if assetPath != "":
             self.image = simplegui._load_local_image(assetPath)
@@ -45,7 +45,7 @@ class Sprite:
     def animateFull(self, frameDuration):
         # Will animate without moving (go through entire sprite sheet)
         self.needTick = True
-        print("Time: " + str(self.animationClock.time) + " FI: " + str(self.frameIndex))
+        #print("Time: " + str(self.animationClock.time) + " FI: " + str(self.frameIndex))
         if self.animationClock.transition(frameDuration):
             self.frameIndex[1] = self.startOffset[1]
             self.frameIndex[0] = self.startOffset[0] + (self.frameIndex[0] + 1) % (self.startOffset[0] // self.cols + self.animationLength)
