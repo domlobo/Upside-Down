@@ -161,6 +161,8 @@ class Player(GameObject):
         # Projectiles
         for proj in self.projectiles[:]:
             proj.update()
+            if proj.position.x <=0  or proj.position.x >= GV.CANVAS_WIDTH:
+                proj.remove = True
             if proj.remove: self.projectiles.remove(proj)
 
         for fireball in self.fireballs[:]:
@@ -177,9 +179,6 @@ class Player(GameObject):
 
         if self.canMoveDown:
             self.velocity.y += self.gravity
-        else:
-            # self.velocity.y *= -1
-            self.velocity.y = 0
         if self.onGround:
             self.velocity.y = 0
             self.startingY = self.currentGround - self.distanceFromFloor - self.dimensions[1] / 2# This will need to be the position of the platform or ground
@@ -199,6 +198,7 @@ class Player(GameObject):
             self.swordLength = 60
 
         self.updateStates(self.oldDirection % 2, self.animationLengthAttack, GV.ATTACKING, 3)
+
 
     def fireballAttack(self):
         if len(self.fireballs) == self.MAXIMUM_FIREBALLS: return

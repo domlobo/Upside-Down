@@ -3,17 +3,20 @@ from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.Helper.Rectangle import Rectangle
 from me.samfreeman.Helper.Sprite import Sprite
+import me.samfreeman.GameControl.GV as GV
 
 
 class BasicEnemy(GameObject):
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
         dims = [30,60]
+        print(position)
         if runLeft.loaded:
             dims = [runLeft.frameWidth, runLeft.frameHeight]
-
         GameObject.__init__(self, position, Vector((0, 0)),dims , health)
         self.player = player
         self.direction = 0
+        self.damage = 0.5
+        self.projectiles = []
 
         self.maxVel = [3, 3]
         self.lastSwitch = "Null"
@@ -101,6 +104,12 @@ class BasicEnemy(GameObject):
     def update(self):
         GameObject.update(self)
         self.findPlayer()
+        # Projectiles
+        for proj in self.projectiles[:]:
+            proj.update()
+            if proj.position.x <=0  or proj.position.x >= GV.CANVAS_WIDTH:
+                proj.remove = True
+            if proj.remove: self.projectiles.remove(proj)
 
     def draw(self, canvas, colour):
         GameObject.draw(self, canvas, colour)

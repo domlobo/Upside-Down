@@ -7,6 +7,7 @@ import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.GameObject.Enemy import BasicEnemy
 from me.samfreeman.GameObject.StaticEnemy import StaticEnemy
+from me.samfreeman.GameObject.LinkBossCharacter import LinkBossCharacter
 from me.samfreeman.Helper.Display import DisplayBar
 from me.samfreeman.Helper.Background import Background
 from me.samfreeman.Helper.Vector import Vector
@@ -43,19 +44,29 @@ class Level:
                 break
             #arg[0] is x pos, arg[1] is y pos, arg[2] is health, args[3] and arg[5] are left and right sprites with args[4] and args[6] being the number of colums, args[7] denotes the type of enemy
             args = line.split(",")
+            runLeft = Sprite(args[3], True,1,int(args[4]))
             if(args[7] == "d\n"):
-                runLeft = Sprite(args[3], True,1,int(args[4]))
                 runRight= Sprite(args[5], True,1,int(args[6]))
                 self.enemies.append(BasicEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
             elif(args[7] == "s\n"):
                 #args[5] and [6] are left blank
-                enemySprite = Sprite(args[3], True,1,int(args[4]))
-                self.enemies.append(StaticEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, enemySprite))
+                self.enemies.append(StaticEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft))
+            elif(args[7] == "bl\n"):
+                runRight= Sprite(args[5], True,1,int(args[6]))
+                self.enemies.append(LinkBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
+            elif(args[7] == "bm\n"):
+                pass
+            elif(args[7] == "bd\n"):
+                pass
         #load all the objects
         for line in file:
             #arg[0] is image path, arg[1] is x pos, arg[2] is y pos
             args = line.split(",")
             objectSprite = Sprite(args[0])
+            if(len(self.objects) ==0):
+                #have to convert to string to store and then reconvert later
+                #bit dodgy but prevents code duplication
+                args[1] = str(self.background.foregroundPos.x)
             self.objects.append(GameObject(Vector((float(args[1]),float(args[2]))), Vector((0,0)), (objectSprite.frameWidth,objectSprite.frameHeight), 100,objectSprite))
 
     def setPlayer(self,player):
@@ -73,6 +84,8 @@ class Level:
             fireball.draw(canvas, "Blue")
         for enemy in self.enemies:
             enemy.draw(canvas, "Red")
+            for proj in enemy.projectiles:
+                proj.draw(canvas, "Blue")
         for objectOnScreen in self.objects:
             objectOnScreen.draw(canvas, "Purple")
         self.displayBar.drawDisplayBar(canvas)
@@ -84,7 +97,6 @@ class Level:
         self.inter.checkObjectCollision(self.objects, self.player)
         for enemy in self.enemies:
             self.inter.checkObjectCollision(self.objects,enemy)
-            self.inter.checkObjectCollision((self.player,),enemy)
         self.inter.checkKeyboard()
         #update the location of all of the elements if the canvas is moving
         if (self.background.foregroundVel.x !=0):
