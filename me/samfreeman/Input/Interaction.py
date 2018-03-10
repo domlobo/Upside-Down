@@ -23,10 +23,11 @@ class Interaction:
             self.player.crouch()
         if self.keyboard.j:
             self.player.swordAttack()
-        if self.keyboard.k:
-            if(self.player.maxUnlockedWeapon >1):
-                self.player.fireballAttack()
-        if self.keyboard.enter:
+        if self.keyboard.k and (self.player.maxUnlockedWeapon >1):
+            self.player.fireballAttack()
+        if self.keyboard.l and self.player.maxUnlockedWeapon >2:
+            self.player.shoot()
+        if self.keyboard.q:
             self.text.nextText()
             self.keyboard.enter=False
 

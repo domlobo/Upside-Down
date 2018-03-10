@@ -10,9 +10,10 @@ class Keyboard:
         self.right=False
         self.up=False
         self.down=False
-        self.enter=False
+        self.q=False
         self.j = False
         self.k = False
+        self.l = False
 
     #handling key press down
     def keyDown(self, key):
@@ -27,10 +28,13 @@ class Keyboard:
 
         if (key == simplegui.KEY_MAP['j']):
             self.j = True
+        elif(key == simplegui.KEY_MAP['l']):
+            self.l = True
         if (key == simplegui.KEY_MAP['k']):
             self.k = True
         if (key == simplegui.KEY_MAP['q']):
-            self.enter = True
+            self.q = True
+
 
 
     #handling key release
