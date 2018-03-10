@@ -224,6 +224,8 @@ class Player(GameObject):
         # Projectiles
         for proj in self.projectiles[:]:
             proj.update()
+            if proj.position.x <=0  or proj.position.x >= GV.CANVAS_WIDTH:
+                proj.remove = True
             if proj.remove: self.projectiles.remove(proj)
 
         for fireball in self.fireballs[:]:
