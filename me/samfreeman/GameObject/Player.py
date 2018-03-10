@@ -47,16 +47,15 @@ class Player(GameObject):
         self.animationLengthCrouch = 7
         self.animationLengthAttack = 9
 
-        self.directionState = GV.RIGHT # TODO: will update to "self.direction" when working
+        self.directionState = GV.RIGHT 
         self.currentAnimationLength = self.animationLengthStand
-        self.weapon = 1 # will need to update
         self.actionState = GV.STANDING
         self.oldActionState = GV.STANDING
         self.frameWidthHeight = 60
 
         # Y is multiplied by 6 as that's the number of player states
         self.currentSpriteStart = [(self.directionState * self.currentAnimationLength * self.frameWidthHeight),
-                                   ((self.weapon * 6 + self.actionState) * self.frameWidthHeight)]
+                                   ((self.maxUnlockedWeapon * 6 + self.actionState) * self.frameWidthHeight)]
 
         # Jump Testing
         self.hasJumped = False
@@ -206,7 +205,7 @@ class Player(GameObject):
         self.directionState = dir
 
         self.currentSpriteStart = [(self.directionState * self.currentAnimationLength),
-                                   ((self.weapon * 6 + self.actionState))]
+                                   ((self.maxUnlockedWeapon * 6 + self.actionState))]
 
         if self.oldActionState != self.actionState:
             self.currentSprite.frameIndex = self.currentSpriteStart
