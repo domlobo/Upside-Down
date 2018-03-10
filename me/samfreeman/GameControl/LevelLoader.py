@@ -34,12 +34,12 @@ class LevelLoader:
                          "images/background/mario/Mario-world-1.1.png",
                          cloudsURL,player,inter, "Mario-1")
 
-        doomOne = Level("images/background/doom/base layer background.jpg",
-                        "images/background/doom/second layer.jpg",
+        doomOne = Level("images/background/doom/base-layer-background.jpg",
+                        "images/background/doom/second layer.png",
                          "", player,inter,"Doom-1")
         # Creating list of levels
-        self.levels =(tutorialOne,tutorialTwo,tutorialThree,marioOne,doomOne)
-        self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/doomOne.txt")
+        self.levels =(doomOne,)#(tutorialOne,tutorialTwo,tutorialThree,marioOne,doomOne)
+        self.enemyFiles =("enemies/doomOne.txt",)#("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/doomOne.txt")
         # Selecting the first level
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
