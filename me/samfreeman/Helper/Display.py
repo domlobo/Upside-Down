@@ -45,7 +45,7 @@ class DisplayBar:
         canvas.draw_text(self.levelName, [20, self.boundingBox.position.y], 20, "White")
         healthPosX = self.boundingBox.right - self.topSpace + 10
         self.healthSpriteSheet.draw(Vector((healthPosX, self.topSpace / 2)), canvas, self.topSpace - 10, self.topSpace - 10)
-        canvas.draw_text(str(self.lives), [(healthPosX - (self.topSpace - 10) / 2) + 15, (self.topSpace) - 15], 30, "White")
+        canvas.draw_text(str(self.lives), [(healthPosX - (self.topSpace - 10) / 2) + 18, (self.topSpace) - 15], 25, "White", "sans-serif")
 
         for i in range(0, self.unlockedWeapons):
             offset = i

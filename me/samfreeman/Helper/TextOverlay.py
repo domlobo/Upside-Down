@@ -53,6 +53,6 @@ class TextOverlay:
         if not(self.done):
             self.outline.draw(canvas, "White", "White")
             self.speakerImg.draw(canvas, "Black", "Black")
-            canvas.draw_text(self.currentSpeaker, [self.speakerImg.left, self.speakerImg.top - 5], 15, "Black")
-            canvas.draw_text(self.displayedText, self.textWrap.position.getP(), 15, "Black")
-            canvas.draw_text(self.continueText, [self.textWrap.position.x, GV.CANVAS_HEIGHT - 15], 15, "Black")
+            canvas.draw_text(self.currentSpeaker, [self.speakerImg.left, self.speakerImg.top - 5], 15, "Black", "monospace")
+            canvas.draw_text(self.displayedText, self.textWrap.position.getP(), 15, "Black", "monospace")
+            canvas.draw_text(self.continueText, [self.textWrap.position.x, GV.CANVAS_HEIGHT - 15], 15, "Black", "monospace")
