@@ -9,6 +9,7 @@ class Sprite:
         if assetPath != "":
             self.image = simplegui._load_local_image(assetPath)
             self.loaded = True
+            self.ap = assetPath
             print(assetPath)
         else: self.loaded = False
         self.isSpriteSheet = isSpriteSheet
@@ -60,6 +61,14 @@ class Sprite:
         self.startOffset = start
         self.animationLength = length
         if reset: self.animationClock.time = 0
+
+    def spriteFromIndex(self, index):
+        newSprite = Sprite(self.ap)
+        newSprite.frameWidth = self.frameWidth
+        newSprite.frameHeight = self.frameHeight
+        newSprite.frameCentre = (newSprite.frameWidth / 2, newSprite.frameHeight / 2)
+        newSprite.frameIndex = index
+        return newSprite
 
     def stopAnimating(self):
         self.needTick = False
