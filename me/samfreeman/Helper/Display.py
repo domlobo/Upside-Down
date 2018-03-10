@@ -14,6 +14,7 @@ class DisplayBar:
         self.boundingBox = Rectangle(Vector((GV.CANVAS_WIDTH / 2, self.topSpace / 2)), GV.CANVAS_WIDTH, self.topSpace)
         self.healthSpriteSheet = Sprite("images/interactive-sprites/display/health.png", True, 1, 10)
         self.currentSprite = 0
+        self.lives = 3
 
         self.currentWeapon = currentWeapon
         self.weaponSprites = Sprite("images/interactive-sprites/display/weapons.png", True, 1, 4)
@@ -23,28 +24,36 @@ class DisplayBar:
 
         self.edge = self.topSpace * 0.8
 
-        adjustment = 1 if self.unlockedWeapons == 1 else 2
-        self.containerRect = Rectangle(Vector((GV.CANVAS_WIDTH / 2, self.topSpace / 2)), (self.unlockedWeapons - adjustment) * (self.edge) * 1.5, self.edge)
+        self.adjustment = 1 if self.unlockedWeapons == 1 else 2
 
+        self.containerRect = Rectangle(Vector((GV.CANVAS_WIDTH / 2, self.topSpace / 2)), (self.unlockedWeapons - self.adjustment) * (self.edge) * 1.5, self.edge)
         self.weaponDisplayLeft = (self.containerRect.position.x - self.containerRect.width / 2)
-        self.selectedWeaponX = self.weaponDisplayLeft + self.edge * 2 * (self.currentWeapon - adjustment + 1)
+        self.selectedWeaponX = self.weaponDisplayLeft + self.edge * 2 * (self.currentWeapon - self.adjustment + 1)
         self.selectedBoundingBox = Rectangle(Vector((self.selectedWeaponX, self.topSpace / 2)), self.edge, self.edge)
         self.fireballSelectionBB = Rectangle(Vector((self.weaponDisplayLeft + self.edge * 2, self.topSpace / 2)), self.edge, self.edge)
 
-    def updateBar(self, health, currentWeapon):
+
+    def updateBar(self, health, currentWeapon, maxWeapon, lives):
         self.health = health
         # There 10 hearts as part of the sheet
         # Use [0] for 0-10 health, [1] for 11-20.. etc.
         self.currentSprite = self.health // 10 - 1
         self.healthSpriteSheet.setIndex([self.currentSprite, 0])
         self.currentWeapon = currentWeapon
+        self.lives = lives
+        self.unlockedWeapons = maxWeapon + 1
+
+        self.containerRect = Rectangle(Vector((GV.CANVAS_WIDTH / 2, self.topSpace / 2)), (self.unlockedWeapons - self.adjustment) * (self.edge) * 1.5, self.edge)
+        self.weaponDisplayLeft = (self.containerRect.position.x - self.containerRect.width / 2)
+        self.selectedWeaponX = self.weaponDisplayLeft + self.edge * 2 * (self.currentWeapon - self.adjustment + 1)
+        self.selectedBoundingBox = Rectangle(Vector((self.selectedWeaponX, self.topSpace / 2)), self.edge, self.edge)
 
     def drawDisplayBar(self, canvas):
         # Text is lower left point
         canvas.draw_text(self.levelName, [20, self.boundingBox.position.y], 20, "White")
-        self.healthSpriteSheet.draw(Vector((self.boundingBox.right - self.topSpace + 10, self.topSpace / 2)), canvas, self.topSpace - 10, self.topSpace - 10)
-        # self.backgroundRect.draw(canvas, "White", "White")
-        # self.weaponSprites.draw(self.backgroundRect.position, canvas, self.edge * 4, self.edge)
+        healthPosX = self.boundingBox.right - self.topSpace + 10
+        self.healthSpriteSheet.draw(Vector((healthPosX, self.topSpace / 2)), canvas, self.topSpace - 10, self.topSpace - 10)
+        canvas.draw_text(str(self.lives), [(healthPosX - (self.topSpace - 10) / 2) + 15, (self.topSpace) - 15], 30, "White")
 
         for i in range(0, self.unlockedWeapons):
             offset = i
