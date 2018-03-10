@@ -8,7 +8,6 @@ SWORD = 1
 GUN = 2
 FIRE = 3
 
-STANDING = 0
 LEFT = 1
 RIGHT = 0
 
