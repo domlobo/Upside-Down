@@ -16,7 +16,7 @@ class Sprite:
         self.cols = cols
         self.name = assetPath
         self.startOffset = (0,0)
-        self.animationLength = 0
+        self.animationLength = self.cols
 
         # Display Information
         if self.loaded:
@@ -31,10 +31,10 @@ class Sprite:
         self.needTick = False
 
 
-    def animate(self, frameDuration, start, length):
+    def animate(self, frameDuration, start=[0,0], length = 0):
         # Will animate while it is being called (such as moving a player)
         self.startOffset = start
-        self.animationLength = length
+        if length != 0: self.animationLength = length
         self.needTick = True
         if self.animationClock.transition(frameDuration):
             self.frameIndex[0] = self.startOffset[0] + (self.frameIndex[0] + 1) % (self.startOffset[0] // self.cols + self.animationLength)
@@ -55,10 +55,11 @@ class Sprite:
                 # self.frameIndex[1] = (self.frameIndex[1] + 1) % self.rows
                 self.isAnimating = 0
 
-    def setAnimating(self, frameDuration, start, length):
+    def setAnimating(self, frameDuration, start, length, reset):
         self.isAnimating = frameDuration
         self.startOffset = start
         self.animationLength = length
+        if reset: self.animationClock.time = 0
 
     def stopAnimating(self):
         self.needTick = False

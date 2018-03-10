@@ -56,7 +56,7 @@ class Player(GameObject):
 
         # Y is multiplied by 6 as that's the number of player states
         self.currentSpriteStart = [(self.directionState * self.currentAnimationLength * self.frameWidthHeight),
-                                   ((self.weapon * 6 + self.actionState) * self.frameWidthHeight)] #TODO: WILL UPDATE TO "SELF.CURRENTSPRITE" WHEN WORKING
+                                   ((self.weapon * 6 + self.actionState) * self.frameWidthHeight)]
 
         # Jump Testing
         self.hasJumped = False
@@ -117,14 +117,14 @@ class Player(GameObject):
         self.dimensions[1] = 60
         self.distanceFromFloor = self.dimensions[1] / 4
 
-        self.updateStates(self.oldDirection % 2, self.animationLengthCrouch, GV.CROUCHING, 3)
+        self.updateStates(self.oldDirection % 2, self.animationLengthCrouch, GV.CROUCHING, 3, False)
 
     def stand(self):
         self.offset = 0
         self.dimensions[1] = 90
         self.distanceFromFloor = 0
 
-        self.updateStates(self.oldDirection % 2, self.animationLengthStand, GV.STANDING, 8)
+        self.updateStates(self.oldDirection % 2, self.animationLengthStand, GV.STANDING, 8, False)
 
     def changeWeapon(self, tryWeapon):
         if (tryWeapon <= self.maxUnlockedWeapon):
@@ -202,9 +202,9 @@ class Player(GameObject):
 
     def fireballAttack(self):
         if len(self.fireballs) == self.MAXIMUM_FIREBALLS: return
-        self.fireballs.append(FireBall(self.position.copy(), self.velocity.copy(), self.oldDirection, self.dimensions[0] / 2))
+        self.fireballs.append(FireBall(self.position.copy(), self.velocity.copy(), self.oldDirection % 2, self.dimensions[0] / 2))
 
-    def updateStates(self, dir, aLen, act, speed=0):
+    def updateStates(self, dir, aLen, act, speed=0, reset=True):
         self.currentAnimationLength = aLen
         self.oldActionState = self.actionState
         self.actionState = act
@@ -217,7 +217,7 @@ class Player(GameObject):
             self.currentSprite.frameIndex = self.currentSpriteStart
 
         if speed != 0:
-            self.currentSprite.setAnimating(speed, self.currentSpriteStart, self.currentAnimationLength)
+            self.currentSprite.setAnimating(speed, self.currentSpriteStart, self.currentAnimationLength, reset)
         else: self.currentSprite.animate(5, self.currentSpriteStart, self.currentAnimationLength)
 
     # Two methods to make sure that the player slows down
