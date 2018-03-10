@@ -15,6 +15,7 @@ class Player(GameObject):
         self.oldDirection = 2
         self.animation = 0
         self.maxUnlockedWeapon = 0
+        self.numberOfDeaths =0
 
         # Weapon Stuff
         self.projectiles = []

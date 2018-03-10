@@ -44,7 +44,7 @@ class LevelLoader:
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
         self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
-        self.numberOfDeaths = 0
+        self.player.numberOfDeaths = 0
     #called from Game when a level is over
     def nextlevel(self):
         self.player = self.currentLevel.returnPlayer()
@@ -55,7 +55,7 @@ class LevelLoader:
             self.levelCounter +=1
             #reset the death counter after each stage (every 3 levels)
             if(self.levelCounter%3 == 0):
-                self.numberOfDeaths =0
+                self.player.numberOfDeaths =0
                 self.player.maxUnlockedWeapon +=1
             self.currentLevel = self.levels[self.levelCounter]
             self.currentLevel.setPlayer(self.player)
@@ -65,7 +65,8 @@ class LevelLoader:
 
     def gameOver(self):
         #three retries outside of the first two tutorial levels
-        if(self.numberOfDeaths <3 or self.levelCounter<2):
+        if(self.player.numberOfDeaths <3 or self.levelCounter<2):
+            self.player.numberOfDeaths +=1
             self.player.health = 100
             #go back to the start of the level
             self.player.position.x = 0
