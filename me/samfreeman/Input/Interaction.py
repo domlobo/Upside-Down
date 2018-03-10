@@ -44,12 +44,17 @@ class Interaction:
         for enemy in enemies[:]:
             #player collision damage
             if player.boundingBox.overlaps(enemy.boundingBox):
-                player.changeHealth(-0.5)
+                player.changeHealth(-enemy.damage)
             #gun damage
             for proj in player.projectiles[:]:
                 if enemy.boundingBox.overlaps(proj.boundingBox):
                     # Collision
                     enemy.changeHealth(-proj.damage)
+                    proj.remove = True
+            for proj in enemy.projectiles[:]:
+                if player.boundingBox.overlaps(proj.boundingBox):
+                    # Collision
+                    player.changeHealth(-proj.damage)
                     proj.remove = True
             #fireball damage
             for fball in player.fireballs[:]:
