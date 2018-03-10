@@ -46,7 +46,7 @@ class Player(GameObject):
         self.animationLengthCrouch = 7
         self.animationLengthAttack = 9
 
-        self.directionState = GV.RIGHT 
+        self.directionState = GV.RIGHT
         self.currentAnimationLength = self.animationLengthStand
         self.actionState = GV.STANDING
         self.oldActionState = GV.STANDING
@@ -169,9 +169,9 @@ class Player(GameObject):
             fireball.update(GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT)
             if fireball.remove:self.fireballs.remove(fireball)
 
-        if self.position.y >= GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT:
-            self.onGround = True
-            self.position.y = GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT
+        # if self.position.y >= GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT:
+        #     self.onGround = True
+        #     self.position.y = GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT
         else: self.onGround = False
 
         # if self.position.y >= self.currentGround - self.distanceFromFloor - self.dimensions[1] / 2 and not self.onGround:

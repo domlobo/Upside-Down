@@ -20,7 +20,7 @@ inter = Interaction(player, text)
 
 
 def update(canvas):
-    if (levelLoader.currentLevel.player.health <= 0 ):
+    if (levelLoader.currentLevel.player.health <= 0 or levelLoader.currentLevel.player.position.y > GV.CANVAS_HEIGHT):
         if(levelLoader.levelCounter<3):
             speaker = "Link"
         else:
