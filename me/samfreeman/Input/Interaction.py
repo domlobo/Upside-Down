@@ -38,9 +38,6 @@ class Interaction:
         # if (not(self.keyboard.right and self.keyboard.left)) and (self.player.direction != 0):
         #     self.player.standStill()
 
-        # if (self.keyboard.weapon != self.player.weapon):
-        #     self.player.tryWeapon(self.keyboard.weapon)
-
 
     def checkProjectileCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
