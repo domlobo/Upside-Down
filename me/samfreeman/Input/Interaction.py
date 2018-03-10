@@ -22,12 +22,15 @@ class Interaction:
         if self.keyboard.down:
             self.player.crouch()
         if self.keyboard.j:
-            self.player.swordAttack() # TODO: UPDATE SO THAT IT SELECTS THE CURRENT ATTACK - GUN OR SWORD
+            self.player.swordAttack()
+            print("Click")
         if self.keyboard.k:
             self.player.fireballAttack()
         if self.keyboard.enter:
             self.text.nextText()
             self.keyboard.enter=False
+
+
 
         if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword):
             self.player.stand()

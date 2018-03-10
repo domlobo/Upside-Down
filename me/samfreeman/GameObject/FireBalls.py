@@ -31,8 +31,5 @@ class FireBall(GameObject):
         GameObject.update(self)
         self.drop(500)
         self.sprite.animateFull(5)
-        print("Ground: " + str(ground))
-        print("Bounce Count: " + str(self.bounceCount))
-        print("Pos: " + str(self.position))
         if self.bounceCount >= 3: self.remove = True
         self.changeHealth(-1)
