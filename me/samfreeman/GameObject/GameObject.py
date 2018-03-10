@@ -57,7 +57,8 @@ class GameObject:
         # Overwrite and add anything else
 
     def draw(self, canvas, colour, position=Vector((-1,-1)), width=0):
-        width = self.dimensions[0] if width == 0 else width # THIS IS MY FAVOURITE LINE OF CODE IN THE ENTIRE PROJECT (IF IT WORKS)
+
+        width = self.dimensions[0] if width == 0 else width
         if position.x == -1 and position.y == -1:
             position = self.position
         self.update()

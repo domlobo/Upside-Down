@@ -127,6 +127,7 @@ class Player(GameObject):
 
     def update(self):
 
+
         if self.swordEndPoint.y >= self.maxSwordDown:
             self.swordEndPoint = Vector((self.position.x, self.boundingBox.top)) # so no collision
 
@@ -135,14 +136,22 @@ class Player(GameObject):
         else:
             self.swordBBoxMove = False
 
+        # Moves the sword (end-point) down
         if self.swordBBoxMove:
             addAmount = 7
         else:
             addAmount = 0
             self.swordEndPoint.y = self.boundingBox.top
 
-        self.swordEndPoint = Vector((self.position.x + self.swordLength, self.swordEndPoint.y + addAmount))
-        self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
+        if self.attackingSword:
+            self.swordEndPoint = Vector((self.position.x + self.swordLength, self.swordEndPoint.y + addAmount))
+            self.swordBoundingBox.pointA = self.position
+            self.swordBoundingBox.pointB = self.swordEndPoint
+            # self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
+        else:
+            self.swordBoundingBox.pointA = Vector()
+            self.swordBoundingBox.pointB = Vector()
+
         if self.currentSprite.isAnimating == 0:
             self.attackingSword = False
 
