@@ -107,7 +107,7 @@ class Level:
         self.inter.checkKeyboard()
         #update the location of all of the elements if the canvas is moving
         if (self.background.foregroundVel.x !=0):
-            self.player.position.add(self.background.foregroundVel)
+            self.player.position.add(1.25*self.background.foregroundVel)
             #fix everything in place
             for proj in self.player.projectiles:
                 proj.position.add(self.background.foregroundVel)
