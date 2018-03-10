@@ -12,7 +12,6 @@ class Player(GameObject):
         GameObject.__init__(self, position, velocity, [30, 90], health, sprite)
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
-        self.oldDirection = 2
         self.animation = 0
         self.maxUnlockedWeapon = 0
         self.numberOfDeaths =0
@@ -71,7 +70,6 @@ class Player(GameObject):
             self.distanceFromFloor = 0
             self.dimensions[1] = 90
 
-            self.oldDirection = 1
             if (self.animation == 1):
               # This line limits the maximum velocity
                 if self.velocity.x <= -self.maxVel[0]:
@@ -90,7 +88,6 @@ class Player(GameObject):
             self.distanceFromFloor = 0
             self.dimensions[1] = 90
 
-            self.oldDirection = 2
             if (self.animation == 1):
                 if self.velocity.x >= self.maxVel[0]:
                     self.velocity.x = self.maxVel[0]
@@ -116,14 +113,14 @@ class Player(GameObject):
         self.dimensions[1] = 60
         self.distanceFromFloor = self.dimensions[1] / 4
 
-        self.updateStates(self.oldDirection % 2, self.animationLengthCrouch, GV.CROUCHING, 3)
+        self.updateStates(self.directionState, self.animationLengthCrouch, GV.CROUCHING, 3)
 
     def stand(self):
         self.offset = 0
         self.dimensions[1] = 90
         self.distanceFromFloor = 0
 
-        self.updateStates(self.oldDirection % 2, self.animationLengthStand, GV.STANDING, 8)
+        self.updateStates(self.directionState, self.animationLengthStand, GV.STANDING, 8)
 
     def update(self):
 
@@ -189,23 +186,23 @@ class Player(GameObject):
 
     def shoot(self):
         if len(self.projectiles) == self.MAXIMUM_PROJECTILES: return
-        self.projectiles.append(Projectile(self.position.copy(), 300, self.oldDirection))
+        self.projectiles.append(Projectile(self.position.copy(), 300, self.directionState))
 
     def swordAttack(self):
         self.attackingSword = True
-        if self.oldDirection == 1:
+        if self.directionState == GV.LEFT:
             self.offset = -30
             self.swordLength = -60
         else:
             self.offset = 30
             self.swordLength = 60
 
-        self.updateStates(self.oldDirection % 2, self.animationLengthAttack, GV.ATTACKING, 3)
+        self.updateStates(self.directionState, self.animationLengthAttack, GV.ATTACKING, 3)
 
 
     def fireballAttack(self):
         if len(self.fireballs) == self.MAXIMUM_FIREBALLS: return
-        self.fireballs.append(FireBall(self.position.copy(), self.velocity.copy(), self.oldDirection % 2, self.dimensions[0] / 2))
+        self.fireballs.append(FireBall(self.position.copy(), self.velocity.copy(), self.directionState, self.dimensions[0] / 2))
 
     def updateStates(self, dir, aLen, act, speed=0):
         self.currentAnimationLength = aLen
