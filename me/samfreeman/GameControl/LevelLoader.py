@@ -82,7 +82,8 @@ class LevelLoader:
             self.currentLevel = self.levels[self.levelCounter]
         #start level
         self.player.health = 100
-        self.player.position.x = 0
+        self.player.position.x = 50
+        self.player.position.y = 300
         self.currentLevel.enemies = []
         self.currentLevel.objects = []
         self.currentLevel.background.farBackgroundPos = Vector((self.currentLevel.background.FAR_BACKGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
