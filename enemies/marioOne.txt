@@ -33,3 +33,7 @@ images/interactive-sprites/mario/stair8.png, 4893, 409,0
 images/interactive-sprites/mario/Super_Mario_flag_pole.png, 5000, 350,1
 images/interactive-sprites/mario/mario-castle.png, 5350, 307,1
 Floor
+images/background/mario/Mario-world-1.1-floor-1.png,562.5,557
+images/background/mario/Mario-world-1.1-floor-2.png,2056.5,557
+images/background/mario/Mario-world-1.1-floor-2.png,3915.5,557
+images/background/mario/Mario-world-1.1-floor-2.png,5392.5,557
