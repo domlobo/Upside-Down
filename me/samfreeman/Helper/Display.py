@@ -12,11 +12,11 @@ class DisplayBar:
         self.health = health
         self.topSpace = topSpace
         self.boundingBox = Rectangle(Vector((GV.CANVAS_WIDTH / 2, self.topSpace / 2)), GV.CANVAS_WIDTH, self.topSpace)
-        self.healthSpriteSheet = Sprite("images/interactive-sprites/display/health.png", True, 1, 10)
+        self.healthSpriteSheet = Sprite("images/interactive-sprites/display/health.png", 1, 10)
         self.currentSprite = 0
         self.lives = 3
 
-        self.weaponSprites = Sprite("images/interactive-sprites/display/weapons.png", True, 1, 4)
+        self.weaponSprites = Sprite("images/interactive-sprites/display/weapons.png", 1, 4)
 
         self.unlockedWeapons = 4 # TODO: GET THIS FROM SOMEWHERE
         self.allWeapons = [self.weaponSprites.spriteFromIndex([i, 0]) for i in range(0, self.unlockedWeapons)]

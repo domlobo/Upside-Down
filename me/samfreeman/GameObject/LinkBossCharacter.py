@@ -28,9 +28,9 @@ class LinkBossCharacter(BasicEnemy):
     #melee attack
     def attack(self):
         if(self.dx < 0 ):
-            self.sprite = Sprite("images/interactive-sprites/link/link-attack-left.png",True,1,4)
+            self.sprite = Sprite("images/interactive-sprites/link/link-attack-left.png",1,4)
         else:
-            self.sprite = Sprite("images/interactive-sprites/link/link-attack-right.png",True,1,4)
+            self.sprite = Sprite("images/interactive-sprites/link/link-attack-right.png",1,4)
 
     #rangedAttack
     def rangedAttack(self):

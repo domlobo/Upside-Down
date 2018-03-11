@@ -13,14 +13,16 @@ class Interaction:
 
     # handling keyboard input for player
     def checkKeyboard(self):
-        if self.keyboard.right:
-            self.player.moveRight()
-        if self.keyboard.left:
-            self.player.moveLeft()
-        if self.keyboard.up:
-            self.player.jump()
-        if self.keyboard.down:
-            self.player.crouch()
+        # Means no running an shooting
+        if not self.player.attackingSword:
+            if self.keyboard.right:
+                self.player.moveRight()
+            if self.keyboard.left:
+                self.player.moveLeft()
+            if self.keyboard.up:
+                self.player.jump()
+            if self.keyboard.down:
+                self.player.crouch()
         if self.keyboard.j:
             self.player.swordAttack()
         if self.keyboard.k and (self.player.maxUnlockedWeapon >1):
