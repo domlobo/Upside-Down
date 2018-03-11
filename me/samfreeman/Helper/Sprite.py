@@ -4,7 +4,7 @@ from me.samfreeman.Helper.Clock import Clock
 
 
 class Sprite:
-    def __init__(self, path, rows=1, cols=1, frameDuration=5):
+    def __init__(self, path, rows=1, cols=1):
         if path != "":
             # Attempts to find a file at the specified path
             self.spritesheet = simplegui._load_local_image(path)
@@ -23,7 +23,7 @@ class Sprite:
 
         # Animation Tools (Default Values)
         self.startOffset = (0,0)
-        self.frameDuration = frameDuration
+        self.frameDuration = 5
         self.animationLength = self.cols
         self.animateOnce = True
         self.isComplete = False

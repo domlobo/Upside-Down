@@ -52,7 +52,7 @@ class Level:
                 #args[5] and [6] are left blank
                 self.enemies.append(StaticEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft))
             elif(args[7] == "bl\n"):
-                runRight= Sprite(args[5], True,1,int(args[6]))
+                runRight= Sprite(args[5], 1,int(args[6]))
                 self.enemies.append(LinkBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
             elif(args[7] == "bm\n"):
                 pass

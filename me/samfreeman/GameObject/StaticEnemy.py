@@ -28,4 +28,4 @@ class StaticEnemy(GameObject):
 
     def draw(self, canvas, colour):
         GameObject.draw(self, canvas, colour)
-        self.sprite.animate(10)
+        self.sprite.startAnimation(10)
