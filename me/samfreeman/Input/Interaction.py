@@ -23,7 +23,7 @@ class Interaction:
                 self.player.jump()
             if self.keyboard.down:
                 self.player.crouch()
-        if self.keyboard.j:
+        if self.keyboard.j and not self.player.hasJumped: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
             self.player.swordAttack()
         if self.keyboard.k and (self.player.maxUnlockedWeapon >1):
             self.player.fireballAttack()
@@ -33,9 +33,7 @@ class Interaction:
             self.text.nextText()
             self.keyboard.q=False
 
-
-
-        if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword):
+        if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
             self.player.stand()
 
         # if (not(self.keyboard.right and self.keyboard.left)) and (self.player.direction != 0):

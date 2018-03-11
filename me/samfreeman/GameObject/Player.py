@@ -44,6 +44,8 @@ class Player(GameObject):
         self.animationLengthWalk = 8
         self.animationLengthCrouch = 7
         self.animationLengthAttack = 9
+        self.animationLengthJumpUp = 4
+        self.animationLengthJumpDown = 6
 
         self.directionState = GV.RIGHT
         self.currentAnimationLength = self.animationLengthStand
@@ -105,8 +107,6 @@ class Player(GameObject):
             self.velocity.y = -20
             self.hasJumped = True
 
-            # TODO: check if moving down or up and update the animation accordingly
-
     def crouch(self):
         self.offset = 0
         self.dimensions[1] = 60
@@ -122,7 +122,10 @@ class Player(GameObject):
         self.updateStates(self.directionState, self.animationLengthStand, GV.STANDING, 8)
 
     def update(self):
-
+        if self.velocity.y != 0:
+            self.actionState = GV.JUMP_UP if self.velocity.y < 0 else GV.JUMP_DOWN
+            self.currentAnimationLength = self.animationLengthJumpUp if self.velocity.y < 0 else self.animationLengthJumpDown
+            self.updateStates(self.directionState, self.currentAnimationLength, self.actionState, 1)
 
         if self.swordEndPoint.y >= self.maxSwordDown:
             self.swordEndPoint = Vector((self.position.x, self.boundingBox.top)) # so no collision
@@ -168,13 +171,7 @@ class Player(GameObject):
             fireball.update(GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT)
             if fireball.remove:self.fireballs.remove(fireball)
 
-        # if self.position.y >= GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT:
-        #     self.onGround = True
-        #     self.position.y = GV.CANVAS_HEIGHT - GV.FLOOR_HEIGHT
         else: self.onGround = False
-
-        # if self.position.y >= self.currentGround - self.distanceFromFloor - self.dimensions[1] / 2 and not self.onGround:
-        #     self.position.y = self.currentGround - self.distanceFromFloor - self.dimensions[1] / 2
 
         if self.canMoveDown:
             self.velocity.y += self.gravity
