@@ -6,10 +6,11 @@ from me.samfreeman.Input.Keyboard import Keyboard
 
 class Interaction:
 
-    def __init__(self, player, text):
+    def __init__(self, player, text, cs):
         self.keyboard = Keyboard()
         self.player = player
         self.text = text #----> used for testing purposes
+        self.cs = cs
 
     # handling keyboard input for player
     def checkKeyboard(self):
@@ -30,7 +31,9 @@ class Interaction:
         if self.keyboard.l and self.player.maxUnlockedWeapon >2:
             self.player.shoot()
         if self.keyboard.q:
+            print("This happened")
             self.text.nextText()
+            self.cs.nextLine()
             self.keyboard.q=False
 
         if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
