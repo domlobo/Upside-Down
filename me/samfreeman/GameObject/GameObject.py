@@ -62,7 +62,7 @@ class GameObject:
         if position.x == -1 and position.y == -1:
             position = self.position
         self.update()
-        if self.sprite.loaded:
+        if self.sprite.hasPath:
             self.sprite.draw(position, canvas, width, self.dimensions[1])
         # Bounding box for testing
         self.boundingBox.draw(canvas, colour)

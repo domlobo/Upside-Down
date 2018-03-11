@@ -9,7 +9,7 @@ import me.samfreeman.GameControl.GV as GV
 class BasicEnemy(GameObject):
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
         dims = [30,60]
-        if runLeft.loaded:
+        if runLeft.hasPath:
             dims = [runLeft.frameWidth, runLeft.frameHeight]
         GameObject.__init__(self, position, Vector((0, 0)),dims , health)
         self.player = player
@@ -69,8 +69,8 @@ class BasicEnemy(GameObject):
         elif self.lastSwitch != "Switched":
             self.velocity *=  -1
             self.lastSwitch = "Switched"
-        if self.sprite.loaded:
-            self.sprite.animate(5)
+        if self.sprite.hasPath:
+            self.sprite.startAnimation(5)
 
     def move(self):
         speed = 0.9
@@ -98,8 +98,8 @@ class BasicEnemy(GameObject):
             else: self.velocity.x += (speed)
         else:
             self.velocity.x = 0
-        if self.sprite.loaded:
-            self.sprite.animate(10)
+        if self.sprite.hasPath:
+            self.sprite.startAnimation(10)
     def update(self):
         GameObject.update(self)
         self.findPlayer()

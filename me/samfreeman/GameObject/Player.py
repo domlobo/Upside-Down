@@ -2,7 +2,6 @@ from me.samfreeman.GameObject.GameObject import GameObject
 import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.Projectiles import Projectile
 from me.samfreeman.Helper.Vector import Vector
-from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.Helper.Line import Line
 from me.samfreeman.GameObject.FireBalls import FireBall
 
@@ -80,7 +79,7 @@ class Player(GameObject):
                     self.velocity.x = -self.maxVel[0]
                 else: self.velocity.add(Vector((-self.runSpeed, 0)))
 
-            self.updateStates(GV.LEFT, self.animationLengthWalk, GV.WALKING)
+            self.updateStates(GV.LEFT, self.animationLengthWalk, GV.WALKING, 5)
 
     def moveRight(self):
         if(self.canMoveRight):
@@ -97,7 +96,7 @@ class Player(GameObject):
                     self.velocity.x = self.maxVel[0]
                 else: self.velocity.add(Vector((self.runSpeed, 0)))
 
-            self.updateStates(GV.RIGHT, self.animationLengthWalk, GV.WALKING)
+            self.updateStates(GV.RIGHT, self.animationLengthWalk, GV.WALKING, 5)
 
     def jump(self):
         if not self.hasJumped:
@@ -149,7 +148,7 @@ class Player(GameObject):
             self.swordBoundingBox.pointA = Vector()
             self.swordBoundingBox.pointB = Vector()
 
-        if self.currentSprite.isAnimating == 0:
+        if self.currentSprite.isComplete:
             self.attackingSword = False
 
         if((self.boundingBox.right < GV.CANVAS_WIDTH-10)and (self.boundingBox.left > 10)) or ((self.boundingBox.right>= GV.CANVAS_WIDTH-10) and (self.velocity.x <0)) or ((self.boundingBox.left <=10)and (self.velocity.x>0)):
@@ -199,7 +198,6 @@ class Player(GameObject):
 
         self.updateStates(self.directionState, self.animationLengthAttack, GV.ATTACKING, 3)
 
-
     def fireballAttack(self):
         if len(self.fireballs) == self.MAXIMUM_FIREBALLS: return
         self.fireballs.append(FireBall(self.position.copy(), self.velocity.copy(), self.directionState, self.dimensions[0] / 2))
@@ -218,9 +216,11 @@ class Player(GameObject):
             reset = True
         else: reset = False
 
-        if speed != 0:
-            self.currentSprite.setAnimating(speed, self.currentSpriteStart, self.currentAnimationLength, reset)
-        else: self.currentSprite.animate(5, self.currentSpriteStart, self.currentAnimationLength)
+        once = True if self.actionState == GV.ATTACKING else False
+
+        self.currentSprite.updateInfo(speed, self.currentSpriteStart, self.currentAnimationLength,
+                                        reset, once)
+        self.currentSprite.startAnimation()
 
     # Two methods to make sure that the player slows down
     # Might be equivalent to the standStill() method, not sure

@@ -8,7 +8,7 @@ class StaticEnemy(GameObject):
 
     def __init__(self, position, health, player, spriteInput=Sprite("")):
         dims = [30,60]
-        if spriteInput.loaded:
+        if spriteInput.hasPath:
             dims = [spriteInput.frameWidth, spriteInput.frameHeight]
 
         GameObject.__init__(self, position, Vector((0, 0)),dims , health)
