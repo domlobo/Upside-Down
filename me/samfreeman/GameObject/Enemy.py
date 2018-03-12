@@ -1,4 +1,5 @@
 # Import
+from me.samfreeman.GameObject.Coin import Coin
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.Helper.Rectangle import Rectangle
@@ -100,6 +101,10 @@ class BasicEnemy(GameObject):
             self.velocity.x = 0
         if self.sprite.hasPath:
             self.sprite.startAnimation(10)
+
+    def dropCoin(self, size, cost):
+        return Coin(self.position, size, cost)
+
     def update(self):
         GameObject.update(self)
         self.findPlayer()
@@ -113,3 +118,5 @@ class BasicEnemy(GameObject):
     def draw(self, canvas, colour):
         GameObject.draw(self, canvas, colour)
         self.largeSearch.draw(canvas, "White")
+
+

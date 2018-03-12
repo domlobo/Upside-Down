@@ -13,6 +13,7 @@ from me.samfreeman.Helper.Background import Background
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.Helper.TextOverlay import TextOverlay
+from me.samfreeman.GameObject.Coin import Coin
 
 class Level:
 
@@ -20,6 +21,7 @@ class Level:
         self.background = Background(backgroundURL, foregroundURL, cloudsURL)
         self.enemies = []
         self.objects = []
+        self.coins = []
         self.player = player
         self.inter = inter
         self.displayBar = DisplayBar(name, self.player.health)
@@ -96,6 +98,8 @@ class Level:
         for objectOnScreen in self.objects:
             objectOnScreen.draw(canvas, "Purple")
         self.displayBar.drawDisplayBar(canvas)
+        for coin in self.coins: coin.draw(canvas)
+
 
     #checks for input and collisions
     def update(self):
@@ -104,7 +108,12 @@ class Level:
         self.inter.checkObjectCollision(self.objects, self.player)
         for enemy in self.enemies:
             self.inter.checkObjectCollision(self.objects,enemy)
+            if enemy.health <= 0:
+                self.coins.append(enemy.dropCoin(50, 1))
         self.inter.checkKeyboard()
+
+        for coin in self.coins: coin.update(self.background.foregroundVel.copy())
+
         #update the location of all of the elements if the canvas is moving
         if (self.background.foregroundVel.x !=0):
             #variable to keep relative positions the same when background moves
