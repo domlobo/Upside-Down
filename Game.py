@@ -32,6 +32,7 @@ text = TextOverlay("Welcome", "Link")
 
 inter = Interaction(player, text, cs)
 
+music = simplegui._load_local_sound("Music/universe.ogg")
 
 def update(canvas):
     if (levelLoader.currentLevel.player.health <= 0 or levelLoader.currentLevel.player.position.y > GV.CANVAS_HEIGHT):
@@ -46,6 +47,7 @@ def update(canvas):
         levelLoader.nextlevel()
     levelLoader.currentLevel.draw(canvas)
     text.display(canvas)
+    music.play()
 
 ####### EXAMPLE OF HOW TO USE CUTSCENE
 
