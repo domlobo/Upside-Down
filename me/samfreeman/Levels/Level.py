@@ -107,15 +107,17 @@ class Level:
         self.inter.checkKeyboard()
         #update the location of all of the elements if the canvas is moving
         if (self.background.foregroundVel.x !=0):
+            #variable to keep relative positions the same when background moves
+            movementVariable =1.25*self.background.foregroundVel
             #stopping right hand pushing
-            self.player.position.add(1.25*self.background.foregroundVel)
+            self.player.position.add(movementVariable)
             #fix everything in place
             for proj in self.player.projectiles:
-                proj.position.add(self.background.foregroundVel)
+                proj.position.add(movementVariable)
             for enemy in self.enemies:
-                enemy.position.add(self.background.foregroundVel)
+                enemy.position.add(movementVariable)
             for currentObject in self.objects:
-                currentObject.position.add(self.background.foregroundVel)
+                currentObject.position.add(movementVariable)
         #has to be in a separate loop because it uses a copy of list
         for proj in self.player.projectiles[:]:
             if proj.boundingBox.right<0:
