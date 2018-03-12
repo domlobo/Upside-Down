@@ -32,7 +32,7 @@ text = TextOverlay("Welcome", "Link")
 
 inter = Interaction(player, text, cs)
 
-music = simplegui._load_local_sound("Music/universe.ogg")
+music = simplegui._load_local_sound("Music/mii.ogg")
 
 def update(canvas):
     if (levelLoader.currentLevel.player.health <= 0 or levelLoader.currentLevel.player.position.y > GV.CANVAS_HEIGHT):
