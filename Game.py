@@ -24,6 +24,7 @@ cs.addText("Samuel", "This is a test to see if the whole system works, I'm reall
            "Fredsadi", "Yes this test works well, and it is quite cool", player.currentSprite.spriteFromIndex([9,1]))
 cs.addText("Samuel", "Thanks for your input,  Bob, it was helpful", player.currentSprite.spriteFromIndex([1,1]),
            "Bob", "Fuck off", player.currentSprite.spriteFromIndex([7,1]))
+cs.addText("Lorenzo", "This is the last test to test my function", player.currentSprite.spriteFromIndex([1,1]))
 
 text = TextOverlay("Welcome", "Link")
 

@@ -25,6 +25,7 @@ class Cutscene:
         self.rightSprite = [emptySprite]
         self.rightAllText = [""]
         self.rightLineNumber = 0
+        self.rightOffset = 0 # Used if the speakers have ever gone from 2 --> 1
 
         # Title
         self.title = ""
@@ -51,22 +52,17 @@ class Cutscene:
 
     def nextLine(self):
         print("Updated")
-        # This needs to be fixed as it will fall apart if it goes from 2 --> 1 speaker
-        if (self.rightLineNumber < len(self.rightSpeaker) - 1):
-            if (self.leftLineNumber < self.rightLineNumber):
-                # Update Left Text
+
+        # LHS   RHS
+        # 0      0
+        # 0      1
+        # 1      1
+
+        if self.rightLineNumber < max(len(self.rightSpeaker) - 1, len(self.leftSpeaker)):
+            if (self.leftLineNumber < self.rightLineNumber or self.numberOfSpeakers == 1):
                 self.leftLineNumber += 1
-                # if self.numberOfSpeakers == 1:
-                #     self.leftBoundingBox = Rectangle(self.contentBoundingBox.position.copy(), self.contentBoundingBox.width, self.contentBoundingBox.height)
-            else:
-                # Update Right
-                self.rightLineNumber += 1
-                # self.leftBoundingBox = Rectangle(
-                #     Vector((self.contentBoundingBox.left + GV.CANVAS_WIDTH / 4, self.contentBoundingBox.position.y)),
-                #     GV.CANVAS_WIDTH / 2, self.contentBoundingBox.height)
-                # self.rightBoundingBox = Rectangle(
-                #     Vector((self.contentBoundingBox.right - GV.CANVAS_WIDTH / 4, self.contentBoundingBox.position.y)),
-                #     GV.CANVAS_WIDTH / 2, self.contentBoundingBox.height)
+                if self.numberOfSpeakers == 1: self.rightLineNumber += 1
+            else: self.rightLineNumber += 1
 
     def clear(self):
         # Clears/resets all content
