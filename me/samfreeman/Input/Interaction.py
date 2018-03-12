@@ -33,7 +33,8 @@ class Interaction:
         if self.keyboard.q:
             print("This happened")
             self.text.nextText()
-            self.cs.nextLine()
+            ####### EXAMPLE OF HOW TO USE CUTSCENE
+            # self.cs.nextLine()
             self.keyboard.q=False
 
         if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
