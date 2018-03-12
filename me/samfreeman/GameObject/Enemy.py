@@ -17,7 +17,7 @@ class BasicEnemy(GameObject):
         self.damage = 0.5
         self.projectiles = []
 
-        self.maxVel = [3, 3]
+        self.maxVel = [2, 3]
         self.lastSwitch = "Null"
 
         # 'AI'
@@ -73,16 +73,18 @@ class BasicEnemy(GameObject):
             self.sprite.startAnimation(5)
 
     def move(self):
+        if self.position.x >GV.CANVAS_WIDTH+self.sprite.frameWidth/2:
+            return
         speed = 0.9
         #switch direction if you can't move
         if(self.position.x >= self.movementRectangle.right) or (self.position.x <= self.movementRectangle.left):
-            self.velocity*= -1
+            self.velocity.x*= -1
             self.lastSwitch = "Null"
         elif (not(self.canMoveRight) and self.lastSwitch != "Right"):
-            self.velocity *= -1
+            self.velocity.x*= -1
             self.lastSwitch = "Right"
         elif(not(self.canMoveLeft) and self.lastSwitch != "Left"):
-            self.velocity *= -1
+            self.velocity.x*= -1
             self.lastSwitch = "Left"
 
         if (self.velocity.x < 0) and self.canMoveLeft:
@@ -91,15 +93,14 @@ class BasicEnemy(GameObject):
                 self.velocity.x = -self.maxVel[0]
             else:
                 self.velocity.x -= (speed)
-        elif (self.velocity.x>=0) and self.canMoveRight:
+        if (self.velocity.x >= 0) and self.canMoveRight:
             self.sprite = self.runningRight
             if self.velocity.x >= self.maxVel[0]:
                 self.velocity.x = self.maxVel[0]
             else: self.velocity.x += (speed)
-        else:
-            self.velocity.x = 0
         if self.sprite.hasPath:
             self.sprite.startAnimation(10)
+
     def update(self):
         GameObject.update(self)
         self.findPlayer()

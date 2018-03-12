@@ -115,7 +115,11 @@ class Level:
             for proj in self.player.projectiles:
                 proj.position.add(movementVariable)
             for enemy in self.enemies:
-                enemy.position.add(movementVariable)
+                print(self.background.foregroundVel)
+                print(enemy.position)
+                enemy.position.add(self.background.foregroundVel)
+                print(enemy.position)
+                enemy.resetMovement()
             for currentObject in self.objects:
                 currentObject.position.add(self.background.foregroundVel)
         #has to be in a separate loop because it uses a copy of list
