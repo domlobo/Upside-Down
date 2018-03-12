@@ -117,7 +117,7 @@ class Level:
             for enemy in self.enemies:
                 enemy.position.add(movementVariable)
             for currentObject in self.objects:
-                currentObject.position.add(movementVariable)
+                currentObject.position.add(self.background.foregroundVel)
         #has to be in a separate loop because it uses a copy of list
         for proj in self.player.projectiles[:]:
             if proj.boundingBox.right<0:
