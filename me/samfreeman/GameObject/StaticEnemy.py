@@ -1,4 +1,5 @@
 # Import
+from me.samfreeman.GameObject.Coin import Coin
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.Helper.Sprite import Sprite
@@ -16,6 +17,9 @@ class StaticEnemy(GameObject):
         self.sprite= spriteInput
         self.damage = 0.5
         self.projectiles = []
+
+    def dropCoin(self, size, cost):
+        return Coin(self.position, size, cost)
 
     def update(self):
         GameObject.update(self)
