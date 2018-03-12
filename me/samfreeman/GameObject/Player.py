@@ -68,6 +68,7 @@ class Player(GameObject):
 
         self.wasHit = False
         self.flash = simplegui._load_local_image("images/interactive-sprites/display/damage-flash.png")
+        self.counter = 0
 
     def displayHit(self):
         self.wasHit = True
@@ -237,7 +238,10 @@ class Player(GameObject):
 
     def draw(self, canvas, colour, position=Vector()):
         if self.wasHit:
+            self.counter += 1
             canvas.draw_image(self.flash, [GV.CANVAS_WIDTH / 2, GV.CANVAS_HEIGHT / 2], [GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT], [GV.CANVAS_WIDTH / 2, GV.CANVAS_HEIGHT / 2], [GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT])
-            self.wasHit = False
+            if self.counter >= 5:
+                self.wasHit = False
+                self.counter = 0
         GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)), 90)
         self.swordBoundingBox.draw(canvas)
