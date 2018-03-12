@@ -109,7 +109,7 @@ class Level:
         for enemy in self.enemies:
             self.inter.checkObjectCollision(self.objects,enemy)
             if enemy.health <= 0:
-                self.coins.append(enemy.dropCoin(50, 1))
+                self.coins.append(enemy.dropCoin(100, 1))
         self.inter.checkKeyboard()
 
         for coin in self.coins: coin.update(self.background.foregroundVel.copy())

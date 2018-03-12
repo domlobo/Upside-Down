@@ -18,11 +18,11 @@ class BasicEnemy(GameObject):
         self.damage = 0.5
         self.projectiles = []
 
-        self.maxVel = [3, 3]
+        self.maxVel = [1, 1]
         self.lastSwitch = "Null"
 
         # 'AI'
-        self.largeSearch = Rectangle(self.position, 250, 250)
+        self.largeSearch = Rectangle(self.position, 600, 400)
         self.smallSearch = Rectangle(self.position, 150, 150)
         self.movementRectangle = Rectangle(self.position, 200, 200)
         self.sprite = runRight
@@ -35,7 +35,7 @@ class BasicEnemy(GameObject):
 
     def findPlayer(self):
         # Update the search rectangles
-        self.largeSearch.updateBox(self.position, 250, 250)
+        self.largeSearch.updateBox(self.position, 600, 250)
         self.smallSearch.updateBox(self.position, 150, 150)
 
         # Checks first in large rectangle
