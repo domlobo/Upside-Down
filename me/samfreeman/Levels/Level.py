@@ -13,6 +13,7 @@ from me.samfreeman.Helper.Background import Background
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.Helper.TextOverlay import TextOverlay
+from me.samfreeman.GameObject.Coin import Coin
 
 class Level:
 
@@ -20,6 +21,7 @@ class Level:
         self.background = Background(backgroundURL, foregroundURL, cloudsURL)
         self.enemies = []
         self.objects = []
+        self.coins = []
         self.player = player
         self.inter = inter
         self.displayBar = DisplayBar(name, self.player.health)
@@ -84,7 +86,6 @@ class Level:
         self.update()
         self.inter.text.display(canvas)
         self.background.update(canvas, self.player)
-        self.player.draw(canvas, "Green")
         for proj in self.player.projectiles:
             proj.draw(canvas, "Blue")
         for fireball in self.player.fireballs:
@@ -96,15 +97,24 @@ class Level:
         for objectOnScreen in self.objects:
             objectOnScreen.draw(canvas, "Purple")
         self.displayBar.drawDisplayBar(canvas)
+        for coin in self.coins: coin.draw(canvas)
+        self.player.draw(canvas, "Green")
+
+
 
     #checks for input and collisions
     def update(self):
-        self.displayBar.updateBar(self.player.health, self.player.maxUnlockedWeapon, 3 - self.player.numberOfDeaths)
+        self.displayBar.updateBar(self.player.health, self.player.maxUnlockedWeapon, 3 - self.player.numberOfDeaths, self.player.collectedCoins)
         self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkObjectCollision(self.objects, self.player)
         for enemy in self.enemies:
             self.inter.checkObjectCollision(self.objects,enemy)
+            if enemy.health <= 0:
+                self.coins.append(enemy.dropCoin(100, 1))
         self.inter.checkKeyboard()
+
+        for coin in self.coins: coin.update(self.background.foregroundVel.copy())
+
         #update the location of all of the elements if the canvas is moving
         if (self.background.foregroundVel.x !=0):
             #variable to keep relative positions the same when background moves

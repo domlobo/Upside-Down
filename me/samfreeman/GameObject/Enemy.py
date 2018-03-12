@@ -1,4 +1,5 @@
 # Import
+from me.samfreeman.GameObject.Coin import Coin
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.Helper.Rectangle import Rectangle
@@ -17,11 +18,11 @@ class BasicEnemy(GameObject):
         self.damage = 0.5
         self.projectiles = []
 
-        self.maxVel = [2, 3]
+        self.maxVel = [1, 1]
         self.lastSwitch = "Null"
 
         # 'AI'
-        self.largeSearch = Rectangle(self.position, 250, 250)
+        self.largeSearch = Rectangle(self.position, 600, 400)
         self.smallSearch = Rectangle(self.position, 150, 150)
         self.movementRectangle = Rectangle(self.position, 200, 200)
         self.sprite = runRight
@@ -34,7 +35,7 @@ class BasicEnemy(GameObject):
 
     def findPlayer(self):
         # Update the search rectangles
-        self.largeSearch.updateBox(self.position, 250, 250)
+        self.largeSearch.updateBox(self.position, 600, 250)
         self.smallSearch.updateBox(self.position, 150, 150)
 
         # Checks first in large rectangle
@@ -101,6 +102,9 @@ class BasicEnemy(GameObject):
         if self.sprite.hasPath:
             self.sprite.startAnimation(10)
 
+    def dropCoin(self, size, cost):
+        return Coin(self.position, size, cost)
+      
     def update(self):
         GameObject.update(self)
         self.findPlayer()
@@ -114,3 +118,5 @@ class BasicEnemy(GameObject):
     def draw(self, canvas, colour):
         GameObject.draw(self, canvas, colour)
         self.largeSearch.draw(canvas, "White")
+
+
