@@ -10,14 +10,18 @@ from me.samfreeman.Input.Interaction import Interaction
 from me.samfreeman.Helper.TextOverlay import TextOverlay
 from me.samfreeman.Helper.Sprite import Sprite
 
-cs = Cutscene()
+
+frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
+
+cs = Cutscene(frame)
 
 state = State()
 
 player = Player(Vector((50, GV.CANVAS_HEIGHT - 130)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20))
 
+cs.setTitle("Part 1: The Beginning")
 cs.addText("Samuel", "This is a test to see if the whole system works, I'm really hoping that it does", player.currentSprite.spriteFromIndex([1,1]),
-           "Bob", "Yes this test works well, and it is quite cool", player.currentSprite.spriteFromIndex([7,1]))
+           "Fredsadi", "Yes this test works well, and it is quite cool", player.currentSprite.spriteFromIndex([9,1]))
 cs.addText("Samuel", "Thanks for your input,  Bob, it was helpful", player.currentSprite.spriteFromIndex([1,1]),
            "Bob", "Fuck off", player.currentSprite.spriteFromIndex([7,1]))
 
@@ -46,7 +50,6 @@ def updateTest(canvas):
     cs.display(canvas)
 
 # For Release - remove last bracket and uncomment
-frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
 
 levelLoader = LevelLoader(player,inter)
 #everytime the game state changes, call this method

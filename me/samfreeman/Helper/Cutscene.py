@@ -6,7 +6,7 @@ from me.samfreeman.Helper.Vector import Vector
 
 
 class Cutscene:
-    def __init__(self):
+    def __init__(self, frame):
         self.numberOfSpeakers = [2] # Use 1 or 2
 
         self.gapSize = GV.CANVAS_WIDTH / 12
@@ -25,6 +25,11 @@ class Cutscene:
         self.rightSprite = [emptySprite]
         self.rightAllText = [""]
         self.rightLineNumber = 0
+
+        # Title
+        self.title = ""
+        self.frame = frame
+        self.titleWidth = self.frame.get_canvas_textwidth(self.title, 40)
 
         # Display
         self.contentBoundingBox = Rectangle(Vector((GV.CANVAS_WIDTH / 2, GV.CANVAS_HEIGHT / 2)), GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT * 0.5)
@@ -80,6 +85,13 @@ class Cutscene:
         self.rightAllText = [""]
         self.rightLineNumber = 0
 
+        # Title
+        self.title = ""
+
+    def setTitle(self, title):
+        self.title = title
+        self.titleWidth = self.frame.get_canvas_textwidth(self.title, 40)
+
     def splitText(self, text, people):
         maxCharacters = 24 if people == 2 else 48
         return [text[i:i+maxCharacters] for i in range(0, len(text), maxCharacters)]
@@ -87,27 +99,29 @@ class Cutscene:
     def drawCutSceneText(self, startY, text, canvas, lOrR, people):
         textLines = self.splitText(text, people)
         offset = self.gapSize + 50
-        if not lOrR: offset = self.rightBoundingBox.left + 50
+        if not lOrR: offset = self.rightBoundingBox.left + 35
         i = 0
         for line in textLines:
             canvas.draw_text(line, (offset, startY+15 * i), 12, "Black", "monospace")
             i+=1
 
     def drawLeft(self, canvas):
+        nameLength = self.frame.get_canvas_textwidth(self.leftSpeaker[self.leftLineNumber], 15, "monospace")
         self.leftSprite[self.leftLineNumber].draw(Vector((self.gapSize, self.leftBoundingBox.position.y)), canvas, 100, 100)
-        canvas.draw_text(self.leftSpeaker[self.leftLineNumber], (self.gapSize / 2, self.leftBoundingBox.position.y - 100 / 2),
+        canvas.draw_text(self.leftSpeaker[self.leftLineNumber], (self.gapSize - nameLength / 2, self.leftBoundingBox.position.y - 100 / 2),
                          15, "Black", "monospace")
         self.drawCutSceneText(self.contentBoundingBox.top + self.gapSize * 2, self.leftAllText[self.leftLineNumber], canvas, True, self.numberOfSpeakers[self.leftLineNumber])
 
     def drawRight(self, canvas):
-
+        nameLength = self.frame.get_canvas_textwidth(self.rightSpeaker[self.rightLineNumber], 15, "monospace")
         self.rightSprite[self.rightLineNumber].draw(Vector((self.rightBoundingBox.right - self.gapSize, self.rightBoundingBox.position.y)), canvas, 100, 100)
-        canvas.draw_text(self.rightSpeaker[self.rightLineNumber], (self.rightBoundingBox.right - self.gapSize, self.rightBoundingBox.position.y - 100 / 2),
+        canvas.draw_text(self.rightSpeaker[self.rightLineNumber], (self.rightBoundingBox.right - self.gapSize - nameLength / 2, self.rightBoundingBox.position.y - 100 / 2),
                          15, "Black", "monospace")
         self.drawCutSceneText(self.contentBoundingBox.top + self.gapSize * 2, self.rightAllText[self.rightLineNumber], canvas, False, self.numberOfSpeakers[self.leftLineNumber])
 
     def display(self, canvas):
         self.contentBoundingBox.draw(canvas, "White", "White")
+        canvas.draw_text(self.title, ((GV.CANVAS_WIDTH - self.titleWidth) / 2, GV.CANVAS_HEIGHT / 6), 40, "White")
         self.drawLeft(canvas)
         if self.numberOfSpeakers[self.leftLineNumber] == 2 and self.rightLineNumber > 0:
             # Two speakers -- draw right
