@@ -86,7 +86,6 @@ class Level:
         self.update()
         self.inter.text.display(canvas)
         self.background.update(canvas, self.player)
-        self.player.draw(canvas, "Green")
         for proj in self.player.projectiles:
             proj.draw(canvas, "Blue")
         for fireball in self.player.fireballs:
@@ -99,6 +98,8 @@ class Level:
             objectOnScreen.draw(canvas, "Purple")
         self.displayBar.drawDisplayBar(canvas)
         for coin in self.coins: coin.draw(canvas)
+        self.player.draw(canvas, "Green")
+
 
 
     #checks for input and collisions
