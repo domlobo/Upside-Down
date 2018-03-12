@@ -28,7 +28,10 @@ class DisplayBar:
         self.containerRect = Rectangle(Vector((GV.CANVAS_WIDTH / 2, self.topSpace / 2)), (self.unlockedWeapons - self.adjustment) * (self.edge) * 1.5, self.edge)
         self.weaponDisplayLeft = (self.containerRect.position.x - self.containerRect.width / 2)
 
-    def updateBar(self, health, maxWeapon, lives):
+        self.coins = 0
+        self.coinSprite = Sprite("images/interactive-sprites/display/coin.png", 1, 12)
+
+    def updateBar(self, health, maxWeapon, lives, coins):
         self.health = health
         # There 10 hearts as part of the sheet
         # Use [0] for 0-10 health, [1] for 11-20.. etc.
@@ -36,6 +39,7 @@ class DisplayBar:
         self.healthSpriteSheet.setIndex([self.currentSprite, 0])
         self.lives = lives
         self.unlockedWeapons = maxWeapon + 1
+        self.coins = coins
 
         self.containerRect = Rectangle(Vector((GV.CANVAS_WIDTH / 2, self.topSpace / 2)), (self.unlockedWeapons - self.adjustment) * (self.edge) * 1.5, self.edge)
         self.weaponDisplayLeft = (self.containerRect.position.x - self.containerRect.width / 2)
@@ -56,3 +60,7 @@ class DisplayBar:
                 else: offset = i - 1
 
             self.allWeapons[i].draw(Vector((self.weaponDisplayLeft + offset * spacing, self.containerRect.position.y)), canvas, self.edge, self.edge)
+
+        self.coinSprite.draw(Vector((150, self.topSpace / 2)), canvas, 80, 80)
+        self.coinSprite.startAnimation(5)
+        canvas.draw_text(str(self.coins), [150, self.boundingBox.position.y], 20, "White")

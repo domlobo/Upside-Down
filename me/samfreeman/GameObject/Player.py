@@ -4,7 +4,7 @@ from me.samfreeman.GameObject.Projectiles import Projectile
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Helper.Line import Line
 from me.samfreeman.GameObject.FireBalls import FireBall
-
+import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
 class Player(GameObject):
     def __init__(self, position, sprite, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
@@ -63,6 +63,14 @@ class Player(GameObject):
         self.currentGround = self.position.y + self.dimensions[1] / 2
         self.gravity = 1
         self.onGround = True # TODO: ADD PROPER FUNCTIONALITY TO THIS SO IT WORKS WITH PLATFORMS
+
+        self.collectedCoins = 0
+
+        self.wasHit = False
+        self.flash = simplegui._load_local_image("images/interactive-sprites/display/damage-flash.png")
+
+    def displayHit(self):
+        self.wasHit = True
 
     def moveLeft(self):
 
@@ -228,5 +236,8 @@ class Player(GameObject):
         self.velocity.x = 0
 
     def draw(self, canvas, colour, position=Vector()):
+        if self.wasHit:
+            canvas.draw_image(self.flash, [GV.CANVAS_WIDTH / 2, GV.CANVAS_HEIGHT / 2], [GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT], [GV.CANVAS_WIDTH / 2, GV.CANVAS_HEIGHT / 2], [GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT])
+            self.wasHit = False
         GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)), 90)
         self.swordBoundingBox.draw(canvas)
