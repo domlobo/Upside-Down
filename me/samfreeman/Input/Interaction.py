@@ -50,6 +50,7 @@ class Interaction:
             #player collision damage
             if player.boundingBox.overlaps(enemy.boundingBox):
                 player.changeHealth(-enemy.damage)
+                player.displayHit()
             #gun damage
             for proj in player.projectiles[:]:
                 if enemy.boundingBox.overlaps(proj.boundingBox):
