@@ -92,21 +92,19 @@ class Interaction:
         entity.canMoveDown = True
         # self.player.currentGround = 470 + self.player.dimensions[1] / 2
         for currentObject in objects[:]:
-            if(currentObject.notCollidable ==1): continue
-            if currentObject.boundingBox.overlaps(entity.boundingBox):
-                if entity.boundingBox.bottom > currentObject.boundingBox.top and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y <= currentObject.boundingBox.top):
-                    entity.canMoveDown = False
-                    # self.player.onGround = False
-                    entity.hasJumped = False
-                    entity.velocity.y =0
-                    # self.player.currentGround = currentObject.boundingBox.top
-                if (entity.boundingBox.right > currentObject.boundingBox.left) and (entity.position.x < currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
-                    entity.canMoveRight = False
-                    entity.velocity.x *= -1
-                if (entity.boundingBox.left < currentObject.boundingBox.right) and (entity.position.x > currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
-                    entity.canMoveLeft = False
-                    entity.velocity.x *= -1
-                if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y >= currentObject.boundingBox.bottom):
-                    entity.canMoveUp = False
-                    entity.velocity.y *= -1
-                    entity.position.y = currentObject.boundingBox.bottom + (entity.dimensions[1]/2)
+            #if the object overlaps
+            if(currentObject.notCollidable ==1) or not(currentObject.boundingBox.overlaps(entity.boundingBox)): continue
+            if entity.boundingBox.bottom > currentObject.boundingBox.top and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y <= currentObject.boundingBox.top):
+                entity.canMoveDown = False
+                entity.hasJumped = False
+                entity.velocity.y =0
+            if (entity.boundingBox.right > currentObject.boundingBox.left) and (entity.position.x < currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
+                entity.canMoveRight = False
+                entity.velocity.x *= -1
+            if (entity.boundingBox.left < currentObject.boundingBox.right) and (entity.position.x > currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
+                entity.canMoveLeft = False
+                entity.velocity.x *= -1
+            if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y >= currentObject.boundingBox.bottom):
+                entity.canMoveUp = False
+                entity.velocity.y *= -1
+                entity.position.y = currentObject.boundingBox.bottom + (entity.dimensions[1]/2)

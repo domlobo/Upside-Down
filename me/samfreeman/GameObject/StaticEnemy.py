@@ -33,3 +33,7 @@ class StaticEnemy(GameObject):
     def draw(self, canvas, colour):
         GameObject.draw(self, canvas, colour)
         self.sprite.startAnimation(10)
+
+    def resetMovement(self):
+        #required method for the update for loop in Level
+        pass
