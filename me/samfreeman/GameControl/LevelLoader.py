@@ -34,27 +34,36 @@ class LevelLoader:
                          "images/background/mario/Mario-world-1.1.png",
                          cloudsURL,player,inter, "Mario-1")
 
-        doomOne = Level("images/background/doom/base layer background.jpg",
-                        "images/background/doom/second layer.jpg",
+        marioTwo = Level("",
+                         "",
+                         cloudsURL,player,inter, "Mario-2")
+        marioThree = Level("",
+                         "",
+                         cloudsURL,player,inter, "Mario-3")
+
+        doomOne = Level("images/background/doom/base-layer-background.jpg",
+                        "images/background/doom/second layer.png",
                          "", player,inter,"Doom-1")
         # Creating list of levels
-        self.levels =(tutorialOne,tutorialTwo,tutorialThree,marioOne,doomOne)
-        self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/doomOne.txt")
+        self.levels =(tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne)
+        self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt")
         # Selecting the first level
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
         self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
-        self.numberOfDeaths = 0
+        self.player.numberOfDeaths = 0
     #called from Game when a level is over
     def nextlevel(self):
         self.player = self.currentLevel.returnPlayer()
         self.player.position.x = 0
+        self.player.health = 100
 
         if(self.levelCounter<len(self.levels)-1):
             self.levelCounter +=1
             #reset the death counter after each stage (every 3 levels)
             if(self.levelCounter%3 == 0):
-                self.numberOfDeaths =0
+                self.player.numberOfDeaths =0
+                self.player.maxUnlockedWeapon +=1
             self.currentLevel = self.levels[self.levelCounter]
             self.currentLevel.setPlayer(self.player)
             self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
@@ -62,16 +71,25 @@ class LevelLoader:
             GameObject.update(self.currentLevel.player)
 
     def gameOver(self):
-        #three retries outside of the first two tutorial levels
-        if(self.numberOfDeaths <3 or self.levelCounter<2):
-            self.player.health = 100
+        #three retries
+        self.currentLevel.enemies = []
+        self.currentLevel.objects = []
+        if(self.player.numberOfDeaths <3):
             #go back to the start of the level
-            self.player.position.x = 0
+            self.player.numberOfDeaths +=1
+        else:
+            #go back to the start of the stage
+            self.player.numberOfDeaths =0
+            self.levelCounter -= self.levelCounter %3
+            self.currentLevel = self.levels[self.levelCounter]
+            #reset what everything
             self.currentLevel.enemies = []
             self.currentLevel.objects = []
-            self.currentLevel.background.farBackgroundPos = Vector((self.currentLevel.background.FAR_BACKGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
-            self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
-            self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
-            GameObject.update(self.currentLevel.player)
-        else:
-            exit()
+        #start level
+        self.player.health = 100
+        self.player.position.x = 50
+        self.player.position.y = 300
+        self.currentLevel.background.farBackgroundPos = Vector((self.currentLevel.background.FAR_BACKGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
+        self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
+        self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
+        GameObject.update(self.currentLevel.player)

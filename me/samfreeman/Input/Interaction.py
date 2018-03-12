@@ -6,58 +6,81 @@ from me.samfreeman.Input.Keyboard import Keyboard
 
 class Interaction:
 
-    def __init__(self, player, text):
+    def __init__(self, player, text, cs):
         self.keyboard = Keyboard()
         self.player = player
         self.text = text #----> used for testing purposes
+        self.cs = cs
 
     # handling keyboard input for player
     def checkKeyboard(self):
-        if self.keyboard.right:
-            self.player.moveRight()
-        if self.keyboard.left:
-            self.player.moveLeft()
-        if self.keyboard.up:
-            self.player.jump()
-        if self.keyboard.down:
-            self.player.crouch()
-        if self.keyboard.j:
-            self.player.swordAttack() # TODO: UPDATE SO THAT IT SELECTS THE CURRENT ATTACK - GUN OR SWORD
-        if self.keyboard.k:
+        # Means no running an shooting
+        if not self.player.attackingSword:
+            if self.keyboard.right:
+                self.player.moveRight()
+            if self.keyboard.left:
+                self.player.moveLeft()
+            if self.keyboard.up:
+                self.player.jump()
+            if self.keyboard.down:
+                self.player.crouch()
+        if self.keyboard.j and not self.player.hasJumped: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
+            self.player.swordAttack()
+        if self.keyboard.k and (self.player.maxUnlockedWeapon >1):
             self.player.fireballAttack()
-        if self.keyboard.enter:
+        if self.keyboard.l and self.player.maxUnlockedWeapon >2:
+            self.player.shoot()
+        if self.keyboard.q:
+            print("This happened")
             self.text.nextText()
-            self.keyboard.enter=False
+            ####### EXAMPLE OF HOW TO USE CUTSCENE
+            # self.cs.nextLine()
+            self.keyboard.q=False
 
-        if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword):
+        if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
             self.player.stand()
 
         # if (not(self.keyboard.right and self.keyboard.left)) and (self.player.direction != 0):
         #     self.player.standStill()
 
-        # if (self.keyboard.weapon != self.player.weapon):
-        #     self.player.tryWeapon(self.keyboard.weapon)
-
 
     def checkProjectileCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
         for enemy in enemies[:]:
+            #player collision damage
             if player.boundingBox.overlaps(enemy.boundingBox):
-                player.changeHealth(-0.5)
+                player.changeHealth(-enemy.damage)
+            #gun damage
             for proj in player.projectiles[:]:
                 if enemy.boundingBox.overlaps(proj.boundingBox):
                     # Collision
                     enemy.changeHealth(-proj.damage)
                     proj.remove = True
+            for proj in enemy.projectiles[:]:
+                if player.boundingBox.overlaps(proj.boundingBox):
+                    # Collision
+                    player.changeHealth(-proj.damage)
+                    proj.remove = True
+            #fireball damage
             for fball in player.fireballs[:]:
                 if enemy.boundingBox.overlaps(fball.boundingBox):
                     # Collision
                     enemy.changeHealth(-fball.damage)
                     fball.remove = True
+            #sword damage
             if player.swordBoundingBox.overlaps(enemy.boundingBox):
-                print("BANG__!_!_!_!_!_!_!_!_!_!_!_!_")
                 enemy.changeHealth(-player.swordDamage)
+            #jumping on enemy damage
+            if enemy.boundingBox.top < player.boundingBox.bottom and(enemy.position.x <= player.boundingBox.right and enemy.position.x >= player.boundingBox.left and enemy.position.y >= player.boundingBox.bottom):
+                enemy.changeHealth(-50)
             if enemy.remove: enemies.remove(enemy)
+            #stop enemy walking through player
+            if (enemy.boundingBox.right > player.boundingBox.left) and (enemy.position.x < player.position.x) and (enemy.position.y <= player.boundingBox.bottom and enemy.position.y >= player.boundingBox.top):
+                enemy.canMoveRight = False
+                enemy.velocity.x *= -1
+            if (enemy.boundingBox.left < player.boundingBox.right) and (enemy.position.x > player.position.x) and (enemy.position.y <= player.boundingBox.bottom and enemy.position.y >= player.boundingBox.top):
+                enemy.canMoveLeft = False
+                enemy.velocity.x *= -1
 
     def checkObjectCollision(self,objects,entity):
         # Using a copy to remove from actual list if there is too much health loss
@@ -68,11 +91,13 @@ class Interaction:
         entity.canMoveDown = True
         # self.player.currentGround = 470 + self.player.dimensions[1] / 2
         for currentObject in objects[:]:
+            if(currentObject.notCollidable ==1): continue
             if currentObject.boundingBox.overlaps(entity.boundingBox):
                 if entity.boundingBox.bottom > currentObject.boundingBox.top and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y <= currentObject.boundingBox.top):
                     entity.canMoveDown = False
                     # self.player.onGround = False
-                    self.player.hasJumped = False
+                    entity.hasJumped = False
+                    entity.velocity.y =0
                     # self.player.currentGround = currentObject.boundingBox.top
                 if (entity.boundingBox.right > currentObject.boundingBox.left) and (entity.position.x < currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
                     entity.canMoveRight = False
@@ -83,3 +108,4 @@ class Interaction:
                 if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y >= currentObject.boundingBox.bottom):
                     entity.canMoveUp = False
                     entity.velocity.y *= -1
+                    entity.position.y = currentObject.boundingBox.bottom + (entity.dimensions[1]/2)

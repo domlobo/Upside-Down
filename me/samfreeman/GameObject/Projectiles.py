@@ -5,12 +5,12 @@ from me.samfreeman.Helper.Vector import Vector
 
 
 class Projectile(GameObject):
-    def __init__(self, position, lifetime, direction):
+    def __init__(self, position, lifetime, direction,speed=1.7):
         GameObject.__init__(self, position, Vector((0, 0)), [20, 5], lifetime)
 
         self.direction = direction
         self.damage = 10
-        self.speed = 1.7
+        self.speed = speed
         self.maxVel = [8, 8]
 
     def update(self):

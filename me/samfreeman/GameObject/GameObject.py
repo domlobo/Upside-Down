@@ -3,7 +3,7 @@ from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.Helper.Vector import Vector
 
 class GameObject:
-    def __init__(self, position, velocity, dimensions, health, sprite=Sprite("")):
+    def __init__(self, position, velocity, dimensions, health, sprite=Sprite(""),notCollidable=0):
         # Vectors
         self.position = position
         self.velocity = velocity
@@ -18,17 +18,21 @@ class GameObject:
         # Integers
         self.health = health
 
-        # 'Bounding Box'
+
         self.boundingBox = Rectangle(self.position, self.dimensions[0], self.dimensions[1])
 
         # Boolean
         self.remove = False
+
+        #fake boolean
+        self.notCollidable = notCollidable
 
         #can move booleans
         self.canMoveLeft = True
         self.canMoveRight = True
         self.canMoveUp = True
         self.canMoveDown = True
+        self.hasJumped = False
 
     def setRemove(self):
         self.remove = True
@@ -52,11 +56,13 @@ class GameObject:
         self.boundingBox.updateBox(self.position, self.dimensions[0], self.dimensions[1])
         # Overwrite and add anything else
 
-    def draw(self, canvas, colour, position=Vector((-1,-1))):
+    def draw(self, canvas, colour, position=Vector((-1,-1)), width=0):
+
+        width = self.dimensions[0] if width == 0 else width
         if position.x == -1 and position.y == -1:
             position = self.position
         self.update()
-        if self.sprite.loaded:
-            self.sprite.draw(position, canvas, self.dimensions[0], self.dimensions[1])
+        if self.sprite.hasPath:
+            self.sprite.draw(position, canvas, width, self.dimensions[1])
         # Bounding box for testing
         self.boundingBox.draw(canvas, colour)

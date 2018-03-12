@@ -51,7 +51,7 @@ class Background:
 
         if (player.position.x > GV.CANVAS_WIDTH/2)and(self.isStillRunning()) and (player.velocity.x > 1):
             #variable acceleration depending on position of the player
-            movementFactor = (player.position.x - GV.CANVAS_WIDTH / 2) / (GV.CANVAS_WIDTH / 2)
+            movementFactor = 0.6#(player.position.x - GV.CANVAS_WIDTH / 2) / (GV.CANVAS_WIDTH / 2)
             #move foreground and backgroud different amounts
             self.farBackgroundVel= Vector((-3 * movementFactor,0))
             self.foregroundVel= Vector((-10*movementFactor,0))

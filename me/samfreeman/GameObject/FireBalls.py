@@ -16,7 +16,7 @@ class FireBall(GameObject):
 
         GameObject.__init__(self, position, self.shootVel, [60, 60], 50, Sprite(
                                                                             "images/interactive-sprites/mario/fireball.png",
-                                                                            True, 1, 11))
+                                                                             1, 11))
         self.gravity = 0.5
         self.bounceCount = 0
         self.damage = 10 # Can change to whatever
@@ -30,9 +30,6 @@ class FireBall(GameObject):
     def update(self, ground=0):
         GameObject.update(self)
         self.drop(500)
-        self.sprite.animateFull(5)
-        print("Ground: " + str(ground))
-        print("Bounce Count: " + str(self.bounceCount))
-        print("Pos: " + str(self.position))
+        self.sprite.startAnimation(5)
         if self.bounceCount >= 3: self.remove = True
         self.changeHealth(-1)
