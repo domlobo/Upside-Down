@@ -51,7 +51,6 @@ class Cutscene:
         self.leftSprite.append(personASprite)
 
     def nextLine(self):
-        print("Updated")
 
         # LHS   RHS
         # 0      0

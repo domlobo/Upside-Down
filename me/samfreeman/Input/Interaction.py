@@ -31,7 +31,6 @@ class Interaction:
         if self.keyboard.l and self.player.maxUnlockedWeapon >2:
             self.player.shoot()
         if self.keyboard.q:
-            print("This happened")
             self.text.nextText()
             ####### EXAMPLE OF HOW TO USE CUTSCENE
             # self.cs.nextLine()
@@ -108,3 +107,11 @@ class Interaction:
                 entity.canMoveUp = False
                 entity.velocity.y *= -1
                 entity.position.y = currentObject.boundingBox.bottom + (entity.dimensions[1]/2)
+
+    def checkCoinCollision(self,coins, player):
+        for coin in coins[:]:
+            print(coin.boundingBox.right)
+            print(coin.boundingBox.left)
+            if player.boundingBox.contains(coin.position):
+                player.collectedCoins = coin.pickUp(player.collectedCoins)
+                coins.remove(coin)
