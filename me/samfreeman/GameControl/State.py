@@ -3,6 +3,7 @@ class State:
     def __init__(self):
         self.mainMenu = True
         self.cutScene = False
+        self.inLevel = False
         self.levelText = False
         self.levelPlay = False
         self.bossText = False
@@ -19,6 +20,7 @@ class State:
         if self.cutScene:
             self.cutScene = False
             self.levelText = True
+            self.inLevel = True
 
     def textToPlay(self):
         if self.levelText:
@@ -31,25 +33,16 @@ class State:
             self.levelPlay = False
             self.levelText = True
 
-    def playToBoss(self):
+    def playToCutScene(self):
         if self.levelPlay:
             self.levelPlay = False
-            self.bossText = True
-
-    def bossTextToPlay(self):
-        if self.bossText:
-            self.bossText = False
-            self.bossPlay = True
-
-    def bossToCutScene(self):
-        if self.bossPlay:
-            self.bossPlay = False
+            self.inLevel = False
             self.cutScene = True
 
     def death(self):
-        if self.levelPlay or self.bossPlay:
+        if self.levelPlay:
             self.levelPlay = False
-            self.bossPlay = False
+            self.inLevel = False
             self.death = True
 
     def deathToGameOver(self):

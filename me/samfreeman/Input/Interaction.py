@@ -6,11 +6,12 @@ from me.samfreeman.Input.Keyboard import Keyboard
 
 class Interaction:
 
-    def __init__(self, player, text, cs):
+    def __init__(self, player, text, cs, state):
         self.keyboard = Keyboard()
         self.player = player
         self.text = text #----> used for testing purposes
         self.cs = cs
+        self.state = state
 
     # handling keyboard input for player
     def checkKeyboard(self):
@@ -21,7 +22,9 @@ class Interaction:
             if self.keyboard.left:
                 self.player.moveLeft()
             if self.keyboard.up:
-                self.player.jump()
+                if self.state.mainMenu: self.state.menuToCutScene()
+                else:
+                    self.player.jump()
             if self.keyboard.down:
                 self.player.crouch()
         if self.keyboard.j and not self.player.hasJumped: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
