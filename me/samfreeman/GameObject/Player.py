@@ -115,6 +115,7 @@ class Player(GameObject):
             self.startingY = self.position.y
             self.velocity.y = -20
             self.hasJumped = True
+            self.checkPosition = True
 
     def crouch(self):
         self.offset = 0
