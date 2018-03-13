@@ -61,7 +61,6 @@ class Player(GameObject):
         # Jump Testing
         self.hasJumped = False
         self.startingY = 0
-        self.currentGround = self.position.y + self.dimensions[1] / 2
         self.gravity = 1
         self.onGround = True # TODO: ADD PROPER FUNCTIONALITY TO THIS SO IT WORKS WITH PLATFORMS
 

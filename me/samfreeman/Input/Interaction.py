@@ -101,10 +101,11 @@ class Interaction:
         for currentObject in objects[:]:
             #if the object overlaps
             if(currentObject.notCollidable ==1) or not(currentObject.boundingBox.overlaps(entity.boundingBox)): continue
-            if entity.boundingBox.bottom > currentObject.boundingBox.top and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y <= currentObject.boundingBox.top):
+            if entity.boundingBox.bottom >= currentObject.boundingBox.top and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y <= currentObject.boundingBox.top):
                 entity.canMoveDown = False
                 entity.hasJumped = False
                 entity.velocity.y =0
+                entity.currentGround = currentObject.boundingBox.top
             if (entity.boundingBox.right > currentObject.boundingBox.left) and (entity.position.x < currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
                 entity.canMoveRight = False
                 entity.velocity.x *= -1
