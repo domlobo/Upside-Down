@@ -1,18 +1,52 @@
 class State:
 
     def __init__(self):
+        self.mainMenu = True
+        self.cutScene = False
+        self.levelText = False
+        self.levelPlay = False
+        self.bossText = False
+        self.bossPlay = False
+        self.death = False
+        self.gameOver = False
 
-        # TODO: Work out the game states, and the order in which they will be transitioned a diagram might help.
+    def menuToCutScene(self):
+        if self.mainMenu:
+            self.mainMenu = False
+            self.cutScene = True
 
-        self.main_menu = True
-        self.stage1 = False
-        self.stage2 = False
-        self.stage3 = False
+    def cutSceneToLevel(self):
+        if self.cutScene:
+            self.cutScene = False
+            self.levelText = True
 
+    def textToPlay(self):
+        if self.levelText:
+            self.levelText = False
+            self.levelPlay = True
 
-    def menuToStage1(self):
-        self.main_menu = False
-        self.stage1 = True
-    # TODO: Have methods for the transitions and such - look at the blackjack game as an example.
+    def playToBoss(self):
+        if self.levelPlay:
+            self.levelPlay = False
+            self.bossText = True
 
+    def bossTextToPlay(self):
+        if self.bossText:
+            self.bossText = False
+            self.bossPlay = True
 
+    def bossToCutScene(self):
+        if self.bossPlay:
+            self.bossPlay = False
+            self.cutScene = True
+
+    def death(self):
+        if self.levelPlay or self.bossPlay:
+            self.levelPlay = False
+            self.bossPlay = False
+            self.death = True
+
+    def deathToGameOver(self):
+        if self.death:
+            self.death = False
+            self.gameOver = True
