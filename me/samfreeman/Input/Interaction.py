@@ -45,6 +45,7 @@ class Interaction:
 
     def checkProjectileCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
+        damageDealt = False
         for enemy in enemies[:]:
             #player collision damage
             if player.boundingBox.overlaps(enemy.boundingBox):
@@ -68,8 +69,9 @@ class Interaction:
                     enemy.changeHealth(-fball.damage)
                     fball.remove = True
             #sword damage
-            if player.swordBoundingBox.overlaps(enemy.boundingBox):
+            if player.swordBoundingBox.overlaps(enemy.boundingBox) and not(player.swordHit):
                 enemy.changeHealth(-player.swordDamage)
+                damageDealt = True
             #jumping on enemy damage
             if enemy.boundingBox.top < player.boundingBox.bottom and(enemy.position.x <= player.boundingBox.right and enemy.position.x >= player.boundingBox.left and enemy.position.y >= player.boundingBox.bottom):
                 enemy.changeHealth(-50)
@@ -81,6 +83,12 @@ class Interaction:
             if (enemy.boundingBox.left < player.boundingBox.right) and (enemy.position.x > player.position.x) and (enemy.position.y <= player.boundingBox.bottom and enemy.position.y >= player.boundingBox.top):
                 enemy.canMoveLeft = False
                 enemy.velocity.x *= -1
+
+        #means that damage can be dealt to multiple enemies in one swing
+        if damageDealt:
+            #only deal damage once per swing
+            player.swordHit = True
+            damageDealt = False
 
     def checkObjectCollision(self,objects,entity):
         # Using a copy to remove from actual list if there is too much health loss

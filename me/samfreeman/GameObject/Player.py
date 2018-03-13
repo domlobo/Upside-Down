@@ -28,6 +28,7 @@ class Player(GameObject):
         self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
         self.maxSwordDown = self.boundingBox.bottom
         self.swordBBoxMove = False
+        self.swordHit = False
 
         self.offset = 0
         self.distanceFromFloor = 0 # used for crouching
@@ -162,6 +163,7 @@ class Player(GameObject):
 
         if self.currentSprite.isComplete:
             self.attackingSword = False
+            self.swordHit = False
 
         if((self.boundingBox.right < GV.CANVAS_WIDTH-10)and (self.boundingBox.left > 10)) or ((self.boundingBox.right>= GV.CANVAS_WIDTH-10) and (self.velocity.x <0)) or ((self.boundingBox.left <=10)and (self.velocity.x>0)):
             GameObject.update(self)
