@@ -28,6 +28,7 @@ class Player(GameObject):
         self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
         self.maxSwordDown = self.boundingBox.bottom
         self.swordBBoxMove = False
+        self.swordHit = False
 
         self.offset = 0
         self.distanceFromFloor = 0 # used for crouching
@@ -60,7 +61,6 @@ class Player(GameObject):
         # Jump Testing
         self.hasJumped = False
         self.startingY = 0
-        self.currentGround = self.position.y + self.dimensions[1] / 2
         self.gravity = 1
         self.onGround = True # TODO: ADD PROPER FUNCTIONALITY TO THIS SO IT WORKS WITH PLATFORMS
 
@@ -115,6 +115,7 @@ class Player(GameObject):
             self.startingY = self.position.y
             self.velocity.y = -20
             self.hasJumped = True
+            self.checkPosition = True
 
     def crouch(self):
         self.offset = 0
@@ -162,6 +163,7 @@ class Player(GameObject):
 
         if self.currentSprite.isComplete:
             self.attackingSword = False
+            self.swordHit = False
 
         if((self.boundingBox.right < GV.CANVAS_WIDTH-10)and (self.boundingBox.left > 10)) or ((self.boundingBox.right>= GV.CANVAS_WIDTH-10) and (self.velocity.x <0)) or ((self.boundingBox.left <=10)and (self.velocity.x>0)):
             GameObject.update(self)
