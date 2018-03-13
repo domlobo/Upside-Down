@@ -67,7 +67,6 @@ class Level:
             #arg[0] is image path, arg[1] is x pos, arg[2] is y pos, args[3] is notCollibable as an int
             args = line.split(",")
             objectSprite = Sprite(args[0])
-            print(args[3])
             self.objects.append(GameObject(Vector((float(args[1]),float(args[2]))), Vector((0,0)), (objectSprite.frameWidth,objectSprite.frameHeight), 100,objectSprite, int(args[3])))
         for line in file:
             args = line.split(",")
@@ -130,10 +129,7 @@ class Level:
             for proj in self.player.projectiles:
                 proj.position.add(movementVariable)
             for enemy in self.enemies:
-                print(self.background.foregroundVel)
-                print(enemy.position)
                 enemy.position.add(self.background.foregroundVel)
-                print(enemy.position)
                 enemy.resetMovement()
             for currentObject in self.objects:
                 currentObject.position.add(self.background.foregroundVel)
