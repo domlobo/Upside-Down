@@ -107,13 +107,18 @@ class Level:
         self.displayBar.updateBar(self.player.health, self.player.maxUnlockedWeapon, 3 - self.player.numberOfDeaths, self.player.collectedCoins)
         self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkObjectCollision(self.objects, self.player)
+        self.inter.checkCoinCollision(self.coins, self.player)
         for enemy in self.enemies:
             self.inter.checkObjectCollision(self.objects,enemy)
             if enemy.health <= 0:
                 self.coins.append(enemy.dropCoin(100, 1))
         self.inter.checkKeyboard()
 
-        for coin in self.coins: coin.update(self.background.foregroundVel.copy())
+        for coin in self.coins[:]:
+            if coin.position.x <0:
+                self.coins.remove(coin)
+                continue
+            coin.update(self.background.foregroundVel.copy())
 
         #update the location of all of the elements if the canvas is moving
         if (self.background.foregroundVel.x !=0):
