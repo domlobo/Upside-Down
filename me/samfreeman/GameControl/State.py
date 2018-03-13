@@ -25,6 +25,12 @@ class State:
             self.levelText = False
             self.levelPlay = True
 
+    def playToText(self):
+        # When a new level in same stage is made -- may not need as handled by level loader
+        if self.levelPlay:
+            self.levelPlay = False
+            self.levelText = True
+
     def playToBoss(self):
         if self.levelPlay:
             self.levelPlay = False
