@@ -10,7 +10,7 @@ class LinkBossCharacter(BasicEnemy):
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
         BasicEnemy.__init__(self,position,health,player,runLeft,runRight)
         self.damage = 0
-        self.MAXIMUM_PROJECTILES =  2
+        self.MAXIMUM_PROJECTILES = 2
 
     def moveToPlayer(self):
         currentPPos = self.player.position
@@ -38,6 +38,8 @@ class LinkBossCharacter(BasicEnemy):
         #selecting the direction to send it
         if(self.dx<0):
             direction =1
+            sprite = Sprite("images/interactive-sprites/link/link-arrow-left.png")
         else:
             direction =0
-        self.projectiles.append(Projectile(self.position.copy(), 300, direction,1))
+            sprite = Sprite("images/interactive-sprites/link/link-arrow-right.png")
+        self.projectiles.append(Projectile(self.position.copy(), 300, direction, sprite, 1))

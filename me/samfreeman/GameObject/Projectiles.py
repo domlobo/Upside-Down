@@ -1,12 +1,13 @@
 # imports
 import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.GameObject import GameObject
+from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.Helper.Vector import Vector
 
 
 class Projectile(GameObject):
-    def __init__(self, position, lifetime, direction,speed=1.7):
-        GameObject.__init__(self, position, Vector((0, 0)), [20, 5], lifetime)
+    def __init__(self, position, lifetime, direction, pSprite=Sprite(""), speed=1.7):
+        GameObject.__init__(self, position, Vector((0, 0)), [20, 5], lifetime, pSprite)
 
         self.direction = direction
         self.damage = 10
