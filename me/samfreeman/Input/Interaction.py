@@ -110,8 +110,8 @@ class Interaction:
 
     def checkCoinCollision(self,coins, player):
         for coin in coins[:]:
-            print(coin.boundingBox.position)
-            if coin.boundingBox.overlaps(player.boundingBox):
-                print("here " + str(coin.position.x))
-                player.collectedCoins += coin.value
+            print(coin.boundingBox.right)
+            print(coin.boundingBox.left)
+            if player.boundingBox.contains(coin.position):
+                player.collectedCoins = coin.pickUp(player.collectedCoins)
                 coins.remove(coin)

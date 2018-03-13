@@ -20,4 +20,3 @@ class Coin(GameObject):
     def draw(self, canvas):
         self.sprite.draw(self.position, canvas, self.size, self.size)
         self.sprite.startAnimation(5)
-
