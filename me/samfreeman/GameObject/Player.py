@@ -28,6 +28,7 @@ class Player(GameObject):
         self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
         self.maxSwordDown = self.boundingBox.bottom
         self.swordBBoxMove = False
+        self.swordHit = False
 
         self.offset = 0
         self.distanceFromFloor = 0 # used for crouching
@@ -60,7 +61,6 @@ class Player(GameObject):
         # Jump Testing
         self.hasJumped = False
         self.startingY = 0
-        self.currentGround = self.position.y + self.dimensions[1] / 2
         self.gravity = 1
         self.onGround = True # TODO: ADD PROPER FUNCTIONALITY TO THIS SO IT WORKS WITH PLATFORMS
 
@@ -69,6 +69,8 @@ class Player(GameObject):
         self.wasHit = False
         self.flash = simplegui._load_local_image("images/interactive-sprites/display/damage-flash.png")
         self.counter = 0
+
+        self.addAmount =0
 
     def displayHit(self):
         self.wasHit = True
@@ -115,6 +117,7 @@ class Player(GameObject):
             self.startingY = self.position.y
             self.velocity.y = -20
             self.hasJumped = True
+            self.checkPosition = True
 
     def crouch(self):
         self.offset = 0
@@ -136,9 +139,6 @@ class Player(GameObject):
             self.currentAnimationLength = self.animationLengthJumpUp if self.velocity.y < 0 else self.animationLengthJumpDown
             self.updateStates(self.directionState, self.currentAnimationLength, self.actionState, 1)
 
-        if self.swordEndPoint.y >= self.maxSwordDown:
-            self.swordEndPoint = Vector((self.position.x, self.boundingBox.top)) # so no collision
-
         if self.attackingSword and 3 + self.currentSpriteStart[0] <= self.currentSprite.frameIndex[0] <= 6 + self.currentSpriteStart[0]:
             self.swordBBoxMove = True
         else:
@@ -146,13 +146,16 @@ class Player(GameObject):
 
         # Moves the sword (end-point) down
         if self.swordBBoxMove:
-            addAmount = 7
+            self.addAmount = 7
         else:
-            addAmount = 0
+            if self.addAmount !=0:
+                self.swordHit = False
+            self.addAmount = 0
             self.swordEndPoint.y = self.boundingBox.top
 
+
         if self.attackingSword:
-            self.swordEndPoint = Vector((self.position.x + self.swordLength, self.swordEndPoint.y + addAmount))
+            self.swordEndPoint = Vector((self.position.x + self.swordLength, self.swordEndPoint.y + self.addAmount))
             self.swordBoundingBox.pointA = self.position
             self.swordBoundingBox.pointB = self.swordEndPoint
             # self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
@@ -162,6 +165,7 @@ class Player(GameObject):
 
         if self.currentSprite.isComplete:
             self.attackingSword = False
+            self.swordHit = False
 
         if((self.boundingBox.right < GV.CANVAS_WIDTH-10)and (self.boundingBox.left > 10)) or ((self.boundingBox.right>= GV.CANVAS_WIDTH-10) and (self.velocity.x <0)) or ((self.boundingBox.left <=10)and (self.velocity.x>0)):
             GameObject.update(self)
