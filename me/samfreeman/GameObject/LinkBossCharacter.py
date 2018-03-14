@@ -34,6 +34,7 @@ class LinkBossCharacter(BasicEnemy):
 
     #rangedAttack
     def rangedAttack(self):
+        SPEED = 0.4
         if len(self.projectiles) == self.MAXIMUM_PROJECTILES: return
         #selecting the direction to send it
         if(self.dx<0):
@@ -42,4 +43,4 @@ class LinkBossCharacter(BasicEnemy):
         else:
             direction =0
             sprite = Sprite("images/interactive-sprites/link/link-arrow-right.png")
-        self.projectiles.append(Projectile(self.position.copy(), 300, direction, sprite, 1))
+        self.projectiles.append(Projectile(self.position.copy(), 300, direction, sprite, SPEED))
