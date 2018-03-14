@@ -61,6 +61,7 @@ class Interaction:
                 if player.boundingBox.overlaps(proj.boundingBox):
                     # Collision
                     player.changeHealth(-proj.damage)
+                    player.displayHit()
                     proj.remove = True
             #fireball damage
             for fball in player.fireballs[:]:
