@@ -13,7 +13,10 @@ images\interactive-sprites\mario\mario-block-2-piece.png, 690, 830, 0
 images\interactive-sprites\mario\mario-pipe.png, 1126, 468, 0
 images\interactive-sprites\mario\mario-pipe.png, 1662, 468, 0
 images\interactive-sprites\mario\mario-pipe.png, 2048, 468, 0
-images\interactive-sprites\mario\mario-block-4-piece.png, 
-
+images\interactive-sprites\mario\mario-block-4-piece.png, 2499, 390, 0
+images\interactive-sprites\mario\mario-block-4-piece.png, 2771, 830, 0
+images\interactive-sprites\mario\mario-block-2-piece.png, 3027, 390, 0
+images\interactive-sprites\mario\mario-block-4-piece.png, 3151, 830, 0
+images\interactive-sprites\mario\mario-block-4-piece.png, 3463, 390, 0
 Floor
-project path to image, x position, 557
+images\background\mario\Mario-world-1.1-floor-3.png, mid,557
