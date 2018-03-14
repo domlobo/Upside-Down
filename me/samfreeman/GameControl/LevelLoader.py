@@ -45,7 +45,7 @@ class LevelLoader:
                         "images/background/doom/second layer.png",
                          "", player,inter,"Doom-1")
         # Creating list of levels
-        self.levels =(tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne)
+        self.levels =[tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne]
         self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt")
         # Selecting the first level
         self.levelCounter=0
@@ -64,7 +64,8 @@ class LevelLoader:
             if(self.levelCounter%3 == 0):
                 self.player.numberOfDeaths =0
                 self.player.maxUnlockedWeapon +=1
-            self.currentLevel = self.levels[self.levelCounter]
+            del self.levels[0]
+            self.currentLevel = self.levels[0]
             self.currentLevel.setPlayer(self.player)
             self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
             #stops the character sticking to the right hand side after the transition

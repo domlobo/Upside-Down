@@ -46,15 +46,15 @@ class Level:
                 break
             #arg[0] is x pos, arg[1] is y pos, arg[2] is health, args[3] and arg[5] are left and right sprites with args[4] and args[6] being the number of colums, args[7] denotes the type of enemy
             args = line.split(",")
-            runLeft = Sprite(args[3], 1,int(args[4]))
+            runLeft = Sprite(args[3], 1,int(args[4]), True)
             if(args[7] == "d\n"):
-                runRight= Sprite(args[5], 1,int(args[6]))
+                runRight= Sprite(args[5], 1,int(args[6]), True)
                 self.enemies.append(BasicEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
             elif(args[7] == "s\n"):
                 #args[5] and [6] are left blank
                 self.enemies.append(StaticEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft))
             elif(args[7] == "bl\n"):
-                runRight= Sprite(args[5], 1,int(args[6]))
+                runRight= Sprite(args[5], 1,int(args[6]), True)
                 self.enemies.append(LinkBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
             elif(args[7] == "bm\n"):
                 pass
@@ -104,7 +104,7 @@ class Level:
     #checks for input and collisions
     def update(self):
         self.displayBar.updateBar(self.player.health, self.player.maxUnlockedWeapon, 3 - self.player.numberOfDeaths, self.player.collectedCoins)
-        self.inter.checkProjectileCollision(self.enemies,self.player)
+        # self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkObjectCollision(self.objects, self.player)
         self.inter.checkCoinCollision(self.coins, self.player)
         for enemy in self.enemies:

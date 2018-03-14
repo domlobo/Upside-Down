@@ -18,7 +18,7 @@ cs = Cutscene(frame)
 
 state = State()
 
-player = Player(Vector((50, GV.CANVAS_HEIGHT - 130)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20))
+player = Player(Vector((50, GV.CANVAS_HEIGHT - 130)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True))
 
 ####### EXAMPLE OF HOW TO USE CUTSCENE
 cs.setTitle("Part 1: The Beginning")
