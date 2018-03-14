@@ -2,7 +2,6 @@ try:
     import simplegui
 except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-
 import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.GameObject.Enemy import BasicEnemy
@@ -99,12 +98,10 @@ class Level:
         for coin in self.coins: coin.draw(canvas)
         self.player.draw(canvas, "Green")
 
-
-
     #checks for input and collisions
     def update(self):
         self.displayBar.updateBar(self.player.health, self.player.maxUnlockedWeapon, 3 - self.player.numberOfDeaths, self.player.collectedCoins)
-        # self.inter.checkProjectileCollision(self.enemies,self.player)
+        self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkObjectCollision(self.objects, self.player)
         self.inter.checkCoinCollision(self.coins, self.player)
         for enemy in self.enemies:
@@ -120,7 +117,7 @@ class Level:
             coin.update(self.background.foregroundVel.copy())
 
         #update the location of all of the elements if the canvas is moving
-        if (self.background.foregroundVel.x !=0):
+        if (self.background.foregroundVel.x <0):
             #variable to keep relative positions the same when background moves
             movementVariable =1.25*self.background.foregroundVel
             #stopping right hand pushing

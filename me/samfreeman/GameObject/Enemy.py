@@ -12,7 +12,7 @@ class BasicEnemy(GameObject):
         dims = [30,60]
         if runLeft.hasPath:
             dims = [runLeft.frameWidth, runLeft.frameHeight]
-        GameObject.__init__(self, position, Vector((0, 0)),dims , health)
+        GameObject.__init__(self, position, Vector((-1, 0)),dims , health)
         self.player = player
         self.direction = 0
         self.damage = 0.5
@@ -24,14 +24,14 @@ class BasicEnemy(GameObject):
         # 'AI'
         self.largeSearch = Rectangle(self.position, 600, 400)
         self.smallSearch = Rectangle(self.position, 150, 150)
-        self.movementRectangle = Rectangle(self.position, 200, 200)
-        self.sprite = runRight
+        self.movementRectangle = Rectangle(self.position, 100, 100)
+        self.sprite = runLeft
         self.runningLeft = runLeft
         self.runningRight = runRight
 
     def resetMovement(self):
         # Used to make a new movement box when the user moves out of it
-        self.movementRectangle.updateBox(self.position, 200, 200)
+        self.movementRectangle.updateBox(self.position, 100, 100)
 
     def findPlayer(self):
         # Update the search rectangles
@@ -104,7 +104,7 @@ class BasicEnemy(GameObject):
 
     def dropCoin(self, size, cost):
         return Coin(self.position, size, cost)
-      
+
     def update(self):
         GameObject.update(self)
         self.findPlayer()
@@ -118,5 +118,3 @@ class BasicEnemy(GameObject):
     def draw(self, canvas, colour):
         GameObject.draw(self, canvas, colour)
         self.largeSearch.draw(canvas, "White")
-
-
