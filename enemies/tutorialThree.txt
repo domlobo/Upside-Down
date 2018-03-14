@@ -1,10 +1,10 @@
 Alright - lets go on a trial run.,Link
 If you die you'll be respawned up to 3 times so keep trying.,Link
 Enemies
-400, 469,200,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
+600, 469,200,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
 800, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
 1200, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s
-1350, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
+1450, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
 1500, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s
 1650, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
 1800, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s

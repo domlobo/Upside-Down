@@ -12,7 +12,7 @@ class BasicEnemy(GameObject):
         dims = [30,60]
         if runLeft.hasPath:
             dims = [runLeft.frameWidth, runLeft.frameHeight]
-        GameObject.__init__(self, position, Vector((0, 0)),dims , health)
+        GameObject.__init__(self, position, Vector((0.2, 0)),dims , health)
         self.player = player
         self.direction = 0
         self.damage = 0.5
@@ -74,8 +74,8 @@ class BasicEnemy(GameObject):
             self.sprite.startAnimation(5)
 
     def move(self):
-        if self.position.x >GV.CANVAS_WIDTH+self.sprite.frameWidth/2:
-            return
+        # if self.position.x >GV.CANVAS_WIDTH+self.sprite.frameWidth/2:
+        #     return
         speed = 0.9
         #switch direction if you can't move
         if(self.position.x >= self.movementRectangle.right) or (self.position.x <= self.movementRectangle.left):
@@ -104,7 +104,7 @@ class BasicEnemy(GameObject):
 
     def dropCoin(self, size, cost):
         return Coin(self.position, size, cost)
-      
+
     def update(self):
         GameObject.update(self)
         self.findPlayer()
@@ -118,5 +118,3 @@ class BasicEnemy(GameObject):
     def draw(self, canvas, colour):
         GameObject.draw(self, canvas, colour)
         self.largeSearch.draw(canvas, "White")
-
-
