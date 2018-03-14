@@ -90,6 +90,7 @@ class LevelLoader:
         self.player.health = 100
         self.player.position.x = 50
         self.player.position.y = 300
+        self.player.attackingSword = False
         self.currentLevel.background.farBackgroundPos = Vector((self.currentLevel.background.FAR_BACKGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
         self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
         self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
