@@ -169,6 +169,7 @@ class Player(GameObject):
 
         if(self.boundingBox.left > 10):
             GameObject.update(self)
+        #stops sticking to LHS wall
         elif self.velocity.x < 0:
             self.velocity.x *=-2
             GameObject.update(self)
