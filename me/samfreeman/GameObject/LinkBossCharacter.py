@@ -13,6 +13,7 @@ class LinkBossCharacter(BasicEnemy):
         self.MAXIMUM_PROJECTILES = 2
 
     def moveToPlayer(self):
+        print(self.position)
         currentPPos = self.player.position
         self.dx = currentPPos.x - self.position.x
         BasicEnemy.moveToPlayer(self)

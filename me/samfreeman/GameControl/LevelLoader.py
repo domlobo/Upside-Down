@@ -57,8 +57,7 @@ class LevelLoader:
         self.player = self.currentLevel.returnPlayer()
         self.player.position.x = 50
         self.player.health = 100
-
-        if(self.levelCounter<len(self.levels)-1):
+        if(len(self.levels)>0):
             self.levelCounter +=1
             #reset the death counter after each stage (every 3 levels)
             if(self.levelCounter%3 == 0):
@@ -78,14 +77,15 @@ class LevelLoader:
         if(self.player.numberOfDeaths <3):
             #go back to the start of the level
             self.player.numberOfDeaths +=1
-        else:
-            #go back to the start of the stage
-            self.player.numberOfDeaths =0
-            self.levelCounter -= self.levelCounter %3
-            self.currentLevel = self.levels[self.levelCounter]
-            #reset what everything
-            self.currentLevel.enemies = []
-            self.currentLevel.objects = []
+        # else:
+            ### this code is for restarting stage but we're required to go back to main menu
+            # #go back to the start of the stage
+            # self.player.numberOfDeaths =0
+            # self.levelCounter -= self.levelCounter %3
+            # self.currentLevel = self.levels[self.levelCounter]
+            # #reset what everything
+            # self.currentLevel.enemies = []
+            # self.currentLevel.objects = []
         #start level
         self.player.health = 100
         self.player.position.x = 50
