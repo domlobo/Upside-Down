@@ -1,3 +1,19 @@
+line of speech, Speaker
+line of speech, Speaker
+line of speech, Speaker
+line of speech, Speaker
+line of speech, Speaker
+line of speech, Speaker
 Enemies
+  xposition, yposition, health, project path to movingleftsprite, number of columns on the previous sprite, project path to moving right sprite, number of columns in previous sprite, type of enemy
 Walls
+project path to image, x position, y position, collidable
+images\interactive-sprites\mario\mario-block-3-piece.png, 642, 390, 0
+images\interactive-sprites\mario\mario-block-2-piece.png, 690, 830, 0
+images\interactive-sprites\mario\mario-pipe.png, 1126, 468, 0
+images\interactive-sprites\mario\mario-pipe.png, 1662, 468, 0
+images\interactive-sprites\mario\mario-pipe.png, 2048, 468, 0
+images\interactive-sprites\mario\mario-block-4-piece.png, 
+
 Floor
+project path to image, x position, 557
