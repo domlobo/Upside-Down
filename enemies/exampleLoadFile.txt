@@ -1,0 +1,56 @@
+//everything starting with // is a comment and doesn't show what should be in the text file
+//everything indented is the format of the document - there is an example at the bottom
+//split into 4 sections, section one is dialogue it takes the following format:
+  Line of speech, Speaker
+//note you can't use commas in the actual line of speech so be creative with your punctuation
+//each line is one of the boxes shown on screen ie each time you press q it will move to the next Line
+//once you are done with the dialogue give the keyword:
+  Enemies
+//this tells the program to move on to loading Enemies
+//each line represents an enemy and takes the following format
+  xposition, yposition, health, project path to movingleftsprite, number of columns on the previous sprite, project path to moving right sprite, number of columns in previous sprite, type of enemy
+//there are several different modes:
+//d: dynamic, this is a moving enemy
+//s: static, this enemy doesn't change relative xposition
+//bm: mario boss
+//bd: doom boss
+//once you are done with the enemies use the keyword:
+  Walls
+//Each line represents an object, it is not necessarily a wall so things like stairs, flagpoles etc are in this section
+//each line takes the following format
+  project path to image, x position, y position, collidable
+//the collidable field can be one of two things:
+// 0 collidable
+// 1 non collidable - mainly used for things like the flagpole and castle that we should have put in the background but didn't
+//once you are done with that, use the keyword:
+  Floor
+//this tells the program to move onto the final section: loading the Floor
+//each floor platform takes the following format
+  project path to image, x position, 557
+//557 is the y position and is constant -DON'T CHANGE IT
+//if there is just one floor platform, you can set the xposition to "mid"
+
+//things to note:
+//all x and y positions are for the centre of the images so take that into account
+
+//example
+This is a line of dialogue, Speaker one
+This is another line of dialogue from a different speaker, Speaker two
+Enemies
+xposition,yposition,health,path/to/the/movingleftsprite.png,4,path/to/the/movingRightsprite.png,4,d
+xposition,yposition,health,path/to/the/movingleftsprite.png,4,path/to/the/movingRightsprite.png,4,s
+xposition,yposition,health,path/to/the/movingleftsprite.png,4,path/to/the/movingRightsprite.png,4,d
+xposition,yposition,health,path/to/the/movingleftsprite.png,4,path/to/the/movingRightsprite.png,4,d
+xposition,yposition,health,path/to/the/movingleftsprite.png,4,path/to/the/movingRightsprite.png,4,d
+xposition,yposition,health,path/to/the/movingleftsprite.png,4,path/to/the/movingRightsprite.png,4,d
+xposition,yposition,health,path/to/the/movingleftsprite.png,4,path/to/the/movingRightsprite.png,4,s
+Walls
+path/to/the/image.png, xposition,yposition,0
+path/to/the/image.png, xposition,yposition,0
+path/to/the/image.png, xposition,yposition,0
+path/to/the/image.png, xposition,yposition,0
+path/to/the/image.png, xposition,yposition,0
+path/to/the/image.png, xposition,yposition,1
+path/to/the/image.png, xposition,yposition,1
+Floor
+path/to/the/image.png, mid,557
