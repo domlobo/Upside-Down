@@ -107,10 +107,10 @@ class Interaction:
                 entity.hasJumped = False
                 entity.velocity.y =0
                 entity.currentGround = currentObject.boundingBox.top
-            if (entity.boundingBox.right >= currentObject.boundingBox.left) and (entity.position.x < currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
+            if (entity.boundingBox.right >= currentObject.boundingBox.left) and (entity.position.x < currentObject.position.x) and (((entity.position.y <= currentObject.boundingBox.bottom)and (entity.position.y >= currentObject.boundingBox.top)) or ((currentObject.position.y <= entity.boundingBox.bottom) and (currentObject.position.y >= entity.boundingBox.top))):
                 entity.canMoveRight = False
                 entity.velocity.x *= -1
-            if (entity.boundingBox.left < currentObject.boundingBox.right) and (entity.position.x > currentObject.position.x) and (entity.position.y <= currentObject.boundingBox.bottom and entity.position.y >= currentObject.boundingBox.top):
+            if (entity.boundingBox.left <= currentObject.boundingBox.right) and (entity.position.x > currentObject.position.x) and (((entity.position.y <= currentObject.boundingBox.bottom)and (entity.position.y >= currentObject.boundingBox.top)) or ((currentObject.position.y <= entity.boundingBox.bottom) and (currentObject.position.y >= entity.boundingBox.top))):
                 entity.canMoveLeft = False
                 entity.velocity.x *= -1
             if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y >= currentObject.boundingBox.bottom):
