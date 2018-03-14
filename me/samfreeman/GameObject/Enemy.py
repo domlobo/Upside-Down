@@ -28,7 +28,7 @@ class BasicEnemy(GameObject):
         self.sprite = runRight
         self.runningLeft = runLeft
         self.runningRight = runRight
-
+        self.gravity =1
     def resetMovement(self):
         # Used to make a new movement box when the user moves out of it
         self.movementRectangle.updateBox(self.position, 200, 200)
@@ -73,6 +73,10 @@ class BasicEnemy(GameObject):
         if self.sprite.hasPath:
             self.sprite.startAnimation(5)
 
+        if self.canMoveDown:
+            self.velocity.y +=self.gravity
+            self.velocity.x = 0
+
     def move(self):
         # if self.position.x >GV.CANVAS_WIDTH+self.sprite.frameWidth/2:
         #     return
@@ -101,6 +105,9 @@ class BasicEnemy(GameObject):
             else: self.velocity.x += (speed)
         if self.sprite.hasPath:
             self.sprite.startAnimation(10)
+        if self.canMoveDown:
+            self.velocity.y +=self.gravity
+            self.velocity.x = 0
 
     def dropCoin(self, size, cost):
         return Coin(self.position, size, cost)
