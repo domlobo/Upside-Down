@@ -167,7 +167,10 @@ class Player(GameObject):
             self.attackingSword = False
             self.swordHit = False
 
-        if((self.boundingBox.right < GV.CANVAS_WIDTH-10)and (self.boundingBox.left > 10)) or ((self.boundingBox.right>= GV.CANVAS_WIDTH-10) and (self.velocity.x <0)) or ((self.boundingBox.left <=10)and (self.velocity.x>0)):
+        if(self.boundingBox.left > 10):
+            GameObject.update(self)
+        elif self.velocity.x < 0:
+            self.velocity.x *=-2
             GameObject.update(self)
         self.velocity.multiply(0.85)
 

@@ -55,7 +55,7 @@ class LevelLoader:
     #called from Game when a level is over
     def nextlevel(self):
         self.player = self.currentLevel.returnPlayer()
-        self.player.position.x = 0
+        self.player.position.x = 50
         self.player.health = 100
 
         if(self.levelCounter<len(self.levels)-1):
