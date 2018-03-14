@@ -40,7 +40,8 @@ class Sprite:
                 # Reached the end of the line
                 if self.animateOnce:
                     self.isComplete = True
-                else: self.frameIndex[0] = self.startOffset[0]
+                else:
+                    self.frameIndex[0] = self.startOffset[0]
 
     def stopAnimation(self):
         self.isComplete = True

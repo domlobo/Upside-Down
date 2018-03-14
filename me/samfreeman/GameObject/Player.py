@@ -70,6 +70,8 @@ class Player(GameObject):
         self.flash = simplegui._load_local_image("images/interactive-sprites/display/damage-flash.png")
         self.counter = 0
 
+        self.addAmount =0
+
     def displayHit(self):
         self.wasHit = True
 
@@ -137,9 +139,6 @@ class Player(GameObject):
             self.currentAnimationLength = self.animationLengthJumpUp if self.velocity.y < 0 else self.animationLengthJumpDown
             self.updateStates(self.directionState, self.currentAnimationLength, self.actionState, 1)
 
-        if self.swordEndPoint.y >= self.maxSwordDown:
-            self.swordEndPoint = Vector((self.position.x, self.boundingBox.top)) # so no collision
-
         if self.attackingSword and 3 + self.currentSpriteStart[0] <= self.currentSprite.frameIndex[0] <= 6 + self.currentSpriteStart[0]:
             self.swordBBoxMove = True
         else:
@@ -147,13 +146,16 @@ class Player(GameObject):
 
         # Moves the sword (end-point) down
         if self.swordBBoxMove:
-            addAmount = 7
+            self.addAmount = 7
         else:
-            addAmount = 0
+            if self.addAmount !=0:
+                self.swordHit = False
+            self.addAmount = 0
             self.swordEndPoint.y = self.boundingBox.top
 
+
         if self.attackingSword:
-            self.swordEndPoint = Vector((self.position.x + self.swordLength, self.swordEndPoint.y + addAmount))
+            self.swordEndPoint = Vector((self.position.x + self.swordLength, self.swordEndPoint.y + self.addAmount))
             self.swordBoundingBox.pointA = self.position
             self.swordBoundingBox.pointB = self.swordEndPoint
             # self.swordBoundingBox = Line(self.position, self.swordEndPoint, 3)
