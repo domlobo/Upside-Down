@@ -4,7 +4,7 @@ from me.samfreeman.Helper.Clock import Clock
 
 
 class Sprite:
-    def __init__(self, path, rows=1, cols=1):
+    def __init__(self, path, rows=1, cols=1, needAnimation=False):
         if path != "":
             # Attempts to find a file at the specified path
             self.spritesheet = simplegui._load_local_image(path)
@@ -27,21 +27,23 @@ class Sprite:
         self.animationLength = self.cols
         self.animateOnce = True
         self.isComplete = False
-        self.clock = Clock()
+        self.needAnimation = needAnimation
+        if self.needAnimation:
+            self.clock = Clock()
 
     def animate(self):
-        # Assumes animation is in one line
-        if self.clock.transition(self.frameDuration):
-            self.frameIndex[1] = self.startOffset[1]
-            self.frameIndex[0] = self.startOffset[0] + ((self.frameIndex[0] + 1)
-                                  % (self.startOffset[0] // self.cols + self.animationLength))
+        if self.needAnimation:
+            # Assumes animation is in one line
+            if self.clock.transition(self.frameDuration):
+                self.frameIndex[1] = self.startOffset[1]
+                self.frameIndex[0] = self.startOffset[0] + ((self.frameIndex[0] + 1)
+                                      % (self.startOffset[0] // self.cols + self.animationLength))
 
-            if self.frameIndex[0] == self.startOffset[0]:
-                # Reached the end of the line
-                if self.animateOnce:
-                    self.isComplete = True
-                else:
-                    self.frameIndex[0] = self.startOffset[0]
+                if self.frameIndex[0] == self.startOffset[0]:
+                    # Reached the end of the line
+                    if self.animateOnce:
+                        self.isComplete = True
+                    else: self.frameIndex[0] = self.startOffset[0]
 
     def stopAnimation(self):
         self.isComplete = True
@@ -55,7 +57,7 @@ class Sprite:
         self.startOffset = start
         self.animationLength = length
         self.animateOnce = animateOnce
-        if reset: self.clock.time = 0
+        if reset and self.needAnimation: self.clock.time = 0
 
     # Allows for user to update just the frame index
     def setIndex(self, index):
@@ -90,4 +92,4 @@ class Sprite:
         if not self.isComplete: self.animate()
 
         # Update the clock
-        self.clock.tick()
+        if self.needAnimation: self.clock.tick()

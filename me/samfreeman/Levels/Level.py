@@ -2,11 +2,11 @@ try:
     import simplegui
 except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-
 import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.GameObject.Enemy import BasicEnemy
 from me.samfreeman.GameObject.StaticEnemy import StaticEnemy
+from me.samfreeman.GameObject.ProjectileEnemy import ProjectileEnemy
 from me.samfreeman.GameObject.LinkBossCharacter import LinkBossCharacter
 from me.samfreeman.Helper.Display import DisplayBar
 from me.samfreeman.Helper.Background import Background
@@ -46,15 +46,20 @@ class Level:
                 break
             #arg[0] is x pos, arg[1] is y pos, arg[2] is health, args[3] and arg[5] are left and right sprites with args[4] and args[6] being the number of colums, args[7] denotes the type of enemy
             args = line.split(",")
-            runLeft = Sprite(args[3], 1,int(args[4]))
+            runLeft = Sprite(args[3], 1,int(args[4]), True)
             if(args[7] == "d\n"):
-                runRight= Sprite(args[5], 1,int(args[6]))
+                runRight= Sprite(args[5], 1,int(args[6]), True)
                 self.enemies.append(BasicEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
             elif(args[7] == "s\n"):
                 #args[5] and [6] are left blank
                 self.enemies.append(StaticEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft))
+            elif(args[7] == "r\n"):
+                runRight= Sprite(args[5], 1,int(args[6]), True)
+                leftShoot = Sprite(args[8],1, int(args[9]), True)
+                righttShoot = Sprite(args[10],1, int(args[11]), True)
+                self.enemies.append(ProjectileEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight, leftShoot, rightShoot))
             elif(args[7] == "bl\n"):
-                runRight= Sprite(args[5], 1,int(args[6]))
+                runRight= Sprite(args[5], 1,int(args[6]), True)
                 self.enemies.append(LinkBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
             elif(args[7] == "bm\n"):
                 pass
@@ -99,8 +104,6 @@ class Level:
         for coin in self.coins: coin.draw(canvas)
         self.player.draw(canvas, "Green")
 
-
-
     #checks for input and collisions
     def update(self):
         self.displayBar.updateBar(self.player.health, self.player.maxUnlockedWeapon, 3 - self.player.numberOfDeaths, self.player.collectedCoins)
@@ -120,7 +123,7 @@ class Level:
             coin.update(self.background.foregroundVel.copy())
 
         #update the location of all of the elements if the canvas is moving
-        if (self.background.foregroundVel.x !=0):
+        if (self.background.foregroundVel.x <0):
             #variable to keep relative positions the same when background moves
             movementVariable =1.25*self.background.foregroundVel
             #stopping right hand pushing
@@ -138,7 +141,7 @@ class Level:
             if proj.boundingBox.right<0:
                 self.player.projectiles.remove(proj)
         for enemy in self.enemies[:]:
-            if enemy.boundingBox.right<0:
+            if enemy.boundingBox.right<0 or (enemy.boundingBox.left>GV.CANVAS_WIDTH and not(self.background.isStillRunning())):
                 self.enemies.remove(enemy)
         for currentObject in self.objects[:]:
             if currentObject.boundingBox.right<0:

@@ -3,6 +3,7 @@ from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.GameObject.Enemy import BasicEnemy
 from me.samfreeman.GameObject.Projectiles import Projectile
+import me.samfreeman.GameControl.GV as GV
 from random import *
 
 class LinkBossCharacter(BasicEnemy):
@@ -13,6 +14,7 @@ class LinkBossCharacter(BasicEnemy):
         self.MAXIMUM_PROJECTILES = 2
 
     def moveToPlayer(self):
+        print(self.position)
         currentPPos = self.player.position
         self.dx = currentPPos.x - self.position.x
         BasicEnemy.moveToPlayer(self)
@@ -38,9 +40,9 @@ class LinkBossCharacter(BasicEnemy):
         if len(self.projectiles) == self.MAXIMUM_PROJECTILES: return
         #selecting the direction to send it
         if(self.dx<0):
-            direction =1
+            direction =GV.LEFT
             sprite = Sprite("images/interactive-sprites/link/link-arrow-left.png")
         else:
-            direction =0
+            direction =GV.RIGHT
             sprite = Sprite("images/interactive-sprites/link/link-arrow-right.png")
         self.projectiles.append(Projectile(self.position.copy(), 300, direction, sprite, SPEED))

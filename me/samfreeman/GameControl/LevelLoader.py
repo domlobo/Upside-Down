@@ -34,8 +34,8 @@ class LevelLoader:
                          "images/background/mario/Mario-world-1.1.png",
                          cloudsURL,player,inter, "Mario-1")
 
-        marioTwo = Level("",
-                         "",
+        marioTwo = Level("images/background/mario/hills.png",
+                         "images/background/mario/Mario-world-1.1.png",
                          cloudsURL,player,inter, "Mario-2")
         marioThree = Level("",
                          "",
@@ -45,7 +45,7 @@ class LevelLoader:
                         "images/background/doom/second layer.png",
                          "", player,inter,"Doom-1")
         # Creating list of levels
-        self.levels =(tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne)
+        self.levels =[tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne]
         self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt")
         # Selecting the first level
         self.levelCounter=0
@@ -55,16 +55,16 @@ class LevelLoader:
     #called from Game when a level is over
     def nextlevel(self):
         self.player = self.currentLevel.returnPlayer()
-        self.player.position.x = 0
+        self.player.position.x = 50
         self.player.health = 100
-
-        if(self.levelCounter<len(self.levels)-1):
+        if(len(self.levels)>0):
             self.levelCounter +=1
             #reset the death counter after each stage (every 3 levels)
             if(self.levelCounter%3 == 0):
                 self.player.numberOfDeaths =0
                 self.player.maxUnlockedWeapon +=1
-            self.currentLevel = self.levels[self.levelCounter]
+            del self.levels[0]
+            self.currentLevel = self.levels[0]
             self.currentLevel.setPlayer(self.player)
             self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
             #stops the character sticking to the right hand side after the transition
@@ -77,18 +77,20 @@ class LevelLoader:
         if(self.player.numberOfDeaths <3):
             #go back to the start of the level
             self.player.numberOfDeaths +=1
-        else:
-            #go back to the start of the stage
-            self.player.numberOfDeaths =0
-            self.levelCounter -= self.levelCounter %3
-            self.currentLevel = self.levels[self.levelCounter]
-            #reset what everything
-            self.currentLevel.enemies = []
-            self.currentLevel.objects = []
+        # else:
+            ### this code is for restarting stage but we're required to go back to main menu
+            # #go back to the start of the stage
+            # self.player.numberOfDeaths =0
+            # self.levelCounter -= self.levelCounter %3
+            # self.currentLevel = self.levels[self.levelCounter]
+            # #reset what everything
+            # self.currentLevel.enemies = []
+            # self.currentLevel.objects = []
         #start level
         self.player.health = 100
         self.player.position.x = 50
         self.player.position.y = 300
+        self.player.attackingSword = False
         self.currentLevel.background.farBackgroundPos = Vector((self.currentLevel.background.FAR_BACKGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
         self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
         self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
