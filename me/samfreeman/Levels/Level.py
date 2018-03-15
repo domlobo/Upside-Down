@@ -8,6 +8,7 @@ from me.samfreeman.GameObject.Enemy import BasicEnemy
 from me.samfreeman.GameObject.StaticEnemy import StaticEnemy
 from me.samfreeman.GameObject.ProjectileEnemy import ProjectileEnemy
 from me.samfreeman.GameObject.LinkBossCharacter import LinkBossCharacter
+from me.samfreeman.GameObject.MarioBossCharacter import MarioBossCharacter
 from me.samfreeman.Helper.Display import DisplayBar
 from me.samfreeman.Helper.Background import Background
 from me.samfreeman.Helper.Vector import Vector
@@ -62,7 +63,8 @@ class Level:
                 runRight= Sprite(args[5], 1,int(args[6]), True)
                 self.enemies.append(LinkBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
             elif(args[7] == "bm\n"):
-                pass
+                runRight= Sprite(args[5], 1,int(args[6]), True)
+                self.enemies.append(MarioBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
             elif(args[7] == "bd\n"):
                 pass
         #load all the objects
@@ -98,6 +100,9 @@ class Level:
             enemy.draw(canvas, "Red")
             for proj in enemy.projectiles:
                 proj.draw(canvas, "Blue")
+            if hasattr(enemy, 'fireballs'):
+                for fball in enemy.fireballs:
+                    fball.draw(canvas,"Blue")
         for objectOnScreen in self.objects:
             objectOnScreen.draw(canvas, "Purple")
         self.displayBar.drawDisplayBar(canvas)
@@ -112,6 +117,9 @@ class Level:
         self.inter.checkCoinCollision(self.coins, self.player)
         for enemy in self.enemies:
             self.inter.checkObjectCollision(self.objects,enemy)
+            if hasattr(enemy, 'fireballs'):
+                for fball in enemy.fireballs:
+                    self.inter.checkObjectCollision(self.objects, fball)
             if enemy.health <= 0:
                 self.coins.append(enemy.dropCoin(100, 1))
         self.inter.checkKeyboard()

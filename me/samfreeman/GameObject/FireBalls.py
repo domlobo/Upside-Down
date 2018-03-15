@@ -6,7 +6,7 @@ import me.samfreeman.GameControl.GV as GV
 
 
 class FireBall(GameObject):
-    def __init__(self, position, velocity, direction, offset):
+    def __init__(self, position, velocity, direction, offset, damage =10):
         if direction == GV.RIGHT:
             self.shootVel = Vector((2 + velocity.x, 0))
             position.x += offset
@@ -16,10 +16,10 @@ class FireBall(GameObject):
 
         GameObject.__init__(self, position, self.shootVel, [60, 60], 50, Sprite(
                                                                             "images/interactive-sprites/mario/fireball.png",
-                                                                             1, 11))
+                                                                             1, 11, True))
         self.gravity = 0.5
         self.bounceCount = 0
-        self.damage = 10 # Can change to whatever
+        self.damage = damage
 
     def drop(self, ground):
         self.velocity.y += self.gravity
