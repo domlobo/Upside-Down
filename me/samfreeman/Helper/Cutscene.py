@@ -33,6 +33,8 @@ class Cutscene:
         self.title = ""
         self.frame = frame
         self.titleWidth = self.frame.get_canvas_textwidth(self.title, 40)
+        self.continueText = "Press q To Continue"
+        self.continueTextWidth = self.frame.get_canvas_textwidth(self.continueText, 30, "monospace")
 
         # Display
         self.contentBoundingBox = Rectangle(Vector((GV.CANVAS_WIDTH / 2, GV.CANVAS_HEIGHT / 2)), GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT * 0.5)
@@ -132,3 +134,4 @@ class Cutscene:
             # Draw Line
             canvas.draw_line((self.contentBoundingBox.position.x - self.gapSize, self.contentBoundingBox.bottom),
                              (self.contentBoundingBox.position.x + self.gapSize, self.contentBoundingBox.top), 5, "Black")
+        canvas.draw_text(self.continueText, ((GV.CANVAS_WIDTH - self.continueTextWidth) / 2, GV.CANVAS_HEIGHT * (5/6)), 30, "White", "monospace")

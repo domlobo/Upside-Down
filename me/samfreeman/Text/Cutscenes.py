@@ -15,11 +15,11 @@ class AllCutscenes:
         self.all[0].addText("Bob Froman",
                              "This is a test to see if the whole system works, I'm really hoping that it does",
                              self.playerSprite,
-                             "Froman", "Yes this test works well, and it is quite cool",
+                             "Jess Froman", "Yes this test works well, and it is quite cool",
                              self.wifeSprite)
         self.all[0].addText("Bob Froman", "Thanks for your input,  Bob, it was helpful",
                              self.playerSprite,
-                             "Froman", "Fuck off", self.wifeSprite)
+                             "Jess Froman", "Fuck off", self.wifeSprite)
         self.all[0].addText("Bob Froman", "This is the last test to test my function",
                              self.playerSprite)
         # IF YOU WANT THE SPEAKER TO GO FROM SINGLE TO DOUBLE, REPEAT THE TEXT IN THE FIRST SET OF ARGUMENTS
@@ -29,32 +29,16 @@ class AllCutscenes:
 
 
         # Second
-        self.all[1].setTitle("Part 1: The Beginning")
-        self.all[1].addText("Bob Froman",
-                            "This is a test to see if the whole system works, I'm really hoping that it does",
-                            self.playerSprite,
-                            "Froman", "Yes this test works well, and it is quite cool",
-                            self.wifeSprite)
-        self.all[1].addText("Bob Froman", "Thanks for your input,  Bob, it was helpful",
-                            self.playerSprite,
-                            "Froman", "Fuck off", self.wifeSprite)
-        self.all[1].addText("Bob Froman", "This is the last test to test my function",
-                            self.playerSprite)
-        # IF YOU WANT THE SPEAKER TO GO FROM SINGLE TO DOUBLE, REPEAT THE TEXT IN THE FIRST SET OF ARGUMENTS
-        # AFTER ADDING THE SINGLE
-        self.all[1].addText("Bob Froman", "This is the last test to test my function",
-                            self.playerSprite,
-                            "Link", "Yes it works",
-                            self.linkSprite)
-
+        self.all[1].setTitle("Part 2: First Contract")
+        self.all[1].addText("Bob Froman", "Testing", self.playerSprite, "Jess Froman", "Testing 3", self.wifeSprite)
         # Third
-
+        self.all[2].setTitle("Part 3: Highway To Hell")
 
         # Fourth
-
+        self.all[3].setTitle("Part 4: Moving Up In The World")
 
         # Fifth
-
+        self.all[4].setTitle("Part 5: Disappointment")
 
 
     def allScenes(self):
