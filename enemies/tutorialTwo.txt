@@ -1,3 +1,5 @@
+You can attack enemies with j.,Link
+You can also jump on them for more damage.,Link
 Alright - lets go on a trial run.,Link
 If you die you'll be respawned up to 3 times so keep trying.,Link
 Enemies
