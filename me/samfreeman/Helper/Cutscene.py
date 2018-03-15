@@ -99,7 +99,7 @@ class Cutscene:
 
     def drawCutSceneText(self, startY, text, canvas, lOrR, people):
         textLines = self.splitText(text, people)
-        offset = self.gapSize + 50
+        offset = self.gapSize + 80
         if not lOrR: offset = self.rightBoundingBox.left + 35
         i = 0
         for line in textLines:
@@ -109,18 +109,18 @@ class Cutscene:
     def drawLeft(self, canvas):
         nameLength = self.frame.get_canvas_textwidth(self.leftSpeaker[self.leftLineNumber], 15, "monospace")
         self.leftSprite[self.leftLineNumber].draw(Vector((self.gapSize, self.leftBoundingBox.position.y)), canvas, 100, 100)
-        self.leftSprite[self.leftLineNumber].animate()
+        self.leftSprite[self.leftLineNumber].startAnimation(8)
         canvas.draw_text(self.leftSpeaker[self.leftLineNumber], (self.gapSize - nameLength / 2, self.leftBoundingBox.position.y - 100 / 2),
                          15, "Black", "monospace")
-        self.drawCutSceneText(self.contentBoundingBox.top + self.gapSize * 2, self.leftAllText[self.leftLineNumber], canvas, True, self.numberOfSpeakers[self.leftLineNumber])
+        self.drawCutSceneText(self.contentBoundingBox.top + self.gapSize * 1.75, self.leftAllText[self.leftLineNumber], canvas, True, self.numberOfSpeakers[self.leftLineNumber])
 
     def drawRight(self, canvas):
         nameLength = self.frame.get_canvas_textwidth(self.rightSpeaker[self.rightLineNumber], 15, "monospace")
         self.rightSprite[self.rightLineNumber].draw(Vector((self.rightBoundingBox.right - self.gapSize, self.rightBoundingBox.position.y)), canvas, 100, 100)
-        self.rightSprite[self.rightLineNumber].animate()
+        self.rightSprite[self.rightLineNumber].startAnimation(8)
         canvas.draw_text(self.rightSpeaker[self.rightLineNumber], (self.rightBoundingBox.right - self.gapSize - nameLength / 2, self.rightBoundingBox.position.y - 100 / 2),
                          15, "Black", "monospace")
-        self.drawCutSceneText(self.contentBoundingBox.top + self.gapSize * 2, self.rightAllText[self.rightLineNumber], canvas, False, self.numberOfSpeakers[self.leftLineNumber])
+        self.drawCutSceneText(self.contentBoundingBox.top + self.gapSize * 1.75, self.rightAllText[self.rightLineNumber], canvas, False, self.numberOfSpeakers[self.leftLineNumber])
 
     def display(self, canvas):
         self.contentBoundingBox.draw(canvas, "White", "White")
