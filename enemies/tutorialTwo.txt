@@ -4,7 +4,7 @@ You only have a wooden sword - it doesn't do a lot of damage.,Link
 You can also jump on enemies to deal a high damage attack.,Link
 Make sure you stay clear of the enemy's attack or you will take damage.,Link
 Enemies
-400, 469,200,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
+400, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
 800, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
 1200, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s
 1350, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d

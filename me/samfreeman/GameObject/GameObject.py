@@ -1,6 +1,7 @@
 from me.samfreeman.Helper.Rectangle import Rectangle
 from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.Helper.Vector import Vector
+from me.samfreeman.Helper.Clock import Clock
 
 class GameObject:
     def __init__(self, position, velocity, dimensions, health, sprite=Sprite(""),notCollidable=0):
@@ -34,6 +35,9 @@ class GameObject:
         self.canMoveDown = True
 
         self.hasJumped = False
+        self.currentGround = self.position.y + self.dimensions[1]/2
+
+        self.checkPosition = True
 
     def setRemove(self):
         self.remove = True
@@ -48,6 +52,10 @@ class GameObject:
         self.health = amount
 
     def update(self, ground=0):
+        #check haven't fallen into ground
+        if self.checkPosition and self.velocity.y ==0 and self.position.y+self.dimensions[1]/2 > self.currentGround :
+            self.position.y = self.currentGround -self.dimensions[1]/2
+            self.checkPosition = False
         self.position.add(self.velocity)
         self.boundingBox.updateBox(self.position, self.dimensions[0], self.dimensions[1])
         if self.health <= 0: self.remove = True
