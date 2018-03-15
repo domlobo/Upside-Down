@@ -15,7 +15,7 @@ class ProjectileEnemy(BasicEnemy):
         Enemy.moveToPlayer(self)
         self.dx = self.player.position.x - self.position.x
 
-        if randint(0,CHANCE_TO_FIRE)  == 1:
+        if (randint(0,CHANCE_TO_FIRE)  == 1) and (self.direction ==  (self.player.directionState +1)%2):
             self.rangedAttack()
 
     def rangedAttackI(self):

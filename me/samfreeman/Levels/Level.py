@@ -141,7 +141,7 @@ class Level:
             if proj.boundingBox.right<0:
                 self.player.projectiles.remove(proj)
         for enemy in self.enemies[:]:
-            if enemy.boundingBox.right<0 or (enemy.boundingBox.left>GV.CANVAS_WIDTH and not(self.background.isStillRunning())):
+            if enemy.boundingBox.right<0 or (enemy.boundingBox.left>=GV.CANVAS_WIDTH and not(self.background.isStillRunning())):
                 self.enemies.remove(enemy)
         for currentObject in self.objects[:]:
             if currentObject.boundingBox.right<0:

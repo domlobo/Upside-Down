@@ -27,7 +27,7 @@ class LevelLoader:
             cloudsURL,player,inter, "Tutorial-2")
         tutorialThree = Level(
             "images/background/link/link-background.jpg",
-            "images/background/link/link-tutorial-world.png",
+            "images/background/link/link-boss-stage.png",
             cloudsURL,player,inter, "Tutorial-3")
 
         marioOne = Level("images/background/mario/hills.png",
