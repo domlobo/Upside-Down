@@ -6,6 +6,7 @@ import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.GameObject.Enemy import BasicEnemy
 from me.samfreeman.GameObject.StaticEnemy import StaticEnemy
+from me.samfreeman.GameObject.ProjectileEnemy import ProjectileEnemy
 from me.samfreeman.GameObject.LinkBossCharacter import LinkBossCharacter
 from me.samfreeman.Helper.Display import DisplayBar
 from me.samfreeman.Helper.Background import Background
@@ -52,6 +53,11 @@ class Level:
             elif(args[7] == "s\n"):
                 #args[5] and [6] are left blank
                 self.enemies.append(StaticEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft))
+            elif(args[7] == "r\n"):
+                runRight= Sprite(args[5], 1,int(args[6]), True)
+                leftShoot = Sprite(args[8],1, int(args[9]), True)
+                righttShoot = Sprite(args[10],1, int(args[11]), True)
+                self.enemies.append(ProjectileEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight, leftShoot, rightShoot))
             elif(args[7] == "bl\n"):
                 runRight= Sprite(args[5], 1,int(args[6]), True)
                 self.enemies.append(LinkBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
