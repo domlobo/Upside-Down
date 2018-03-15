@@ -30,6 +30,9 @@ class Player(GameObject):
         self.swordBBoxMove = False
         self.swordHit = False
 
+        #records if damage has been dealt this jump
+        self.jumpHit = False
+
         self.offset = 0
         self.distanceFromFloor = 0 # used for crouching
 
