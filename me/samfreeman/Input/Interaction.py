@@ -6,41 +6,53 @@ from me.samfreeman.Input.Keyboard import Keyboard
 
 class Interaction:
 
-    def __init__(self, player, text, cs):
+    def __init__(self, player, text, cs, state):
         self.keyboard = Keyboard()
         self.player = player
         self.text = text #----> used for testing purposes
         self.cs = cs
+        self.state = state
 
     # handling keyboard input for player
     def checkKeyboard(self):
-        # Means no running an shooting
-        if not self.player.attackingSword:
-            if self.keyboard.right:
-                self.player.moveRight()
-            if self.keyboard.left:
-                self.player.moveLeft()
+        if self.state.inLevel:
+            if self.state.levelPlay:
+                # Means no running an shooting
+                if not self.player.attackingSword:
+                    if self.keyboard.right:
+                        self.player.moveRight()
+                    if self.keyboard.left:
+                        self.player.moveLeft()
+                    if self.keyboard.up:
+                        self.player.jump()
+                    if self.keyboard.down:
+                        self.player.crouch()
+                if self.keyboard.j and not self.player.hasJumped: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
+                    self.player.swordAttack()
+                if self.keyboard.k and (self.player.maxUnlockedWeapon >1):
+                    self.player.fireballAttack()
+                if self.keyboard.l and self.player.maxUnlockedWeapon >2:
+                    self.player.shoot()
+            else:
+                if self.keyboard.q:
+                    self.text.nextText()
+                    if self.text.done:
+                        self.state.textToPlay()
+                    self.keyboard.q=False
+
+            if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
+                self.player.stand()
+
+        elif self.state.cutScene:
+            if self.keyboard.q:
+                self.cs[0].nextLine()
+                self.keyboard.q=False
+
+        elif self.state.mainMenu:
             if self.keyboard.up:
-                self.player.jump()
-            if self.keyboard.down:
-                self.player.crouch()
-        if self.keyboard.j and not self.player.hasJumped: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
-            self.player.swordAttack()
-        if self.keyboard.k and (self.player.maxUnlockedWeapon >1):
-            self.player.fireballAttack()
-        if self.keyboard.l and self.player.maxUnlockedWeapon >2:
-            self.player.shoot()
-        if self.keyboard.q:
-            self.text.nextText()
-            ####### EXAMPLE OF HOW TO USE CUTSCENE
-            # self.cs.nextLine()
-            self.keyboard.q=False
+                self.state.menuToCutScene()
+                # self.state.cutSceneToLevel()
 
-        if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
-            self.player.stand()
-
-        # if (not(self.keyboard.right and self.keyboard.left)) and (self.player.direction != 0):
-        #     self.player.standStill()
 
 
     def checkProjectileCollision(self,enemies,player):

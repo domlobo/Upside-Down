@@ -11,9 +11,11 @@ import me.samfreeman.GameControl.GV as GV
 
 class LevelLoader:
 
-    def __init__(self,player,inter):
+    def __init__(self,player,inter, state):
         self.player = player
         self.inter = inter
+        self.state = state
+
         #setting up levels
         cloudsURL = "images/background/mario/Mario-world-clouds.png"
         #tutorial (zelda) levels
@@ -57,18 +59,23 @@ class LevelLoader:
         self.player = self.currentLevel.returnPlayer()
         self.player.position.x = 50
         self.player.health = 100
+
+        self.state.playToText()
+
         if(len(self.levels)>0):
             self.levelCounter +=1
             #reset the death counter after each stage (every 3 levels)
             if(self.levelCounter%3 == 0):
                 self.player.numberOfDeaths =0
                 self.player.maxUnlockedWeapon +=1
+                self.state.playToCutScene()
             del self.levels[0]
             self.currentLevel = self.levels[0]
             self.currentLevel.setPlayer(self.player)
             self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
             #stops the character sticking to the right hand side after the transition
             GameObject.update(self.currentLevel.player)
+
 
     def gameOver(self):
         #three retries
@@ -95,3 +102,4 @@ class LevelLoader:
         self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
         self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
         GameObject.update(self.currentLevel.player)
+        self.state.gameOverToLevel()
