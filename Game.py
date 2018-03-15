@@ -52,7 +52,7 @@ def update(canvas):
             del cutscenes[0]
             state.cutSceneToLevel()
         inter.checkKeyboard()
-    elif state.levelText:
+    elif state.inLevel:
         if levelLoader.currentLevel.levelComplete():
             levelLoader.nextlevel()
         levelLoader.currentLevel.draw(canvas)
@@ -70,14 +70,6 @@ def update(canvas):
         levelLoader.gameOver()
         text.addLine("You died", speaker)
 
-####### EXAMPLE OF HOW TO USE CUTSCENE
-
-def updateTest(canvas):
-    inter.checkKeyboard()
-    cs.display(canvas)
-
-
-#everytime the game state changes, call this method
 
 frame.set_draw_handler(update)
 frame.set_keydown_handler(inter.keyboard.keyDown)

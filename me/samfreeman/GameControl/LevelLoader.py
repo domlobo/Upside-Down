@@ -78,6 +78,7 @@ class LevelLoader:
 
 
     def gameOver(self):
+        self.state.playToText()
         #three retries
         self.currentLevel.enemies = []
         self.currentLevel.objects = []
