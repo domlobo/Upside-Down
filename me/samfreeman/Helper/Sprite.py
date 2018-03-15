@@ -45,7 +45,6 @@ class Sprite:
                 if self.frameIndex[0] == self.startOffset[0]:
                     # Reached the end of the line
                     if full:
-                        print("here")
                         self.frameIndex[1] = (self.frameIndex[1] + 1) % (self.rows)
                     elif self.animateOnce:
                         self.isComplete = True

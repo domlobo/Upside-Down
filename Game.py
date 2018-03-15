@@ -16,7 +16,7 @@ from me.samfreeman.Text.Cutscenes import AllCutscenes
 frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
 
 state = State()
-menu = MainMenu()
+menu = MainMenu(frame)
 ####### EXAMPLE OF HOW TO USE CUTSCENE
 
 acs = AllCutscenes(frame)
