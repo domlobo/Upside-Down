@@ -1,3 +1,7 @@
 Enemies
+450,300,350,images/interactive-sprites/mario/mario-boss-run-left.png,26,images/interactive-sprites/mario/mario-boss-run-right.png,26,bl
 Walls
 Floor
+images/interactive-sprites/mario/mario-boss-bridge.png,mid,445
+images/background/mario/mario-boss-pillar.png,56,502
+images/background/mario/mario-boss-pillar.png,776,502
