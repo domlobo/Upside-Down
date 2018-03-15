@@ -51,3 +51,5 @@ class LinkBossCharacter(BasicEnemy):
             direction =GV.RIGHT
             sprite = Sprite("images/interactive-sprites/link/link-arrow-right.png")
         self.projectiles.append(Projectile(self.position.copy(), 300, direction, sprite, SPEED))
+
+
