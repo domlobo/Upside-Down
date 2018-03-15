@@ -127,7 +127,8 @@ class Interaction:
                 entity.velocity.x *= -1
             if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y >= currentObject.boundingBox.bottom):
                 entity.canMoveUp = False
-                entity.velocity.y *= -1
+                #slowly bounce back
+                entity.velocity.y *= -0.01
                 entity.position.y = currentObject.boundingBox.bottom + (entity.dimensions[1]/2)
 
     def checkCoinCollision(self,coins, player):
