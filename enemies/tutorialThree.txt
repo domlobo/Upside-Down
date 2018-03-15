@@ -1,21 +1,9 @@
-Alright - lets go on a trial run.,Link
-If you die you'll be respawned up to 3 times so keep trying.,Link
+This power level, I've only seen such a thing once before.,Link
+I failed then. I must not fail now.,Link
+I must kill you!,Link
+I'm sorry but I've failed you as a master.,Link
 Enemies
-600, 469,200,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
-800, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
-1200, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s
-1450, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
-1500, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s
-1650, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
-1800, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s
-3500,469,350,images/interactive-sprites/link/link-walk-left.png,4,images/interactive-sprites/link/link-walk-right.png,4,bl
+500,469,350,images/interactive-sprites/link/link-walk-left.png,4,images/interactive-sprites/link/link-walk-right.png,4,bl
 Walls
-images/interactive-sprites/link/link-platform.png, 350, 390,0
-images/interactive-sprites/link/link-platform.png, 670, 310,0
-images/interactive-sprites/link/link-platform.png, 1250, 390,0
-images/interactive-sprites/link/link-platform.png, 1800, 390,0
-images/interactive-sprites/link/link-platform.png, 2450, 390,0
-images/interactive-sprites/link/link-platform.png, 3000, 310,0
-images/interactive-sprites/link/link-platform.png, 3320, 390,0
 Floor
 images/background/link/link-floor.png,mid,557

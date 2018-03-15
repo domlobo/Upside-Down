@@ -22,7 +22,7 @@ class LinkBossCharacter(BasicEnemy):
             self.damage=3
             if abs(self.dx) < 100:
                 self.attack()
-            else:
+            elif (self.direction ==  (self.player.directionState +1)%2):
                 self.rangedAttack()
         else:
             self.damage =0
