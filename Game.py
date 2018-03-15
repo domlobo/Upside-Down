@@ -22,12 +22,10 @@ menu = MainMenu()
 acs = AllCutscenes(frame)
 cutscenes = acs.allScenes()
 
-# cs = Cutscene(frame)
 
 
 player = Player(Vector((50, GV.CANVAS_HEIGHT - 130)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True))
 
-####### EXAMPLE OF HOW TO USE CUTSCENE
 
 text = TextOverlay("Welcome", "Link")
 

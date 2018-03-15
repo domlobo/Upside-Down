@@ -34,7 +34,7 @@ class State:
             self.levelText = True
 
     def playToCutScene(self):
-        if self.levelPlay:
+        if self.inLevel:
             self.levelPlay = False
             self.inLevel = False
             self.cutScene = True

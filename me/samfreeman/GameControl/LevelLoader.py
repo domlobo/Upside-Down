@@ -65,16 +65,18 @@ class LevelLoader:
         if(len(self.levels)>0):
             self.levelCounter +=1
             #reset the death counter after each stage (every 3 levels)
-            if(self.levelCounter%3 == 0):
-                self.player.numberOfDeaths =0
-                self.player.maxUnlockedWeapon +=1
-                self.state.playToCutScene()
+
             del self.levels[0]
             self.currentLevel = self.levels[0]
             self.currentLevel.setPlayer(self.player)
             self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
             #stops the character sticking to the right hand side after the transition
             GameObject.update(self.currentLevel.player)
+            if (self.levelCounter % 3 == 0):
+                self.player.numberOfDeaths = 0
+                self.player.maxUnlockedWeapon += 1
+                self.state.playToCutScene()
+                print(self.state.cutScene)
 
 
     def gameOver(self):
