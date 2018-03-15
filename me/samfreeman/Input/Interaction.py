@@ -51,7 +51,7 @@ class Interaction:
         elif self.state.mainMenu:
             if self.keyboard.up:
                 self.state.menuToCutScene()
-                self.state.cutSceneToLevel()
+                # self.state.cutSceneToLevel()
 
 
 

@@ -10,6 +10,7 @@ from me.samfreeman.Helper.TextOverlay import TextOverlay
 from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.GameControl.State import State
 from me.samfreeman.Levels.MainMenu import MainMenu
+from me.samfreeman.Text.Cutscenes import AllCutscenes
 
 
 frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
@@ -18,7 +19,8 @@ state = State()
 menu = MainMenu()
 ####### EXAMPLE OF HOW TO USE CUTSCENE
 
-cutscenes = [Cutscene(frame) for i in range(6)]
+acs = AllCutscenes(frame)
+cutscenes = acs.allScenes()
 
 # cs = Cutscene(frame)
 
