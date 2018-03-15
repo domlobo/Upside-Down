@@ -9,7 +9,7 @@ from random import *
 class LinkBossCharacter(BasicEnemy):
 
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
-        BasicEnemy.__init__(self,position,health,player,runLeft,runRight)
+        BasicEnemy.__init__(self,position,0,player,runLeft,runRight)
         self.damage = 0
         self.MAXIMUM_PROJECTILES = 2
 

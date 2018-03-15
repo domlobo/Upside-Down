@@ -25,30 +25,36 @@ class Sprite:
         self.startOffset = (0,0)
         self.frameDuration = 5
         self.animationLength = self.cols
+        self.multipleLines = False
         self.animateOnce = True
         self.isComplete = False
         self.needAnimation = needAnimation
         if self.needAnimation:
             self.clock = Clock()
 
-    def animate(self):
+    def animate(self, full=False):
         if self.needAnimation:
             # Assumes animation is in one line
             if self.clock.transition(self.frameDuration):
-                self.frameIndex[1] = self.startOffset[1]
+                if not full: self.frameIndex[1] = self.startOffset[1]
                 self.frameIndex[0] = self.startOffset[0] + ((self.frameIndex[0] + 1)
                                       % (self.startOffset[0] // self.cols + self.animationLength))
 
+
+
                 if self.frameIndex[0] == self.startOffset[0]:
                     # Reached the end of the line
-                    if self.animateOnce:
+                    if full:
+                        self.frameIndex[1] = (self.frameIndex[1] + 1) % (self.rows)
+                    elif self.animateOnce:
                         self.isComplete = True
                     else: self.frameIndex[0] = self.startOffset[0]
 
     def stopAnimation(self):
         self.isComplete = True
 
-    def startAnimation(self, speed = 0):
+    def startAnimation(self, speed = 0, multipleLines = False):
+        self.multipleLines = multipleLines
         self.isComplete = False
         self.frameDuration = self.frameDuration if speed == 0 else speed
 
@@ -89,7 +95,8 @@ class Sprite:
         )
 
         # Animate
-        if not self.isComplete: self.animate()
+        if not self.isComplete:
+                self.animate(self.multipleLines)
 
         # Update the clock
         if self.needAnimation: self.clock.tick()
