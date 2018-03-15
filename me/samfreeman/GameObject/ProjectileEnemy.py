@@ -1,6 +1,7 @@
 from me.samfreeman.GameObject.Enemy import BasicEnemy
+from me.samfreeman.Helper.Sprite import Sprite
 import me.samfreeman.GameControl.GV as GV
-class ProectileEnemy(BasicEnemy):
+class ProjectileEnemy(BasicEnemy):
 
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite(""), leftShoot=Sprite(""), rightShoot=Sprite("")):
         Enemy.init(self, position, health, player, runLeft=Sprite(""), runRight=Sprite(""))
