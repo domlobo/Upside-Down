@@ -1,5 +1,5 @@
 Enemies
-450,300,350,images/interactive-sprites/mario/mario-boss-run-left.png,26,images/interactive-sprites/mario/mario-boss-run-right.png,26,bl
+450,300,350,images/interactive-sprites/mario/mario-boss-run-left.png,26,images/interactive-sprites/mario/mario-boss-run-right.png,26,bm
 Walls
 Floor
 images/interactive-sprites/mario/mario-boss-bridge.png,mid,445
