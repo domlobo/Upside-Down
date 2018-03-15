@@ -78,8 +78,8 @@ class BasicEnemy(GameObject):
                 self.velocity *=  -1
                 self.direction = (self.direction+1) %2
                 self.lastSwitch = "Switched"
-            if self.sprite.hasPath:
-                self.sprite.startAnimation(5)
+        if self.sprite.hasPath:
+            self.sprite.startAnimation(5)
 
             if self.canMoveDown:
                 self.velocity.y +=self.gravity
