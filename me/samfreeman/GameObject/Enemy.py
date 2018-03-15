@@ -14,7 +14,7 @@ class BasicEnemy(GameObject):
             dims = [runLeft.frameWidth, runLeft.frameHeight]
         GameObject.__init__(self, position, Vector((0.2, 0)),dims , health)
         self.player = player
-        self.direction = 0
+        self.direction = GV.RIGHT
         self.damage = 0.5
         self.projectiles = []
 
@@ -25,6 +25,7 @@ class BasicEnemy(GameObject):
         self.largeSearch = Rectangle(self.position, 600, 400)
         self.smallSearch = Rectangle(self.position, 150, 150)
         self.movementRectangle = Rectangle(self.position, 200, 200)
+        self.isChasing = False
         self.sprite = runRight
         self.runningLeft = runLeft
         self.runningRight = runRight
@@ -46,6 +47,7 @@ class BasicEnemy(GameObject):
             if self.smallSearch.overlaps(self.player.boundingBox):
                 pass
         else:
+            self.isChasing = False
             self.move()
 
     def moveToPlayer(self):
@@ -55,27 +57,33 @@ class BasicEnemy(GameObject):
 
         dl = Vector((dx, dy)).normalize()
 
-        if dl.x < 0 and self.canMoveLeft:
-            self.sprite = self.runningLeft
-            if self.velocity.x <= -self.maxVel[0]:
-                self.velocity.x = -self.maxVel[0]
-            else: self.velocity.x += dl.x
-            self.lastSwitch = "Null"
-        elif dl.x >=0 and self.canMoveRight:
-            self.sprite = self.runningRight
-            if self.velocity.x >= self.maxVel[0]:
-                self.velocity.x = self.maxVel[0]
-            else: self.velocity.x += dl.x
-            self.lastSwitch = "Null"
-        elif self.lastSwitch != "Switched":
-            self.velocity *=  -1
-            self.lastSwitch = "Switched"
-        if self.sprite.hasPath:
-            self.sprite.startAnimation(5)
+        #only move to player if the enemy is facing the player
+        if self.isChasing or (self.direction == self.player.directionState+1)%2:
+            self.isChasing = True
+            if dl.x < 0 and self.canMoveLeft:
+                self.sprite = self.runningLeft
+                self.direction = GV.LEFT
+                if self.velocity.x <= -self.maxVel[0]:
+                    self.velocity.x = -self.maxVel[0]
+                else: self.velocity.x += dl.x
+                self.lastSwitch = "Null"
+            elif dl.x >=0 and self.canMoveRight:
+                self.direction = GV.RIGHT
+                self.sprite = self.runningRight
+                if self.velocity.x >= self.maxVel[0]:
+                    self.velocity.x = self.maxVel[0]
+                else: self.velocity.x += dl.x
+                self.lastSwitch = "Null"
+            elif self.lastSwitch != "Switched":
+                self.velocity *=  -1
+                self.direction = (self.direction+1) %2
+                self.lastSwitch = "Switched"
+            if self.sprite.hasPath:
+                self.sprite.startAnimation(5)
 
-        if self.canMoveDown:
-            self.velocity.y +=self.gravity
-            self.velocity.x = 0
+            if self.canMoveDown:
+                self.velocity.y +=self.gravity
+                self.velocity.x = 0
 
     def move(self):
         # if self.position.x >GV.CANVAS_WIDTH+self.sprite.frameWidth/2:
@@ -85,12 +93,15 @@ class BasicEnemy(GameObject):
         if(self.position.x >= self.movementRectangle.right) or (self.position.x <= self.movementRectangle.left):
             self.velocity.x*= -1
             self.lastSwitch = "Null"
+            self.direction = (self.direction+1) %2
         elif (not(self.canMoveRight) and self.lastSwitch != "Right"):
             self.velocity.x*= -1
             self.lastSwitch = "Right"
+            self.direction = GV.LEFT
         elif(not(self.canMoveLeft) and self.lastSwitch != "Left"):
             self.velocity.x*= -1
             self.lastSwitch = "Left"
+            self.direction = GV.RIGHT
 
         if (self.velocity.x < 0) and self.canMoveLeft:
             self.sprite = self.runningLeft
