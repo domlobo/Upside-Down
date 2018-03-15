@@ -10,6 +10,7 @@ class Cutscene:
         self.numberOfSpeakers = [2] # Use 1 or 2
 
         self.gapSize = GV.CANVAS_WIDTH / 12
+        self.isFinished = False
 
         # LHS
         self.leftSpeaker = []
@@ -62,6 +63,7 @@ class Cutscene:
                 self.leftLineNumber += 1
                 if self.numberOfSpeakers == 1: self.rightLineNumber += 1
             else: self.rightLineNumber += 1
+        else: self.isFinished = True
 
     def clear(self):
         # Clears/resets all content

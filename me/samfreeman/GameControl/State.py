@@ -39,7 +39,7 @@ class State:
             self.inLevel = False
             self.cutScene = True
 
-    def death(self):
+    def gameToDeath(self):
         if self.levelPlay:
             self.levelPlay = False
             self.inLevel = False

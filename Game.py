@@ -17,23 +17,25 @@ frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS
 state = State()
 menu = MainMenu()
 ####### EXAMPLE OF HOW TO USE CUTSCENE
-cs = Cutscene(frame)
 
-state = State()
+cutscenes = [Cutscene(frame) for i in range(6)]
+
+# cs = Cutscene(frame)
+
 
 player = Player(Vector((50, GV.CANVAS_HEIGHT - 130)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True))
 
 ####### EXAMPLE OF HOW TO USE CUTSCENE
-cs.setTitle("Part 1: The Beginning")
-cs.addText("Samuel", "This is a test to see if the whole system works, I'm really hoping that it does", player.currentSprite.spriteFromIndex([1,1]),
+cutscenes[0].setTitle("Part 1: The Beginning")
+cutscenes[0].addText("Samuel", "This is a test to see if the whole system works, I'm really hoping that it does", player.currentSprite.spriteFromIndex([1,1]),
            "Fredsadi", "Yes this test works well, and it is quite cool", player.currentSprite.spriteFromIndex([9,1]))
-cs.addText("Samuel", "Thanks for your input,  Bob, it was helpful", player.currentSprite.spriteFromIndex([1,1]),
+cutscenes[0].addText("Samuel", "Thanks for your input,  Bob, it was helpful", player.currentSprite.spriteFromIndex([1,1]),
            "Bob", "Fuck off", player.currentSprite.spriteFromIndex([7,1]))
-cs.addText("Lorenzo", "This is the last test to test my function", player.currentSprite.spriteFromIndex([1,1]))
+cutscenes[0].addText("Lorenzo", "This is the last test to test my function", player.currentSprite.spriteFromIndex([1,1]))
 
 text = TextOverlay("Welcome", "Link")
 
-inter = Interaction(player, text, cs, state)
+inter = Interaction(player, text, cutscenes, state)
 
 music = simplegui._load_local_sound("Music/mii.ogg")
 
@@ -45,22 +47,27 @@ def update(canvas):
         menu.draw(canvas)
         inter.checkKeyboard()
     elif state.cutScene:
-        pass
+        cutscenes[0].display(canvas)
+        if cutscenes[0].isFinished:
+            del cutscenes[0]
+            state.cutSceneToLevel()
+        inter.checkKeyboard()
     elif state.levelText:
         if levelLoader.currentLevel.levelComplete():
             levelLoader.nextlevel()
         levelLoader.currentLevel.draw(canvas)
         text.display(canvas)
         music.play()
-    elif state.death:
         if (levelLoader.currentLevel.player.health <= 0 or levelLoader.currentLevel.player.position.y > GV.CANVAS_HEIGHT):
-            if (levelLoader.levelCounter < 3):
-                speaker = "Link"
-            else:
-                speaker = "Ghost of Link"
+            state.gameToDeath()
+    elif state.death:
+        if (levelLoader.levelCounter < 3):
+            speaker = "Link"
+        else:
+            speaker = "Ghost of Link"
 
-            # text.nextText()
-            levelLoader.gameOver()
+        # text.nextText()
+        levelLoader.gameOver()
         text.addLine("You died", speaker)
 
 ####### EXAMPLE OF HOW TO USE CUTSCENE
