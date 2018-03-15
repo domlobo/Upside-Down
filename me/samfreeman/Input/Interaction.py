@@ -12,6 +12,7 @@ class Interaction:
         self.text = text #----> used for testing purposes
         self.cs = cs
         self.state = state
+        self.justCrouched=False
 
     # handling keyboard input for player
     def checkKeyboard(self):
@@ -27,6 +28,7 @@ class Interaction:
                         self.player.jump()
                     if self.keyboard.down:
                         self.player.crouch()
+                        self.justCrouched = True
                 if self.keyboard.j and not self.player.hasJumped: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
                     self.player.swordAttack()
                 if self.keyboard.k and (self.player.maxUnlockedWeapon >1):
@@ -42,6 +44,9 @@ class Interaction:
 
             if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
                 self.player.stand()
+                if self.justCrouched:
+                    self.justCrouched = False
+                    self.player.checkPosition = True
 
         elif self.state.cutScene:
             if self.keyboard.q:
