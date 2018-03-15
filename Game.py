@@ -26,12 +26,6 @@ cutscenes = [Cutscene(frame) for i in range(6)]
 player = Player(Vector((50, GV.CANVAS_HEIGHT - 130)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True))
 
 ####### EXAMPLE OF HOW TO USE CUTSCENE
-cutscenes[0].setTitle("Part 1: The Beginning")
-cutscenes[0].addText("Samuel", "This is a test to see if the whole system works, I'm really hoping that it does", player.currentSprite.spriteFromIndex([1,1]),
-           "Fredsadi", "Yes this test works well, and it is quite cool", player.currentSprite.spriteFromIndex([9,1]))
-cutscenes[0].addText("Samuel", "Thanks for your input,  Bob, it was helpful", player.currentSprite.spriteFromIndex([1,1]),
-           "Bob", "Fuck off", player.currentSprite.spriteFromIndex([7,1]))
-cutscenes[0].addText("Lorenzo", "This is the last test to test my function", player.currentSprite.spriteFromIndex([1,1]))
 
 text = TextOverlay("Welcome", "Link")
 
@@ -67,8 +61,11 @@ def update(canvas):
             speaker = "Ghost of Link"
 
         # text.nextText()
-        levelLoader.gameOver()
         text.addLine("You died", speaker)
+        state.deathToGameOver()
+
+    elif state.gameOver:
+        levelLoader.gameOver()
 
 
 frame.set_draw_handler(update)

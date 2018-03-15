@@ -49,3 +49,9 @@ class State:
         if self.death:
             self.death = False
             self.gameOver = True
+
+    def gameOverToLevel(self):
+        if self.gameOver:
+            self.gameOver = False
+            self.inLevel = True
+            self.levelText = True

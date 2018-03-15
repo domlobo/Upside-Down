@@ -49,7 +49,9 @@ class Interaction:
                 self.keyboard.q=False
 
         elif self.state.mainMenu:
-            if self.keyboard.up: self.state.menuToCutScene()
+            if self.keyboard.up:
+                self.state.menuToCutScene()
+                self.state.cutSceneToLevel()
 
 
 

@@ -78,7 +78,6 @@ class LevelLoader:
 
 
     def gameOver(self):
-        self.state.playToText()
         #three retries
         self.currentLevel.enemies = []
         self.currentLevel.objects = []
@@ -103,3 +102,4 @@ class LevelLoader:
         self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
         self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
         GameObject.update(self.currentLevel.player)
+        self.state.gameOverToLevel()
