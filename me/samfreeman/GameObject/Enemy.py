@@ -8,6 +8,7 @@ import me.samfreeman.GameControl.GV as GV
 
 
 class BasicEnemy(GameObject):
+
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
         dims = [30,60]
         if runLeft.hasPath:
@@ -57,6 +58,8 @@ class BasicEnemy(GameObject):
 
         dl = Vector((dx, dy)).normalize()
 
+        self.checkOutSideMovementBox()
+
         #only move to player if the enemy is facing the player
         if self.isChasing or (self.direction == self.player.directionState+1)%2:
             self.isChasing = True
@@ -90,18 +93,7 @@ class BasicEnemy(GameObject):
         #     return
         speed = 0.9
         #switch direction if you can't move
-        if(self.position.x >= self.movementRectangle.right) or (self.position.x <= self.movementRectangle.left):
-            self.velocity.x*= -1
-            self.lastSwitch = "Null"
-            self.direction = (self.direction+1) %2
-        elif (not(self.canMoveRight) and self.lastSwitch != "Right"):
-            self.velocity.x*= -1
-            self.lastSwitch = "Right"
-            self.direction = GV.LEFT
-        elif(not(self.canMoveLeft) and self.lastSwitch != "Left"):
-            self.velocity.x*= -1
-            self.lastSwitch = "Left"
-            self.direction = GV.RIGHT
+        self.checkOutSideMovementBox()
 
         if (self.velocity.x < 0) and self.canMoveLeft:
             self.sprite = self.runningLeft
@@ -122,6 +114,20 @@ class BasicEnemy(GameObject):
 
     def dropCoin(self, size, cost):
         return Coin(self.position, size, cost)
+
+    def checkOutSideMovementBox(self):
+        if(self.position.x >= self.movementRectangle.right) or (self.position.x <= self.movementRectangle.left):
+            self.velocity.x*= -1
+            self.lastSwitch = "Null"
+            self.direction = (self.direction+1) %2
+        elif (not(self.canMoveRight) and self.lastSwitch != "Right"):
+            self.velocity.x*= -1
+            self.lastSwitch = "Right"
+            self.direction = GV.LEFT
+        elif(not(self.canMoveLeft) and self.lastSwitch != "Left"):
+            self.velocity.x*= -1
+            self.lastSwitch = "Left"
+            self.direction = GV.RIGHT
 
     def update(self):
         GameObject.update(self)

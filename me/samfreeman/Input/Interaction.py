@@ -3,49 +3,68 @@ try:
 except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 from me.samfreeman.Input.Keyboard import Keyboard
+from me.samfreeman.GameObject.FireBalls import FireBall
 
 class Interaction:
 
-    def __init__(self, player, text, cs):
+    def __init__(self, player, text, cs, state):
         self.keyboard = Keyboard()
         self.player = player
         self.text = text #----> used for testing purposes
         self.cs = cs
+        self.state = state
+        self.justCrouched=False
 
     # handling keyboard input for player
     def checkKeyboard(self):
-        # Means no running an shooting
-        if not self.player.attackingSword:
-            if self.keyboard.right:
-                self.player.moveRight()
-            if self.keyboard.left:
-                self.player.moveLeft()
+        if self.state.inLevel:
+            if self.state.levelPlay:
+                # Means no running an shooting
+                if not self.player.attackingSword:
+                    if self.keyboard.right:
+                        self.player.moveRight()
+                    if self.keyboard.left:
+                        self.player.moveLeft()
+                    if self.keyboard.up:
+                        self.player.jump()
+                    if self.keyboard.down:
+                        self.player.crouch()
+                        self.justCrouched = True
+                if self.keyboard.j and not self.player.hasJumped: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
+                    self.player.swordAttack()
+                if self.keyboard.k and (self.player.maxUnlockedWeapon >1):
+                    self.player.fireballAttack()
+                if self.keyboard.l and self.player.maxUnlockedWeapon >2:
+                    self.player.shoot()
+            else:
+                if self.keyboard.q:
+                    self.text.nextText()
+                    if self.text.done:
+                        self.state.textToPlay()
+                    self.keyboard.q=False
+
+            if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
+                self.player.stand()
+                if self.justCrouched:
+                    self.justCrouched = False
+                    self.player.checkPosition = True
+
+        elif self.state.cutScene:
+            if self.keyboard.q:
+                self.cs[0].nextLine()
+                self.keyboard.q=False
+
+        elif self.state.mainMenu:
             if self.keyboard.up:
-                self.player.jump()
-            if self.keyboard.down:
-                self.player.crouch()
-        if self.keyboard.j and not self.player.hasJumped: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
-            self.player.swordAttack()
-        if self.keyboard.k and (self.player.maxUnlockedWeapon >1):
-            self.player.fireballAttack()
-        if self.keyboard.l and self.player.maxUnlockedWeapon >2:
-            self.player.shoot()
-        if self.keyboard.q:
-            self.text.nextText()
-            ####### EXAMPLE OF HOW TO USE CUTSCENE
-            # self.cs.nextLine()
-            self.keyboard.q=False
+                self.state.menuToCutScene()
+                # self.state.cutSceneToLevel()
 
-        if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
-            self.player.stand()
-
-        # if (not(self.keyboard.right and self.keyboard.left)) and (self.player.direction != 0):
-        #     self.player.standStill()
 
 
     def checkProjectileCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
-        damageDealt = False
+        damageDealtSword = False
+        damageDealtJump = False
         for enemy in enemies[:]:
             #player collision damage
             if player.boundingBox.overlaps(enemy.boundingBox):
@@ -69,13 +88,20 @@ class Interaction:
                     # Collision
                     enemy.changeHealth(-fball.damage)
                     fball.remove = True
+            #fireball damage for player
+            if hasattr(enemy,'fireballs'):
+                for fball in enemy.fireballs[:]:
+                    if player.boundingBox.overlaps(fball.boundingBox):
+                        player.changeHealth(-fball.damage)
+                        fball.remove = True
             #sword damage
             if player.swordBoundingBox.overlaps(enemy.boundingBox) and not(player.swordHit):
                 enemy.changeHealth(-player.swordDamage)
-                damageDealt = True
+                damageDealtSword = True
             #jumping on enemy damage
-            if enemy.boundingBox.top < player.boundingBox.bottom and(enemy.position.x <= player.boundingBox.right and enemy.position.x >= player.boundingBox.left and enemy.position.y >= player.boundingBox.bottom):
+            if enemy.boundingBox.top < player.boundingBox.bottom and(enemy.position.x <= player.boundingBox.right and enemy.position.x >= player.boundingBox.left and enemy.position.y >= player.boundingBox.bottom) and not(player.jumpHit):
                 enemy.changeHealth(-50)
+                damageDealtJump = True
             if enemy.remove: enemies.remove(enemy)
             #stop enemy walking through player
             if (enemy.boundingBox.right > player.boundingBox.left) and (enemy.position.x < player.position.x) and (enemy.position.y <= player.boundingBox.bottom and enemy.position.y >= player.boundingBox.top):
@@ -86,10 +112,13 @@ class Interaction:
                 enemy.velocity.x *= -1
 
         #means that damage can be dealt to multiple enemies in one swing
-        if damageDealt:
+        if damageDealtSword:
             #only deal damage once per swing
             player.swordHit = True
-            damageDealt = False
+            damageDealtSword = False
+        if damageDealtJump:
+            player.jumpHit = True
+            damageDealtJump = False
 
     def checkObjectCollision(self,objects,entity):
         # Using a copy to remove from actual list if there is too much health loss
@@ -105,7 +134,13 @@ class Interaction:
             if entity.boundingBox.bottom >= currentObject.boundingBox.top and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y <= currentObject.boundingBox.top):
                 entity.canMoveDown = False
                 entity.hasJumped = False
-                entity.velocity.y =0
+                if entity == self.player:
+                    entity.jumpHit = False
+                #bounce fireballs and nothing else
+                if type(entity) == FireBall:
+                    entity.velocity.y *=-1
+                else:
+                    entity.velocity.y =0
                 entity.currentGround = currentObject.boundingBox.top
             if (entity.boundingBox.right >= currentObject.boundingBox.left) and (entity.position.x < currentObject.position.x) and (((entity.position.y <= currentObject.boundingBox.bottom)and (entity.position.y >= currentObject.boundingBox.top)) or ((currentObject.position.y <= entity.boundingBox.bottom) and (currentObject.position.y >= entity.boundingBox.top))):
                 entity.canMoveRight = False
@@ -115,7 +150,8 @@ class Interaction:
                 entity.velocity.x *= -1
             if entity.boundingBox.top < currentObject.boundingBox.bottom and(entity.position.x <= currentObject.boundingBox.right and entity.position.x >= currentObject.boundingBox.left and entity.position.y >= currentObject.boundingBox.bottom):
                 entity.canMoveUp = False
-                entity.velocity.y *= -1
+                #slowly bounce back
+                entity.velocity.y *= -0.01
                 entity.position.y = currentObject.boundingBox.bottom + (entity.dimensions[1]/2)
 
     def checkCoinCollision(self,coins, player):
