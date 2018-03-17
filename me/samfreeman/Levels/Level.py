@@ -23,9 +23,11 @@ class Level:
         self.enemies = []
         self.objects = []
         self.coins = []
+        self.weapons = []
         self.player = player
         self.inter = inter
         self.displayBar = DisplayBar(name, self.player.health)
+        self.dropLocation = Vector()
 
     #load the enemies into the class
     def loadLevelSpecifics(self, fileLocation):
@@ -57,7 +59,7 @@ class Level:
             elif(args[7] == "r\n"):
                 runRight= Sprite(args[5], 1,int(args[6]), True)
                 leftShoot = Sprite(args[8],1, int(args[9]), True)
-                righttShoot = Sprite(args[10],1, int(args[11]), True)
+                rightShoot = Sprite(args[10],1, int(args[11]), True)
                 self.enemies.append(ProjectileEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight, leftShoot, rightShoot))
             elif(args[7] == "bl\n"):
                 runRight= Sprite(args[5], 1,int(args[6]), True)
@@ -107,6 +109,8 @@ class Level:
             objectOnScreen.draw(canvas, "Purple")
         self.displayBar.drawDisplayBar(canvas)
         for coin in self.coins: coin.draw(canvas)
+        if self.dropLocation.x > 0:
+            self.weapons[0].draw(canvas)
         self.player.draw(canvas, "Green")
 
     #checks for input and collisions
@@ -121,7 +125,15 @@ class Level:
                 for fball in enemy.fireballs:
                     self.inter.checkObjectCollision(self.objects, fball)
             if enemy.health <= 0:
+                if enemy.boss:
+                    self.coins.append(enemy.dropWeapon())
+                    #enemy.drop = True
+                    # self.weapons.append(enemy.weaponDrop)
+                    # self.dropLocation = enemy.position.copy()
+
                 self.coins.append(enemy.dropCoin(100, 1))
+
+
         self.inter.checkKeyboard()
 
         for coin in self.coins[:]:

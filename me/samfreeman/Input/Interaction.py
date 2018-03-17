@@ -7,12 +7,13 @@ from me.samfreeman.GameObject.FireBalls import FireBall
 
 class Interaction:
 
-    def __init__(self, player, text, cs, state):
+    def __init__(self, player, text, cs, state, unlocks):
         self.keyboard = Keyboard()
         self.player = player
         self.text = text #----> used for testing purposes
         self.cs = cs
         self.state = state
+        self.unlocks = unlocks
         self.justCrouched=False
 
     # handling keyboard input for player
@@ -58,6 +59,13 @@ class Interaction:
             if self.keyboard.up:
                 self.state.menuToCutScene()
                 # self.state.cutSceneToLevel()
+
+        elif self.state.weaponPickUp:
+            if self.keyboard.q:
+                self.unlocks.counter += 1
+                self.unlocks.hasUpdated = True
+                self.state.weaponToCutScene()
+                self.keyboard.q = False
 
 
 
@@ -157,5 +165,7 @@ class Interaction:
     def checkCoinCollision(self,coins, player):
         for coin in coins[:]:
             if player.boundingBox.contains(coin.position):
-                player.collectedCoins = coin.pickUp(player.collectedCoins)
+                if coin.type == 0:
+                    player.collectedCoins = coin.pickUp(player.collectedCoins)
+                else: coin.pickUp()
                 coins.remove(coin)

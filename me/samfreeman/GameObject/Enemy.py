@@ -1,5 +1,6 @@
 # Import
 from me.samfreeman.GameObject.Coin import Coin
+from me.samfreeman.GameObject.WeaponPickUp import WeaponPickUp
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.Helper.Rectangle import Rectangle
@@ -7,9 +8,10 @@ from me.samfreeman.Helper.Sprite import Sprite
 import me.samfreeman.GameControl.GV as GV
 
 
+
 class BasicEnemy(GameObject):
 
-    def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
+    def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite(""), boss=False, weapon=Sprite("")):
         dims = [30,60]
         if runLeft.hasPath:
             dims = [runLeft.frameWidth, runLeft.frameHeight]
@@ -31,6 +33,10 @@ class BasicEnemy(GameObject):
         self.runningLeft = runLeft
         self.runningRight = runRight
         self.gravity =1
+        self.boss = boss
+
+        self.weapon = weapon
+
     def resetMovement(self):
         # Used to make a new movement box when the user moves out of it
         self.movementRectangle.updateBox(self.position, 200, 200)
@@ -114,6 +120,9 @@ class BasicEnemy(GameObject):
 
     def dropCoin(self, size, cost):
         return Coin(self.position, size, cost)
+
+    def dropWeapon(self):
+        return WeaponPickUp(Vector((self.position.x, self.position.y + self.dimensions[1] / 2)), self.player, self.weapon)
 
     def checkOutSideMovementBox(self):
         if(self.position.x >= self.movementRectangle.right) or (self.position.x <= self.movementRectangle.left):

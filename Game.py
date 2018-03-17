@@ -11,7 +11,7 @@ from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.GameControl.State import State
 from me.samfreeman.Levels.MainMenu import MainMenu
 from me.samfreeman.Text.Cutscenes import AllCutscenes
-
+from me.samfreeman.Text.NewUnlock import NewUnlock
 
 frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
 
@@ -24,12 +24,13 @@ cutscenes = acs.allScenes()
 
 
 
-player = Player(Vector((50, GV.CANVAS_HEIGHT /2)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True))
-
+player = Player(Vector((50, GV.CANVAS_HEIGHT / 2)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True), frame, state)
 
 text = TextOverlay("Welcome", "Link")
 
-inter = Interaction(player, text, cutscenes, state)
+unlockDisplay = NewUnlock(frame)
+
+inter = Interaction(player, text, cutscenes, state, unlockDisplay)
 
 music = simplegui._load_local_sound("Music/mii.ogg")
 
@@ -47,13 +48,17 @@ def update(canvas):
             state.cutSceneToLevel()
         inter.checkKeyboard()
     elif state.inLevel:
-        if levelLoader.currentLevel.levelComplete():
+        if levelLoader.currentLevel.levelComplete() or unlockDisplay.hasUpdated:
             levelLoader.nextlevel()
+            unlockDisplay.hasUpdated = False
         levelLoader.currentLevel.draw(canvas)
         text.display(canvas)
         music.play()
         if (levelLoader.currentLevel.player.health <= 0 or levelLoader.currentLevel.player.position.y > GV.CANVAS_HEIGHT):
             state.gameToDeath()
+    elif state.weaponPickUp:
+        unlockDisplay.display(canvas)
+        inter.checkKeyboard()
     elif state.death:
         if (levelLoader.levelCounter < 3):
             speaker = "Link"

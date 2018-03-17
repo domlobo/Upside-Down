@@ -46,6 +46,7 @@ class Sprite:
                     # Reached the end of the line
                     if full:
                         self.frameIndex[1] = (self.frameIndex[1] + 1) % (self.rows)
+                        if self.frameIndex[1] == 0: self.isComplete = True
                     elif self.animateOnce:
                         self.isComplete = True
                     else: self.frameIndex[0] = self.startOffset[0]
@@ -93,6 +94,9 @@ class Sprite:
             position.getP(),
             (d_width, d_height)
         )
+
+        # print("Drawing: "+ self.path + " fw "+ str(self.frameWidth) + " fh " + str(self.frameHeight)
+        #       + " fcX " + str(self.frameCentre[0]) + " fcY " + str(self.frameCentre[1]) + " fi " + str(self.frameIndex) + " p " + str(position.getP()))
 
         # Animate
         if not self.isComplete:

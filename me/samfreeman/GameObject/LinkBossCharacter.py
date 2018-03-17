@@ -1,15 +1,17 @@
 #Imports
-from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.GameObject.Enemy import BasicEnemy
 from me.samfreeman.GameObject.Projectiles import Projectile
 import me.samfreeman.GameControl.GV as GV
 from random import *
 
+
 class LinkBossCharacter(BasicEnemy):
 
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
-        BasicEnemy.__init__(self,position,health,player,runLeft,runRight)
+        self.weapon = Sprite("images/interactive-sprites/player/DiamondSword.png")
+
+        BasicEnemy.__init__(self,position,0,player,runLeft,runRight, True, self.weapon)
         self.damage = 0
         self.MAXIMUM_PROJECTILES = 2
 
@@ -51,3 +53,6 @@ class LinkBossCharacter(BasicEnemy):
             direction =GV.RIGHT
             sprite = Sprite("images/interactive-sprites/link/link-arrow-right.png")
         self.projectiles.append(Projectile(self.position.copy(), 300, direction, sprite, SPEED))
+
+    def draw(self, canvas, colour):
+        BasicEnemy.draw(self, canvas, colour)

@@ -6,8 +6,7 @@ class State:
         self.inLevel = False
         self.levelText = False
         self.levelPlay = False
-        self.bossText = False
-        self.bossPlay = False
+        self.weaponPickUp = False
         self.death = False
         self.gameOver = False
 
@@ -37,6 +36,18 @@ class State:
         if self.inLevel:
             self.levelPlay = False
             self.inLevel = False
+            self.cutScene = True
+
+    def playToWeapon(self):
+        if self.inLevel:
+            self.levelPlay = False
+            self.inLevel = False
+            self.weaponPickUp = True
+
+    def weaponToCutScene(self):
+        if self.weaponPickUp:
+            self.inLevel = False
+            self.weaponPickUp = False
             self.cutScene = True
 
     def gameToDeath(self):
