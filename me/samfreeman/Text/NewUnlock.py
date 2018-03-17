@@ -31,7 +31,8 @@ class NewUnlock:
             self.title = "BFG"
             self.button = "L"
             self.displaySprite = self.gunSprite
-
+            
+        self.text = "Congratulations, you unlocked " + self.title + ". Use with key: " + self.button
         title_width = self.frame.get_canvas_textwidth(self.title, 30)
         text_width = self.frame.get_canvas_textwidth(self.text, 20)
         canvas.draw_text(self.title, ((GV.CANVAS_WIDTH - title_width) / 2, GV.CANVAS_HEIGHT / 6), 30, "White")
