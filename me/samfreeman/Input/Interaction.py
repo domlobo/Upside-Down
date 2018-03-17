@@ -6,12 +6,13 @@ from me.samfreeman.Input.Keyboard import Keyboard
 
 class Interaction:
 
-    def __init__(self, player, text, cs, state):
+    def __init__(self, player, text, cs, state, unlocks):
         self.keyboard = Keyboard()
         self.player = player
         self.text = text #----> used for testing purposes
         self.cs = cs
         self.state = state
+        self.unlocks = unlocks
         self.justCrouched=False
 
     # handling keyboard input for player
@@ -60,6 +61,8 @@ class Interaction:
 
         elif self.state.weaponPickUp:
             if self.keyboard.q:
+                self.unlocks.counter += 1
+                self.unlocks.hasUpdated = True
                 self.state.weaponToCutScene()
                 self.keyboard.q = False
 

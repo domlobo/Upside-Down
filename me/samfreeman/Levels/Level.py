@@ -58,7 +58,7 @@ class Level:
             elif(args[7] == "r\n"):
                 runRight= Sprite(args[5], 1,int(args[6]), True)
                 leftShoot = Sprite(args[8],1, int(args[9]), True)
-                righttShoot = Sprite(args[10],1, int(args[11]), True)
+                rightShoot = Sprite(args[10],1, int(args[11]), True)
                 self.enemies.append(ProjectileEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight, leftShoot, rightShoot))
             elif(args[7] == "bl\n"):
                 runRight= Sprite(args[5], 1,int(args[6]), True)
