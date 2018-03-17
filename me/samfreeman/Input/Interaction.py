@@ -167,5 +167,5 @@ class Interaction:
             if player.boundingBox.contains(coin.position):
                 if coin.type == 0:
                     player.collectedCoins = coin.pickUp(player.collectedCoins)
-                else: coin.pickUp()
+                else: coin.pickUp() # for bosses
                 coins.remove(coin)
