@@ -124,7 +124,6 @@ class Level:
                     self.collectibles.append(enemy.dropWeapon())
                 self.collectibles.append(enemy.dropCoin(100, 1))
 
-
         self.inter.checkKeyboard()
 
         for collectible in self.collectibles[:]:

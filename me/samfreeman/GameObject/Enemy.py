@@ -122,7 +122,7 @@ class BasicEnemy(GameObject):
         return Coin(self.position, size, cost)
 
     def dropWeapon(self):
-        return WeaponPickUp(Vector((self.position.x, self.position.y)), self.player, self.weapon)
+        return WeaponPickUp(Vector((self.position.x, self.position.y + self.dimensions[1] / 2-30)), self.player, self.weapon) # 30 is half the height of the image being drawn
 
     def checkOutSideMovementBox(self):
         if(self.position.x >= self.movementRectangle.right) or (self.position.x <= self.movementRectangle.left):
