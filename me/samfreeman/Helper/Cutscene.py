@@ -125,6 +125,7 @@ class Cutscene:
         self.drawCutSceneText(self.contentBoundingBox.top + self.gapSize * 1.75, self.rightAllText[self.rightLineNumber], canvas, False, self.numberOfSpeakers[self.leftLineNumber])
 
     def display(self, canvas):
+        print("line: " + str(self.leftLineNumber ))
         self.contentBoundingBox.draw(canvas, "White", "White")
         canvas.draw_text(self.title, ((GV.CANVAS_WIDTH - self.titleWidth) / 2, GV.CANVAS_HEIGHT / 6), 40, "White")
         self.drawLeft(canvas)

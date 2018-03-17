@@ -44,11 +44,10 @@ class State:
             self.inLevel = False
             self.weaponPickUp = True
 
-    def weaponToCutScene(self):
+    def weaponToLevel(self):
         if self.weaponPickUp:
-            self.inLevel = False
+            self.inLevel = True
             self.weaponPickUp = False
-            self.cutScene = True
 
     def gameToDeath(self):
         if self.levelPlay:

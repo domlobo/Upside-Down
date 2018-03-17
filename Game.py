@@ -42,10 +42,11 @@ def update(canvas):
         menu.draw(canvas)
         inter.checkKeyboard()
     elif state.cutScene:
-        cutscenes[0].display(canvas)
         if cutscenes[0].isFinished:
             del cutscenes[0]
             state.cutSceneToLevel()
+        else:
+            cutscenes[0].display(canvas)
         inter.checkKeyboard()
     elif state.inLevel:
         if levelLoader.currentLevel.levelComplete() or unlockDisplay.hasUpdated:

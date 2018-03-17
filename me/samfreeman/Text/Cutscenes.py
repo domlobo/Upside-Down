@@ -31,8 +31,10 @@ class AllCutscenes:
         # Second
         self.all[1].setTitle("Part 2: First Contract")
         self.all[1].addText("Bob Froman", "Testing", self.playerSprite, "Jess Froman", "Testing 3", self.wifeSprite)
+        self.all[1].addText("Bob Froman", "Testing", self.playerSprite, "Jess Froman", "Testing 3", self.wifeSprite)
         # Third
         self.all[2].setTitle("Part 3: Highway To Hell")
+        self.all[2].addText("Bob Froman", "Testing", self.playerSprite, "Jess Froman", "Testing 3", self.wifeSprite)
 
         # Fourth
         self.all[3].setTitle("Part 4: Moving Up In The World")

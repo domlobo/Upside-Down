@@ -64,7 +64,7 @@ class Interaction:
             if self.keyboard.q:
                 self.unlocks.counter += 1
                 self.unlocks.hasUpdated = True
-                self.state.weaponToCutScene()
+                self.state.weaponToLevel()
                 self.keyboard.q = False
 
 
