@@ -248,7 +248,7 @@ class Player(GameObject):
     def weaponPickUp(self):
         print("Weapon pick up")
         self.pickingUp = True
-        self.diamondPickUp.startAnimation(7, True)
+        self.diamondPickUp.startAnimation(5, True)
     # Two methods to make sure that the player slows down
     # Might be equivalent to the standStill() method, not sure
     def notMoving(self):

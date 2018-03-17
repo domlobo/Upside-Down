@@ -11,7 +11,7 @@ class LinkBossCharacter(BasicEnemy):
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
         self.weapon = Sprite("images/interactive-sprites/player/DiamondSword.png")
 
-        BasicEnemy.__init__(self,position,0,player,runLeft,runRight, True, self.weapon)
+        BasicEnemy.__init__(self,position,health,player,runLeft,runRight, True, self.weapon)
         self.damage = 0
         self.MAXIMUM_PROJECTILES = 2
 
