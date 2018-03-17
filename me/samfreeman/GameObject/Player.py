@@ -1,19 +1,22 @@
 from me.samfreeman.GameObject.GameObject import GameObject
 import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameObject.Projectiles import Projectile
+from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Helper.Line import Line
 from me.samfreeman.GameObject.FireBalls import FireBall
 import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 
 class Player(GameObject):
-    def __init__(self, position, sprite, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
+    def __init__(self, position, sprite, frame, state, health=100, velocity=Vector((0, 0)), runSpeed=2, jumpSpeed=20):
         GameObject.__init__(self, position, velocity, [30, 90], health, sprite)
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
         self.animation = 0
         self.maxUnlockedWeapon = 0
         self.numberOfDeaths =0
+        self.state = state
+        self.frame = frame
 
         # Weapon Stuff
         self.projectiles = []
@@ -29,6 +32,9 @@ class Player(GameObject):
         self.maxSwordDown = self.boundingBox.bottom
         self.swordBBoxMove = False
         self.swordHit = False
+
+        self.diamondPickUp = Sprite("images/interactive-sprites/player/Player_UnlockingDiamond.png", 2, 10, True)
+        self.pickingUp = False
 
         #records if damage has been dealt this jump
         self.jumpHit = False
@@ -239,6 +245,10 @@ class Player(GameObject):
                                         reset, once)
         self.currentSprite.startAnimation()
 
+    def weaponPickUp(self):
+        print("Weapon pick up")
+        self.pickingUp = True
+        self.diamondPickUp.startAnimation(7, True)
     # Two methods to make sure that the player slows down
     # Might be equivalent to the standStill() method, not sure
     def notMoving(self):
@@ -254,5 +264,14 @@ class Player(GameObject):
             if self.counter >= 5:
                 self.wasHit = False
                 self.counter = 0
-        GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)), 90)
+        if self.pickingUp:
+            self.diamondPickUp.draw(self.position, canvas, 90, 90)
+            if self.diamondPickUp.isComplete:
+                self.state.playToWeapon()
+                self.pickingUp = False
+                print("here")
+        else:
+            GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)), 90)
+        # self.diamondPickUp.draw(position, canvas, 90, 90)
+
         self.swordBoundingBox.draw(canvas)

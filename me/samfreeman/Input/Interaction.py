@@ -58,6 +58,11 @@ class Interaction:
                 self.state.menuToCutScene()
                 # self.state.cutSceneToLevel()
 
+        elif self.state.weaponPickUp:
+            if self.keyboard.q:
+                self.state.weaponToCutScene()
+                self.keyboard.q = False
+
 
 
     def checkProjectileCollision(self,enemies,player):
@@ -146,5 +151,7 @@ class Interaction:
     def checkCoinCollision(self,coins, player):
         for coin in coins[:]:
             if player.boundingBox.contains(coin.position):
-                player.collectedCoins = coin.pickUp(player.collectedCoins)
+                if coin.type == 0:
+                    player.collectedCoins = coin.pickUp(player.collectedCoins)
+                else: coin.pickUp()
                 coins.remove(coin)

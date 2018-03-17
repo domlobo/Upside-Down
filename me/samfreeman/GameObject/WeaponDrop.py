@@ -19,9 +19,12 @@ class WeaponDrop:
         self.name = name
         self.title = "Weapon Unlocked!"
         self.titleWidth = self.frame.get_canvas_textwidth(self.title, 40)
+        self.animate = False
+        self.isAnimating = False
 
     def collided(self):
-        self.state.playToWeapon()
+        self.animate = True
+        # self.state.playToWeapon()
 
     def notifyUser(self, canvas):
         content = Rectangle(Vector((GV.CANVAS_WIDTH / 2, GV.CANVAS_HEIGHT / 2)), GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT * 0.5)
@@ -33,13 +36,20 @@ class WeaponDrop:
         canvas.draw_text(unlock, ((GV.CANVAS_WIDTH - unlockWidth) / 2, content.position.y + 60, 20, "Black"))
 
     def draw(self, canvas):
+        # print("Drawing")
         if self.state.weaponPickUp:
-            self.pickUpAnimation.draw(self.position, canvas)
-            self.pickUpAnimation.startAnimation(6, True)
-            if self.pickUpAnimation.isComplete:
-                # Draw the weapon pickup stuff
-                self.notifyUser()
+            self.pickUpAnimation.draw(Vector((200, 200)),canvas, 200, 200)
+            self.pickUpAnimation.startAnimation(8, True)
+            # self.pickUpAnimation.draw(self.position, canvas, 200, 200)
+            # if not self.isAnimating:
+            #     print("Animating")
+            #     self.pickUpAnimation.startAnimation(8, True)
+            #     self.isAnimating = True
+            # if self.pickUpAnimation.isComplete:
+            #     print("Done")
+            #     self.isAnimating = False
+            #     self.state.playToWeapon()
         else:
             self.weaponSprite.draw(
-                Vector((self.position.x, self.position.y + self.weaponSprite.dimensions[1])),
-                canvas, self.weaponSprite.dimensions[0] * 2, self.weaponSprite.dimensions[1] * 2)
+                Vector((self.position.x, self.position.y + self.weaponSprite.frameHeight * 2)),
+                canvas, self.weaponSprite.frameWidth, self.weaponSprite.frameHeight)

@@ -9,6 +9,7 @@ class Coin(GameObject):
         GameObject.__init__(self, position, Vector(), [size, size], 1, Sprite("images/interactive-sprites/display/coin.png", 1, 12))
         self.value = value
         self.size = size
+        self.type = 0
 
     def pickUp(self, coins):
         self.remove = True

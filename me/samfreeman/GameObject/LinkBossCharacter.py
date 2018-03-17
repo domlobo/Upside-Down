@@ -1,17 +1,30 @@
 #Imports
 from me.samfreeman.GameObject.GameObject import GameObject
+from me.samfreeman.GameObject.WeaponDrop import WeaponDrop
 from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.GameObject.Enemy import BasicEnemy
 from me.samfreeman.GameObject.Projectiles import Projectile
 import me.samfreeman.GameControl.GV as GV
 from random import *
 
+from me.samfreeman.Helper.Vector import Vector
+
+
 class LinkBossCharacter(BasicEnemy):
 
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
-        BasicEnemy.__init__(self,position,health,player,runLeft,runRight)
+        self.weapon = Sprite("images/interactive-sprites/player/DiamondSword.png")
+
+        BasicEnemy.__init__(self,position,0,player,runLeft,runRight, True, self.weapon)
         self.damage = 0
         self.MAXIMUM_PROJECTILES = 2
+
+        # self.weaponDrop = WeaponDrop(
+        #     Vector((self.position.x, self.position.y - self.dimensions[1])),
+        #     Sprite("images/interactive-sprites/player/DiamondSword.png"),
+        #     Sprite("images/interactive-sprites/player/Player_UnlockingDiamond.png", 2, 10),
+        #     player.state, player.frame, "The Diamond Sword"
+        # )
 
     def move(self):
         if(self.position.x>GV.CANVAS_WIDTH):
@@ -52,4 +65,5 @@ class LinkBossCharacter(BasicEnemy):
             sprite = Sprite("images/interactive-sprites/link/link-arrow-right.png")
         self.projectiles.append(Projectile(self.position.copy(), 300, direction, sprite, SPEED))
 
-
+    def draw(self, canvas, colour):
+        BasicEnemy.draw(self, canvas, colour)
