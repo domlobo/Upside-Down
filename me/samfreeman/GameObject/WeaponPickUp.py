@@ -10,7 +10,6 @@ class WeaponPickUp(GameObject):
 
     def pickUp(self):
         self.player.weaponPickUp()
-        print("Picked Up")
 
     def update(self, bgVel):
         self.position.x += bgVel.x

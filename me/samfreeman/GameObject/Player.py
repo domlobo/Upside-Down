@@ -34,6 +34,9 @@ class Player(GameObject):
         self.swordHit = False
 
         self.diamondPickUp = Sprite("images/interactive-sprites/player/Player_UnlockingDiamond.png", 2, 10, True)
+        self.firePickUp = Sprite("images/interactive-sprites/player/Player_UnlockingFire.png", 3, 8, True)
+        self.gunPickUp = Sprite("images/interactive-sprites/player/Player_UnlockingGun.png", 3, 6, True)
+        self.weaponPickUp = self.diamondPickUp
         self.pickingUp = False
 
         #records if damage has been dealt this jump
@@ -246,9 +249,8 @@ class Player(GameObject):
         self.currentSprite.startAnimation()
 
     def weaponPickUp(self):
-        print("Weapon pick up")
         self.pickingUp = True
-        self.diamondPickUp.startAnimation(5, True)
+        self.weaponPickUp.startAnimation(5, True)
     # Two methods to make sure that the player slows down
     # Might be equivalent to the standStill() method, not sure
     def notMoving(self):
@@ -265,8 +267,8 @@ class Player(GameObject):
                 self.wasHit = False
                 self.counter = 0
         if self.pickingUp:
-            self.diamondPickUp.draw(self.position, canvas, 90, 90)
-            if self.diamondPickUp.isComplete:
+            self.weaponPickUp.draw(self.position, canvas, 90, 90)
+            if self.weaponPickUp.isComplete:
                 self.state.playToWeapon()
                 self.pickingUp = False
                 print("here")

@@ -8,8 +8,8 @@ class NewUnlock:
     def __init__(self, frame):
         self.counter = 0
         self.diamondSwordSprite = Sprite("images/interactive-sprites/player/DiamondSword.png")
-        self.fireSprite = Sprite("")
-        self.gunSprite = Sprite("")
+        self.fireSprite = Sprite("images/interactive-sprites/player/Fireball.png")
+        self.gunSprite = Sprite("images/interactive-sprites/player/Gun.png")
         self.displaySprite = self.diamondSwordSprite
 
         self.frame = frame
