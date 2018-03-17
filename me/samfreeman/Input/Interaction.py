@@ -162,10 +162,10 @@ class Interaction:
                 entity.velocity.y *= -0.01
                 entity.position.y = currentObject.boundingBox.bottom + (entity.dimensions[1]/2)
 
-    def checkCoinCollision(self,coins, player):
-        for coin in coins[:]:
-            if player.boundingBox.contains(coin.position):
-                if coin.type == 0:
-                    player.collectedCoins = coin.pickUp(player.collectedCoins)
-                else: coin.pickUp() # for bosses
-                coins.remove(coin)
+    def checkCollectibleCollision(self,collectibles, player):
+        for collectible in collectibles[:]:
+            if player.boundingBox.contains(collectible.position):
+                if collectible.type == 0:
+                    player.collectedCoins = collectible.pickUp(player.collectedCoins)
+                else: collectible.pickUp() # for bosses
+                # coins.remove(coin)
