@@ -3,6 +3,7 @@ try:
 except ImportError :
     import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 from me.samfreeman.Input.Keyboard import Keyboard
+from me.samfreeman.GameObject.FireBalls import FireBall
 
 class Interaction:
 
@@ -95,6 +96,12 @@ class Interaction:
                     # Collision
                     enemy.changeHealth(-fball.damage)
                     fball.remove = True
+            #fireball damage for player
+            if hasattr(enemy,'fireballs'):
+                for fball in enemy.fireballs[:]:
+                    if player.boundingBox.overlaps(fball.boundingBox):
+                        player.changeHealth(-fball.damage)
+                        fball.remove = True
             #sword damage
             if player.swordBoundingBox.overlaps(enemy.boundingBox) and not(player.swordHit):
                 enemy.changeHealth(-player.swordDamage)
@@ -137,7 +144,11 @@ class Interaction:
                 entity.hasJumped = False
                 if entity == self.player:
                     entity.jumpHit = False
-                entity.velocity.y =0
+                #bounce fireballs and nothing else
+                if type(entity) == FireBall:
+                    entity.velocity.y *=-1
+                else:
+                    entity.velocity.y =0
                 entity.currentGround = currentObject.boundingBox.top
             if (entity.boundingBox.right >= currentObject.boundingBox.left) and (entity.position.x < currentObject.position.x) and (((entity.position.y <= currentObject.boundingBox.bottom)and (entity.position.y >= currentObject.boundingBox.top)) or ((currentObject.position.y <= entity.boundingBox.bottom) and (currentObject.position.y >= entity.boundingBox.top))):
                 entity.canMoveRight = False

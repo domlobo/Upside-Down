@@ -24,7 +24,7 @@ cutscenes = acs.allScenes()
 
 
 
-player = Player(Vector((50, GV.CANVAS_HEIGHT - 130)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True), frame, state)
+player = Player(Vector((50, GV.CANVAS_HEIGHT / 2)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True), frame, state)
 
 text = TextOverlay("Welcome", "Link")
 
