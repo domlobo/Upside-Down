@@ -6,8 +6,8 @@ Train to be the best|Link
 The best that there ever was|Link
 Ehh.. ok, how do I start?|Bob Froman
 Well, first you need to learn to walk.|Link
-Use AD or the left and right arrows to run left and right.|Link
-Use WS or the up and down arrows to jump or crouch.|Link
+Use AD or the left/right arrows to run left/right.|Link
+Use WS or the up/down arrows to jump/crouch.|Link
 You can also use the space bar to jump.|Link
 Explore the level - I'll meet you at the end.|Link
 Enemies
