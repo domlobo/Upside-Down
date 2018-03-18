@@ -73,12 +73,14 @@ class LevelLoader:
             self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
             #stops the character sticking to the right hand side after the transition
             GameObject.update(self.currentLevel.player)
+            if (self.levelCounter + 1) % 3 == 0:
+                # Boss Battle
+                self.state.boss()
+
             if (self.levelCounter % 3 == 0):
                 self.player.numberOfDeaths = 0
                 self.player.maxUnlockedWeapon += 1
                 self.state.playToCutScene()
-                print(self.state.cutScene)
-
 
     def gameOver(self):
         #three retries

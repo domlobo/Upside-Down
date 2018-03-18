@@ -1,6 +1,8 @@
 class State:
 
-    def __init__(self):
+    def __init__(self, music):
+        self.music = music
+
         self.mainMenu = True
         self.cutScene = False
         self.inLevel = False
@@ -14,12 +16,14 @@ class State:
         if self.mainMenu:
             self.mainMenu = False
             self.cutScene = True
+            self.music.nextSong()
 
     def cutSceneToLevel(self):
         if self.cutScene:
             self.cutScene = False
             self.levelText = True
             self.inLevel = True
+            self.music.nextSong()
 
     def textToPlay(self):
         if self.levelText:
@@ -37,6 +41,10 @@ class State:
             self.levelPlay = False
             self.inLevel = False
             self.cutScene = True
+            self.music.nextSong()
+
+    def boss(self):
+        self.music.nextSong()
 
     def playToWeapon(self):
         if self.inLevel:

@@ -6,30 +6,30 @@ class MusicControl:
         self.musicIndex = 0
 
         # Main Menu
-        menu = simplegui._load_local_sound("Music/")
+        menu = simplegui._load_local_sound("Music/menu.ogg")
 
         # Stages
-        stageLink = simplegui._load_local_sound("Music/")
-        stageMario = simplegui._load_local_sound("Music/")
-        stageDoom = simplegui._load_local_sound("Music/")
+        stageLink = simplegui._load_local_sound("Music/stageLink.ogg")
+        stageMario = simplegui._load_local_sound("Music/stageMario.ogg")
+        stageDoom = simplegui._load_local_sound("Music/stageDoom.ogg")
 
 
         # Cutscenes
-        menuToLink = simplegui._load_local_sound("Music/")
-        linkToMario = simplegui._load_local_sound("Music/")
-        marioToDoom = simplegui._load_local_sound("Music/")
+        menuToLink = simplegui._load_local_sound("Music/menuToLink.ogg")
+        linkToMario = simplegui._load_local_sound("Music/linkToMario.ogg")
+        marioToDoom = simplegui._load_local_sound("Music/marioToDoom.ogg")
 
         # Boss Battles
-        bossLink = simplegui._load_local_sound("Music/")
-        bossMario = simplegui._load_local_sound("Music/")
-        bossDoom = simplegui._load_local_sound("Music/")
+        bossLink = simplegui._load_local_sound("Music/bossLink.ogg")
+        bossMario = simplegui._load_local_sound("Music/bossMario.ogg")
+        bossDoom = simplegui._load_local_sound("Music/bossDoom.ogg")
 
         # WK
-        stageWK = simplegui._load_local_sound("Music/")
+        wk = simplegui._load_local_sound("Music/wk.ogg")
 
         self.musicArray = [menu, menuToLink, stageLink, bossLink,
                            linkToMario, stageMario, bossMario,
-                           marioToDoom, stageDoom, bossDoom]
+                           marioToDoom, stageDoom, bossDoom, wk]
         self.currentMusic = self.musicArray[self.musicIndex]
 
     def playCurrentMusic(self):

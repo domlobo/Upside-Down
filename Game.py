@@ -4,6 +4,7 @@ import me.samfreeman.GameControl.GV as GV
 from me.samfreeman.GameControl.LevelLoader import LevelLoader
 from me.samfreeman.GameObject.Player import Player
 from me.samfreeman.Helper.Cutscene import Cutscene
+from me.samfreeman.Helper.MusicControl import MusicControl
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Input.Interaction import Interaction
 from me.samfreeman.Helper.TextOverlay import TextOverlay
@@ -15,7 +16,8 @@ from me.samfreeman.Text.NewUnlock import NewUnlock
 
 frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
 
-state = State()
+music = MusicControl()
+state = State(music)
 menu = MainMenu(frame)
 ####### EXAMPLE OF HOW TO USE CUTSCENE
 
@@ -32,14 +34,14 @@ unlockDisplay = NewUnlock(frame)
 
 inter = Interaction(player, text, cutscenes, state, unlockDisplay)
 
-music = simplegui._load_local_sound("Music/mii.ogg")
-
 levelLoader = LevelLoader(player,inter, state)
 
 def update(canvas):
 
     if state.mainMenu:
         menu.draw(canvas)
+        music.musicIndex = 0
+        music.playCurrentMusic()
         inter.checkKeyboard()
     elif state.cutScene:
         if cutscenes[0].isFinished:
@@ -54,7 +56,6 @@ def update(canvas):
             unlockDisplay.hasUpdated = False
         levelLoader.currentLevel.draw(canvas)
         text.display(canvas)
-        music.play()
         if (levelLoader.currentLevel.player.health <= 0 or levelLoader.currentLevel.player.position.y > GV.CANVAS_HEIGHT):
             state.gameToDeath()
     elif state.weaponPickUp:
