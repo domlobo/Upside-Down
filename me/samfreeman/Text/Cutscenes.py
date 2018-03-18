@@ -41,8 +41,8 @@ class AllCutscenes:
 
         # Second
         self.all[1].setTitle("Part 2: First Contract")
-        self.all[1].addText("Bob Froman", "Come on, come on, pick up, pick up.", self.playerSprite,
-                            "Jess Froman", "*no answer*...*no answer*", self.wifeSprite)
+        self.all[1].addText("Bob Froman", "Come on, come on, pick up.", self.playerSprite,
+                            "Jess Froman", "*no answer*..*no answer*", self.wifeSprite)
         self.all[1].addText("Bob Froman", "Jess? Honey? Where are  you, I’ve done something", self.playerSprite,
                             "Jess Froman", "Bob, calm down. What is it?", self.wifeSprite)
         self.all[1].addText("Bob Froman", "Your friend.. I’m so    sorry", self.playerSprite,
@@ -52,7 +52,7 @@ class AllCutscenes:
         self.all[1].addText("Bob Froman", "Hello? Who is this?", self.playerSprite,
                             "Unknown", "I know what you did", self.unknownSprite)
         self.all[1].addText("Bob Froman", "It was an accident", self.playerSprite,
-                            "Unknown", "No. It was no accident.  Much power. Such Strength.", self.unknownSprite)
+                            "Unknown", "No. It was no accident.  Much power. Such       Strength.", self.unknownSprite)
         self.all[1].addText("Bob Froman", "What do you want from me", self.playerSprite,
                             "Unknown", "I’ll put you through", self.unknownSprite)
         self.all[1].addText("Bob Froman", "Put me through? What? To who?", self.playerSprite,
@@ -63,6 +63,8 @@ class AllCutscenes:
                             "Bowser", "Good. That's not why I'm calling. I need you to do a job for me.", self.bowserSprite)
         self.all[1].addText("Bob Froman", "You have a job? What is it? I need to find a way to provide for my wife.", self.playerSprite,
                             "Bowser", "So many questions. With time, there will be     answers", self.bowserSprite)
+        self.all[1].addText("Bob Froman", "I’m listening", self.playerSprite,
+                            "Bowser", "Mario. 25 Gold.", self.bowserSprite)
         self.all[1].addText("Bob Froman", "I’m listening", self.playerSprite,
                             "Bowser", "Mario. 25 Gold.", self.bowserSprite)
 
