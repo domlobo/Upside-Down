@@ -1,3 +1,16 @@
+They were right|Mario
+Who was right?|Bob Froman
+Link must be dead|Mario
+The stories were true|Mario
+Link. He warned us|Mario
+But.. it was supposed to be a woman|Mario
+Stop talking.|Bob Froman
+You don't make sense|Bob Froman
+I need the money|Bob Froman
+Yes.|Unknown
+Do it.|Unknown
+You don't have to do this|Mario
+It's too late|Bob Froman
 Enemies
 450,300,350,images/interactive-sprites/mario/mario-boss-run-left.png,26,images/interactive-sprites/mario/mario-boss-run-right.png,26,bm
 Walls
