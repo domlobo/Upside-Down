@@ -1,3 +1,13 @@
+Mario? 25 Gold?|Bob Froman
+Bowser why did he call me?|Bob Froman
+What is happening?|Bob Froman
+So many questions, and no answers|Bob Froman
+... Stop talking to yourself|Unknown
+Hello? Who's there|Bob Froman
+Fulfill the contract|Unknown
+Kill Mario|Unknown
+Huh? Mario? But isn't he a good guy|Bob Froman
+...|Unknown
 Enemies
 760,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
 1500,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
