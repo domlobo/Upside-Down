@@ -35,7 +35,7 @@ class Level:
             if line == "Enemies\n":
                  break
             #args[0] is speach, args[1] is the speaker
-            args = line.split(",")
+            args = line.split("|")
             self.inter.text.addLine(args[0],args[1][:-1])
 
         self.inter.text.nextText()

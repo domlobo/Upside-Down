@@ -1,7 +1,10 @@
-This power level, I've only seen such a thing once before.,Link
-I failed then. I must not fail now.,Link
-I must kill you!,Link
-I'm sorry but I've failed you as a master.,Link
+I..I can't believe this|Link
+This power level, I've only seen such a thing once before.|Link
+I'm sorry but I've failed you as a master.|Link
+I couldn't stop her, but I must kill you!|Link
+What? What do you mean?|Bob Froman
+Who is her?|Bob Froman
+I'm sorry|Link
 Enemies
 450,449,350,images/interactive-sprites/link/link-walk-left.png,4,images/interactive-sprites/link/link-walk-right.png,4,bl
 Walls

@@ -1,7 +1,12 @@
-You can attack enemies with j.,Link
-You can also jump on them for more damage.,Link
-Alright - lets go on a trial run.,Link
-If you die you'll be respawned up to 3 times so keep trying.,Link
+I seem to be getting the hang of this.|Bob Froman
+Haha, don't get ahead of yourself|Link
+You're nothing more than a toddler|Link
+Now, be careful|Link
+You can attack enemies with j.|Link
+You can also jump on them for more damage.|Link
+Alright - lets go on a trial run.|Link
+If you die you'll be respawned up to 3 times so keep trying.|Link
+Look in the top right - that's your health|Link
 Enemies
 600, 469,200,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
 800, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d

@@ -27,11 +27,6 @@ class TextOverlay:
         self.continueText = "Press q to Continue..."
         self.done = False
 
-    def separateText(self):
-        # Takes the text, and separates into lines
-        # Will need to cycle through the text list, and pass current text into current text, display it, wait for space to be pressed.
-        pass
-
     def nextText(self):
         self.done = (self.currentTextIndex == len(self.text)-1)
 
