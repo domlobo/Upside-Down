@@ -8,7 +8,9 @@ from random import *
 
 class MarioBossCharacter(BasicEnemy):
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
-        BasicEnemy.__init__(self,position,health,player,runLeft,runRight)
+        self.weapon = Sprite("images/interactive-sprites/player/Fireball.png")
+
+        BasicEnemy.__init__(self,position,health,player,runLeft,runRight, True, self.weapon)
         self.damage = 0
         self.fireballs = []
         self.MAXIMUM_FIREBALLS = 3
@@ -49,7 +51,7 @@ class MarioBossCharacter(BasicEnemy):
         if(self.dx < 0 ):
             self.sprite = Sprite("images/interactive-sprites/mario/mario-ultimate-left.png",1,7,True)
         else:
-            self.sprite = Sprite("images/interactive-sprites/mario/mario-ultimate-right.png",1,4,True)
+            self.sprite = Sprite("images/interactive-sprites/mario/mario-ultimate-right.png",1,7,True)
 
     #rangedAttack
     def rangedAttack(self):

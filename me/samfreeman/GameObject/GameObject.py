@@ -1,3 +1,4 @@
+from me.samfreeman.GameControl import GV
 from me.samfreeman.Helper.Rectangle import Rectangle
 from me.samfreeman.Helper.Sprite import Sprite
 from me.samfreeman.Helper.Vector import Vector

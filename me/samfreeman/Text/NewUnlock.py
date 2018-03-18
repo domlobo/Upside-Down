@@ -8,8 +8,8 @@ class NewUnlock:
     def __init__(self, frame):
         self.counter = 0
         self.diamondSwordSprite = Sprite("images/interactive-sprites/player/DiamondSword.png")
-        self.fireSprite = Sprite("")
-        self.gunSprite = Sprite("")
+        self.fireSprite = Sprite("images/interactive-sprites/player/Fireball.png")
+        self.gunSprite = Sprite("images/interactive-sprites/player/Gun.png")
         self.displaySprite = self.diamondSwordSprite
 
         self.frame = frame
@@ -32,6 +32,7 @@ class NewUnlock:
             self.button = "L"
             self.displaySprite = self.gunSprite
 
+        self.text = "Congratulations, you unlocked " + self.title + ". Use with key: " + self.button
         title_width = self.frame.get_canvas_textwidth(self.title, 30)
         text_width = self.frame.get_canvas_textwidth(self.text, 20)
         canvas.draw_text(self.title, ((GV.CANVAS_WIDTH - title_width) / 2, GV.CANVAS_HEIGHT / 6), 30, "White")

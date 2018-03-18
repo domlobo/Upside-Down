@@ -16,6 +16,7 @@ class StaticEnemy(GameObject):
         self.player = player
         self.sprite= spriteInput
         self.damage = 0.5
+        self.boss = False
         self.projectiles = []
 
     def dropCoin(self, size, cost):

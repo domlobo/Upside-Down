@@ -13,8 +13,6 @@ from me.samfreeman.Helper.Display import DisplayBar
 from me.samfreeman.Helper.Background import Background
 from me.samfreeman.Helper.Vector import Vector
 from me.samfreeman.Helper.Sprite import Sprite
-from me.samfreeman.Helper.TextOverlay import TextOverlay
-from me.samfreeman.GameObject.Coin import Coin
 
 class Level:
 
@@ -22,8 +20,7 @@ class Level:
         self.background = Background(backgroundURL, foregroundURL, cloudsURL)
         self.enemies = []
         self.objects = []
-        self.coins = []
-        self.weapons = []
+        self.collectibles = []
         self.player = player
         self.inter = inter
         self.displayBar = DisplayBar(name, self.player.health)
@@ -99,6 +96,7 @@ class Level:
         for fireball in self.player.fireballs:
             fireball.draw(canvas, "Blue")
         for enemy in self.enemies:
+
             enemy.draw(canvas, "Red")
             for proj in enemy.projectiles:
                 proj.draw(canvas, "Blue")
@@ -108,9 +106,7 @@ class Level:
         for objectOnScreen in self.objects:
             objectOnScreen.draw(canvas, "Purple")
         self.displayBar.drawDisplayBar(canvas)
-        for coin in self.coins: coin.draw(canvas)
-        if self.dropLocation.x > 0:
-            self.weapons[0].draw(canvas)
+        for collectible in self.collectibles: collectible.draw(canvas)
         self.player.draw(canvas, "Green")
 
     #checks for input and collisions
@@ -118,7 +114,7 @@ class Level:
         self.displayBar.updateBar(self.player.health, self.player.maxUnlockedWeapon, 3 - self.player.numberOfDeaths, self.player.collectedCoins)
         self.inter.checkProjectileCollision(self.enemies,self.player)
         self.inter.checkObjectCollision(self.objects, self.player)
-        self.inter.checkCoinCollision(self.coins, self.player)
+        self.inter.checkCollectibleCollision(self.collectibles, self.player)
         for enemy in self.enemies:
             self.inter.checkObjectCollision(self.objects,enemy)
             if hasattr(enemy, 'fireballs'):
@@ -126,21 +122,17 @@ class Level:
                     self.inter.checkObjectCollision(self.objects, fball)
             if enemy.health <= 0:
                 if enemy.boss:
-                    self.coins.append(enemy.dropWeapon())
-                    #enemy.drop = True
-                    # self.weapons.append(enemy.weaponDrop)
-                    # self.dropLocation = enemy.position.copy()
-
-                self.coins.append(enemy.dropCoin(100, 1))
-
+                    self.collectibles.append(enemy.dropWeapon())
+                self.collectibles.append(enemy.dropCoin(100, 1))
 
         self.inter.checkKeyboard()
 
-        for coin in self.coins[:]:
-            if coin.position.x <0:
-                self.coins.remove(coin)
+        for collectible in self.collectibles[:]:
+            if collectible.position.x <0:
+                collectible.setRemove()
                 continue
-            coin.update(self.background.foregroundVel.copy())
+            collectible.update(self.background.foregroundVel.copy())
+            if collectible.remove: self.collectibles.remove(collectible)
 
         #update the location of all of the elements if the canvas is moving
         if (self.background.foregroundVel.x <0):
@@ -161,7 +153,7 @@ class Level:
             if proj.boundingBox.right<0:
                 self.player.projectiles.remove(proj)
         for enemy in self.enemies[:]:
-            if enemy.boundingBox.right<0 or (enemy.boundingBox.left>=GV.CANVAS_WIDTH and not(self.background.isStillRunning())):
+            if enemy.boundingBox.right<0 or (enemy.boundingBox.left>=GV.CANVAS_WIDTH and not(self.background.isStillRunning())) or enemy.position.y >= GV.CANVAS_HEIGHT:
                 self.enemies.remove(enemy)
         for currentObject in self.objects[:]:
             if currentObject.boundingBox.right<0:

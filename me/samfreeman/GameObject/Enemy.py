@@ -7,8 +7,6 @@ from me.samfreeman.Helper.Rectangle import Rectangle
 from me.samfreeman.Helper.Sprite import Sprite
 import me.samfreeman.GameControl.GV as GV
 
-
-
 class BasicEnemy(GameObject):
 
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite(""), boss=False, weapon=Sprite("")):
@@ -66,6 +64,11 @@ class BasicEnemy(GameObject):
 
         self.checkOutSideMovementBox()
 
+        if not(self.canMoveLeft):
+            self.sprite = self.runningRight
+        elif not(self.canMoveRight):
+            self.sprite = self.runningLeft
+
         #only move to player if the enemy is facing the player
         if self.isChasing or (self.direction == self.player.directionState+1)%2:
             self.isChasing = True
@@ -76,16 +79,21 @@ class BasicEnemy(GameObject):
                     self.velocity.x = -self.maxVel[0]
                 else: self.velocity.x += dl.x
                 self.lastSwitch = "Null"
-            elif dl.x >=0 and self.canMoveRight:
+            elif dl.x >0 and self.canMoveRight:
                 self.direction = GV.RIGHT
                 self.sprite = self.runningRight
                 if self.velocity.x >= self.maxVel[0]:
                     self.velocity.x = self.maxVel[0]
                 else: self.velocity.x += dl.x
                 self.lastSwitch = "Null"
-            elif self.lastSwitch != "Switched":
-                self.velocity *=  -1
+            else: #if self.lastSwitch != "Switched":
+
                 self.direction = (self.direction+1) %2
+                self.velocity *=  -1
+                if self.direction == GV.LEFT:
+                    self.sprite = self.runningLeft
+                else:
+                    self.sprite = self.runningRight
                 self.lastSwitch = "Switched"
         if self.sprite.hasPath:
             self.sprite.startAnimation(5)
@@ -122,7 +130,7 @@ class BasicEnemy(GameObject):
         return Coin(self.position, size, cost)
 
     def dropWeapon(self):
-        return WeaponPickUp(Vector((self.position.x, self.position.y + self.dimensions[1] / 2)), self.player, self.weapon)
+        return WeaponPickUp(Vector((self.position.x, self.position.y + self.dimensions[1] / 2-30)), self.player, self.weapon) # 30 is half the height of the image being drawn
 
     def checkOutSideMovementBox(self):
         if(self.position.x >= self.movementRectangle.right) or (self.position.x <= self.movementRectangle.left):
@@ -139,8 +147,9 @@ class BasicEnemy(GameObject):
             self.direction = GV.RIGHT
 
     def update(self):
-        GameObject.update(self)
-        self.findPlayer()
+        if GV.allow_update:
+            GameObject.update(self)
+            self.findPlayer()
         # Projectiles
         for proj in self.projectiles[:]:
             proj.update()
