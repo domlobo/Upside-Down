@@ -10,7 +10,7 @@ class AllCutscenes:
         self.wifeSprite = Sprite("images/cutscenes/Wife_PhoneCall_Left.png", 1, 5, True)
         self.linkSprite = Sprite("images/interactive-sprites/link/link-walk-left.png", 1, 4, True)
         self.unknownSprite = Sprite("images/cutscenes/unknown.png")
-        self.bowserSprite = Sprite("images/cutscenes/unkown.png")
+        self.bowserSprite = Sprite("images/cutscenes/bowser_profile.png")
 
         # First
 

@@ -8,7 +8,7 @@ from random import *
 
 class MarioBossCharacter(BasicEnemy):
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
-        self.weapon = Sprite("images/interactive-sprites/player/Fireball.png")
+        self.weapon = Sprite("images/interactive-sprites/mario/mario-flower.png")
 
         BasicEnemy.__init__(self,position,health,player,runLeft,runRight, True, self.weapon)
         self.damage = 0
