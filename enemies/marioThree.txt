@@ -12,6 +12,7 @@ Do it.|Unknown
 You don't have to do this|Mario
 It's too late|Bob Froman
 Enemies
+runLeft=Sprite(""), runRight=Sprite(""), weapon=Sprite(""), attackLeft = Sprite(""), attackRight=Sprite(""),projLeft = Sprite(""), projRight = Sprite("")
 450,300,350,images/interactive-sprites/mario/mario-boss-run-left.png,26,images/interactive-sprites/mario/mario-boss-run-right.png,26,bm
 Walls
 Floor

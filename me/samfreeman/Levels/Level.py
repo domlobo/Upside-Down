@@ -60,7 +60,12 @@ class Level:
                 self.enemies.append(ProjectileEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight, leftShoot, rightShoot))
             elif(args[7] == "bl\n"):
                 runRight= Sprite(args[5], 1,int(args[6]), True)
-                self.enemies.append(LinkBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
+                weapon = Sprite(args[8])
+                attackLeft = Sprite(args[9],1,int(args[10]),True)
+                attackRight = Sprite(args[11],1,int(args[12]),True)
+                projLeft = Sprite(args[13])
+                projRight = Sprite(args[14])
+                self.enemies.append(LinkBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight,weapon,attackLeft,attackRight,projLeft,projRight))
             elif(args[7] == "bm\n"):
                 runRight= Sprite(args[5], 1,int(args[6]), True)
                 self.enemies.append(MarioBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))

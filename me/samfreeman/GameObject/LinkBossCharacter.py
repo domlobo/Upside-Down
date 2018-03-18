@@ -8,12 +8,18 @@ from random import *
 
 class LinkBossCharacter(BasicEnemy):
 
-    def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite("")):
-        self.weapon = Sprite("images/interactive-sprites/player/DiamondSword.png")
+    def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite(""), weapon=Sprite(""), attackLeft = Sprite(""), attackRight=Sprite(""),projLeft = Sprite(""), projRight = Sprite("") ):
+        self.weapon = weapon
 
         BasicEnemy.__init__(self,position,health,player,runLeft,runRight, True, self.weapon)
         self.damage = 0
         self.MAXIMUM_PROJECTILES = 2
+
+        self.attackLeft = attackLeft
+        self.attackRight = attackRight
+
+        self.projLeft = projLeft
+        self.projRight = projRight
 
     def move(self):
         if(self.position.x>GV.CANVAS_WIDTH):
@@ -37,9 +43,9 @@ class LinkBossCharacter(BasicEnemy):
     #melee attack
     def attack(self):
         if(self.dx < 0 ):
-            self.sprite = Sprite("images/interactive-sprites/link/link-attack-left.png",1,4)
+            self.sprite = self.attackLeft
         else:
-            self.sprite = Sprite("images/interactive-sprites/link/link-attack-right.png",1,4)
+            self.sprite = self.attackLeft
 
     #rangedAttack
     def rangedAttack(self):
@@ -48,10 +54,10 @@ class LinkBossCharacter(BasicEnemy):
         #selecting the direction to send it
         if(self.dx<0):
             direction =GV.LEFT
-            sprite = Sprite("images/interactive-sprites/link/link-arrow-left.png")
+            sprite = self.projLeft
         else:
             direction =GV.RIGHT
-            sprite = Sprite("images/interactive-sprites/link/link-arrow-right.png")
+            sprite = self.projRight
         self.projectiles.append(Projectile(self.position.copy(), 300, direction, sprite, SPEED))
 
     def draw(self, canvas, colour):
