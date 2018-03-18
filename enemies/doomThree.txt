@@ -1,0 +1,4 @@
+Enemies
+450,449,350,images/interactive-sprites/doom/doom-boss-walk-left.png,4,images/interactive-sprites/doom/doom-boss-right.png,4,bl,images/interactive-sprites/player/Gun.png,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,images/interactive-sprites/link/link-arrow-left.png,images/interactive-sprites/link/link-arrow-right.png
+Walls
+Floor
