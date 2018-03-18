@@ -111,7 +111,7 @@ class Cutscene:
 
     def drawLeft(self, canvas):
         nameLength = self.frame.get_canvas_textwidth(self.leftSpeaker[self.leftLineNumber], 15, "monospace")
-        self.leftSprite[self.leftLineNumber].draw(Vector((self.gapSize, self.leftBoundingBox.position.y)), canvas, 100, 100)
+        self.leftSprite[self.leftLineNumber].draw(Vector((self.gapSize, self.leftBoundingBox.position.y)), canvas, 75, 75)
         self.leftSprite[self.leftLineNumber].startAnimation(8)
         canvas.draw_text(self.leftSpeaker[self.leftLineNumber], (self.gapSize - nameLength / 2, self.leftBoundingBox.position.y - 100 / 2),
                          15, "Black", "monospace")
@@ -119,7 +119,7 @@ class Cutscene:
 
     def drawRight(self, canvas):
         nameLength = self.frame.get_canvas_textwidth(self.rightSpeaker[self.rightLineNumber], 15, "monospace")
-        self.rightSprite[self.rightLineNumber].draw(Vector((self.rightBoundingBox.right - self.gapSize, self.rightBoundingBox.position.y)), canvas, 100, 100)
+        self.rightSprite[self.rightLineNumber].draw(Vector((self.rightBoundingBox.right - self.gapSize, self.rightBoundingBox.position.y)), canvas, 75, 75)
         self.rightSprite[self.rightLineNumber].startAnimation(8)
         canvas.draw_text(self.rightSpeaker[self.rightLineNumber], (self.rightBoundingBox.right - self.gapSize - nameLength / 2, self.rightBoundingBox.position.y - 100 / 2),
                          15, "Black", "monospace")
