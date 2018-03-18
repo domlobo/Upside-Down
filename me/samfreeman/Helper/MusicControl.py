@@ -32,13 +32,8 @@ class MusicControl:
                            marioToDoom, stageDoom, bossDoom, wk]
         self.currentMusic = self.musicArray[self.musicIndex]
 
-    def playCurrentMusic(self):
-        self.currentMusic.play()
-    def stopCurrentMusic(self):
-        self.currentMusic.pause()
-
     def nextSong(self):
-        self.stopCurrentMusic()
+        self.currentMusic.pause()
         self.musicIndex += 1
         self.currentMusic = self.musicArray[self.musicIndex]
-        self.playCurrentMusic()
+        self.currentMusic.play()

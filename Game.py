@@ -14,7 +14,7 @@ from me.samfreeman.Levels.MainMenu import MainMenu
 from me.samfreeman.Text.Cutscenes import AllCutscenes
 from me.samfreeman.Text.NewUnlock import NewUnlock
 
-frame = simplegui.create_frame("Game Name Goes Here", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
+frame = simplegui.create_frame("Upside Down", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
 
 music = MusicControl()
 state = State(music)
@@ -41,7 +41,7 @@ def update(canvas):
     if state.mainMenu:
         menu.draw(canvas)
         music.musicIndex = 0
-        music.playCurrentMusic()
+        music.currentMusic.play()
         inter.checkKeyboard()
     elif state.cutScene:
         if cutscenes[0].isFinished:
