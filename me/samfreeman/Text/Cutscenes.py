@@ -87,11 +87,29 @@ class AllCutscenes:
         self.all[2].addText("Bob Froman", "Who are you? What are you doing to me?", self.playerSprite,
                             "Unknown", "It is not important. You are doing this to yourself", self.unknownSprite)
         self.all[2].addText("Bob Froman", "What now?", self.playerSprite,
-                            "Unknown", ": I've – I mean you’ve been asked to handle The Doomslayer. 30 Gold", self.unknownSprite)
+                            "Unknown", "I've – I mean you’ve been asked to handle The Doomslayer. 30 Gold", self.unknownSprite)
 
 
-        # Fifth
-        self.all[3].setTitle("Part 5: Disappointment")
+        # Fourth
+        self.all[3].setTitle("Part 4: Full Circle")
+        self.all[3].addText("Bob Froman", "Jess? I’m feeling sick", self.playerSprite,
+                            "Unknown", "Jess cannot get to the phone right now Bob.",
+                            self.unknownSprite)
+        self.all[3].addText("Bob Froman", "What have you done with her? You better not have hurt her", self.playerSprite,
+                            "Unknown", "Yes. Let your anger out. Yet it consume you",
+                            self.unknownSprite)
+        self.all[3].addText("Bob Froman", "I’m coming for you.", self.playerSprite,
+                            "Unknown", "You do not know who I am",
+                            self.unknownSprite)
+        self.all[3].addText("Bob Froman", "I’m not scared of you", self.playerSprite,
+                            "Unknown", "Link WAS. Mario WAS. Doomslayer WAS. You are.",
+                            self.unknownSprite)
+        self.all[3].addText("Bob Froman", "Yes, and I took care of them", self.playerSprite,
+                            "Unknown", "But ask yourself. Who was meant to kill them? Who were those stories about?",
+                            self.unknownSprite)
+        self.all[3].addText("Bob Froman", "Who. Are. You.", self.playerSprite,
+                            "Unknown", "Come get your wife.",
+                            self.unknownSprite)
 
 
     def allScenes(self):
