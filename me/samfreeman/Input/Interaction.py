@@ -67,8 +67,6 @@ class Interaction:
                 self.state.weaponToLevel()
                 self.keyboard.q = False
 
-
-
     def checkProjectileCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
         damageDealtSword = False
