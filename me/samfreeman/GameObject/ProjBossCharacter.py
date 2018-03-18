@@ -6,7 +6,7 @@ import me.samfreeman.GameControl.GV as GV
 from random import *
 
 
-class LinkBossCharacter(BasicEnemy):
+class ProjBossCharacter(BasicEnemy):
 
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite(""), weapon=Sprite(""), attackLeft = Sprite(""), attackRight=Sprite(""),projLeft = Sprite(""), projRight = Sprite("") ):
         self.weapon = weapon

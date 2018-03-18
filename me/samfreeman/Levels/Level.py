@@ -7,7 +7,7 @@ from me.samfreeman.GameObject.GameObject import GameObject
 from me.samfreeman.GameObject.Enemy import BasicEnemy
 from me.samfreeman.GameObject.StaticEnemy import StaticEnemy
 from me.samfreeman.GameObject.ProjectileEnemy import ProjectileEnemy
-from me.samfreeman.GameObject.LinkBossCharacter import LinkBossCharacter
+from me.samfreeman.GameObject.ProjBossCharacter import ProjBossCharacter
 from me.samfreeman.GameObject.MarioBossCharacter import MarioBossCharacter
 from me.samfreeman.Helper.Display import DisplayBar
 from me.samfreeman.Helper.Background import Background
@@ -65,7 +65,7 @@ class Level:
                 attackRight = Sprite(args[11],1,int(args[12]),True)
                 projLeft = Sprite(args[13])
                 projRight = Sprite(args[14])
-                self.enemies.append(LinkBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight,weapon,attackLeft,attackRight,projLeft,projRight))
+                self.enemies.append(ProjBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight,weapon,attackLeft,attackRight,projLeft,projRight))
             elif(args[7] == "bm\n"):
                 runRight= Sprite(args[5], 1,int(args[6]), True)
                 self.enemies.append(MarioBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
