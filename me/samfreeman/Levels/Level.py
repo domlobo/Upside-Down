@@ -96,6 +96,7 @@ class Level:
         for fireball in self.player.fireballs:
             fireball.draw(canvas, "Blue")
         for enemy in self.enemies:
+
             enemy.draw(canvas, "Red")
             for proj in enemy.projectiles:
                 proj.draw(canvas, "Blue")

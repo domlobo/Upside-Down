@@ -50,7 +50,9 @@ def update(canvas):
         else:
             cutscenes[0].display(canvas)
         inter.checkKeyboard()
+
     elif state.inLevel:
+        GV.allow_update = state.levelPlay
         if levelLoader.currentLevel.levelComplete() or unlockDisplay.hasUpdated:
             levelLoader.nextlevel()
             unlockDisplay.hasUpdated = False

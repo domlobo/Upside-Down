@@ -147,8 +147,9 @@ class BasicEnemy(GameObject):
             self.direction = GV.RIGHT
 
     def update(self):
-        GameObject.update(self)
-        self.findPlayer()
+        if GV.allow_update:
+            GameObject.update(self)
+            self.findPlayer()
         # Projectiles
         for proj in self.projectiles[:]:
             proj.update()

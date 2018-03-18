@@ -19,3 +19,5 @@ JUMP_UP = 4
 JUMP_DOWN = 5
 
 JUMPING = 2
+
+allow_update = False
