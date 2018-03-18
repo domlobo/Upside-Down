@@ -76,13 +76,22 @@ class AllCutscenes:
 
         # Third
         self.all[2].setTitle("Part 3: Highway To Hell")
-        self.all[2].addText("Bob Froman", "Testing", self.playerSprite, "Jess Froman", "Testing 3", self.wifeSprite)
+        self.all[2].addText("Bob Froman", "Jess? I’m sorry I’ll be home soon. I have a job", self.playerSprite,
+                            "Jess Froman", "Bob, where have you been? You sound different", self.wifeSprite)
+        self.all[2].addText("Bob Froman", "Don’t worry honey, I’ll handle everything.", self.playerSprite,
+                            "Jess Froman", "  ...", self.wifeSprite)
+        self.all[2].addText("Bob Froman", "Where did you go? Sound different? Something is strange.", self.playerSprite,
+                            "Unknown", "Tell me. What does it feel like?", self.unknownSprite)
+        self.all[2].addText("Bob Froman", "I feel like I’m waking up. Part of me has shifted", self.playerSprite,
+                            "Unknown", "Good. This is good. So much better than I anticipated", self.unknownSprite)
+        self.all[2].addText("Bob Froman", "Who are you? What are you doing to me?", self.playerSprite,
+                            "Unknown", "It is not important. You are doing this to yourself", self.unknownSprite)
+        self.all[2].addText("Bob Froman", "What now?", self.playerSprite,
+                            "Unknown", ": I've – I mean you’ve been asked to handle The Doomslayer. 30 Gold", self.unknownSprite)
 
-        # Fourth
-        self.all[3].setTitle("Part 4: Moving Up In The World")
 
         # Fifth
-        self.all[4].setTitle("Part 5: Disappointment")
+        self.all[3].setTitle("Part 5: Disappointment")
 
 
     def allScenes(self):
