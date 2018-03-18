@@ -44,11 +44,12 @@ def update(canvas):
         music.currentMusic.play()
         inter.checkKeyboard()
     elif state.cutScene:
+        cutscenes[0].display(canvas)
+
         if cutscenes[0].isFinished:
             del cutscenes[0]
             state.cutSceneToLevel()
-        else:
-            cutscenes[0].display(canvas)
+
         inter.checkKeyboard()
 
     elif state.inLevel:
