@@ -11,6 +11,9 @@ class Interaction:
 
     def __init__(self, player, text, cs, state, unlocks):
         self.keyboard = Keyboard()
+        print("Created keyboard")
+        print(self.keyboard.up)
+        print(self.keyboard.q)
         self.player = player
         self.text = text #----> used for testing purposes
         self.cs = cs
@@ -58,9 +61,12 @@ class Interaction:
             if self.keyboard.q:
                 self.cs[0].nextLine()
                 self.keyboard.q=False
+            if self.keyboard.up:
+                pass
 
         elif self.state.mainMenu:
             if self.keyboard.up:
+                print("triggered")
                 self.state.menuToCutScene()
                 # self.state.cutSceneToLevel()
 
@@ -70,6 +76,12 @@ class Interaction:
                 self.unlocks.hasUpdated = True
                 self.state.weaponToLevel()
                 self.keyboard.q = False
+
+        elif self.state.score:
+            if self.keyboard.q:
+                GV.need_reset = True
+                self.state.scoreToMenu()
+
 
     def checkProjectileCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss

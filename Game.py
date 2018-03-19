@@ -16,69 +16,90 @@ from me.samfreeman.Text.NewUnlock import NewUnlock
 
 frame = simplegui.create_frame("Upside Down", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
 
-music = MusicControl()
-state = State(music)
-menu = MainMenu(frame)
-####### EXAMPLE OF HOW TO USE CUTSCENE
+class Game:
 
-acs = AllCutscenes(frame)
-cutscenes = acs.allScenes()
+    def __init__(self):
+        self.music = MusicControl()
+        self.state = State(self.music)
+        self.menu = MainMenu(frame)
+        self.acs = AllCutscenes(frame)
+        self.cutscenes = self.acs.allScenes()
+        self.player = Player(Vector((50, GV.CANVAS_HEIGHT / 2)),
+                             Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True), frame,
+                             self.state)
+        self.text = TextOverlay("Welcome", 0)
+        self.unlockDisplay = NewUnlock(frame)
+        self.inter = Interaction(self.player, self.text, self.cutscenes, self.state, self.unlockDisplay)
+        self.levelLoader = LevelLoader(self.player, self.inter, self.state)
+    def reset(self):
 
+        self.state = State(self.music)
+        self.acs = AllCutscenes(frame)
 
-player = Player(Vector((50, GV.CANVAS_HEIGHT / 2)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True), frame, state)
+        self.cutscenes = self.acs.allScenes()
+        self.player = Player(Vector((50, GV.CANVAS_HEIGHT / 2)),
+                             Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True), frame,
+                             self.state)
+        self.text = TextOverlay("Welcome", 0)
+        self.unlockDisplay = NewUnlock(frame)
+        self.inter = Interaction(self.player, self.text, self.cutscenes, self.state, self.unlockDisplay)
+        self.levelLoader = LevelLoader(self.player, self.inter, self.state)
 
-text = TextOverlay("Welcome", 0)
+    def loop(self, canvas):
+        # make it loop
+        self.music.currentMusic.play()
 
-unlockDisplay = NewUnlock(frame)
+        if self.state.mainMenu:
+            print("loop - mm")
+            self.menu.draw(canvas)
+            self.music.musicIndex = 0
+            self.inter.checkKeyboard()
+        elif self.state.cutScene:
+            print("loop - cs")
 
-inter = Interaction(player, text, cutscenes, state, unlockDisplay)
+            self.cutscenes[0].display(canvas)
 
-levelLoader = LevelLoader(player,inter, state)
+            if self.cutscenes[0].isFinished:
+                del self.cutscenes[0]
+                self.state.cutSceneToLevel()
 
-def update(canvas):
-    # make it loop
-    music.currentMusic.play()
+            self.inter.checkKeyboard()
 
-    if state.mainMenu:
-        menu.draw(canvas)
-        music.musicIndex = 0
-        inter.checkKeyboard()
-    elif state.cutScene:
-        cutscenes[0].display(canvas)
+        elif self.state.inLevel:
+            GV.allow_update = self.state.levelPlay
+            if self.levelLoader.currentLevel.levelComplete() or self.unlockDisplay.hasUpdated:
+                self.levelLoader.nextlevel()
+                self.unlockDisplay.hasUpdated = False
+            self.levelLoader.currentLevel.draw(canvas)
+            self.text.display(canvas)
+            if (self.levelLoader.currentLevel.player.health <= 0 or self.levelLoader.currentLevel.player.position.y > GV.CANVAS_HEIGHT):
+                self.state.gameToDeath()
+        elif self.state.weaponPickUp:
+            self.unlockDisplay.display(canvas)
+            self.inter.checkKeyboard()
+        elif self.state.death:
+            if (self.levelLoader.levelCounter < 3):
+                speaker = 0
+            else:
+                speaker = 5
 
-        if cutscenes[0].isFinished:
-            del cutscenes[0]
-            state.cutSceneToLevel()
+            # text.nextText()
+            self.text.addLine("You died", speaker)
+            self.state.deathToGameOver()
 
-        inter.checkKeyboard()
+        elif self.state.gameOver:
+            self.levelLoader.gameOver()
 
-    elif state.inLevel:
-        GV.allow_update = state.levelPlay
-        if levelLoader.currentLevel.levelComplete() or unlockDisplay.hasUpdated:
-            levelLoader.nextlevel()
-            unlockDisplay.hasUpdated = False
-        levelLoader.currentLevel.draw(canvas)
-        text.display(canvas)
-        if (levelLoader.currentLevel.player.health <= 0 or levelLoader.currentLevel.player.position.y > GV.CANVAS_HEIGHT):
-            state.gameToDeath()
-    elif state.weaponPickUp:
-        unlockDisplay.display(canvas)
-        inter.checkKeyboard()
-    elif state.death:
-        if (levelLoader.levelCounter < 3):
-            speaker = 0
-        else:
-            speaker = 5
+        elif self.state.score:
+            self.inter.checkKeyboard()
 
-        # text.nextText()
-        text.addLine("You died", speaker)
-        state.deathToGameOver()
+        if GV.need_reset:
+            canvas.draw_text("LOADING...", ((GV.CANVAS_WIDTH - frame.get_canvas_textwidth("LOADING...", 30)) / 2, GV.CANVAS_HEIGHT / 6), 30, "White")
+            self.reset()
+            GV.need_reset = False
 
-    elif state.gameOver:
-        levelLoader.gameOver()
-
-
-frame.set_draw_handler(update)
-frame.set_keydown_handler(inter.keyboard.keyDown)
-frame.set_keyup_handler(inter.keyboard.keyUp)
+game = Game()
+frame.set_draw_handler(game.loop)
+frame.set_keydown_handler(game.inter.keyboard.keyDown)
+frame.set_keyup_handler(game.inter.keyboard.keyUp)
 frame.start()
