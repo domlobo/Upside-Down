@@ -1,4 +1,8 @@
 # Imports
+try:
+    import simplegui
+except ImportError :
+    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
 from me.samfreeman.Helper.Rectangle import Rectangle
 from me.samfreeman.Helper.Vector import Vector
 import me.samfreeman.GameControl.GV as GV
@@ -16,6 +20,13 @@ class TextOverlay:
         self.speakerList = [speaker]
         self.currentSpeakerIndex = 0
         self.currentSpeaker = self.speakerList[self.currentSpeakerIndex]
+        self.BACKGROUND_LOAD = simplegui._load_local_image("images/background/TextOverlayBackground.jpg")
+        self.BACKGROUND_HEIGHT = self.BACKGROUND_LOAD.get_height()
+        self.BACKGROUND_WIDTH = self.BACKGROUND_LOAD.get_width()
+        self.BACKGROUND_CENTER = Vector((self.BACKGROUND_WIDTH/2, self.BACKGROUND_HEIGHT/2))
+        self.BACKGROUND_POSITION = Vector((GV.CANVAS_WIDTH / 2, GV.CANVAS_HEIGHT - self.height / 2))
+
+
         self.speakerImg = Rectangle(Vector((self.height * 0.5, self.outline.position.y)),
                                     self.height * 0.5,
                                     self.height * 0.5)
@@ -46,7 +57,9 @@ class TextOverlay:
 
     def display(self, canvas):
         if not(self.done):
-            self.outline.draw(canvas, "White", "White")
+            #self.outline.draw(canvas, "White", "White")
+            canvas.draw_image(self.BACKGROUND_LOAD,self.BACKGROUND_CENTER.getP(),(self.BACKGROUND_WIDTH,self.BACKGROUND_HEIGHT),self.BACKGROUND_POSITION.getP(),(self.BACKGROUND_WIDTH,self.BACKGROUND_HEIGHT))
+
             self.speakerImg.draw(canvas, "Black", "Black")
             canvas.draw_text(self.currentSpeaker, [self.speakerImg.left, self.speakerImg.top - 5], 15, "Black", "monospace")
             canvas.draw_text(self.displayedText, self.textWrap.position.getP(), 15, "Black", "monospace")
