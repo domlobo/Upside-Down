@@ -13,13 +13,14 @@ class TextOverlay:
         self.height = GV.CANVAS_HEIGHT * 0.2
 
         #link,player,unknown,mario,doom
-        self.speakerOrder = []
-        self.speakerList= ["Link", "Bob Froman", "Unknown", "Mario", "Doomslayer"]
+        self.speakerOrder = [speaker]
+        self.speakerList= ["Link", "Bob Froman", "Unknown", "Mario", "Doomslayer", "Ghost of Link"]
         self.speakerSpriteList = [simplegui._load_local_image("images/interactive-sprites/link/link-profile.png"),
                                     simplegui._load_local_image("images/cutscenes/Player_Profile.png"),
                                     simplegui._load_local_image("images/cutscenes/unknown.png"),
                                     simplegui._load_local_image("images/interactive-sprites/mario/mario-profile.png"),
-                                    simplegui._load_local_image("images/interactive-sprites/doom/doom-profile.png")]
+                                    simplegui._load_local_image("images/interactive-sprites/doom/doom-profile.png"),
+                                    simplegui._load_local_image("images/interactive-sprites/link/link-profile.png")]
         self.currentSpeakerIndex = 0
         self.currentSpeaker = self.speakerList[self.currentSpeakerIndex]
         self.BACKGROUND_LOAD = simplegui._load_local_image("images/background/TextOverlayBackground.png")
@@ -43,7 +44,7 @@ class TextOverlay:
         self.done = False
 
     def nextText(self):
-        self.done = (self.currentTextIndex == len(self.text)-1)
+        self.done = (self.currentTextIndex == len(self.text))
 
         if not self.done:
             self.displayedText = self.text[self.currentTextIndex]
