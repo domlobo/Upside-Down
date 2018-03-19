@@ -32,7 +32,7 @@ class TextOverlay:
         self.SPEAKER_POSITION = Vector((self.height * 0.5, self.BACKGROUND_POSITION.y))
 
         self.textWrap = Rectangle(Vector((GV.CANVAS_WIDTH * 0.2, self.BACKGROUND_POSITION.y)),
-                                  GV.CANVAS_WIDTH,
+                                  GV.CANVAS_WIDTH-10,
                                   self.height)
 
         self.maxCharacterCount = 100

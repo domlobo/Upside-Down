@@ -1,6 +1,6 @@
 None of my questions have been answered|1
 Each question only seems to lead to more|1
-Why am I being asked to do this, and why do I do it? Froman|1
+Why am I being asked to do this. Why do I do it?|1
 Something is pulling me forward.|1
 Enemies
 1097,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,d
