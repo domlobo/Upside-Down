@@ -96,10 +96,10 @@ class LevelLoader:
         if(self.player.numberOfDeaths <3):
             #go back to the start of the level
             self.player.numberOfDeaths +=1
+            self.state.gameOverToLevel()
         else:
             self.state.gameOverToScore()
             self.player.numberOfDeaths=0
-            self.state.gameOverToLevel()
         #start level
         self.player.health = 100
         self.player.position.x = 50
