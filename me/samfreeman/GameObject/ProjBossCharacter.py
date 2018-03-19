@@ -20,6 +20,7 @@ class ProjBossCharacter(BasicEnemy):
 
         self.projLeft = projLeft
         self.projRight = projRight
+        self.coinValue = 20
 
     def move(self):
         if(self.position.x>GV.CANVAS_WIDTH):
