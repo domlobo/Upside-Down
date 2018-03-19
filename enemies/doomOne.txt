@@ -3,8 +3,9 @@ Each question only seems to lead to more|1
 Why am I being asked to do this. Why do I do it?|1
 Something is pulling me forward.|1
 Enemies
-1097,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,r,images/interactive-sprites/doom/bullet-left.png,1,images/interactive-sprites/doom/bullet-right.png,1
+997,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,r,images/interactive-sprites/doom/bullet-left.png,1,images/interactive-sprites/doom/bullet-right.png,1
 1597,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,r,images/interactive-sprites/doom/bullet-left.png,1,images/interactive-sprites/doom/bullet-right.png,1
+1997,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,r,images/interactive-sprites/doom/bullet-left.png,1,images/interactive-sprites/doom/bullet-right.png,1
 Walls
 images/interactive-sprites/doom/doom-platform.png,500,400,0
 images/interactive-sprites/doom/doom-platform.png,600,300,0

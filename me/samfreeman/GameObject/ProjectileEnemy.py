@@ -6,7 +6,7 @@ from random import *
 class ProjectileEnemy(BasicEnemy):
 
     def __init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite(""), leftShoot=Sprite(""), rightShoot=Sprite("")):
-        BasicEnemy.__init__(self, position, health, player, runLeft=Sprite(""), runRight=Sprite(""))
+        BasicEnemy.__init__(self, position, health, player, runLeft, runRight)
         self.leftShoot = leftShoot
         self.rightShoot = rightShoot
 
