@@ -3,4 +3,12 @@ Each question only seems to lead to more|1
 Why am I being asked to do this, and why do I do it? Froman|1
 Something is pulling me forward.|1
 Enemies
+
 Walls
+images\background\doom\DoomOne - floor 1.png, 0, 511, 0
+images\background\doom\DoomOne - floor 2.png, 546, 511, 0
+images\background\doom\DoomOne - floor 3.png, 769, 511, 0
+images\background\doom\DoomOne - floor 4.png, 1800, 511, 0
+images\background\doom\DoomOne - floor 5.png, 2023, 511, 0
+images\background\doom\DoomOne - floor 6.png, 2894, 511, 0
+images\background\doom\DoomOne - floor 7.png, 3446, 511, 0
