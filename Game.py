@@ -65,9 +65,9 @@ def update(canvas):
         inter.checkKeyboard()
     elif state.death:
         if (levelLoader.levelCounter < 3):
-            speaker = "Link"
+            speaker = 0
         else:
-            speaker = "Ghost of Link"
+            speaker = 5
 
         # text.nextText()
         text.addLine("You died", speaker)
