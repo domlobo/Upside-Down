@@ -1,16 +1,27 @@
-You are progressing well|2
+﻿You are progressing well|2
 Fire is a plus|1
 Yes, you have Mario’s flower, but how are you using it?|2
 I.. I.. I don’t know|1
 It’s from inside myself|1
 Enemies
+997,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,r,images/interactive-sprites/doom/bullet-left.png,1,images/interactive-sprites/doom/bullet-right.png,1
+1250,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,r,images/interactive-sprites/doom/bullet-left.png,1,images/interactive-sprites/doom/bullet-right.png,1
+1597,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,r,images/interactive-sprites/doom/bullet-left.png,1,images/interactive-sprites/doom/bullet-right.png,1
+2520,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,r,images/interactive-sprites/doom/bullet-left.png,1,images/interactive-sprites/doom/bullet-right.png,1
+2650,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,r,images/interactive-sprites/doom/bullet-left.png,1,images/interactive-sprites/doom/bullet-right.png,1
+3144,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,r,images/interactive-sprites/doom/bullet-left.png,1,images/interactive-sprites/doom/bullet-right.png,1
 Walls
-images/interactive-sprites/doom/doom-platform.png,225,240
+images/interactive-sprites/doom/doom-platform.png,500,400,0
+images/interactive-sprites/doom/doom-platform.png,600,300,0
+images/interactive-sprites/doom/doom-platform.png,1200,400,0
+images/interactive-sprites/doom/doom-platform.png,1800,400,0
+images/interactive-sprites/doom/doom-platform.png,1950,300,0
+images/interactive-sprites/doom/doom-platform.png,2100,200,0
+images/interactive-sprites/doom/doom-platform.png,2600,400,0
 Floor
 images/background/doom/doom-floor-1.png,225,557
 images/background/doom/doom-floor-2.png,625,557
 images/background/doom/doom-floor-3.png,1250.5,557
-images/background/doom/doom-floor-2.png,1884,557
-images/background/doom/doom-floor-4.png,2434,557
+images/background/doom/doom-floor-4.png,2515,557
 images/background/doom/doom-floor-5.png,3144,557
 images/background/doom/doom-floor-6.png,3533,557
