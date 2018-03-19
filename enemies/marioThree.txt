@@ -1,3 +1,16 @@
+They were right|3
+Who was right?|1
+Link must be dead|3
+The stories were true|3
+Link. He warned us|3
+But.. it was supposed to be a woman|3
+Stop talking.|1
+You don't make sense|1
+I need the money|1
+Yes.|2
+Do it.|2
+You don't have to do this|3
+It's too late|1
 Enemies
 450,300,350,images/interactive-sprites/mario/mario-boss-run-left.png,26,images/interactive-sprites/mario/mario-boss-run-right.png,26,bm
 Walls

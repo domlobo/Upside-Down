@@ -27,7 +27,7 @@ cutscenes = acs.allScenes()
 
 player = Player(Vector((50, GV.CANVAS_HEIGHT / 2)), Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True), frame, state)
 
-text = TextOverlay("Welcome", "Link")
+text = TextOverlay("Welcome", 0)
 
 unlockDisplay = NewUnlock(frame)
 
@@ -43,11 +43,12 @@ def update(canvas):
         music.currentMusic.play()
         inter.checkKeyboard()
     elif state.cutScene:
+        cutscenes[0].display(canvas)
+
         if cutscenes[0].isFinished:
             del cutscenes[0]
             state.cutSceneToLevel()
-        else:
-            cutscenes[0].display(canvas)
+
         inter.checkKeyboard()
 
     elif state.inLevel:
@@ -64,9 +65,9 @@ def update(canvas):
         inter.checkKeyboard()
     elif state.death:
         if (levelLoader.levelCounter < 3):
-            speaker = "Link"
+            speaker = 0
         else:
-            speaker = "Ghost of Link"
+            speaker = 5
 
         # text.nextText()
         text.addLine("You died", speaker)

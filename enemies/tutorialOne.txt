@@ -1,13 +1,15 @@
-Alright honey I'm leaving for my first day of work.,Bob Froman
-Today I learn how to become a main character!,Bob Froman
-And once my training is complete we'll be swimming in money!!,Bob Froman
-Alright follow me scrub. I'm gonna make you go pro.,Link
-I see you brought your own weapon you're gonna need that...,Link
-But first you need to learn to walk.,Link
-Use AD or the left and right arrows to run left and right.,Link
-Use WS or the up and down arrows to jump or crouch.,Link
-You can also use the space bar to jump.,Link
-Explore the level - I'll meet you at the end.,Link
+Hello Bob, I see that you brought the sword.|0
+That's a good start - you listen.|0
+Yeah, so I'm still not sure what I'm doing here.|1
+Well you will train|0
+Train to be the best|0
+The best that there ever was|0
+Ehh.. ok, how do I start?|1
+Well, first you need to learn to walk.|0
+Use AD or the left/right arrows to run left/right.|0
+Use WS or the up/down arrows to jump/crouch.|0
+You can also use the space bar to jump.|0
+Explore the level - I'll meet you at the end.|0
 Enemies
 Walls
 images/interactive-sprites/link/link-platform.png, 350, 390,0

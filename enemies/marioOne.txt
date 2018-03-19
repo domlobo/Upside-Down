@@ -1,3 +1,13 @@
+Mario? 25 Gold?|1
+Bowser why did he call me?|1
+What is happening?|1
+So many questions, and no answers|1
+... Stop talking to yourself|2
+Hello? Who's there|1
+Fulfill the contract|2
+Kill Mario|2
+Huh? Mario? But isn't he a good guy|1
+...|2
 Enemies
 760,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
 1500,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
