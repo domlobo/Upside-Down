@@ -36,11 +36,12 @@ inter = Interaction(player, text, cutscenes, state, unlockDisplay)
 levelLoader = LevelLoader(player,inter, state)
 
 def update(canvas):
+    # make it loop
+    music.currentMusic.play()
 
     if state.mainMenu:
         menu.draw(canvas)
         music.musicIndex = 0
-        music.currentMusic.play()
         inter.checkKeyboard()
     elif state.cutScene:
         cutscenes[0].display(canvas)
