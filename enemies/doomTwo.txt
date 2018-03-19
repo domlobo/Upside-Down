@@ -1,11 +1,11 @@
-You are progressing well|2
+﻿You are progressing well|2
 Fire is a plus|1
 Yes, you have Mario’s flower, but how are you using it?|2
 I.. I.. I don’t know|1
 It’s from inside myself|1
 Enemies
 Walls
-images/interactive-sprites/doom/doom-platform.png,225,240
+images/interactive-sprites/doom/doom-platform.png,225,240,0
 Floor
 images/background/doom/doom-floor-1.png,225,557
 images/background/doom/doom-floor-2.png,625,557
