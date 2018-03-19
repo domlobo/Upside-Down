@@ -68,6 +68,6 @@ class TextOverlay:
             speakerCenter= Vector((speakerWidth/2, speakerHeight/2))
 
             canvas.draw_image(self.currentSpeakerSprite,speakerCenter.getP(),(speakerWidth,speakerHeight),self.SPEAKER_POSITION.getP(),(speakerWidth,speakerHeight))
-            canvas.draw_text(self.currentSpeaker, [self.SPEAKER_POSITION.x-(speakerWidth/2) ,self.SPEAKER_POSITION.y + (speakerHeight/2) - 20], 15, "Black", "monospace")
+            canvas.draw_text(self.currentSpeaker, [self.SPEAKER_POSITION.x-(speakerWidth/2) ,self.BACKGROUND_POSITION.y - ((self.height/2)-30)], 15, "Black", "monospace")
             canvas.draw_text(self.displayedText, self.textWrap.position.getP(), 15, "Black", "monospace")
             canvas.draw_text(self.continueText, [self.textWrap.position.x, GV.CANVAS_HEIGHT - 20], 15, "Black", "monospace")
