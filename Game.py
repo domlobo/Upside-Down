@@ -36,6 +36,7 @@ inter = Interaction(player, text, cutscenes, state, unlockDisplay)
 levelLoader = LevelLoader(player,inter, state)
 
 def update(canvas):
+    GV.allow_update = state.levelPlay
 
     if state.mainMenu:
         menu.draw(canvas)
@@ -52,7 +53,7 @@ def update(canvas):
         inter.checkKeyboard()
 
     elif state.inLevel:
-        GV.allow_update = state.levelPlay
+
         if levelLoader.currentLevel.levelComplete() or unlockDisplay.hasUpdated:
             levelLoader.nextlevel()
             unlockDisplay.hasUpdated = False
