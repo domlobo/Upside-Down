@@ -50,28 +50,13 @@ class LevelLoader:
                         "images/background/doom/second layer.png",
                          "", player,inter,"Doom-2")
         doomThree = Level("images/background/doom/boss_background.jpg",
-                        "images/background/doom/second layer.png",
-                         "", player,inter,"Doom-3")
+                        "images/background/doom/boss-second-layer.png",
+                         "images/background/doom/doom-boss-clouds.png", player,inter,"Doom-3")
         # Creating list of levels
-<<<<<<< HEAD
-<<<<<<< HEAD
-        self.levels =[doomOne,doomTwo,doomThree]
-        self.enemyFiles =("enemies/doomOne.txt", "enemies/doomTwo.txt", "enemies/doomThree.txt")
-=======
 
         self.levels =[tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne,doomTwo,doomThree]
         self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt", "enemies/doomTwo.txt", "enemies/doomThree.txt")
->>>>>>> bb0b44f3ece13309057a6f5bff40f30f967dd9ac
 =======
-
-        self.levels =[doomOne,doomTwo,doomThree]
-        self.enemyFiles =("enemies/doomOne.txt", "enemies/doomTwo.txt", "enemies/doomThree.txt")
-
-
-        #self.levels =[tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne,doomTwo,doomThree]
-        #self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt", "enemies/doomTwo.txt", "enemies/doomThree.txt")
-
->>>>>>> d5c66f0452103c55d97318973f50be84707579e6
 
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
@@ -112,15 +97,10 @@ class LevelLoader:
         if(self.player.numberOfDeaths <3):
             #go back to the start of the level
             self.player.numberOfDeaths +=1
-        # else:
-            ### this code is for restarting stage but we're required to go back to main menu
-            # #go back to the start of the stage
-            # self.player.numberOfDeaths =0
-            # self.levelCounter -= self.levelCounter %3
-            # self.currentLevel = self.levels[self.levelCounter]
-            # #reset what everything
-            # self.currentLevel.enemies = []
-            # self.currentLevel.objects = []
+            self.state.gameOverToLevel()
+        else:
+            self.state.gameOverToScore()
+            self.player.numberOfDeaths=0
         #start level
         self.player.health = 100
         self.player.position.x = 50
@@ -130,4 +110,3 @@ class LevelLoader:
         self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
         self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
         GameObject.update(self.currentLevel.player)
-        self.state.gameOverToLevel()
