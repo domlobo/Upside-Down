@@ -22,7 +22,7 @@ class TextOverlay:
                                     simplegui._load_local_image("images/interactive-sprites/doom/doom-profile.png")]
         self.currentSpeakerIndex = 0
         self.currentSpeaker = self.speakerList[self.currentSpeakerIndex]
-        self.BACKGROUND_LOAD = simplegui._load_local_image("images/background/TextOverlayBackground.jpg")
+        self.BACKGROUND_LOAD = simplegui._load_local_image("images/background/TextOverlayBackground.png")
         self.BACKGROUND_HEIGHT = self.BACKGROUND_LOAD.get_height()
         self.BACKGROUND_WIDTH = self.BACKGROUND_LOAD.get_width()
         self.BACKGROUND_CENTER = Vector((self.BACKGROUND_WIDTH/2, self.BACKGROUND_HEIGHT/2))
