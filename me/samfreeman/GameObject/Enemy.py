@@ -156,4 +156,5 @@ class BasicEnemy(GameObject):
 
     def draw(self, canvas, colour):
         GameObject.draw(self, canvas, colour)
-        self.largeSearch.draw(canvas, "White")
+        if GV.bounding_box:
+            self.largeSearch.draw(canvas, "White")

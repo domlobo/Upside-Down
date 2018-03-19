@@ -74,5 +74,5 @@ class GameObject:
         self.update()
         if self.sprite.hasPath:
             self.sprite.draw(position, canvas, width, self.dimensions[1])
-        # Bounding box for testing
-        self.boundingBox.draw(canvas, colour)
+        if GV.bounding_box:
+            self.boundingBox.draw(canvas, colour)

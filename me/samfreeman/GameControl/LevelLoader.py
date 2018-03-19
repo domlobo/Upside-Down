@@ -57,7 +57,6 @@ class LevelLoader:
         self.levels =[tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne,doomTwo,doomThree]
         self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt", "enemies/doomTwo.txt", "enemies/doomThree.txt")
 
-
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
         self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
@@ -97,15 +96,10 @@ class LevelLoader:
         if(self.player.numberOfDeaths <3):
             #go back to the start of the level
             self.player.numberOfDeaths +=1
-        # else:
-            ### this code is for restarting stage but we're required to go back to main menu
-            # #go back to the start of the stage
-            # self.player.numberOfDeaths =0
-            # self.levelCounter -= self.levelCounter %3
-            # self.currentLevel = self.levels[self.levelCounter]
-            # #reset what everything
-            # self.currentLevel.enemies = []
-            # self.currentLevel.objects = []
+        else:
+            self.state.gameOverToScore()
+            self.player.numberOfDeaths=0
+            self.state.gameOverToLevel()
         #start level
         self.player.health = 100
         self.player.position.x = 50
@@ -115,4 +109,4 @@ class LevelLoader:
         self.currentLevel.background.foregroundPos = Vector((self.currentLevel.background.FOREGROUND_WIDTH / 2, GV.CANVAS_HEIGHT / 2))
         self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
         GameObject.update(self.currentLevel.player)
-        self.state.gameOverToLevel()
+

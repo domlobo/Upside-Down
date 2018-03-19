@@ -1,3 +1,5 @@
+from me.samfreeman.GameControl import GV
+
 try:
     import simplegui
 except ImportError :
@@ -5,10 +7,12 @@ except ImportError :
 from me.samfreeman.Input.Keyboard import Keyboard
 from me.samfreeman.GameObject.FireBalls import FireBall
 
+keyboard = Keyboard()
+
 class Interaction:
 
     def __init__(self, player, text, cs, state, unlocks):
-        self.keyboard = Keyboard()
+        self.keyboard = keyboard
         self.player = player
         self.text = text #----> used for testing purposes
         self.cs = cs
@@ -21,7 +25,7 @@ class Interaction:
         if self.state.inLevel:
             if self.state.levelPlay:
                 # Means no running an shooting
-                if not self.player.attackingSword:
+                if not self.player.attackingSword or self.player.attackingFire:
                     if self.keyboard.right:
                         self.player.moveRight()
                     if self.keyboard.left:
@@ -31,12 +35,14 @@ class Interaction:
                     if self.keyboard.down:
                         self.player.crouch()
                         self.justCrouched = True
-                if self.keyboard.j and not self.player.hasJumped: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
+                if self.keyboard.j and not self.player.hasJumped and not self.player.attackingFire: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
                     self.player.swordAttack()
-                if self.keyboard.k and (self.player.maxUnlockedWeapon >1):
+                if self.keyboard.k and (self.player.maxUnlockedWeapon >1) and not self.player.attackingSword:
                     self.player.fireballAttack()
                 if self.keyboard.l and self.player.maxUnlockedWeapon >2:
                     self.player.shoot()
+                if self.keyboard.b:
+                    GV.bounding_box = not GV.bounding_box
             else:
                 if self.keyboard.q:
                     self.text.nextText()
@@ -44,7 +50,7 @@ class Interaction:
                         self.state.textToPlay()
                     self.keyboard.q=False
 
-            if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
+            if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped or self.player.attackingFire):
                 self.player.stand()
                 if self.justCrouched:
                     self.justCrouched = False
@@ -54,6 +60,8 @@ class Interaction:
             if self.keyboard.q:
                 self.cs[0].nextLine()
                 self.keyboard.q=False
+            if self.keyboard.up:
+                pass
 
         elif self.state.mainMenu:
             if self.keyboard.up:
@@ -66,6 +74,11 @@ class Interaction:
                 self.unlocks.hasUpdated = True
                 self.state.weaponToLevel()
                 self.keyboard.q = False
+
+        elif self.state.score:
+            if self.keyboard.q:
+                GV.need_reset = True
+                self.state.scoreToMenu()
 
     def checkProjectileCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss
