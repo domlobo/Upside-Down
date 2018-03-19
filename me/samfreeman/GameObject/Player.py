@@ -13,8 +13,8 @@ class Player(GameObject):
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
         self.animation = 0
-        self.maxUnlockedWeapon = 3
-        self.numberOfDeaths =0
+        self.maxUnlockedWeapon = 0
+        self.numberOfDeaths = 0
         self.state = state
         self.frame = frame
 
@@ -50,6 +50,7 @@ class Player(GameObject):
         self.maxVel = [3, 3]
 
         self.attackingSword = False
+        self.attackingFire = False
 
         self.currentSprite = sprite
 
@@ -75,7 +76,7 @@ class Player(GameObject):
         self.hasJumped = False
         self.startingY = 0
         self.gravity = 1
-        self.onGround = True # TODO: ADD PROPER FUNCTIONALITY TO THIS SO IT WORKS WITH PLATFORMS
+        self.onGround = True
 
         self.collectedCoins = 0
 
@@ -147,6 +148,7 @@ class Player(GameObject):
         self.updateStates(self.directionState, self.animationLengthStand, GV.STANDING, 8)
 
     def update(self):
+
         if self.velocity.y != 0:
             self.actionState = GV.JUMP_UP if self.velocity.y < 0 else GV.JUMP_DOWN
             self.currentAnimationLength = self.animationLengthJumpUp if self.velocity.y < 0 else self.animationLengthJumpDown
@@ -179,6 +181,7 @@ class Player(GameObject):
         if self.currentSprite.isComplete:
             self.attackingSword = False
             self.swordHit = False
+            self.attackingFire = False
 
         if(self.boundingBox.left > 10) and self.boundingBox.right < GV.CANVAS_WIDTH -20:
             GameObject.update(self)
@@ -223,20 +226,25 @@ class Player(GameObject):
             self.offset = 30
             self.swordLength = 60
 
-        self.updateStates(self.directionState, self.animationLengthAttack, GV.ATTACKING, 3)
+        self.updateStates(self.directionState, self.animationLengthAttack, GV.ATTACKING, 3, 1)
 
     def fireballAttack(self):
+        self.attackingFire = True
+        self.updateStates(self.directionState, self.animationLengthStand, GV.ATTACKING, 3, 1)
         if len(self.fireballs) == self.MAXIMUM_FIREBALLS: return
         self.fireballs.append(FireBall(self.position.copy(), self.velocity.copy(), self.directionState, self.dimensions[0] / 2))
 
-    def updateStates(self, dir, aLen, act, speed=0):
+    def updateStates(self, direction, aLen, act, speed=3, attack=0):
         self.currentAnimationLength = aLen
         self.oldActionState = self.actionState
         self.actionState = act
-        self.directionState = dir
+        self.directionState = direction
 
-        self.currentSpriteStart = [(self.directionState * self.currentAnimationLength),
-                                   ((self.maxUnlockedWeapon * 6 + self.actionState))]
+        print(self.actionState)
+        if self.actionState == GV.ATTACKING and (self.maxUnlockedWeapon >= 2 and self.attackingFire):
+            self.currentSpriteStart = [(self.directionState * self.currentAnimationLength),((15))]
+        else:
+            self.currentSpriteStart = [(self.directionState * self.currentAnimationLength),(((self.maxUnlockedWeapon if self.maxUnlockedWeapon<2 else 1) * 6 + self.actionState))]
 
         if self.oldActionState != self.actionState:
             self.currentSprite.frameIndex = self.currentSpriteStart
@@ -265,6 +273,7 @@ class Player(GameObject):
         self.velocity.x = 0
 
     def draw(self, canvas, colour, position=Vector()):
+        # print(self.currentSprite.frameIndex)
         if self.wasHit:
             self.counter += 1
             canvas.draw_image(self.flash, [GV.CANVAS_WIDTH / 2, GV.CANVAS_HEIGHT / 2], [GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT], [GV.CANVAS_WIDTH / 2, GV.CANVAS_HEIGHT / 2], [GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT])

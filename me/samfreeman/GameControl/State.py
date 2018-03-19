@@ -12,6 +12,7 @@ class State:
         self.death = False
         self.gameOver = False
         self.lastLevel = False
+        self.score = False
 
     def menuToCutScene(self):
         if self.mainMenu:
@@ -81,3 +82,15 @@ class State:
             self.gameOver = False
             self.inLevel = True
             self.levelText = True
+
+    def gameOverToScore(self):
+        if self.gameOver:
+            self.gameOver = False
+            self.inLevel = False
+            self.levelPlay = False
+            self.score = True
+
+    def scoreToMenu(self):
+        if self.score:
+            self.score = False
+            self.mainMenu = True
