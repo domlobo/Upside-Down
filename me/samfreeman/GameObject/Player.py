@@ -13,7 +13,7 @@ class Player(GameObject):
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
         self.animation = 0
-        self.maxUnlockedWeapon = 2
+        self.maxUnlockedWeapon = 0
         self.numberOfDeaths = 0
         self.state = state
         self.frame = frame
@@ -76,7 +76,7 @@ class Player(GameObject):
         self.hasJumped = False
         self.startingY = 0
         self.gravity = 1
-        self.onGround = True # TODO: ADD PROPER FUNCTIONALITY TO THIS SO IT WORKS WITH PLATFORMS
+        self.onGround = True
 
         self.collectedCoins = 0
 
@@ -244,7 +244,7 @@ class Player(GameObject):
         if self.actionState == GV.ATTACKING and (self.maxUnlockedWeapon >= 2 and self.attackingFire):
             self.currentSpriteStart = [(self.directionState * self.currentAnimationLength),((15))]
         else:
-            self.currentSpriteStart = [(self.directionState * self.currentAnimationLength),((1 * 6 + self.actionState))]
+            self.currentSpriteStart = [(self.directionState * self.currentAnimationLength),(((self.maxUnlockedWeapon if self.maxUnlockedWeapon<2 else 1) * 6 + self.actionState))]
 
         if self.oldActionState != self.actionState:
             self.currentSprite.frameIndex = self.currentSpriteStart
