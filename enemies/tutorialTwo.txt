@@ -16,12 +16,37 @@ Enemies
 1650, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
 1800, 400,150,images/interactive-sprites/link/Wheeler.png,8,,,s
 Walls
+images/interactive-sprites/link/invisible.png, 0, 400,0
+images/interactive-sprites/link/invisible.png, 130, 250,0
+images/interactive-sprites/link/invisible.png, 50, 100,0
+images/interactive-sprites/link/invisible.png, 130, -50,0
+images/interactive-sprites/link/invisible.png, 230, -50,0
+images/interactive-sprites/link/invisible.png, 330, -50,0
+images/interactive-sprites/link/invisible.png, 430, -50,0
+images/interactive-sprites/link/invisible.png, 530, -50,0
+images/interactive-sprites/link/invisible.png, 630, -50,0
+images/interactive-sprites/link/invisible.png, 730, -50,0
+images/interactive-sprites/link/invisible.png, 830, -50,0
+images/interactive-sprites/link/invisible.png, 930, -50,0
+images/interactive-sprites/link/invisible.png, 1030, -50,0
+images/interactive-sprites/link/invisible.png, 1130, -50,0
+images/interactive-sprites/link/invisible.png, 1230, -50,0
+images/interactive-sprites/link/invisible.png, 1330, -50,0
+images/interactive-sprites/link/invisible.png, 1430, -50,0
+images/interactive-sprites/link/invisible.png, 1530, -50,0
+images/interactive-sprites/link/invisible.png, 1630, -50,0
+images/interactive-sprites/link/invisible.png, 1730, -50,0
+images/interactive-sprites/link/invisible.png, 1830, -50,0
+images/interactive-sprites/link/invisible.png, 1930, -50,0
+images/interactive-sprites/link/invisible.png, 2030, -50,0
+images/interactive-sprites/link/invisible.png, 2130, -50,0
+images/interactive-sprites/link/invisible.png, 2230, -50,0
+images/interactive-sprites/link/invisible.png, 2330, -50,0
 images/interactive-sprites/link/link-platform.png, 350, 390,0
-images/interactive-sprites/link/link-platform.png, 670, 310,0
-images/interactive-sprites/link/link-platform.png, 1250, 390,0
-images/interactive-sprites/link/link-platform.png, 1800, 390,0
-images/interactive-sprites/link/link-platform.png, 2450, 390,0
-images/interactive-sprites/link/link-platform.png, 3000, 310,0
-images/interactive-sprites/link/link-platform.png, 3320, 390,0
+images/interactive-sprites/link/link-platform.png, 570, 310,0
+images/interactive-sprites/link/link-platform.png, 1150, 390,0
+images/interactive-sprites/link/link-platform.png, 1500, 390,0
+images/interactive-sprites/link/link-platform.png, 1700, 290,0
+images/interactive-sprites/link/link-platform.png, 2700, 310,0
 Floor
 images/background/link/link-floor.png,mid,557
