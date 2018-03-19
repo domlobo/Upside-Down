@@ -15,7 +15,6 @@ from me.samfreeman.Text.Cutscenes import AllCutscenes
 from me.samfreeman.Text.NewUnlock import NewUnlock
 
 frame = simplegui.create_frame("Upside Down", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT, 0)
-
 class Game:
 
     def __init__(self):
@@ -45,6 +44,8 @@ class Game:
         self.unlockDisplay = NewUnlock(frame)
         self.inter = Interaction(self.player, self.text, self.cutscenes, self.state, self.unlockDisplay)
         self.levelLoader = LevelLoader(self.player, self.inter, self.state)
+        GV.win = False
+        GV.on_last = False
 
     def loop(self, canvas):
         # make it loop

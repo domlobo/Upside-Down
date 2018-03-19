@@ -44,11 +44,15 @@ class Interaction:
                 if self.keyboard.b:
                     GV.bounding_box = not GV.bounding_box
             else:
-                if self.keyboard.q:
+                if self.keyboard.q and not self.text.lastLevel:
                     self.text.nextText()
                     if self.text.done:
+                        if GV.on_last:
+                            GV.win = True
                         self.state.textToPlay()
                     self.keyboard.q=False
+                # if self.keyboard.l and self.text.lastLevel:
+                #     self.player.shoot()
 
             if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped or self.player.attackingFire):
                 self.player.stand()
@@ -93,6 +97,8 @@ class Interaction:
             for proj in player.projectiles[:]:
                 if enemy.boundingBox.overlaps(proj.boundingBox):
                     # Collision
+                    if hasattr(enemy, 'wife'):
+                        enemy.shot = True
                     enemy.changeHealth(-proj.damage)
                     proj.remove = True
             for proj in enemy.projectiles[:]:

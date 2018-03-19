@@ -11,6 +11,7 @@ class State:
         self.weaponPickUp = False
         self.death = False
         self.gameOver = False
+        self.lastLevel = False
         self.score = False
 
     def menuToCutScene(self):
@@ -46,6 +47,13 @@ class State:
 
     def boss(self):
         self.music.nextSong()
+
+    def cutsceneToLastLevel(self):
+        if self.cutScene:
+            self.inLevel = True
+            self.levelText = True
+            self.lastLevel = True
+            self.cutScene = False
 
     def playToWeapon(self):
         if self.inLevel:

@@ -1,0 +1,33 @@
+Jess! Did he hurt you?|1
+He better not have hurt you!|1
+SHE did not hurt me.|6
+She? Who is she?|1
+Why are you fine?|1
+Jess?|1
+I can feel the anger Bob|2 
+Let it flow through you Bob|2 
+It was you?|1
+No, not was, is. I have been the whole time|6
+I am the one the stories are about|6
+I.. I… I can’t believe it|1
+Why?|1
+I wanted you to feel like you had a purpose|6
+I wanted you to be happy|6
+You’ve made me a monster|1
+I’ve been killing good people|1
+Have you?|6
+Those ‘good’ guys are not so ‘good’|6
+Think about what they do.|6
+Think about who they kill|6
+But they do it to protect others!|1
+..from people like you|1
+If you are as dangerous as they say..|1
+Bob, join me|6
+I.. I have to stop you.|1
+It’s over Jess. I have the Gun|1
+Yes, do it. I love you.|6
+Enemies
+450,469,1,images/cutscenes/Wife_PhoneCall_Left.png,5,,,w
+Walls
+Floor
+images/background/pokemon/pikachu/pikachu-floor.png,mid,557
