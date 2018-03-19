@@ -3,16 +3,17 @@ Each question only seems to lead to more|1
 Why am I being asked to do this, and why do I do it? Froman|1
 Something is pulling me forward.|1
 Enemies
-1097.50, 479.50 ,100,images\interactive-sprites\doom\marine-running-left.png,4,images\interactive-sprites\doom\marine-running-right.png,4,d
-1645.50, 479.50,100,images\interactive-sprites\doom\marine-running-left.png,4,images\interactive-sprites\doom\marine-running-right.png,4,d
-1886.50, 479.50,100,images\interactive-sprites\doom\marine-running-left.png,4,images\interactive-sprites\doom\marine-running-right.png,4,d
-2402.50, 479.50,100,images\interactive-sprites\doom\marine-running-left.png,4,images\interactive-sprites\doom\marine-running-right.png,4,d
-3169.50, 479.50,100,images\interactive-sprites\doom\marine-running-left.png,4,images\interactive-sprites\doom\marine-running-right.png,4,d
+1097,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,d
+1645,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,d
+1886,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,d
+2402,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,d
+3169,479,100,images/interactive-sprites/doom/marine-running-left.png,4,images/interactive-sprites/doom/marine-running-right.png,4,d
 Walls
-images\background\doom\DoomOne - floor 1.png, 242.5, 511, 0
-images\background\doom\DoomOne - floor 2.png, 628, 511, 0
-images\background\doom\DoomOne - floor 3.png, 1256.5, 511, 0
-images\background\doom\DoomOne - floor 4.png, 1880.5, 511, 0
-images\background\doom\DoomOne - floor 5.png, 2426.5, 511, 0
-images\background\doom\DoomOne - floor 6.png, 3731, 511, 0
-images\background\doom\DoomOne - floor 7.png, 3527.5, 511, 0
+Floor
+images/background/doom/DoomOne - floor 1.png,242,557
+images/background/doom/DoomOne - floor 2.png,628,557
+images/background/doom/DoomOne - floor 3.png,1256,557
+images/background/doom/DoomOne - floor 4.png,1880,557
+images/background/doom/DoomOne - floor 5.png,2426,557
+images/background/doom/DoomOne - floor 6.png,3731,557
+images/background/doom/DoomOne - floor 7.png,3527,557
