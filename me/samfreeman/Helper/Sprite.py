@@ -95,7 +95,7 @@ class Sprite:
             (d_width, d_height)
         )
 
-        # print("Drawing: "+ self.path + " fw "+ str(self.frameWidth) + " fh " + str(self.frameHeight)
+        # 
         #       + " fcX " + str(self.frameCentre[0]) + " fcY " + str(self.frameCentre[1]) + " fi " + str(self.frameIndex) + " p " + str(position.getP()))
 
         # Animate

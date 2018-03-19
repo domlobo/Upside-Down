@@ -50,7 +50,7 @@ class Cutscene:
             self.rightSprite.append(personBSprite)
         else: self.numberOfSpeakers.append(1)
 
-        print(self.numberOfSpeakers)
+        
         self.leftSpeaker.append(personA)
         self.leftAllText.append(personAText)
         self.leftSprite.append(personASprite)
