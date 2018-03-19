@@ -1,0 +1,31 @@
+Jess! Did he hurt you?|Bob
+He better not have hurt you!|Bob
+SHE did not hurt me.|Jess
+She? Who is she?|Bob
+Why are you fine?|Bob
+Jess?|Bob
+I can feel the anger Bob|Unknown (Jess)
+Let it flow through you Bob|Unknown (Jess)
+It was you?|Bob
+No, not was, is. I have been the whole time|Jess
+I am the one the stories are about|Jess
+I.. I… I can’t believe it|Bob
+Why?|Bob
+I wanted you to feel like you had a purpose|Jess
+I wanted you to be happy|Jess
+You’ve made me a monster|Bob
+I’ve been killing good people|Bob
+Have you?|Jess
+Those ‘good’ guys are not so ‘good’|Jess
+Think about what they do.|Jess
+Think about who they kill|Jess
+But they do it to protect others!|Bob
+..from people like you|Bob
+If you are as dangerous as they say..|Bob
+Bob, join me|Jess
+I.. I have to stop you.|Bob
+It’s over Jess. I have the Gun|Bob
+Yes, do it. I love you.|Jess
+Enemies
+Walls
+Floor
