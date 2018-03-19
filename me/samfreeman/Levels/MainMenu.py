@@ -20,3 +20,4 @@ class MainMenu:
         self.dancingSprite.draw(Vector((100, GV.CANVAS_HEIGHT - 150)), canvas, 200, 200)
         self.title.draw(Vector((GV.CANVAS_WIDTH / 2, 150)), canvas, GV.CANVAS_WIDTH * 5/6, self.title.frameHeight)
         canvas.draw_text(self.startText, ((GV.CANVAS_WIDTH - self.startTextWidth) / 2, GV.CANVAS_HEIGHT / 2), 40, "White", "monospace")
+        canvas.draw_text("Press q when you die and see a black screen", ((GV.CANVAS_WIDTH - self.startTextWidth) / 2, GV.CANVAS_HEIGHT * 7/8), 30, "Black", "monospace")

@@ -29,7 +29,7 @@ class Wife(GameObject):
             self.sprite = self.dyingSprite
             self.sprite.startAnimation(8, True)
             if self.sprite.isComplete:
-                # THIS IS WHERE RESET GOES
+                GV.need_reset = True
         else: self.sprite.startAnimation(8)
 
     def dropCoin(self, size, cost):
