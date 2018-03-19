@@ -53,14 +53,14 @@ class LevelLoader:
                         "images/background/doom/second layer.png",
                          "", player,inter,"Doom-3")
         # Creating list of levels
-<<<<<<< HEAD
+
         self.levels =[doomOne,doomTwo,doomThree]
         self.enemyFiles =("enemies/doomOne.txt", "enemies/doomTwo.txt", "enemies/doomThree.txt")
-=======
 
-        self.levels =[tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne,doomTwo,doomThree]
-        self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt", "enemies/doomTwo.txt", "enemies/doomThree.txt")
->>>>>>> bb0b44f3ece13309057a6f5bff40f30f967dd9ac
+
+        #self.levels =[tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne,doomTwo,doomThree]
+        #self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt", "enemies/doomTwo.txt", "enemies/doomThree.txt")
+
 
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]

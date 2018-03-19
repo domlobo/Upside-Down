@@ -11,10 +11,10 @@ images/interactive-sprites/doom/doom-platform.png,500,400,0
 images/interactive-sprites/doom/doom-platform.png,600,300,0
 images/interactive-sprites/doom/doom-platform.png,1200,400,0
 Floor
-images/background/doom/DoomOne - floor 1.png,242,557
-images/background/doom/DoomOne - floor 2.png,628,557
-images/background/doom/DoomOne - floor 3.png,1256,557
-images/background/doom/DoomOne - floor 4.png,1880,557
-images/background/doom/DoomOne - floor 5.png,2426,557
-images/background/doom/DoomOne - floor 6.png,3731,557
-images/background/doom/DoomOne - floor 7.png,3527,557
+images/background/doom/doom-floor-1.png,225,557
+images/background/doom/doom-floor-2.png,625,557
+images/background/doom/doom-floor-3.png,1250.5,557
+images/background/doom/doom-floor-2.png,1884,557
+images/background/doom/doom-floor-4.png,2434,557
+images/background/doom/doom-floor-5.png,3144,557
+images/background/doom/doom-floor-6.png,3533,557
