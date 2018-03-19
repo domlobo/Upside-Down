@@ -126,7 +126,7 @@ class Level:
             if enemy.health <= 0:
                 if enemy.boss:
                     self.collectibles.append(enemy.dropWeapon())
-                self.collectibles.append(enemy.dropCoin(100, 1))
+                self.collectibles.append(enemy.dropCoin(100, enemy.coinValue))
 
         self.inter.checkKeyboard()
 

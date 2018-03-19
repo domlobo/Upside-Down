@@ -14,6 +14,7 @@ class MarioBossCharacter(BasicEnemy):
         self.damage = 0
         self.fireballs = []
         self.MAXIMUM_FIREBALLS = 3
+        self.coinValue =20
 
     def update(self):
         BasicEnemy.update(self)

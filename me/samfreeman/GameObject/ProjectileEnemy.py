@@ -10,6 +10,7 @@ class ProjectileEnemy(BasicEnemy):
 
         self.MAXIMUM_PROJECTILES = 3
         self.CHANCE_TO_FIRE = 3
+        self.coinValue =1
 
     def moveToPlayer(self):
         Enemy.moveToPlayer(self)

@@ -19,6 +19,8 @@ class BasicEnemy(GameObject):
         self.damage = 0.5
         self.projectiles = []
 
+        self.coinValue =1
+
         self.maxVel = [1, 1]
         self.lastSwitch = "Null"
 
