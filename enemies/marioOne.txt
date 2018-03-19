@@ -20,7 +20,7 @@ images/interactive-sprites/mario/mario-pipe.png, 660, 468,0
 images/interactive-sprites/mario/mario-pipe.png, 1084, 468,0
 images/interactive-sprites/mario/mario-block-2-piece.png, 1550, 370,0
 images/interactive-sprites/mario/mario-block-4-piece.png, 2050, 370,0
-images/interactive-sprites/mario/mario-block-3-piece.png, 2050, 185,0
+images/interactive-sprites/mario/mario-block-3-piece.png, 2150, 200,0
 images/interactive-sprites/mario/mario-pipe.png, 2400, 468,0
 images/interactive-sprites/mario/stair1.png, 2689, 501,0
 images/interactive-sprites/mario/stair1.png, 2716, 501,0
