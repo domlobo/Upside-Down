@@ -58,7 +58,7 @@ class Level:
                 leftShoot = Sprite(args[8],1, int(args[9]), True)
                 rightShoot = Sprite(args[10],1, int(args[11]), True)
                 self.enemies.append(ProjectileEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight, leftShoot, rightShoot))
-            elif(args[7] == "bl\n"):
+            elif(args[7] == "bl"):
                 runRight= Sprite(args[5], 1,int(args[6]), True)
                 weapon = Sprite(args[8])
                 attackLeft = Sprite(args[9],1,int(args[10]),True)
@@ -69,8 +69,6 @@ class Level:
             elif(args[7] == "bm\n"):
                 runRight= Sprite(args[5], 1,int(args[6]), True)
                 self.enemies.append(MarioBossCharacter(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft, runRight))
-            elif(args[7] == "bd\n"):
-                pass
         #load all the objects
         for line in file:
             if line == "Floor\n":
