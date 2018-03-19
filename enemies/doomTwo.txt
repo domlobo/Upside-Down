@@ -5,4 +5,12 @@ I.. I.. I don’t know|1
 It’s from inside myself|1
 Enemies
 Walls
+images/interactive-sprites/doom/doom-platform.png,225,240
 Floor
+images/background/doom/doom-floor-1.png,225,557
+images/background/doom/doom-floor-2.png,625,557
+images/background/doom/doom-floor-3.png,1250.5,557
+images/background/doom/doom-floor-2.png,1884,557
+images/background/doom/doom-floor-4.png,2434,557
+images/background/doom/doom-floor-5.png,3144,557
+images/background/doom/doom-floor-6.png,3533,557
