@@ -21,3 +21,5 @@ JUMP_DOWN = 5
 JUMPING = 2
 
 allow_update = False
+bounding_box = False
+need_reset = False
