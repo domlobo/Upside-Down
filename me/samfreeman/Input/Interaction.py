@@ -7,13 +7,12 @@ except ImportError :
 from me.samfreeman.Input.Keyboard import Keyboard
 from me.samfreeman.GameObject.FireBalls import FireBall
 
+keyboard = Keyboard()
+
 class Interaction:
 
     def __init__(self, player, text, cs, state, unlocks):
-        self.keyboard = Keyboard()
-        print("Created keyboard")
-        print(self.keyboard.up)
-        print(self.keyboard.q)
+        self.keyboard = keyboard
         self.player = player
         self.text = text #----> used for testing purposes
         self.cs = cs

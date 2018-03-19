@@ -59,7 +59,7 @@ class LevelLoader:
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
         self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
-        self.player.numberOfDeaths = 3
+        self.player.numberOfDeaths = 0
     #called from Game when a level is over
     def nextlevel(self):
         self.player = self.currentLevel.returnPlayer()
