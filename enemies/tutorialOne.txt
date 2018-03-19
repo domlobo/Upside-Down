@@ -1,15 +1,15 @@
-Hello Bob, I see that you brought the sword.|Link
-That's a good start - you listen.|Link
-Yeah, so I'm still not sure what I'm doing here.|Bob Froman
-Well you will train|Link
-Train to be the best|Link
-The best that there ever was|Link
-Ehh.. ok, how do I start?|Bob Froman
-Well, first you need to learn to walk.|Link
-Use AD or the left/right arrows to run left/right.|Link
-Use WS or the up/down arrows to jump/crouch.|Link
-You can also use the space bar to jump.|Link
-Explore the level - I'll meet you at the end.|Link
+Hello Bob, I see that you brought the sword.|0
+That's a good start - you listen.|0
+Yeah, so I'm still not sure what I'm doing here.|1
+Well you will train|0
+Train to be the best|0
+The best that there ever was|0
+Ehh.. ok, how do I start?|1
+Well, first you need to learn to walk.|0
+Use AD or the left/right arrows to run left/right.|0
+Use WS or the up/down arrows to jump/crouch.|0
+You can also use the space bar to jump.|0
+Explore the level - I'll meet you at the end.|0
 Enemies
 Walls
 images/interactive-sprites/link/link-platform.png, 350, 390,0

@@ -1,9 +1,9 @@
-I'm getting the hang of this|Bob Froman
-These toads are just getting in my way|Bob Froman
-I must do as Link said|Bob Froman
-Be the best.|Bob Froman
-That there ever was|Bob Froman
-Good.|Unknown
+I'm getting the hang of this|1
+These toads are just getting in my way|1
+I must do as Link said|1
+Be the best.|1
+That there ever was|1
+Good.|2
 Enemies
 760,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
 1200,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
