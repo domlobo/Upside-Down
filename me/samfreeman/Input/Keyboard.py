@@ -14,6 +14,7 @@ class Keyboard:
         self.j = False
         self.k = False
         self.l = False
+        self.b = False
 
     #handling key press down
     def keyDown(self, key):
@@ -35,6 +36,8 @@ class Keyboard:
         if (key == simplegui.KEY_MAP['q']):
             self.q = True
 
+        if (key == simplegui.KEY_MAP['b']):
+            self.b = True
 
 
     #handling key release
@@ -54,3 +57,6 @@ class Keyboard:
             self.k = False
         elif (key == simplegui.KEY_MAP['q']):
             self.q=False
+
+        if (key == simplegui.KEY_MAP['b']):
+            self.b = False

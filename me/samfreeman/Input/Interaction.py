@@ -1,3 +1,5 @@
+from me.samfreeman.GameControl import GV
+
 try:
     import simplegui
 except ImportError :
@@ -37,6 +39,8 @@ class Interaction:
                     self.player.fireballAttack()
                 if self.keyboard.l and self.player.maxUnlockedWeapon >2:
                     self.player.shoot()
+                if self.keyboard.b:
+                    GV.bounding_box = not GV.bounding_box
             else:
                 if self.keyboard.q:
                     self.text.nextText()

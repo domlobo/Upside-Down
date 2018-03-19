@@ -280,5 +280,5 @@ class Player(GameObject):
         else:
             GameObject.draw(self, canvas, colour, Vector((self.position.x + self.offset, self.position.y)), 90)
         # self.diamondPickUp.draw(position, canvas, 90, 90)
-
-        self.swordBoundingBox.draw(canvas)
+        if GV.bounding_box:
+            self.swordBoundingBox.draw(canvas)

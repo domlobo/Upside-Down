@@ -31,7 +31,7 @@ class StaticEnemy(GameObject):
                 proj.remove = True
             if proj.remove: self.projectiles.remove(proj)
 
-    def draw(self, canvas, colour):
+    def draw(self, canvas, colour): 
         GameObject.draw(self, canvas, colour)
         self.sprite.startAnimation(10)
 
