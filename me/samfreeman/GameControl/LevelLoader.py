@@ -57,10 +57,12 @@ class LevelLoader:
                           cloudsURL, player, inter, "Death")
         # Creating list of levels
 
-        self.levels =[tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne,doomTwo,doomThree, lastLevel]
-        self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt",
-                          "enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt", "enemies/doomTwo.txt", "enemies/doomThree.txt",
-                          "enemies/lastLevel.txt")
+        self.levels =[lastLevel,]
+        self.enemyFiles =("enemies/lastLevel.txt",)
+        # self.levels =[tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne,doomTwo,doomThree, lastLevel]
+        # self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt",
+        #                   "enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt", "enemies/doomTwo.txt", "enemies/doomThree.txt",
+        #                   "enemies/lastLevel.txt")
 
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
@@ -93,6 +95,7 @@ class LevelLoader:
                 self.player.numberOfDeaths = 0
                 self.player.maxUnlockedWeapon += 1
                 self.state.playToCutScene()
+            if self.levelCounter > 9: GV.on_last = True
 
     def gameOver(self):
         #three retries

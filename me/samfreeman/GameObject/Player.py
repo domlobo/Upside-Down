@@ -13,7 +13,7 @@ class Player(GameObject):
         self.runSpeed = runSpeed
         self.jumpSpeed = jumpSpeed
         self.animation = 0
-        self.maxUnlockedWeapon = 0
+        self.maxUnlockedWeapon = 3
         self.numberOfDeaths =0
         self.state = state
         self.frame = frame

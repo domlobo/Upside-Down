@@ -15,13 +15,14 @@ class TextOverlay:
         #link,player,unknown,mario,doom
         self.speakerOrder = [speaker]
         #Each of these is a speaker, ID is position (e.g. Link ID = 0, Bob's ID = 1, ect...)
-        self.speakerList= ["Link", "Bob Froman", "Unknown", "Mario", "Doomslayer", "Ghost of Link"]
+        self.speakerList= ["Link", "Bob Froman", "Unknown", "Mario", "Doomslayer", "Ghost of Link", "Jess"]
         self.speakerSpriteList = [simplegui._load_local_image("images/interactive-sprites/link/link-profile.png"),
                                     simplegui._load_local_image("images/cutscenes/Player_Profile.png"),
                                     simplegui._load_local_image("images/cutscenes/unknown.png"),
                                     simplegui._load_local_image("images/interactive-sprites/mario/mario-profile.png"),
                                     simplegui._load_local_image("images/interactive-sprites/doom/doom-profile.png"),
-                                    simplegui._load_local_image("images/interactive-sprites/link/link-profile.png")]
+                                    simplegui._load_local_image("images/interactive-sprites/link/link-profile.png"),
+                                    simplegui._load_local_image("images/cutscenes/Wife_Profile.png")]
         self.currentSpeakerIndex = 0
         self.currentSpeaker = self.speakerList[self.currentSpeakerIndex]
         self.BACKGROUND_LOAD = simplegui._load_local_image("images/background/TextOverlayBackground.png")

@@ -1,3 +1,5 @@
+from me.samfreeman.GameObject.Wife import Wife
+
 try:
     import simplegui
 except ImportError :
@@ -53,6 +55,9 @@ class Level:
             elif(args[7] == "s\n"):
                 #args[5] and [6] are left blank
                 self.enemies.append(StaticEnemy(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft))
+            elif(args[7] == "w\n"):
+                #args[5] and [6] are left blank
+                self.enemies.append(Wife(Vector((int(args[0]), int(args[1]))),int(args[2]),self.player, runLeft))
             elif(args[7] == "r"):
                 runRight= Sprite(args[5], 1,int(args[6]), True)
                 leftShoot = Sprite(args[8],1, int(args[9]), True)

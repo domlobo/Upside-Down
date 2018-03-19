@@ -22,3 +22,5 @@ JUMPING = 2
 
 allow_update = False
 bounding_box = False
+win = False
+on_last = True

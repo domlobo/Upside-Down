@@ -1,33 +1,33 @@
-Jess! Did he hurt you?|Bob
-He better not have hurt you!|Bob
-SHE did not hurt me.|Jess
-She? Who is she?|Bob
-Why are you fine?|Bob
-Jess?|Bob
-I can feel the anger Bob|Unknown (Jess)
-Let it flow through you Bob|Unknown (Jess)
-It was you?|Bob
-No, not was, is. I have been the whole time|Jess
-I am the one the stories are about|Jess
-I.. I… I can’t believe it|Bob
-Why?|Bob
-I wanted you to feel like you had a purpose|Jess
-I wanted you to be happy|Jess
-You’ve made me a monster|Bob
-I’ve been killing good people|Bob
-Have you?|Jess
-Those ‘good’ guys are not so ‘good’|Jess
-Think about what they do.|Jess
-Think about who they kill|Jess
-But they do it to protect others!|Bob
-..from people like you|Bob
-If you are as dangerous as they say..|Bob
-Bob, join me|Jess
-I.. I have to stop you.|Bob
-It’s over Jess. I have the Gun|Bob
-Yes, do it. I love you.|Jess
+Jess! Did he hurt you?|1
+He better not have hurt you!|1
+SHE did not hurt me.|6
+She? Who is she?|1
+Why are you fine?|1
+Jess?|1
+I can feel the anger Bob|2 
+Let it flow through you Bob|2 
+It was you?|1
+No, not was, is. I have been the whole time|6
+I am the one the stories are about|6
+I.. I… I can’t believe it|1
+Why?|1
+I wanted you to feel like you had a purpose|6
+I wanted you to be happy|6
+You’ve made me a monster|1
+I’ve been killing good people|1
+Have you?|6
+Those ‘good’ guys are not so ‘good’|6
+Think about what they do.|6
+Think about who they kill|6
+But they do it to protect others!|1
+..from people like you|1
+If you are as dangerous as they say..|1
+Bob, join me|6
+I.. I have to stop you.|1
+It’s over Jess. I have the Gun|1
+Yes, do it. I love you.|6
 Enemies
-450,469,1,images/cutscenes/Wife_PhoneCall_Left.png,5,,,s
+450,469,1,images/cutscenes/Wife_PhoneCall_Left.png,5,,,w
 Walls
 Floor
 images/background/pokemon/pikachu/pikachu-floor.png,mid,557

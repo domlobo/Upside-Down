@@ -33,7 +33,6 @@ unlockDisplay = NewUnlock(frame)
 inter = Interaction(player, text, cutscenes, state, unlockDisplay)
 
 levelLoader = LevelLoader(player,inter, state)
-
 def update(canvas):
     # make it loop
     music.currentMusic.play()
@@ -76,6 +75,7 @@ def update(canvas):
 
     elif state.gameOver:
         levelLoader.gameOver()
+
 
 
 
