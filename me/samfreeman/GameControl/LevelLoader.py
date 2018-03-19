@@ -49,7 +49,7 @@ class LevelLoader:
         doomTwo = Level("images/background/doom/base-layer-background.jpg",
                         "images/background/doom/second layer.png",
                          "", player,inter,"Doom-2")
-        doomThree = Level("images/background/doom/base-layer-background.jpg",
+        doomThree = Level("images/background/doom/boss_background.jpg",
                         "images/background/doom/second layer.png",
                          "", player,inter,"Doom-3")
         # Creating list of levels
