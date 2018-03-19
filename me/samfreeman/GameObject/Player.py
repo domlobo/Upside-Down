@@ -182,7 +182,6 @@ class Player(GameObject):
             self.attackingSword = False
             self.swordHit = False
             self.attackingFire = False
-        print(self.attackingFire)
 
         if(self.boundingBox.left > 10) and self.boundingBox.right < GV.CANVAS_WIDTH -20:
             GameObject.update(self)
@@ -231,27 +230,21 @@ class Player(GameObject):
 
     def fireballAttack(self):
         self.attackingFire = True
-        print("HEREEEEE")
-        self.updateStates(self.directionState, self.animationLengthAttack, GV.ATTACKING, 3, 1)
+        self.updateStates(self.directionState, self.animationLengthStand, GV.ATTACKING, 3, 1)
         if len(self.fireballs) == self.MAXIMUM_FIREBALLS: return
         self.fireballs.append(FireBall(self.position.copy(), self.velocity.copy(), self.directionState, self.dimensions[0] / 2))
 
-
-
-    def updateStates(self, dir, aLen, act, speed=3, attack=0):
+    def updateStates(self, direction, aLen, act, speed=3, attack=0):
         self.currentAnimationLength = aLen
         self.oldActionState = self.actionState
         self.actionState = act
-        self.directionState = dir
+        self.directionState = direction
 
-        if self.actionState == GV.ATTACKING and self.maxUnlockedWeapon >= 2:
-            self.currentSpriteStart = [(self.directionState * self.currentAnimationLength),
-                                       ((15))]
-            print((attack * 6 + self.actionState))
+        print(self.actionState)
+        if self.actionState == GV.ATTACKING and (self.maxUnlockedWeapon >= 2 and self.attackingFire):
+            self.currentSpriteStart = [(self.directionState * self.currentAnimationLength),((15))]
         else:
-            self.currentSpriteStart = [(self.directionState * self.currentAnimationLength),
-                                   ((self.maxUnlockedWeapon * 6 + self.actionState))]
-
+            self.currentSpriteStart = [(self.directionState * self.currentAnimationLength),((1 * 6 + self.actionState))]
 
         if self.oldActionState != self.actionState:
             self.currentSprite.frameIndex = self.currentSpriteStart

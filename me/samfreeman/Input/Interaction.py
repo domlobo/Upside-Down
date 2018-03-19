@@ -50,7 +50,7 @@ class Interaction:
                         self.state.textToPlay()
                     self.keyboard.q=False
 
-            if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
+            if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped or self.player.attackingFire):
                 self.player.stand()
                 if self.justCrouched:
                     self.justCrouched = False
