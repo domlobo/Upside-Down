@@ -14,6 +14,7 @@ class TextOverlay:
 
         #link,player,unknown,mario,doom
         self.speakerOrder = [speaker]
+        #Each of these is a speaker, ID is position (e.g. Link ID = 0, Bob's ID = 1, ect...)
         self.speakerList= ["Link", "Bob Froman", "Unknown", "Mario", "Doomslayer", "Ghost of Link"]
         self.speakerSpriteList = [simplegui._load_local_image("images/interactive-sprites/link/link-profile.png"),
                                     simplegui._load_local_image("images/cutscenes/Player_Profile.png"),
