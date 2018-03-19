@@ -25,7 +25,7 @@ class Interaction:
         if self.state.inLevel:
             if self.state.levelPlay:
                 # Means no running an shooting
-                if not self.player.attackingSword:
+                if not self.player.attackingSword or self.player.attackingFire:
                     if self.keyboard.right:
                         self.player.moveRight()
                     if self.keyboard.left:
@@ -35,9 +35,9 @@ class Interaction:
                     if self.keyboard.down:
                         self.player.crouch()
                         self.justCrouched = True
-                if self.keyboard.j and not self.player.hasJumped: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
+                if self.keyboard.j and not self.player.hasJumped and not self.player.attackingFire: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
                     self.player.swordAttack()
-                if self.keyboard.k and (self.player.maxUnlockedWeapon >1):
+                if self.keyboard.k and (self.player.maxUnlockedWeapon >1) and not self.player.attackingSword:
                     self.player.fireballAttack()
                 if self.keyboard.l and self.player.maxUnlockedWeapon >2:
                     self.player.shoot()
@@ -65,7 +65,6 @@ class Interaction:
 
         elif self.state.mainMenu:
             if self.keyboard.up:
-                print("triggered")
                 self.state.menuToCutScene()
                 # self.state.cutSceneToLevel()
 
@@ -80,7 +79,6 @@ class Interaction:
             if self.keyboard.q:
                 GV.need_reset = True
                 self.state.scoreToMenu()
-
 
     def checkProjectileCollision(self,enemies,player):
         # Using a copy to remove from actual list if there is too much health loss

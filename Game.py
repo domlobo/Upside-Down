@@ -22,15 +22,16 @@ class Game:
         self.music = MusicControl()
         self.state = State(self.music)
         self.menu = MainMenu(frame)
-        self.acs = AllCutscenes(frame)
-        self.cutscenes = self.acs.allScenes()
-        self.player = Player(Vector((50, GV.CANVAS_HEIGHT / 2)),
-                             Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True), frame,
-                             self.state)
-        self.text = TextOverlay("Welcome", 0)
-        self.unlockDisplay = NewUnlock(frame)
-        self.inter = Interaction(self.player, self.text, self.cutscenes, self.state, self.unlockDisplay)
-        self.levelLoader = LevelLoader(self.player, self.inter, self.state)
+        self.reset()
+        # self.acs = AllCutscenes(frame)
+        # self.cutscenes = self.acs.allScenes()
+        # self.player = Player(Vector((50, GV.CANVAS_HEIGHT / 2)),
+        #                      Sprite("images/interactive-sprites/player/PlayerSpriteSheet.png", 30, 20, True), frame,
+        #                      self.state)
+        # self.text = TextOverlay("Welcome", 0)
+        # self.unlockDisplay = NewUnlock(frame)
+        # self.inter = Interaction(self.player, self.text, self.cutscenes, self.state, self.unlockDisplay)
+        # self.levelLoader = LevelLoader(self.player, self.inter, self.state)
     def reset(self):
 
         self.state = State(self.music)
@@ -50,12 +51,12 @@ class Game:
         self.music.currentMusic.play()
 
         if self.state.mainMenu:
-            print("loop - mm")
+            # print("loop - mm")
             self.menu.draw(canvas)
             self.music.musicIndex = 0
             self.inter.checkKeyboard()
         elif self.state.cutScene:
-            print("loop - cs")
+            # print("loop - cs")
 
             self.cutscenes[0].display(canvas)
 
