@@ -49,13 +49,14 @@ class LevelLoader:
         doomTwo = Level("images/background/doom/base-layer-background.jpg",
                         "images/background/doom/second layer.png",
                          "", player,inter,"Doom-2")
-        doomThree = Level("images/background/doom/base-layer-background.jpg",
+        doomThree = Level("images/background/doom/boss_background.jpg",
                         "images/background/doom/second layer.png",
                          "", player,inter,"Doom-3")
         # Creating list of levels
-        self.levels =[doomTwo,doomThree] #tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne,
 
-        self.enemyFiles =("enemies/doomTwo.txt", "enemies/doomThree.txt") #"enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt",
+        self.levels =[tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne,doomTwo,doomThree]
+        self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt", "enemies/doomTwo.txt", "enemies/doomThree.txt")
+
         self.levelCounter=0
         self.currentLevel=self.levels[self.levelCounter]
         self.currentLevel.loadLevelSpecifics(self.enemyFiles[self.levelCounter])
