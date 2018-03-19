@@ -1,10 +1,10 @@
-I..I can't believe this|Link
-This power level, I've only seen such a thing once.|Link
-I'm sorry but I've failed you as a master.|Link
-I couldn't stop her, but I must kill you!|Link
-What? What do you mean?|Bob Froman
-Who is her?|Bob Froman
-I'm sorry|Link
+I..I can't believe this|0
+This power level, I've only seen such a thing once.|0
+I'm sorry but I've failed you as a master.|0
+I couldn't stop her, but I must kill you!|0
+What? What do you mean?|1
+Who is her?|1
+I'm sorry|0
 Enemies
 450,449,350,images/interactive-sprites/link/link-walk-left.png,4,images/interactive-sprites/link/link-walk-right.png,4,bl,images/interactive-sprites/player/DiamondSword.png,images/interactive-sprites/link/link-attack-left.png,4,images/interactive-sprites/link/link-attack-right.png,4,images/interactive-sprites/link/link-arrow-left.png,images/interactive-sprites/link/link-arrow-right.png
 Walls

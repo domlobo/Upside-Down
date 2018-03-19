@@ -1,8 +1,8 @@
-You are progressing well|Unknown
-Fire is a plus|Bob
-Yes, you have Mario’s flower, but how are you using it?|Unknown
-I.. I.. I don’t know|Bob
-It’s from inside myself|Bob
+You are progressing well|2
+Fire is a plus|1
+Yes, you have Mario’s flower, but how are you using it?|2
+I.. I.. I don’t know|1
+It’s from inside myself|1
 Enemies
 Walls
 Floor

@@ -1,6 +1,6 @@
-None of my questions have been answered|Bob
-Each question only seems to lead to more|Bob
-Why am I being asked to do this, and why do I do it? |Bob
-Something is pulling me forward.|Bob
+None of my questions have been answered|1
+Each question only seems to lead to more|1
+Why am I being asked to do this, and why do I do it? Froman|1
+Something is pulling me forward.|1
 Enemies
 Walls

@@ -1,12 +1,12 @@
-I seem to be getting the hang of this.|Bob Froman
-Haha, don't get ahead of yourself|Link
-You're nothing more than a toddler|Link
-Now, be careful|Link
-You can attack enemies with j.|Link
-You can also jump on them for more damage.|Link
-Alright - lets go on a trial run.|Link
-If you die you'll be respawned up to 3 times.|Link
-Look in the top right - that's your health|Link
+I seem to be getting the hang of this.|1
+Haha, don't get ahead of yourself|0
+You're nothing more than a toddler|0
+Now, be careful|0
+You can attack enemies with j.|0
+You can also jump on them for more damage.|0
+Alright - lets go on a trial run.|0
+If you die you'll be respawned up to 3 times.|0
+Look in the top right - that's your health|0
 Enemies
 600, 469,200,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
 800, 469,100,images/interactive-sprites/link/soldier-attack-left.png,8 ,images/interactive-sprites/link/soldier-attack-right.png,8,d
