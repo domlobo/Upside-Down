@@ -11,6 +11,7 @@ class State:
         self.weaponPickUp = False
         self.death = False
         self.gameOver = False
+        self.lastLevel = False
 
     def menuToCutScene(self):
         if self.mainMenu:

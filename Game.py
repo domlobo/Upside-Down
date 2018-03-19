@@ -19,7 +19,6 @@ frame = simplegui.create_frame("Upside Down", GV.CANVAS_WIDTH, GV.CANVAS_HEIGHT,
 music = MusicControl()
 state = State(music)
 menu = MainMenu(frame)
-####### EXAMPLE OF HOW TO USE CUTSCENE
 
 acs = AllCutscenes(frame)
 cutscenes = acs.allScenes()
@@ -77,6 +76,7 @@ def update(canvas):
 
     elif state.gameOver:
         levelLoader.gameOver()
+
 
 
 frame.set_draw_handler(update)

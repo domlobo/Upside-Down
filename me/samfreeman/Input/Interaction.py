@@ -51,8 +51,7 @@ class Interaction:
                         self.state.textToPlay()
                     self.keyboard.q=False
                 if self.keyboard.l and self.text.lastLevel:
-                    # This is where the animation goes.
-                    pass
+                    self.player.shoot()
 
             if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
                 self.player.stand()

@@ -27,5 +27,7 @@ I.. I have to stop you.|Bob
 It’s over Jess. I have the Gun|Bob
 Yes, do it. I love you.|Jess
 Enemies
+450,469,1,images/cutscenes/Wife_PhoneCall_Left.png,5,,,s
 Walls
 Floor
+images/background/pokemon/pikachu/pikachu-floor.png,mid,557
