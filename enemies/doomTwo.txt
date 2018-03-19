@@ -6,3 +6,6 @@ It’s from inside myself|1
 Enemies
 Walls
 Floor
+images/background/doom/doom-floor-1.png,225,557
+images/background/doom/doom-floor-2.png,625,557
+images/background/doom/doom-floor-3.png,1250.5,557
