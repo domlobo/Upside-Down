@@ -40,7 +40,7 @@ class TextOverlay:
         self.text = [text]
         self.currentTextIndex = 0
         self.displayedText = self.text[self.currentTextIndex]
-
+        self.lastLevel = False
         self.continueText = "Press q to Continue..."
         self.done = False
 
@@ -60,6 +60,8 @@ class TextOverlay:
         self.speakerOrder.append(speaker)
 
     def display(self, canvas):
+        if self.lastLevel:
+            self.continueText = "Press L to SHOOT JESS!"
         if not(self.done):
             #self.outline.draw(canvas, "White", "White")
             canvas.draw_image(self.BACKGROUND_LOAD,self.BACKGROUND_CENTER.getP(),(self.BACKGROUND_WIDTH,self.BACKGROUND_HEIGHT),self.BACKGROUND_POSITION.getP(),(self.BACKGROUND_WIDTH,self.height))

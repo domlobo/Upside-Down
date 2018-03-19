@@ -33,7 +33,7 @@ class Interaction:
                     if self.keyboard.down:
                         self.player.crouch()
                         self.justCrouched = True
-                if self.keyboard.j and not self.player.hasJumped: # This prevents a bug that breaks the player if they swing in the air -- may come back and fix
+                if self.keyboard.j and not self.player.hasJumped:
                     self.player.swordAttack()
                 if self.keyboard.k and (self.player.maxUnlockedWeapon >1):
                     self.player.fireballAttack()
@@ -44,9 +44,15 @@ class Interaction:
             else:
                 if self.keyboard.q:
                     self.text.nextText()
+                    if self.state.lastLevel:
+                        if (self.text.currentTextIndex == len(self.text.text) - 2):
+                            self.text.lastLevel = True
                     if self.text.done:
                         self.state.textToPlay()
                     self.keyboard.q=False
+                if self.keyboard.l and self.text.lastLevel:
+                    # This is where the animation goes.
+                    pass
 
             if not (self.keyboard.down or self.keyboard.right or self.keyboard.left or self.player.attackingSword or self.player.hasJumped):
                 self.player.stand()
