@@ -49,12 +49,12 @@ class LevelLoader:
         doomTwo = Level("images/background/doom/base-layer-background.jpg",
                         "images/background/doom/second layer.png",
                          "", player,inter,"Doom-2")
-        doomThree = Level("images/background/doom/base-layer-background.jpg",
+        doomThree = Level("images/background/doom/boss_background.jpg",
                         "images/background/doom/second layer.png",
                          "", player,inter,"Doom-3")
         # Creating list of levels
-        self.levels =[tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne,doomTwo,doomThree]
 
+        self.levels =[tutorialOne,tutorialTwo,tutorialThree,marioOne,marioTwo,marioThree,doomOne,doomTwo,doomThree]
         self.enemyFiles =("enemies/tutorialOne.txt","enemies/tutorialTwo.txt","enemies/tutorialThree.txt","enemies/marioOne.txt","enemies/marioTwo.txt","enemies/marioThree.txt","enemies/doomOne.txt", "enemies/doomTwo.txt", "enemies/doomThree.txt")
 
         self.levelCounter=0

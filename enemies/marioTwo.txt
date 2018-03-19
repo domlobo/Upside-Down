@@ -11,6 +11,9 @@ Enemies
 2200,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
 2500,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
 3750,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
+4000,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
+4300,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
+4600,494,100,images/interactive-sprites/mario/toad-run-left.png,4,images/interactive-sprites/mario/toad-run-right.png,4,d
 Walls
 images/interactive-sprites/mario/mario-block-3-piece.png,442,390,0
 images/interactive-sprites/mario/mario-block.png,442,240,0
@@ -21,15 +24,15 @@ images/interactive-sprites/mario/mario-block-4-piece.png,2499,390,0
 images/interactive-sprites/mario/mario-block-3-piece.png,2877,390,0
 images/interactive-sprites/mario/mario-block-3-piece.png,3151,390,0
 images/interactive-sprites/mario/mario-block-4-piece.png,3463,390,0
+images/interactive-sprites/mario/mario-block-3-piece.png,4442,390,0
 images/interactive-sprites/mario/stair1.png, 4678, 501,0
-images/interactive-sprites/mario/stair2.png, 4704, 488,0
+images/interactive-sprites/mario/stair1.png, 4704, 501,0
 images/interactive-sprites/mario/stair3.png, 4731, 474,0
-images/interactive-sprites/mario/stair4.png, 4758, 461,0
+images/interactive-sprites/mario/stair3.png, 4758, 474,0
 images/interactive-sprites/mario/stair5.png, 4785, 448,0
-images/interactive-sprites/mario/stair6.png, 4812, 435,0
+images/interactive-sprites/mario/stair5.png, 4812, 448,0
 images/interactive-sprites/mario/stair7.png, 4839, 422,0
-images/interactive-sprites/mario/stair8.png, 4866, 409,0
-images/interactive-sprites/mario/stair8.png, 4893, 409,0
+images/interactive-sprites/mario/stair7.png, 4866, 422,0
 images/interactive-sprites/mario/Super_Mario_flag_pole.png, 5000, 350,1
 images/interactive-sprites/mario/mario-castle.png, 5350, 307,1
 Floor

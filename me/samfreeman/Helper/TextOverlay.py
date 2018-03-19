@@ -14,6 +14,7 @@ class TextOverlay:
 
         #link,player,unknown,mario,doom
         self.speakerOrder = [speaker]
+        #Each of these is a speaker, ID is position (e.g. Link ID = 0, Bob's ID = 1, ect...)
         self.speakerList= ["Link", "Bob Froman", "Unknown", "Mario", "Doomslayer", "Ghost of Link"]
         self.speakerSpriteList = [simplegui._load_local_image("images/interactive-sprites/link/link-profile.png"),
                                     simplegui._load_local_image("images/cutscenes/Player_Profile.png"),
@@ -32,7 +33,7 @@ class TextOverlay:
         self.SPEAKER_POSITION = Vector((self.height * 0.5, self.BACKGROUND_POSITION.y))
 
         self.textWrap = Rectangle(Vector((GV.CANVAS_WIDTH * 0.2, self.BACKGROUND_POSITION.y)),
-                                  GV.CANVAS_WIDTH,
+                                  GV.CANVAS_WIDTH-10,
                                   self.height)
 
         self.maxCharacterCount = 100
@@ -68,6 +69,6 @@ class TextOverlay:
             speakerCenter= Vector((speakerWidth/2, speakerHeight/2))
 
             canvas.draw_image(self.currentSpeakerSprite,speakerCenter.getP(),(speakerWidth,speakerHeight),self.SPEAKER_POSITION.getP(),(speakerWidth,speakerHeight))
-            canvas.draw_text(self.currentSpeaker, [self.SPEAKER_POSITION.x-(speakerWidth/2) ,self.SPEAKER_POSITION.y + (speakerHeight/2) - 20], 15, "Black", "monospace")
+            canvas.draw_text(self.currentSpeaker, [self.SPEAKER_POSITION.x-(speakerWidth/2) ,self.BACKGROUND_POSITION.y - ((self.height/2)-30)], 15, "Black", "monospace")
             canvas.draw_text(self.displayedText, self.textWrap.position.getP(), 15, "Black", "monospace")
             canvas.draw_text(self.continueText, [self.textWrap.position.x, GV.CANVAS_HEIGHT - 20], 15, "Black", "monospace")

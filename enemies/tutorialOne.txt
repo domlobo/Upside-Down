@@ -13,7 +13,7 @@ Explore the level - I'll meet you at the end.|0
 Enemies
 Walls
 images/interactive-sprites/link/link-platform.png, 350, 390,0
-images/interactive-sprites/link/link-platform.png, 670, 310,0
+images/interactive-sprites/link/link-platform.png, 530, 310,0
 images/interactive-sprites/link/link-platform.png, 1250, 390,0
 Floor
 images/background/link/link-floor.png,mid,557
